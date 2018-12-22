@@ -87,8 +87,14 @@
        <height>21</height>
       </rect>
      </property>
+     <property name="placeholderText">
+      <string>11 Wall Street, New York, NY</string>
+     </property>
     </widget>
     <widget class="QLabel" name="label_4">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -117,10 +123,18 @@
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="2">
-       <widget class="QLineEdit" name="AppId"/>
+       <widget class="QLineEdit" name="AppId">
+        <property name="placeholderText">
+         <string>6evN87VoDTiHtpLvEoLE</string>
+        </property>
+       </widget>
       </item>
       <item row="1" column="2">
-       <widget class="QLineEdit" name="AppCode"/>
+       <widget class="QLineEdit" name="AppCode">
+        <property name="placeholderText">
+         <string>LgbkS8Sa66CKpqDxAmiyaw</string>
+        </property>
+       </widget>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label_2">
