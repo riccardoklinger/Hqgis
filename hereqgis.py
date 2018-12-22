@@ -181,15 +181,116 @@ class HEREqgis:
         # remove the toolbar
         del self.toolbar
 
+    def geocode(self):
+        import requests, json
+        from qgis.core import QgsPointXY, QgsGeometry, QgsVectorLayer, QgsProject, QgsFeature
+        #getting values fronm the dialog:
+        if self.dlg.geocodeMode.currentText()=="single address":
+            address = self.dlg.AddressInput.text()
+            if address == "":
+                address = "11 Wall Street, New York, USA"
+            appId = self.dlg.AppId.text()
+            appCode = self.dlg.AppCode.text()
+        url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + appId + "&app_code=" + appCode + "&searchtext=" + address
+        print(appCode,appId, address)
+        postData = {"app_id":appId, "app_code":appCode, "searchtext":address}
+        r = requests.get(url)
+        #print(r.json())
+        ##
+        #print(json.loads(r.text))
+        try: 
+            #ass the response may hold more than one result we only use the best one:
+            responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
+            lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
+            lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
+            layer = QgsVectorLayer(
+                """Point?crs=epsg:4326&
+                field=id:integer
+                &field=address:string(200)
+                &field=country:string(200)
+                &field=state:string(200)
+                &field=county:string(200)
+                &field=city:string(200)
+                &field=district:string(200)
+                &field=street:string(200)
+                &field=number:string(200)
+                &field=zip:string(200)
+                &field=relevance:float
+                &field=qu_country:float
+                &field=qu_city:float
+                &field=qu_street:float
+                &field=qu_number:float
+                &field=matchtype:string(200)
+                &index=yes""",
+                "AddressLayer",
+                "memory"
+            )
+            
+            fet = QgsFeature()
+            print(lat,lng)
+            fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
+            print("cords set")
+            fet.setAttributes([
+                0,   responseAddress["Location"]["Address"]["Label"],
+                responseAddress["Location"]["Address"]["Country"],
+                responseAddress["Location"]["Address"]["State"],
+                responseAddress["Location"]["Address"]["County"],
+                responseAddress["Location"]["Address"]["City"],
+                responseAddress["Location"]["Address"]["District"],
+                responseAddress["Location"]["Address"]["Street"],
+                responseAddress["Location"]["Address"]["HouseNumber"],
+                responseAddress["Location"]["Address"]["PostalCode"],
+                responseAddress["Relevance"],
+                responseAddress["MatchQuality"]["Country"],
+                responseAddress["MatchQuality"]["City"],
+                responseAddress["MatchQuality"]["Street"][0],
+                responseAddress["MatchQuality"]["HouseNumber"],
+                responseAddress["MatchType"]
+            ])
+            #print("feature set")
+            pr = layer.dataProvider()
+            pr.addFeatures([fet])
+            QgsProject.instance().addMapLayer(layer)
+        except Exception as e: 
+            print(e)
+
+    def loadCreds(self):
+        import json, os
+        scriptDirectory = os.path.dirname(os.path.realpath(__file__))
+        print(scriptDirectory)
+        try:
+            import os
+            scriptDirectory = os.path.dirname(os.path.realpath(__file__))
+            with open(scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json') as f:
+                data = json.load(f)
+                self.dlg.AppId.setText(data["ID"])
+                self.dlg.AppCode.setText(data["CODE"])
+        except:
+            print("no Creds found")
+            self.dlg.geocodeButton.setEnabled(False)
 
     def run(self):
         """Run method that performs all the real work"""
         # show the dialog
         self.dlg.show()
+        #try to load credentials:
+        self.loadCreds()
+
+
+
+        #alter visibikity of inputs
+        if self.dlg.geocodeMode.currentText() != "single address":
+            self.dlg.label_4.setEnabled(False)
+            self.dlg.AddressInput.setEnabled(False)
+        else:
+            print("batch")
+        self.dlg.geocodeButton.clicked.connect(self.geocode)
         # Run the dialog event loop
         result = self.dlg.exec_()
         # See if OK was pressed
         if result:
+            #get app code/id
+   
             # Do something useful here - delete the line containing pass and
             # substitute with your code.
             pass
