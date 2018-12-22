@@ -30,7 +30,9 @@ from .resources import *
 # Import the code for the dialog
 from .hereqgis_dialog import HEREqgisDialog
 import os.path
-
+import requests, json
+from PyQt5.QtCore import QVariant
+from qgis.core import QgsPointXY, QgsGeometry, QgsVectorLayer, QgsProject, QgsFeature, QgsField
 
 class HEREqgis:
     """QGIS Plugin Implementation."""
@@ -182,15 +184,164 @@ class HEREqgis:
         del self.toolbar
 
     def geocode(self):
-        import requests, json
-        from qgis.core import QgsPointXY, QgsGeometry, QgsVectorLayer, QgsProject, QgsFeature
+
         #getting values fronm the dialog:
-        if self.dlg.geocodeMode.currentText()=="single address":
-            address = self.dlg.AddressInput.text()
-            if address == "":
-                address = "11 Wall Street, New York, USA"
-            appId = self.dlg.AppId.text()
-            appCode = self.dlg.AppCode.text()
+        #if self.dlg.geocodeMode.currentText()=="single address":
+        address = self.dlg.AddressInput.text()
+        if address == "":
+            address = "11 Wall Street, New York, USA"
+        appId = self.dlg.AppId.text()
+        appCode = self.dlg.AppCode.text()
+        url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + appId + "&app_code=" + appCode + "&searchtext=" + address
+        print(appCode,appId, address)
+        postData = {"app_id":appId, "app_code":appCode, "searchtext":address}
+        r = requests.get(url)
+        #print(r.json())
+        ##
+        #print(json.loads(r.text))
+        try: 
+            #ass the response may hold more than one result we only use the best one:
+            responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
+            lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
+            lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
+            layer = QgsVectorLayer(
+                """Point?
+                crs=epsg:4326
+                &index=yes""",
+                "AddressLayer",
+                "memory"
+            )
+            layer.dataProvider().addAttributes([
+                QgsField("id",QVariant.Int),
+                QgsField("address",QVariant.String),
+                QgsField("country",QVariant.String),
+                QgsField("state",QVariant.String),
+                QgsField("county",QVariant.String),
+                QgsField("city",QVariant.String),
+                QgsField("district",QVariant.String),
+                QgsField("street",QVariant.String),
+                QgsField("number",QVariant.String),
+                QgsField("zip",QVariant.String),
+                QgsField("relevance",QVariant.Double),
+                QgsField("qu_country",QVariant.Double),
+                QgsField("qu_city",QVariant.Double),
+                QgsField("qu_street",QVariant.Double),
+                QgsField("qu_number",QVariant.Double),
+                QgsField("matchtype",QVariant.String)
+            ])
+            layer.commitChanges()
+            fet = QgsFeature()
+            print(lat,lng)
+            fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
+            print("cords set")
+            fet.setAttributes([
+                0,   responseAddress["Location"]["Address"]["Label"],
+                responseAddress["Location"]["Address"]["Country"],
+                responseAddress["Location"]["Address"]["State"],
+                responseAddress["Location"]["Address"]["County"],
+                responseAddress["Location"]["Address"]["City"],
+                responseAddress["Location"]["Address"]["District"],
+                responseAddress["Location"]["Address"]["Street"],
+                responseAddress["Location"]["Address"]["HouseNumber"],
+                responseAddress["Location"]["Address"]["PostalCode"],
+                responseAddress["Relevance"],
+                responseAddress["MatchQuality"]["Country"],
+                responseAddress["MatchQuality"]["City"],
+                responseAddress["MatchQuality"]["Street"][0],
+                responseAddress["MatchQuality"]["HouseNumber"],
+                responseAddress["MatchType"]
+            ])
+
+            #print("feature set")
+            pr = layer.dataProvider()
+            pr.addFeatures([fet])
+
+            QgsProject.instance().addMapLayer(layer)
+        except Exception as e: 
+            print(e)
+
+    def batchGeocodeField(self):
+        address = self.dlg.AddressInput.text()
+        if address == "":
+            address = "11 Wall Street, New York, USA"
+        appId = self.dlg.AppId.text()
+        appCode = self.dlg.AppCode.text()
+        url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + appId + "&app_code=" + appCode + "&searchtext=" + address
+        print(appCode,appId, address)
+        postData = {"app_id":appId, "app_code":appCode, "searchtext":address}
+        r = requests.get(url)
+        #print(r.json())
+        ##
+        #print(json.loads(r.text))
+        try: 
+            #ass the response may hold more than one result we only use the best one:
+            responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
+            lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
+            lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
+            layer = QgsVectorLayer(
+                """Point?
+                crs=epsg:4326
+                &index=yes""",
+                "AddressLayer",
+                "memory"
+            )
+            layer.dataProvider().addAttributes([
+                QgsField("id",QVariant.Int),
+                QgsField("address",QVariant.String),
+                QgsField("country",QVariant.String),
+                QgsField("state",QVariant.String),
+                QgsField("county",QVariant.String),
+                QgsField("city",QVariant.String),
+                QgsField("district",QVariant.String),
+                QgsField("street",QVariant.String),
+                QgsField("number",QVariant.String),
+                QgsField("zip",QVariant.String),
+                QgsField("relevance",QVariant.Double),
+                QgsField("qu_country",QVariant.Double),
+                QgsField("qu_city",QVariant.Double),
+                QgsField("qu_street",QVariant.Double),
+                QgsField("qu_number",QVariant.Double),
+                QgsField("matchtype",QVariant.String)
+            ])
+            layer.commitChanges()
+            fet = QgsFeature()
+            print(lat,lng)
+            fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
+            print("cords set")
+            fet.setAttributes([
+                0,   
+                responseAddress["Location"]["Address"]["Label"],
+                responseAddress["Location"]["Address"]["Country"],
+                responseAddress["Location"]["Address"]["State"],
+                responseAddress["Location"]["Address"]["County"],
+                responseAddress["Location"]["Address"]["City"],
+                responseAddress["Location"]["Address"]["District"],
+                responseAddress["Location"]["Address"]["Street"],
+                responseAddress["Location"]["Address"]["HouseNumber"],
+                responseAddress["Location"]["Address"]["PostalCode"],
+                responseAddress["Relevance"],
+                responseAddress["MatchQuality"]["Country"],
+                responseAddress["MatchQuality"]["City"],
+                responseAddress["MatchQuality"]["Street"][0],
+                responseAddress["MatchQuality"]["HouseNumber"],
+                responseAddress["MatchType"]
+            ])
+            #print("feature set")
+            pr = layer.dataProvider()
+            pr.addFeatures([fet])
+            
+            QgsProject.instance().addMapLayer(layer)
+        except Exception as e: 
+            print(e)
+
+    def batchGeocodeFields(self):
+
+        #if self.dlg.geocodeMode.currentText()=="single address":
+        address = self.dlg.AddressInput.text()
+        if address == "":
+            address = "11 Wall Street, New York, USA"
+        appId = self.dlg.AppId.text()
+        appCode = self.dlg.AppCode.text()
         url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + appId + "&app_code=" + appCode + "&searchtext=" + address
         print(appCode,appId, address)
         postData = {"app_id":appId, "app_code":appCode, "searchtext":address}
@@ -225,7 +376,7 @@ class HEREqgis:
                 "AddressLayer",
                 "memory"
             )
-            
+            layer.commitChanges()
             fet = QgsFeature()
             print(lat,lng)
             fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
@@ -269,22 +420,57 @@ class HEREqgis:
             print("no Creds found")
             self.dlg.geocodeButton.setEnabled(False)
 
+    def geocodeInput(self):
+        from PyQt5 import QtWidgets
+        from qgis.core import QgsProject
+        print(self.dlg.geocodeMode.currentText())
+        if self.dlg.geocodeMode.currentText() == "single address":
+            self.dlg.addressLab.setEnabled(True)
+            self.dlg.AddressInput.setEnabled(True)
+            self.dlg.layerLab.setEnabled(False  )
+            self.dlg.LayerSelect.setEnabled(False)
+        if self.dlg.geocodeMode.currentText() == "adresses from layer attribute":
+            self.dlg.addressLab.setEnabled(False)
+            self.dlg.AddressInput.setEnabled(False)
+            self.dlg.LayerSelect.clear()
+            self.dlg.layerLab.setEnabled(True)
+            self.dlg.LayerSelect.setEnabled(True)
+            layer_list = [tree_layer.layer() for tree_layer in QgsProject.instance().layerTreeRoot().findLayers()]
+            for layer in layer_list:
+                if layer.type() == 0:
+                    self.dlg.LayerSelect.addItem(layer.name(), layer.id())
+
+    def searchFieldPopulate(self):
+        print("add fields to address field")
+
+    def searchFieldsPopulate(self):
+        print("add fields to address fields")   
+
     def run(self):
+        from qgis.core import QgsProject    
         """Run method that performs all the real work"""
         # show the dialog
         self.dlg.show()
         #try to load credentials:
         self.loadCreds()
+        #self.geocodeInput()
 
+        #self.dlg.geocodeMode.currentIndexChanged.connect(self.geocodeInput)
+        self.dlg.LayerSelect.currentIndexChanged.connect(self.searchFieldPopulate)
+        self.dlg.LayerSelect_2.currentIndexChanged.connect(self.searchFieldsPopulate)
+        #fill all layer/attributes
+        self.dlg.LayerSelect.clear()
+        self.dlg.LayerSelect_2.clear()
+        layer_list = [tree_layer.layer() for tree_layer in QgsProject.instance().layerTreeRoot().findLayers()]
+        for layer in layer_list:
+            if layer.type() == 0:
+                self.dlg.LayerSelect.addItem(layer.name(), layer.id())
+                self.dlg.LayerSelect_2.addItem(layer.name(), layer.id())
+            
+        self.dlg.geocodeAddressButton.clicked.connect(self.geocode)
+        self.dlg.batchGeocodeFieldButton.clicked.connect(self.batchGeocodeField)
+        self.dlg.batchGeocodeFieldsButton.clicked.connect(self.batchGeocodeFields)
 
-
-        #alter visibikity of inputs
-        if self.dlg.geocodeMode.currentText() != "single address":
-            self.dlg.label_4.setEnabled(False)
-            self.dlg.AddressInput.setEnabled(False)
-        else:
-            print("batch")
-        self.dlg.geocodeButton.clicked.connect(self.geocode)
         # Run the dialog event loop
         result = self.dlg.exec_()
         # See if OK was pressed

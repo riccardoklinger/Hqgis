@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>401</width>
+    <height>446</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,9 +16,9 @@
   <widget class="QDialogButtonBox" name="button_box">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>270</y>
-     <width>91</width>
+     <x>280</x>
+     <y>410</y>
+     <width>109</width>
      <height>32</height>
     </rect>
    </property>
@@ -38,7 +38,7 @@
      <x>0</x>
      <y>0</y>
      <width>401</width>
-     <height>301</height>
+     <height>421</height>
     </rect>
    </property>
    <property name="currentIndex">
@@ -48,80 +48,234 @@
     <attribute name="title">
      <string>Geocode</string>
     </attribute>
-    <widget class="QComboBox" name="geocodeMode">
+    <widget class="QTabWidget" name="tabWidget_2">
      <property name="geometry">
       <rect>
-       <x>120</x>
-       <y>20</y>
-       <width>271</width>
-       <height>32</height>
+       <x>0</x>
+       <y>0</y>
+       <width>391</width>
+       <height>391</height>
       </rect>
      </property>
-     <item>
-      <property name="text">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab_3">
+      <attribute name="title">
        <string>single address</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>adresses from layer attribute</string>
-      </property>
-     </item>
-    </widget>
-    <widget class="QLabel" name="label_3">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>20</y>
-       <width>101</width>
-       <height>26</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Geocode mode</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="AddressInput">
-     <property name="geometry">
-      <rect>
-       <x>120</x>
-       <y>50</y>
-       <width>271</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="placeholderText">
-      <string>11 Wall Street, New York, NY</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_4">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>50</y>
-       <width>101</width>
-       <height>26</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Address</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="geocodeButton">
-     <property name="geometry">
-      <rect>
-       <x>290</x>
-       <y>240</y>
-       <width>101</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Geocode</string>
-     </property>
+      </attribute>
+      <widget class="QWidget" name="horizontalLayoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>381</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="addressLab">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Address</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="AddressInput">
+          <property name="placeholderText">
+           <string>11 Wall Street, New York, NY</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QPushButton" name="geocodeAddressButton">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>330</y>
+         <width>383</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Geocode Single Address</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tab_4">
+      <attribute name="title">
+       <string>address field in layer</string>
+      </attribute>
+      <widget class="QWidget" name="gridLayoutWidget_3">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>381</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="QLabel" name="layerLab">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Layer</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="LayerSelect"/>
+        </item>
+        <item row="1" column="1">
+         <widget class="QComboBox" name="AddressField"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="layerLab_2">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Address Field</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QPushButton" name="batchGeocodeFieldButton">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>330</y>
+         <width>383</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Geocode Multiple Addresses</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tab_5">
+      <attribute name="title">
+       <string>address fields in layer</string>
+      </attribute>
+      <widget class="QWidget" name="gridLayoutWidget_4">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>381</width>
+         <height>291</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>State</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="layerLab_3">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Layer</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Country</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="LayerSelect_2"/>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>County</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>House number</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>City</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>Street</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>Postal code</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QComboBox" name="comboBox"/>
+        </item>
+        <item row="2" column="1">
+         <widget class="QComboBox" name="comboBox_2"/>
+        </item>
+        <item row="3" column="1">
+         <widget class="QComboBox" name="comboBox_3"/>
+        </item>
+        <item row="4" column="1">
+         <widget class="QComboBox" name="comboBox_4"/>
+        </item>
+        <item row="5" column="1">
+         <widget class="QComboBox" name="comboBox_5"/>
+        </item>
+        <item row="6" column="1">
+         <widget class="QComboBox" name="comboBox_6"/>
+        </item>
+        <item row="7" column="1">
+         <widget class="QComboBox" name="comboBox_7"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QPushButton" name="batchGeocodeFieldsButton">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>330</y>
+         <width>383</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Geocode Multiple Addresses by fields</string>
+       </property>
+      </widget>
+     </widget>
     </widget>
    </widget>
    <widget class="QWidget" name="tab_2">
