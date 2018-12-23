@@ -23,7 +23,8 @@
 """
 from PyQt5.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QAction
+from PyQt5.QtWidgets import QAction, QFileDialog
+from PyQt5 import QtGui, QtWidgets
 
 # Initialize Qt resources from file resources.py
 from .resources import *
@@ -199,7 +200,7 @@ class HEREqgis:
         #print(r.json())
         ##
         #print(json.loads(r.text))
-        try: 
+        try:
             #ass the response may hold more than one result we only use the best one:
             responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
             lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
@@ -257,7 +258,7 @@ class HEREqgis:
             pr.addFeatures([fet])
 
             QgsProject.instance().addMapLayer(layer)
-        except Exception as e: 
+        except Exception as e:
             print(e)
 
     def batchGeocodeField(self):
@@ -273,7 +274,7 @@ class HEREqgis:
         #print(r.json())
         ##
         #print(json.loads(r.text))
-        try: 
+        try:
             #ass the response may hold more than one result we only use the best one:
             responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
             lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
@@ -309,7 +310,7 @@ class HEREqgis:
             fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
             print("cords set")
             fet.setAttributes([
-                0,   
+                0,
                 responseAddress["Location"]["Address"]["Label"],
                 responseAddress["Location"]["Address"]["Country"],
                 responseAddress["Location"]["Address"]["State"],
@@ -329,9 +330,9 @@ class HEREqgis:
             #print("feature set")
             pr = layer.dataProvider()
             pr.addFeatures([fet])
-            
+
             QgsProject.instance().addMapLayer(layer)
-        except Exception as e: 
+        except Exception as e:
             print(e)
 
     def batchGeocodeFields(self):
@@ -349,7 +350,7 @@ class HEREqgis:
         #print(r.json())
         ##
         #print(json.loads(r.text))
-        try: 
+        try:
             #ass the response may hold more than one result we only use the best one:
             responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
             lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
@@ -402,12 +403,24 @@ class HEREqgis:
             pr = layer.dataProvider()
             pr.addFeatures([fet])
             QgsProject.instance().addMapLayer(layer)
-        except Exception as e: 
+        except Exception as e:
             print(e)
-
-    def loadCreds(self):
+    def getCredFunction(self):
+        print("open href")
+    def saveCredFunction(self):
+        print("save credits")
+        self.dlg.credentialInteraction.setText("")
+        fileLocation = os.path.dirname(os.path.realpath(__file__))+ os.sep + "creds"
+        with open(fileLocation + os.sep + 'credentials.json', 'w') as outfile:
+            stringJSON = {"ID": self.dlg.AppId.text(), "CODE":  self.dlg.AppCode.text()}
+            json.dump(stringJSON, outfile)
+        self.dlg.credentialInteraction.setText("credentials saved to " + fileLocation + os.sep + 'credentials.json')
+    def loadCredFunction(self):
         import json, os
+        #fileLocation = QFileDialog.getOpenFileName(self.dlg, "JSON with credentials",os.path.dirname(os.path.realpath(__file__))+ os.sep + "creds", "JSON(*.JSON)")
+        #print(fileLocation)
         scriptDirectory = os.path.dirname(os.path.realpath(__file__))
+        self.dlg.credentialInteraction.setText("")
         print(scriptDirectory)
         try:
             import os
@@ -416,9 +429,10 @@ class HEREqgis:
                 data = json.load(f)
                 self.dlg.AppId.setText(data["ID"])
                 self.dlg.AppCode.setText(data["CODE"])
+            self.dlg.credentialInteraction.setText("credits used from " + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
         except:
-            print("no Creds found")
-            self.dlg.geocodeButton.setEnabled(False)
+            self.dlg.credentialInteraction.setText("no credits found in. Check for file" + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
+            #self.dlg.geocodeButton.setEnabled(False)
 
     def geocodeInput(self):
         from PyQt5 import QtWidgets
@@ -444,20 +458,23 @@ class HEREqgis:
         print("add fields to address field")
 
     def searchFieldsPopulate(self):
-        print("add fields to address fields")   
+        print("add fields to address fields")
 
     def run(self):
-        from qgis.core import QgsProject    
+        from qgis.core import QgsProject
         """Run method that performs all the real work"""
         # show the dialog
         self.dlg.show()
         #try to load credentials:
-        self.loadCreds()
+        self.loadCredFunction()
         #self.geocodeInput()
 
         #self.dlg.geocodeMode.currentIndexChanged.connect(self.geocodeInput)
         self.dlg.LayerSelect.currentIndexChanged.connect(self.searchFieldPopulate)
         self.dlg.LayerSelect_2.currentIndexChanged.connect(self.searchFieldsPopulate)
+        self.dlg.getCreds.clicked.connect(self.getCredFunction)
+        self.dlg.saveCreds.clicked.connect(self.saveCredFunction)
+        self.dlg.loadCreds.clicked.connect(self.loadCredFunction)
         #fill all layer/attributes
         self.dlg.LayerSelect.clear()
         self.dlg.LayerSelect_2.clear()
@@ -466,7 +483,7 @@ class HEREqgis:
             if layer.type() == 0:
                 self.dlg.LayerSelect.addItem(layer.name(), layer.id())
                 self.dlg.LayerSelect_2.addItem(layer.name(), layer.id())
-            
+
         self.dlg.geocodeAddressButton.clicked.connect(self.geocode)
         self.dlg.batchGeocodeFieldButton.clicked.connect(self.batchGeocodeField)
         self.dlg.batchGeocodeFieldsButton.clicked.connect(self.batchGeocodeFields)
@@ -476,7 +493,7 @@ class HEREqgis:
         # See if OK was pressed
         if result:
             #get app code/id
-   
+
             # Do something useful here - delete the line containing pass and
             # substitute with your code.
             pass
