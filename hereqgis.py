@@ -406,7 +406,8 @@ class HEREqgis:
         except Exception as e:
             print(e)
     def getCredFunction(self):
-        print("open href")
+        import webbrowser
+        webbrowser.open('https://developer.here.com/')
     def saveCredFunction(self):
         print("save credits")
         self.dlg.credentialInteraction.setText("")

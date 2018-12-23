@@ -345,7 +345,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>get Credentials</string>
+      <string>get credentials</string>
      </property>
     </widget>
     <widget class="QPushButton" name="loadCreds">
