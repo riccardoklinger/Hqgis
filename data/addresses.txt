@@ -1,0 +1,4 @@
+address	Name	ID
+11 Wall Street, New York, NY	Wall Street	0
+Berlin, Germany	Berlin	1
+Gorzów Wielkopolski, 66-400, Pologne	some place in Poland	2

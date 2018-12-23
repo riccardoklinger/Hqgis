@@ -58,7 +58,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
@@ -160,6 +160,19 @@
        </property>
        <property name="text">
         <string>Geocode Multiple Addresses</string>
+       </property>
+      </widget>
+      <widget class="QTextBrowser" name="geocodeResult">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>80</y>
+         <width>431</width>
+         <height>111</height>
+        </rect>
        </property>
       </widget>
      </widget>

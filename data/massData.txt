@@ -1,0 +1,1050 @@
+PLZ	City	State	County	address
+12529	Schönefeld	Brandenburg	Landkreis Dahme-Spreewald	12529, Schönefeld, Landkreis Dahme-Spreewald, Brandenburg
+14461	Potsdam	Brandenburg	Kreisfreie Stadt Potsdam	14461, Potsdam, Kreisfreie Stadt Potsdam, Brandenburg
+14467	Potsdam	Brandenburg	Kreisfreie Stadt Potsdam	14467, Potsdam, Kreisfreie Stadt Potsdam, Brandenburg
+14469	Potsdam	Brandenburg	Kreisfreie Stadt Potsdam	14469, Potsdam, Kreisfreie Stadt Potsdam, Brandenburg
+14471	Potsdam	Brandenburg	Kreisfreie Stadt Potsdam	14471, Potsdam, Kreisfreie Stadt Potsdam, Brandenburg
+14473	Potsdam	Brandenburg	Kreisfreie Stadt Potsdam	14473, Potsdam, Kreisfreie Stadt Potsdam, Brandenburg
+14476	Fahrland	Brandenburg	Kreisfreie Stadt Potsdam	14476, Fahrland, Kreisfreie Stadt Potsdam, Brandenburg
+14476	Satzkorn	Brandenburg	Kreisfreie Stadt Potsdam	14476, Satzkorn, Kreisfreie Stadt Potsdam, Brandenburg
+14476	Töplitz	Brandenburg	Landkreis Potsdam-Mittelmark	14476, Töplitz, Landkreis Potsdam-Mittelmark, Brandenburg
+14476	Neu Fahrland	Brandenburg	Kreisfreie Stadt Potsdam	14476, Neu Fahrland, Kreisfreie Stadt Potsdam, Brandenburg
+14476	Golm	Brandenburg	Kreisfreie Stadt Potsdam	14476, Golm, Kreisfreie Stadt Potsdam, Brandenburg
+14476	Groß Glienicke	Brandenburg	Kreisfreie Stadt Potsdam	14476, Groß Glienicke, Kreisfreie Stadt Potsdam, Brandenburg
+14476	Marquardt	Brandenburg	Kreisfreie Stadt Potsdam	14476, Marquardt, Kreisfreie Stadt Potsdam, Brandenburg
+14476	Uetz-Paaren	Brandenburg	Kreisfreie Stadt Potsdam	14476, Uetz-Paaren, Kreisfreie Stadt Potsdam, Brandenburg
+14476	Seeburg	Brandenburg	Landkreis Havelland	14476, Seeburg, Landkreis Havelland, Brandenburg
+14478	Potsdam	Brandenburg	Kreisfreie Stadt Potsdam	14478, Potsdam, Kreisfreie Stadt Potsdam, Brandenburg
+14480	Potsdam	Brandenburg	Kreisfreie Stadt Potsdam	14480, Potsdam, Kreisfreie Stadt Potsdam, Brandenburg
+14482	Potsdam	Brandenburg	Kreisfreie Stadt Potsdam	14482, Potsdam, Kreisfreie Stadt Potsdam, Brandenburg
+14513	Teltow	Brandenburg	Landkreis Potsdam-Mittelmark	14513, Teltow, Landkreis Potsdam-Mittelmark, Brandenburg
+14532	Nudow	Brandenburg	Landkreis Potsdam-Mittelmark	14532, Nudow, Landkreis Potsdam-Mittelmark, Brandenburg
+14532	Fahlhorst	Brandenburg	Landkreis Potsdam-Mittelmark	14532, Fahlhorst, Landkreis Potsdam-Mittelmark, Brandenburg
+14532	Kleinmachnow	Brandenburg	Landkreis Potsdam-Mittelmark	14532, Kleinmachnow, Landkreis Potsdam-Mittelmark, Brandenburg
+14532	Philippsthal	Brandenburg	Landkreis Potsdam-Mittelmark	14532, Philippsthal, Landkreis Potsdam-Mittelmark, Brandenburg
+14532	Stahnsdorf	Brandenburg	Landkreis Potsdam-Mittelmark	14532, Stahnsdorf, Landkreis Potsdam-Mittelmark, Brandenburg
+14542	Werder (Havel)	Brandenburg	Landkreis Potsdam-Mittelmark	14542, Werder (Havel), Landkreis Potsdam-Mittelmark, Brandenburg
+14542	Kloster Lehnin	Brandenburg	Landkreis Potsdam-Mittelmark	14542, Kloster Lehnin, Landkreis Potsdam-Mittelmark, Brandenburg
+14542	Schwielowsee	Brandenburg	Landkreis Potsdam-Mittelmark	14542, Schwielowsee, Landkreis Potsdam-Mittelmark, Brandenburg
+14547	Stücken	Brandenburg	Landkreis Potsdam-Mittelmark	14547, Stücken, Landkreis Potsdam-Mittelmark, Brandenburg
+14547	Beelitz	Brandenburg	Landkreis Potsdam-Mittelmark	14547, Beelitz, Landkreis Potsdam-Mittelmark, Brandenburg
+14548	Schwielowsee	Brandenburg	Landkreis Potsdam-Mittelmark	14548, Schwielowsee, Landkreis Potsdam-Mittelmark, Brandenburg
+14550	Derwitz	Brandenburg	Landkreis Potsdam-Mittelmark	14550, Derwitz, Landkreis Potsdam-Mittelmark, Brandenburg
+14550	Deetz	Brandenburg	Landkreis Potsdam-Mittelmark	14550, Deetz, Landkreis Potsdam-Mittelmark, Brandenburg
+14550	Groß Kreutz	Brandenburg	Landkreis Potsdam-Mittelmark	14550, Groß Kreutz, Landkreis Potsdam-Mittelmark, Brandenburg
+14550	Schmergow	Brandenburg	Landkreis Potsdam-Mittelmark	14550, Schmergow, Landkreis Potsdam-Mittelmark, Brandenburg
+14550	Bochow	Brandenburg	Landkreis Potsdam-Mittelmark	14550, Bochow, Landkreis Potsdam-Mittelmark, Brandenburg
+14550	Krielow	Brandenburg	Landkreis Potsdam-Mittelmark	14550, Krielow, Landkreis Potsdam-Mittelmark, Brandenburg
+14552	Fresdorf	Brandenburg	Landkreis Potsdam-Mittelmark	14552, Fresdorf, Landkreis Potsdam-Mittelmark, Brandenburg
+14552	Saarmund	Brandenburg	Landkreis Potsdam-Mittelmark	14552, Saarmund, Landkreis Potsdam-Mittelmark, Brandenburg
+14552	Michendorf	Brandenburg	Landkreis Potsdam-Mittelmark	14552, Michendorf, Landkreis Potsdam-Mittelmark, Brandenburg
+14552	Tremsdorf	Brandenburg	Landkreis Potsdam-Mittelmark	14552, Tremsdorf, Landkreis Potsdam-Mittelmark, Brandenburg
+14552	Wildenbruch	Brandenburg	Landkreis Potsdam-Mittelmark	14552, Wildenbruch, Landkreis Potsdam-Mittelmark, Brandenburg
+14554	Seddiner See	Brandenburg	Landkreis Potsdam-Mittelmark	14554, Seddiner See, Landkreis Potsdam-Mittelmark, Brandenburg
+14557	Wilhelmshorst	Brandenburg	Landkreis Potsdam-Mittelmark	14557, Wilhelmshorst, Landkreis Potsdam-Mittelmark, Brandenburg
+14557	Langerwisch	Brandenburg	Landkreis Potsdam-Mittelmark	14557, Langerwisch, Landkreis Potsdam-Mittelmark, Brandenburg
+14558	Bergholz-Rehbrücke	Brandenburg	Landkreis Potsdam-Mittelmark	14558, Bergholz-Rehbrücke, Landkreis Potsdam-Mittelmark, Brandenburg
+14612	Falkensee	Brandenburg	Landkreis Havelland	14612, Falkensee, Landkreis Havelland, Brandenburg
+14621	Schönwalde	Brandenburg	Landkreis Havelland	14621, Schönwalde, Landkreis Havelland, Brandenburg
+14624	Dallgow-Döberitz	Brandenburg	Landkreis Havelland	14624, Dallgow-Döberitz, Landkreis Havelland, Brandenburg
+14627	Elstal	Brandenburg	Landkreis Havelland	14627, Elstal, Landkreis Havelland, Brandenburg
+14641	Falkenrehde	Brandenburg	Landkreis Havelland	14641, Falkenrehde, Landkreis Havelland, Brandenburg
+14641	Berge	Brandenburg	Landkreis Havelland	14641, Berge, Landkreis Havelland, Brandenburg
+14641	Ribbeck	Brandenburg	Landkreis Havelland	14641, Ribbeck, Landkreis Havelland, Brandenburg
+14641	Nauen	Brandenburg	Landkreis Havelland	14641, Nauen, Landkreis Havelland, Brandenburg
+14641	Klein Behnitz	Brandenburg	Landkreis Havelland	14641, Klein Behnitz, Landkreis Havelland, Brandenburg
+14641	Bredow	Brandenburg	Landkreis Havelland	14641, Bredow, Landkreis Havelland, Brandenburg
+14641	Wachow	Brandenburg	Landkreis Havelland	14641, Wachow, Landkreis Havelland, Brandenburg
+14641	Wansdorf	Brandenburg	Landkreis Havelland	14641, Wansdorf, Landkreis Havelland, Brandenburg
+14641	Groß Behnitz	Brandenburg	Landkreis Havelland	14641, Groß Behnitz, Landkreis Havelland, Brandenburg
+14641	Etzin	Brandenburg	Landkreis Havelland	14641, Etzin, Landkreis Havelland, Brandenburg
+14641	Paaren im Glien	Brandenburg	Landkreis Havelland	14641, Paaren im Glien, Landkreis Havelland, Brandenburg
+14641	Grünefeld	Brandenburg	Landkreis Havelland	14641, Grünefeld, Landkreis Havelland, Brandenburg
+14641	Selbelang	Brandenburg	Landkreis Havelland	14641, Selbelang, Landkreis Havelland, Brandenburg
+14641	Bergerdamm	Brandenburg	Landkreis Havelland	14641, Bergerdamm, Landkreis Havelland, Brandenburg
+14641	Zeestow	Brandenburg	Landkreis Havelland	14641, Zeestow, Landkreis Havelland, Brandenburg
+14641	Tietzow	Brandenburg	Landkreis Havelland	14641, Tietzow, Landkreis Havelland, Brandenburg
+14641	Retzow	Brandenburg	Landkreis Havelland	14641, Retzow, Landkreis Havelland, Brandenburg
+14641	Lietzow	Brandenburg	Landkreis Havelland	14641, Lietzow, Landkreis Havelland, Brandenburg
+14641	Markee	Brandenburg	Landkreis Havelland	14641, Markee, Landkreis Havelland, Brandenburg
+14641	Kienberg	Brandenburg	Landkreis Havelland	14641, Kienberg, Landkreis Havelland, Brandenburg
+14641	Tremmen	Brandenburg	Landkreis Havelland	14641, Tremmen, Landkreis Havelland, Brandenburg
+14641	Pessin	Brandenburg	Landkreis Havelland	14641, Pessin, Landkreis Havelland, Brandenburg
+14641	Mühlenberge	Brandenburg	Landkreis Havelland	14641, Mühlenberge, Landkreis Havelland, Brandenburg
+14641	Pausin	Brandenburg	Landkreis Havelland	14641, Pausin, Landkreis Havelland, Brandenburg
+14641	Wustermark	Brandenburg	Landkreis Havelland	14641, Wustermark, Landkreis Havelland, Brandenburg
+14641	Paulinenaue	Brandenburg	Landkreis Havelland	14641, Paulinenaue, Landkreis Havelland, Brandenburg
+14641	Perwenitz	Brandenburg	Landkreis Havelland	14641, Perwenitz, Landkreis Havelland, Brandenburg
+14641	Börnicke	Brandenburg	Landkreis Havelland	14641, Börnicke, Landkreis Havelland, Brandenburg
+14641	Brädikow	Brandenburg	Landkreis Havelland	14641, Brädikow, Landkreis Havelland, Brandenburg
+14656	Brieselang	Brandenburg	Landkreis Havelland	14656, Brieselang, Landkreis Havelland, Brandenburg
+14662	Warsow	Brandenburg	Landkreis Havelland	14662, Warsow, Landkreis Havelland, Brandenburg
+14662	Vietznitz	Brandenburg	Landkreis Havelland	14662, Vietznitz, Landkreis Havelland, Brandenburg
+14662	Friesack	Brandenburg	Landkreis Havelland	14662, Friesack, Landkreis Havelland, Brandenburg
+14662	Mühlenberge	Brandenburg	Landkreis Havelland	14662, Mühlenberge, Landkreis Havelland, Brandenburg
+14669	Ketzin	Brandenburg	Landkreis Havelland	14669, Ketzin, Landkreis Havelland, Brandenburg
+14669	Zachow	Brandenburg	Landkreis Havelland	14669, Zachow, Landkreis Havelland, Brandenburg
+14712	Rathenow	Brandenburg	Landkreis Havelland	14712, Rathenow, Landkreis Havelland, Brandenburg
+14715	Havelaue	Brandenburg	Landkreis Havelland	14715, Havelaue, Landkreis Havelland, Brandenburg
+14715	Märkisch Luch Möthlow	Brandenburg	Landkreis Havelland	14715, Märkisch Luch Möthlow, Landkreis Havelland, Brandenburg
+14715	Märkisch Luch Buschow	Brandenburg	Landkreis Havelland	14715, Märkisch Luch Buschow, Landkreis Havelland, Brandenburg
+14715	Märkisch Luch Barnewitz	Brandenburg	Landkreis Havelland	14715, Märkisch Luch Barnewitz, Landkreis Havelland, Brandenburg
+14715	Seeblick	Brandenburg	Landkreis Havelland	14715, Seeblick, Landkreis Havelland, Brandenburg
+14715	Milow	Brandenburg	Landkreis Havelland	14715, Milow, Landkreis Havelland, Brandenburg
+14715	Kriele	Brandenburg	Landkreis Havelland	14715, Kriele, Landkreis Havelland, Brandenburg
+14715	Zollchow	Brandenburg	Landkreis Havelland	14715, Zollchow, Landkreis Havelland, Brandenburg
+14715	Stechow-Ferchesar	Brandenburg	Landkreis Havelland	14715, Stechow-Ferchesar, Landkreis Havelland, Brandenburg
+14715	Gräningen	Brandenburg	Landkreis Havelland	14715, Gräningen, Landkreis Havelland, Brandenburg
+14715	Bützer	Brandenburg	Landkreis Havelland	14715, Bützer, Landkreis Havelland, Brandenburg
+14715	Nitzahn	Brandenburg	Landkreis Havelland	14715, Nitzahn, Landkreis Havelland, Brandenburg
+14715	Nennhausen	Brandenburg	Landkreis Havelland	14715, Nennhausen, Landkreis Havelland, Brandenburg
+14715	Kotzen	Brandenburg	Landkreis Havelland	14715, Kotzen, Landkreis Havelland, Brandenburg
+14715	Landin	Brandenburg	Landkreis Havelland	14715, Landin, Landkreis Havelland, Brandenburg
+14715	Bamme	Brandenburg	Landkreis Havelland	14715, Bamme, Landkreis Havelland, Brandenburg
+14715	Jerchel	Brandenburg	Landkreis Havelland	14715, Jerchel, Landkreis Havelland, Brandenburg
+14715	Märkisch Luch Garlitz	Brandenburg	Landkreis Havelland	14715, Märkisch Luch Garlitz, Landkreis Havelland, Brandenburg
+14715	Möthlitz	Brandenburg	Landkreis Havelland	14715, Möthlitz, Landkreis Havelland, Brandenburg
+14715	Liepe	Brandenburg	Landkreis Havelland	14715, Liepe, Landkreis Havelland, Brandenburg
+14715	Vieritz	Brandenburg	Landkreis Havelland	14715, Vieritz, Landkreis Havelland, Brandenburg
+14715	Mützlitz	Brandenburg	Landkreis Havelland	14715, Mützlitz, Landkreis Havelland, Brandenburg
+14715	Großwudicke	Brandenburg	Landkreis Havelland	14715, Großwudicke, Landkreis Havelland, Brandenburg
+14715	Märkisch Luch	Brandenburg	Landkreis Havelland	14715, Märkisch Luch, Landkreis Havelland, Brandenburg
+14727	Premnitz	Brandenburg	Landkreis Havelland	14727, Premnitz, Landkreis Havelland, Brandenburg
+14727	Döberitz	Brandenburg	Landkreis Havelland	14727, Döberitz, Landkreis Havelland, Brandenburg
+14728	Havelaue	Brandenburg	Landkreis Havelland	14728, Havelaue, Landkreis Havelland, Brandenburg
+14728	Rhinow	Brandenburg	Landkreis Havelland	14728, Rhinow, Landkreis Havelland, Brandenburg
+14728	Gollenberg	Brandenburg	Landkreis Havelland	14728, Gollenberg, Landkreis Havelland, Brandenburg
+14728	Kleßen-Görne	Brandenburg	Landkreis Havelland	14728, Kleßen-Görne, Landkreis Havelland, Brandenburg
+14770	Brandenburg an der Havel	Brandenburg	Kreisfreie Stadt Brandenburg an der Havel	14770, Brandenburg an der Havel, Kreisfreie Stadt Brandenburg an der Havel, Brandenburg
+14772	Brandenburg an der Havel	Brandenburg	Kreisfreie Stadt Brandenburg an der Havel	14772, Brandenburg an der Havel, Kreisfreie Stadt Brandenburg an der Havel, Brandenburg
+14774	Brandenburg an der Havel	Brandenburg	Kreisfreie Stadt Brandenburg an der Havel	14774, Brandenburg an der Havel, Kreisfreie Stadt Brandenburg an der Havel, Brandenburg
+14776	Brandenburg an der Havel	Brandenburg	Kreisfreie Stadt Brandenburg an der Havel	14776, Brandenburg an der Havel, Kreisfreie Stadt Brandenburg an der Havel, Brandenburg
+14778	Wust	Brandenburg	Kreisfreie Stadt Brandenburg an der Havel	14778, Wust, Kreisfreie Stadt Brandenburg an der Havel, Brandenburg
+14778	Wollin	Brandenburg	Landkreis Potsdam-Mittelmark	14778, Wollin, Landkreis Potsdam-Mittelmark, Brandenburg
+14778	Beetzsee	Brandenburg	Landkreis Potsdam-Mittelmark	14778, Beetzsee, Landkreis Potsdam-Mittelmark, Brandenburg
+14778	Golzow	Brandenburg	Landkreis Potsdam-Mittelmark	14778, Golzow, Landkreis Potsdam-Mittelmark, Brandenburg
+14778	Planetal	Brandenburg	Landkreis Potsdam-Mittelmark	14778, Planetal, Landkreis Potsdam-Mittelmark, Brandenburg
+14778	Päwesin	Brandenburg	Landkreis Potsdam-Mittelmark	14778, Päwesin, Landkreis Potsdam-Mittelmark, Brandenburg
+14778	Trechwitz	Brandenburg	Landkreis Potsdam-Mittelmark	14778, Trechwitz, Landkreis Potsdam-Mittelmark, Brandenburg
+14778	Wenzlow	Brandenburg	Landkreis Potsdam-Mittelmark	14778, Wenzlow, Landkreis Potsdam-Mittelmark, Brandenburg
+14778	Planebruch	Brandenburg	Landkreis Potsdam-Mittelmark	14778, Planebruch, Landkreis Potsdam-Mittelmark, Brandenburg
+14778	Roskow	Brandenburg	Landkreis Potsdam-Mittelmark	14778, Roskow, Landkreis Potsdam-Mittelmark, Brandenburg
+14778	Kloster Lehnin	Brandenburg	Landkreis Potsdam-Mittelmark	14778, Kloster Lehnin, Landkreis Potsdam-Mittelmark, Brandenburg
+14778	Gollwitz	Brandenburg	Kreisfreie Stadt Brandenburg an der Havel	14778, Gollwitz, Kreisfreie Stadt Brandenburg an der Havel, Brandenburg
+14778	Beetzseeheide	Brandenburg	Landkreis Potsdam-Mittelmark	14778, Beetzseeheide, Landkreis Potsdam-Mittelmark, Brandenburg
+14778	Götz	Brandenburg	Landkreis Potsdam-Mittelmark	14778, Götz, Landkreis Potsdam-Mittelmark, Brandenburg
+14778	Havelsee	Brandenburg	Landkreis Potsdam-Mittelmark	14778, Havelsee, Landkreis Potsdam-Mittelmark, Brandenburg
+14778	Schenkenberg	Brandenburg	Landkreis Potsdam-Mittelmark	14778, Schenkenberg, Landkreis Potsdam-Mittelmark, Brandenburg
+14778	Jeserig	Brandenburg	Landkreis Potsdam-Mittelmark	14778, Jeserig, Landkreis Potsdam-Mittelmark, Brandenburg
+14789	Wusterwitz	Brandenburg	Landkreis Potsdam-Mittelmark	14789, Wusterwitz, Landkreis Potsdam-Mittelmark, Brandenburg
+14789	Rosenau	Brandenburg	Landkreis Potsdam-Mittelmark	14789, Rosenau, Landkreis Potsdam-Mittelmark, Brandenburg
+14789	Bensdorf	Brandenburg	Landkreis Potsdam-Mittelmark	14789, Bensdorf, Landkreis Potsdam-Mittelmark, Brandenburg
+14793	Rottstock	Brandenburg	Landkreis Potsdam-Mittelmark	14793, Rottstock, Landkreis Potsdam-Mittelmark, Brandenburg
+14793	Buckautal	Brandenburg	Landkreis Potsdam-Mittelmark	14793, Buckautal, Landkreis Potsdam-Mittelmark, Brandenburg
+14793	Gräben	Brandenburg	Landkreis Potsdam-Mittelmark	14793, Gräben, Landkreis Potsdam-Mittelmark, Brandenburg
+14793	Ziesar	Brandenburg	Landkreis Potsdam-Mittelmark	14793, Ziesar, Landkreis Potsdam-Mittelmark, Brandenburg
+14797	Kloster Lehnin	Brandenburg	Landkreis Potsdam-Mittelmark	14797, Kloster Lehnin, Landkreis Potsdam-Mittelmark, Brandenburg
+14798	Havelsee	Brandenburg	Landkreis Potsdam-Mittelmark	14798, Havelsee, Landkreis Potsdam-Mittelmark, Brandenburg
+14806	Belzig	Brandenburg	Landkreis Potsdam-Mittelmark	14806, Belzig, Landkreis Potsdam-Mittelmark, Brandenburg
+14806	Planetal	Brandenburg	Landkreis Potsdam-Mittelmark	14806, Planetal, Landkreis Potsdam-Mittelmark, Brandenburg
+14806	Schwanebeck	Brandenburg	Landkreis Potsdam-Mittelmark	14806, Schwanebeck, Landkreis Potsdam-Mittelmark, Brandenburg
+14806	Hagelberg	Brandenburg	Landkreis Potsdam-Mittelmark	14806, Hagelberg, Landkreis Potsdam-Mittelmark, Brandenburg
+14822	Mühlenfließ	Brandenburg	Landkreis Potsdam-Mittelmark	14822, Mühlenfließ, Landkreis Potsdam-Mittelmark, Brandenburg
+14822	Borkheide	Brandenburg	Landkreis Potsdam-Mittelmark	14822, Borkheide, Landkreis Potsdam-Mittelmark, Brandenburg
+14822	Planebruch	Brandenburg	Landkreis Potsdam-Mittelmark	14822, Planebruch, Landkreis Potsdam-Mittelmark, Brandenburg
+14822	Borkwalde	Brandenburg	Landkreis Potsdam-Mittelmark	14822, Borkwalde, Landkreis Potsdam-Mittelmark, Brandenburg
+14822	Linthe	Brandenburg	Landkreis Potsdam-Mittelmark	14822, Linthe, Landkreis Potsdam-Mittelmark, Brandenburg
+14822	Brück	Brandenburg	Landkreis Potsdam-Mittelmark	14822, Brück, Landkreis Potsdam-Mittelmark, Brandenburg
+14823	Niemegk	Brandenburg	Landkreis Potsdam-Mittelmark	14823, Niemegk, Landkreis Potsdam-Mittelmark, Brandenburg
+14823	Mühlenfließ	Brandenburg	Landkreis Potsdam-Mittelmark	14823, Mühlenfließ, Landkreis Potsdam-Mittelmark, Brandenburg
+14823	Rabenstein/Fläming	Brandenburg	Landkreis Potsdam-Mittelmark	14823, Rabenstein/Fläming, Landkreis Potsdam-Mittelmark, Brandenburg
+14827	Wiesenburg	Brandenburg	Landkreis Potsdam-Mittelmark	14827, Wiesenburg, Landkreis Potsdam-Mittelmark, Brandenburg
+14828	Görzke	Brandenburg	Landkreis Potsdam-Mittelmark	14828, Görzke, Landkreis Potsdam-Mittelmark, Brandenburg
+14913	Niebendorf-Heinsdorf	Brandenburg	Landkreis Teltow-Fläming	14913, Niebendorf-Heinsdorf, Landkreis Teltow-Fläming, Brandenburg
+14913	Ihlow	Brandenburg	Landkreis Teltow-Fläming	14913, Ihlow, Landkreis Teltow-Fläming, Brandenburg
+14913	Nuthe-Urstromtal	Brandenburg	Landkreis Teltow-Fläming	14913, Nuthe-Urstromtal, Landkreis Teltow-Fläming, Brandenburg
+14913	Hohenseefeld	Brandenburg	Landkreis Teltow-Fläming	14913, Hohenseefeld, Landkreis Teltow-Fläming, Brandenburg
+14913	Niederer Fläming	Brandenburg	Landkreis Teltow-Fläming	14913, Niederer Fläming, Landkreis Teltow-Fläming, Brandenburg
+14913	Wahlsdorf	Brandenburg	Landkreis Teltow-Fläming	14913, Wahlsdorf, Landkreis Teltow-Fläming, Brandenburg
+14913	Jüterbog	Brandenburg	Landkreis Teltow-Fläming	14913, Jüterbog, Landkreis Teltow-Fläming, Brandenburg
+14913	Niedergörsdorf	Brandenburg	Landkreis Teltow-Fläming	14913, Niedergörsdorf, Landkreis Teltow-Fläming, Brandenburg
+14913	Herbersdorf	Brandenburg	Landkreis Teltow-Fläming	14913, Herbersdorf, Landkreis Teltow-Fläming, Brandenburg
+14929	Treuenbrietzen	Brandenburg	Landkreis Potsdam-Mittelmark	14929, Treuenbrietzen, Landkreis Potsdam-Mittelmark, Brandenburg
+14943	Lühsdorf	Brandenburg	Landkreis Potsdam-Mittelmark	14943, Lühsdorf, Landkreis Potsdam-Mittelmark, Brandenburg
+14943	Lüdersdorf	Brandenburg	Landkreis Teltow-Fläming	14943, Lüdersdorf, Landkreis Teltow-Fläming, Brandenburg
+14943	Luckenwalde	Brandenburg	Landkreis Teltow-Fläming	14943, Luckenwalde, Landkreis Teltow-Fläming, Brandenburg
+14947	Nuthe-Urstromtal	Brandenburg	Landkreis Teltow-Fläming	14947, Nuthe-Urstromtal, Landkreis Teltow-Fläming, Brandenburg
+14959	Trebbin	Brandenburg	Landkreis Teltow-Fläming	14959, Trebbin, Landkreis Teltow-Fläming, Brandenburg
+14959	Schönhagen	Brandenburg	Landkreis Teltow-Fläming	14959, Schönhagen, Landkreis Teltow-Fläming, Brandenburg
+14974	Thyrow	Brandenburg	Landkreis Teltow-Fläming	14974, Thyrow, Landkreis Teltow-Fläming, Brandenburg
+14974	Ludwigsfelde	Brandenburg	Landkreis Teltow-Fläming	14974, Ludwigsfelde, Landkreis Teltow-Fläming, Brandenburg
+14979	Großbeeren	Brandenburg	Landkreis Teltow-Fläming	14979, Großbeeren, Landkreis Teltow-Fläming, Brandenburg
+15230	Frankfurt (Oder)	Brandenburg	Frankfurt (Oder)	15230, Frankfurt (Oder), Frankfurt (Oder), Brandenburg
+15232	Frankfurt (Oder)	Brandenburg	Frankfurt (Oder)	15232, Frankfurt (Oder), Frankfurt (Oder), Brandenburg
+15234	Frankfurt (Oder)	Brandenburg	Frankfurt (Oder)	15234, Frankfurt (Oder), Frankfurt (Oder), Brandenburg
+15236	Treplin	Brandenburg	Landkreis Märkisch-Oderland	15236, Treplin, Landkreis Märkisch-Oderland, Brandenburg
+15236	Jacobsdorf Pillgram	Brandenburg	Landkreis Oder-Spree	15236, Jacobsdorf Pillgram, Landkreis Oder-Spree, Brandenburg
+15236	Jacobsdorf Jacobsdorf	Brandenburg	Landkreis Oder-Spree	15236, Jacobsdorf Jacobsdorf, Landkreis Oder-Spree, Brandenburg
+15236	Jacobsdorf Sieversdorf	Brandenburg	Landkreis Oder-Spree	15236, Jacobsdorf Sieversdorf, Landkreis Oder-Spree, Brandenburg
+15236	Jacobsdorf Petersdorf bei Briesen	Brandenburg	Landkreis Oder-Spree	15236, Jacobsdorf Petersdorf bei Briesen, Landkreis Oder-Spree, Brandenburg
+15236	Jacobsdorf	Brandenburg	Landkreis Oder-Spree	15236, Jacobsdorf, Landkreis Oder-Spree, Brandenburg
+15236	Frankfurt (Oder)	Brandenburg	Frankfurt (Oder)	15236, Frankfurt (Oder), Frankfurt (Oder), Brandenburg
+15295	Wiesenau	Brandenburg	Landkreis Oder-Spree	15295, Wiesenau, Landkreis Oder-Spree, Brandenburg
+15295	Groß Lindow Schlaubehammer	Brandenburg	Landkreis Oder-Spree	15295, Groß Lindow Schlaubehammer, Landkreis Oder-Spree, Brandenburg
+15295	Ziltendorf	Brandenburg	Landkreis Oder-Spree	15295, Ziltendorf, Landkreis Oder-Spree, Brandenburg
+15295	Groß Lindow	Brandenburg	Landkreis Oder-Spree	15295, Groß Lindow, Landkreis Oder-Spree, Brandenburg
+15295	Ziltendorf Ernst-Thälmann-Siedlung	Brandenburg	Landkreis Oder-Spree	15295, Ziltendorf Ernst-Thälmann-Siedlung, Landkreis Oder-Spree, Brandenburg
+15295	Brieskow-Finkenheerd	Brandenburg	Landkreis Oder-Spree	15295, Brieskow-Finkenheerd, Landkreis Oder-Spree, Brandenburg
+15295	Groß Lindow Weißenspring	Brandenburg	Landkreis Oder-Spree	15295, Groß Lindow Weißenspring, Landkreis Oder-Spree, Brandenburg
+15295	Ziltendorf Aurith	Brandenburg	Landkreis Oder-Spree	15295, Ziltendorf Aurith, Landkreis Oder-Spree, Brandenburg
+15299	Grunow-Dammendorf Grunow	Brandenburg	Landkreis Oder-Spree	15299, Grunow-Dammendorf Grunow, Landkreis Oder-Spree, Brandenburg
+15299	Grunow-Dammendorf	Brandenburg	Landkreis Oder-Spree	15299, Grunow-Dammendorf, Landkreis Oder-Spree, Brandenburg
+15299	Dammendorf	Brandenburg	Landkreis Oder-Spree	15299, Dammendorf, Landkreis Oder-Spree, Brandenburg
+15299	Müllrose	Brandenburg	Landkreis Oder-Spree	15299, Müllrose, Landkreis Oder-Spree, Brandenburg
+15299	Mixdorf	Brandenburg	Landkreis Oder-Spree	15299, Mixdorf, Landkreis Oder-Spree, Brandenburg
+15306	Vierlinden	Brandenburg	Landkreis Märkisch-Oderland	15306, Vierlinden, Landkreis Märkisch-Oderland, Brandenburg
+15306	Vierlinden Worin	Brandenburg	Landkreis Märkisch-Oderland	15306, Vierlinden Worin, Landkreis Märkisch-Oderland, Brandenburg
+15306	Vierlinden Neuentempel	Brandenburg	Landkreis Märkisch-Oderland	15306, Vierlinden Neuentempel, Landkreis Märkisch-Oderland, Brandenburg
+15306	Vierlinden Görlsdorf	Brandenburg	Landkreis Märkisch-Oderland	15306, Vierlinden Görlsdorf, Landkreis Märkisch-Oderland, Brandenburg
+15306	Vierlinden Marxdorf	Brandenburg	Landkreis Märkisch-Oderland	15306, Vierlinden Marxdorf, Landkreis Märkisch-Oderland, Brandenburg
+15306	Werbig	Brandenburg	Landkreis Märkisch-Oderland	15306, Werbig, Landkreis Märkisch-Oderland, Brandenburg
+15306	Seelow	Brandenburg	Landkreis Märkisch-Oderland	15306, Seelow, Landkreis Märkisch-Oderland, Brandenburg
+15306	Vierlinden Friedersdorf	Brandenburg	Landkreis Märkisch-Oderland	15306, Vierlinden Friedersdorf, Landkreis Märkisch-Oderland, Brandenburg
+15306	Lindendorf Dolgelin	Brandenburg	Landkreis Märkisch-Oderland	15306, Lindendorf Dolgelin, Landkreis Märkisch-Oderland, Brandenburg
+15306	Vierlinden Diedersdorf	Brandenburg	Landkreis Märkisch-Oderland	15306, Vierlinden Diedersdorf, Landkreis Märkisch-Oderland, Brandenburg
+15306	Lietzen	Brandenburg	Landkreis Märkisch-Oderland	15306, Lietzen, Landkreis Märkisch-Oderland, Brandenburg
+15306	Falkenhagen	Brandenburg	Landkreis Märkisch-Oderland	15306, Falkenhagen, Landkreis Märkisch-Oderland, Brandenburg
+15306	Lindendorf	Brandenburg	Landkreis Märkisch-Oderland	15306, Lindendorf, Landkreis Märkisch-Oderland, Brandenburg
+15306	Gusow-Platkow Gusow	Brandenburg	Landkreis Märkisch-Oderland	15306, Gusow-Platkow Gusow, Landkreis Märkisch-Oderland, Brandenburg
+15306	Lindendorf Neu Mahlisch	Brandenburg	Landkreis Märkisch-Oderland	15306, Lindendorf Neu Mahlisch, Landkreis Märkisch-Oderland, Brandenburg
+15306	Fichtenhöhe Niederjesar	Brandenburg	Landkreis Märkisch-Oderland	15306, Fichtenhöhe Niederjesar, Landkreis Märkisch-Oderland, Brandenburg
+15306	Fichtenhöhe Alt Mahlisch	Brandenburg	Landkreis Märkisch-Oderland	15306, Fichtenhöhe Alt Mahlisch, Landkreis Märkisch-Oderland, Brandenburg
+15306	Lindendorf Sachsendorf	Brandenburg	Landkreis Märkisch-Oderland	15306, Lindendorf Sachsendorf, Landkreis Märkisch-Oderland, Brandenburg
+15306	Gusow-Platkow Platkow	Brandenburg	Landkreis Märkisch-Oderland	15306, Gusow-Platkow Platkow, Landkreis Märkisch-Oderland, Brandenburg
+15306	Gusow-Platkow	Brandenburg	Landkreis Märkisch-Oderland	15306, Gusow-Platkow, Landkreis Märkisch-Oderland, Brandenburg
+15306	Vierlinden Alt Rosenthal	Brandenburg	Landkreis Märkisch-Oderland	15306, Vierlinden Alt Rosenthal, Landkreis Märkisch-Oderland, Brandenburg
+15306	Lindendorf Libbenichen	Brandenburg	Landkreis Märkisch-Oderland	15306, Lindendorf Libbenichen, Landkreis Märkisch-Oderland, Brandenburg
+15306	Fichtenhöhe	Brandenburg	Landkreis Märkisch-Oderland	15306, Fichtenhöhe, Landkreis Märkisch-Oderland, Brandenburg
+15320	Neutrebbin Altbarnim	Brandenburg	Landkreis Märkisch-Oderland	15320, Neutrebbin Altbarnim, Landkreis Märkisch-Oderland, Brandenburg
+15320	Neutrebbin	Brandenburg	Landkreis Märkisch-Oderland	15320, Neutrebbin, Landkreis Märkisch-Oderland, Brandenburg
+15320	Sietzing	Brandenburg	Landkreis Märkisch-Oderland	15320, Sietzing, Landkreis Märkisch-Oderland, Brandenburg
+15320	Neuhardenberg	Brandenburg	Landkreis Märkisch-Oderland	15320, Neuhardenberg, Landkreis Märkisch-Oderland, Brandenburg
+15320	Neuhardenberg Quappendorf	Brandenburg	Landkreis Märkisch-Oderland	15320, Neuhardenberg Quappendorf, Landkreis Märkisch-Oderland, Brandenburg
+15320	Neutrebbin Neutrebbin	Brandenburg	Landkreis Märkisch-Oderland	15320, Neutrebbin Neutrebbin, Landkreis Märkisch-Oderland, Brandenburg
+15320	Neutrebbin Alttrebbin	Brandenburg	Landkreis Märkisch-Oderland	15320, Neutrebbin Alttrebbin, Landkreis Märkisch-Oderland, Brandenburg
+15320	Neuhardenberg Altfriedland	Brandenburg	Landkreis Märkisch-Oderland	15320, Neuhardenberg Altfriedland, Landkreis Märkisch-Oderland, Brandenburg
+15320	Neuhardenberg Neuhardenberg	Brandenburg	Landkreis Märkisch-Oderland	15320, Neuhardenberg Neuhardenberg, Landkreis Märkisch-Oderland, Brandenburg
+15320	Neuhardenberg Wulkow bei Trebnitz	Brandenburg	Landkreis Märkisch-Oderland	15320, Neuhardenberg Wulkow bei Trebnitz, Landkreis Märkisch-Oderland, Brandenburg
+15324	Kienitz	Brandenburg	Landkreis Märkisch-Oderland	15324, Kienitz, Landkreis Märkisch-Oderland, Brandenburg
+15324	Ortwig	Brandenburg	Landkreis Märkisch-Oderland	15324, Ortwig, Landkreis Märkisch-Oderland, Brandenburg
+15324	Kiehnwerder	Brandenburg	Landkreis Märkisch-Oderland	15324, Kiehnwerder, Landkreis Märkisch-Oderland, Brandenburg
+15324	Gieshof-Zelliner Loose	Brandenburg	Landkreis Märkisch-Oderland	15324, Gieshof-Zelliner Loose, Landkreis Märkisch-Oderland, Brandenburg
+15324	Neubarnim	Brandenburg	Landkreis Märkisch-Oderland	15324, Neubarnim, Landkreis Märkisch-Oderland, Brandenburg
+15324	Letschin	Brandenburg	Landkreis Märkisch-Oderland	15324, Letschin, Landkreis Märkisch-Oderland, Brandenburg
+15324	Groß Neuendorf	Brandenburg	Landkreis Märkisch-Oderland	15324, Groß Neuendorf, Landkreis Märkisch-Oderland, Brandenburg
+15326	Lebus	Brandenburg	Landkreis Märkisch-Oderland	15326, Lebus, Landkreis Märkisch-Oderland, Brandenburg
+15326	Podelzig	Brandenburg	Landkreis Märkisch-Oderland	15326, Podelzig, Landkreis Märkisch-Oderland, Brandenburg
+15326	Zeschdorf Petershagen	Brandenburg	Landkreis Märkisch-Oderland	15326, Zeschdorf Petershagen, Landkreis Märkisch-Oderland, Brandenburg
+15326	Zeschdorf Alt Zeschdorf	Brandenburg	Landkreis Märkisch-Oderland	15326, Zeschdorf Alt Zeschdorf, Landkreis Märkisch-Oderland, Brandenburg
+15326	Lebus Mallnow	Brandenburg	Landkreis Märkisch-Oderland	15326, Lebus Mallnow, Landkreis Märkisch-Oderland, Brandenburg
+15326	Lebus Lebus	Brandenburg	Landkreis Märkisch-Oderland	15326, Lebus Lebus, Landkreis Märkisch-Oderland, Brandenburg
+15326	Zeschdorf	Brandenburg	Landkreis Märkisch-Oderland	15326, Zeschdorf, Landkreis Märkisch-Oderland, Brandenburg
+15326	Fichtenhöhe	Brandenburg	Landkreis Märkisch-Oderland	15326, Fichtenhöhe, Landkreis Märkisch-Oderland, Brandenburg
+15326	Zeschdorf Döbberin	Brandenburg	Landkreis Märkisch-Oderland	15326, Zeschdorf Döbberin, Landkreis Märkisch-Oderland, Brandenburg
+15326	Lebus Wulkow	Brandenburg	Landkreis Märkisch-Oderland	15326, Lebus Wulkow, Landkreis Märkisch-Oderland, Brandenburg
+15326	Fichtenhöhe Carzig	Brandenburg	Landkreis Märkisch-Oderland	15326, Fichtenhöhe Carzig, Landkreis Märkisch-Oderland, Brandenburg
+15326	Lebus Schönfließ	Brandenburg	Landkreis Märkisch-Oderland	15326, Lebus Schönfließ, Landkreis Märkisch-Oderland, Brandenburg
+15328	Zechin Friedrichsaue	Brandenburg	Landkreis Märkisch-Oderland	15328, Zechin Friedrichsaue, Landkreis Märkisch-Oderland, Brandenburg
+15328	Reitwein	Brandenburg	Landkreis Märkisch-Oderland	15328, Reitwein, Landkreis Märkisch-Oderland, Brandenburg
+15328	Zechin Zechin	Brandenburg	Landkreis Märkisch-Oderland	15328, Zechin Zechin, Landkreis Märkisch-Oderland, Brandenburg
+15328	Alt Tucheband	Brandenburg	Landkreis Märkisch-Oderland	15328, Alt Tucheband, Landkreis Märkisch-Oderland, Brandenburg
+15328	Küstriner Vorland	Brandenburg	Landkreis Märkisch-Oderland	15328, Küstriner Vorland, Landkreis Märkisch-Oderland, Brandenburg
+15328	Golzow	Brandenburg	Landkreis Märkisch-Oderland	15328, Golzow, Landkreis Märkisch-Oderland, Brandenburg
+15328	Zechin	Brandenburg	Landkreis Märkisch-Oderland	15328, Zechin, Landkreis Märkisch-Oderland, Brandenburg
+15328	Zechin Buschdorf	Brandenburg	Landkreis Märkisch-Oderland	15328, Zechin Buschdorf, Landkreis Märkisch-Oderland, Brandenburg
+15328	Bleyen-Genschmar Bleyen	Brandenburg	Landkreis Märkisch-Oderland	15328, Bleyen-Genschmar Bleyen, Landkreis Märkisch-Oderland, Brandenburg
+15328	Bleyen-Genschmar	Brandenburg	Landkreis Märkisch-Oderland	15328, Bleyen-Genschmar, Landkreis Märkisch-Oderland, Brandenburg
+15328	Bleyen-Genschmar Genschmar	Brandenburg	Landkreis Märkisch-Oderland	15328, Bleyen-Genschmar Genschmar, Landkreis Märkisch-Oderland, Brandenburg
+15328	Küstriner Vorland Gorgast	Brandenburg	Landkreis Märkisch-Oderland	15328, Küstriner Vorland Gorgast, Landkreis Märkisch-Oderland, Brandenburg
+15328	Alt Tucheband Alt Tucheband	Brandenburg	Landkreis Märkisch-Oderland	15328, Alt Tucheband Alt Tucheband, Landkreis Märkisch-Oderland, Brandenburg
+15328	Küstriner Vorland Manschnow	Brandenburg	Landkreis Märkisch-Oderland	15328, Küstriner Vorland Manschnow, Landkreis Märkisch-Oderland, Brandenburg
+15328	Alt Tucheband Ratstock	Brandenburg	Landkreis Märkisch-Oderland	15328, Alt Tucheband Ratstock, Landkreis Märkisch-Oderland, Brandenburg
+15328	Küstriner Vorland Küstrin-Kietz	Brandenburg	Landkreis Märkisch-Oderland	15328, Küstriner Vorland Küstrin-Kietz, Landkreis Märkisch-Oderland, Brandenburg
+15328	Alt Tucheband Hathenow	Brandenburg	Landkreis Märkisch-Oderland	15328, Alt Tucheband Hathenow, Landkreis Märkisch-Oderland, Brandenburg
+15344	Strausberg	Brandenburg	Landkreis Märkisch-Oderland	15344, Strausberg, Landkreis Märkisch-Oderland, Brandenburg
+15345	Altlandsberg	Brandenburg	Landkreis Märkisch-Oderland	15345, Altlandsberg, Landkreis Märkisch-Oderland, Brandenburg
+15345	Prötzel	Brandenburg	Landkreis Märkisch-Oderland	15345, Prötzel, Landkreis Märkisch-Oderland, Brandenburg
+15345	Prötzel Harnekop	Brandenburg	Landkreis Märkisch-Oderland	15345, Prötzel Harnekop, Landkreis Märkisch-Oderland, Brandenburg
+15345	Rehfelde	Brandenburg	Landkreis Märkisch-Oderland	15345, Rehfelde, Landkreis Märkisch-Oderland, Brandenburg
+15345	Lichtenow	Brandenburg	Landkreis Märkisch-Oderland	15345, Lichtenow, Landkreis Märkisch-Oderland, Brandenburg
+15345	Rehfelde Rehfelde	Brandenburg	Landkreis Märkisch-Oderland	15345, Rehfelde Rehfelde, Landkreis Märkisch-Oderland, Brandenburg
+15345	Rehfelde Zinndorf	Brandenburg	Landkreis Märkisch-Oderland	15345, Rehfelde Zinndorf, Landkreis Märkisch-Oderland, Brandenburg
+15345	Zinndorf	Brandenburg	Landkreis Märkisch-Oderland	15345, Zinndorf, Landkreis Märkisch-Oderland, Brandenburg
+15345	Reichenow-Möglin Reichenow	Brandenburg	Landkreis Märkisch-Oderland	15345, Reichenow-Möglin Reichenow, Landkreis Märkisch-Oderland, Brandenburg
+15345	Werder	Brandenburg	Landkreis Märkisch-Oderland	15345, Werder, Landkreis Märkisch-Oderland, Brandenburg
+15345	Rehfelde Werder	Brandenburg	Landkreis Märkisch-Oderland	15345, Rehfelde Werder, Landkreis Märkisch-Oderland, Brandenburg
+15345	Petershagen-Eggersdorf	Brandenburg	Landkreis Märkisch-Oderland	15345, Petershagen-Eggersdorf, Landkreis Märkisch-Oderland, Brandenburg
+15345	Prötzel Sternebeck	Brandenburg	Landkreis Märkisch-Oderland	15345, Prötzel Sternebeck, Landkreis Märkisch-Oderland, Brandenburg
+15345	Oberbarnim	Brandenburg	Landkreis Märkisch-Oderland	15345, Oberbarnim, Landkreis Märkisch-Oderland, Brandenburg
+15345	Garzau-Garzin Garzau	Brandenburg	Landkreis Märkisch-Oderland	15345, Garzau-Garzin Garzau, Landkreis Märkisch-Oderland, Brandenburg
+15345	Garzau-Garzin Garzin	Brandenburg	Landkreis Märkisch-Oderland	15345, Garzau-Garzin Garzin, Landkreis Märkisch-Oderland, Brandenburg
+15345	Oberbarnim Klosterdorf	Brandenburg	Landkreis Märkisch-Oderland	15345, Oberbarnim Klosterdorf, Landkreis Märkisch-Oderland, Brandenburg
+15345	Garzau-Garzin	Brandenburg	Landkreis Märkisch-Oderland	15345, Garzau-Garzin, Landkreis Märkisch-Oderland, Brandenburg
+15345	Prötzel Prädikow	Brandenburg	Landkreis Märkisch-Oderland	15345, Prötzel Prädikow, Landkreis Märkisch-Oderland, Brandenburg
+15345	Reichenow-Möglin	Brandenburg	Landkreis Märkisch-Oderland	15345, Reichenow-Möglin, Landkreis Märkisch-Oderland, Brandenburg
+15345	Prötzel Prötzel	Brandenburg	Landkreis Märkisch-Oderland	15345, Prötzel Prötzel, Landkreis Märkisch-Oderland, Brandenburg
+15345	Reichenow-Möglin Möglin	Brandenburg	Landkreis Märkisch-Oderland	15345, Reichenow-Möglin Möglin, Landkreis Märkisch-Oderland, Brandenburg
+15366	Hönow	Brandenburg	Landkreis Märkisch-Oderland	15366, Hönow, Landkreis Märkisch-Oderland, Brandenburg
+15366	Münchehofe	Brandenburg	Landkreis Märkisch-Oderland	15366, Münchehofe, Landkreis Märkisch-Oderland, Brandenburg
+15366	Neuenhagen bei Berlin	Brandenburg	Landkreis Märkisch-Oderland	15366, Neuenhagen bei Berlin, Landkreis Märkisch-Oderland, Brandenburg
+15366	Dahlwitz-Hoppegarten	Brandenburg	Landkreis Märkisch-Oderland	15366, Dahlwitz-Hoppegarten, Landkreis Märkisch-Oderland, Brandenburg
+15370	Fredersdorf-Vogelsdorf	Brandenburg	Landkreis Märkisch-Oderland	15370, Fredersdorf-Vogelsdorf, Landkreis Märkisch-Oderland, Brandenburg
+15370	Petershagen-Eggersdorf	Brandenburg	Landkreis Märkisch-Oderland	15370, Petershagen-Eggersdorf, Landkreis Märkisch-Oderland, Brandenburg
+15372	Müncheberg	Brandenburg	Landkreis Märkisch-Oderland	15372, Müncheberg, Landkreis Märkisch-Oderland, Brandenburg
+15374	Müncheberg	Brandenburg	Landkreis Märkisch-Oderland	15374, Müncheberg, Landkreis Märkisch-Oderland, Brandenburg
+15377	Waldsieversdorf	Brandenburg	Landkreis Märkisch-Oderland	15377, Waldsieversdorf, Landkreis Märkisch-Oderland, Brandenburg
+15377	Oberbarnim Grunow	Brandenburg	Landkreis Märkisch-Oderland	15377, Oberbarnim Grunow, Landkreis Märkisch-Oderland, Brandenburg
+15377	Märkische Höhe	Brandenburg	Landkreis Märkisch-Oderland	15377, Märkische Höhe, Landkreis Märkisch-Oderland, Brandenburg
+15377	Oberbarnim	Brandenburg	Landkreis Märkisch-Oderland	15377, Oberbarnim, Landkreis Märkisch-Oderland, Brandenburg
+15377	Ihlow	Brandenburg	Landkreis Märkisch-Oderland	15377, Ihlow, Landkreis Märkisch-Oderland, Brandenburg
+15377	Buckow	Brandenburg	Landkreis Märkisch-Oderland	15377, Buckow, Landkreis Märkisch-Oderland, Brandenburg
+15377	Märkische Höhe Reichenberg	Brandenburg	Landkreis Märkisch-Oderland	15377, Märkische Höhe Reichenberg, Landkreis Märkisch-Oderland, Brandenburg
+15377	Märkische Höhe Ringenwalde	Brandenburg	Landkreis Märkisch-Oderland	15377, Märkische Höhe Ringenwalde, Landkreis Märkisch-Oderland, Brandenburg
+15377	Oberbarnim Bollersdorf	Brandenburg	Landkreis Märkisch-Oderland	15377, Oberbarnim Bollersdorf, Landkreis Märkisch-Oderland, Brandenburg
+15377	Märkische Höhe Batzlow	Brandenburg	Landkreis Märkisch-Oderland	15377, Märkische Höhe Batzlow, Landkreis Märkisch-Oderland, Brandenburg
+15377	Oberbarnim Grunow, Grunow	Brandenburg	Landkreis Märkisch-Oderland	15377, Oberbarnim Grunow, Grunow, Landkreis Märkisch-Oderland, Brandenburg
+15377	Oberbarnim Grunow, Ernsthof	Brandenburg	Landkreis Märkisch-Oderland	15377, Oberbarnim Grunow, Ernsthof, Landkreis Märkisch-Oderland, Brandenburg
+15377	Oberbarnim Bollersdorf, Bollersdorf	Brandenburg	Landkreis Märkisch-Oderland	15377, Oberbarnim Bollersdorf, Bollersdorf, Landkreis Märkisch-Oderland, Brandenburg
+15377	Oberbarnim Bollersdorf, Pritzhagen	Brandenburg	Landkreis Märkisch-Oderland	15377, Oberbarnim Bollersdorf, Pritzhagen, Landkreis Märkisch-Oderland, Brandenburg
+15378	Hennickendorf	Brandenburg	Landkreis Märkisch-Oderland	15378, Hennickendorf, Landkreis Märkisch-Oderland, Brandenburg
+15378	Herzfelde	Brandenburg	Landkreis Märkisch-Oderland	15378, Herzfelde, Landkreis Märkisch-Oderland, Brandenburg
+15517	Fürstenwalde/Spree	Brandenburg	Landkreis Oder-Spree	15517, Fürstenwalde/Spree, Landkreis Oder-Spree, Brandenburg
+15517	Fürstenwalde/Spree Trebus	Brandenburg	Landkreis Oder-Spree	15517, Fürstenwalde/Spree Trebus, Landkreis Oder-Spree, Brandenburg
+15517	Fürstenwalde/Spree Fürstenwalde	Brandenburg	Landkreis Oder-Spree	15517, Fürstenwalde/Spree Fürstenwalde, Landkreis Oder-Spree, Brandenburg
+15518	Steinhöfel	Brandenburg	Landkreis Oder-Spree	15518, Steinhöfel, Landkreis Oder-Spree, Brandenburg
+15518	Falkenberg	Brandenburg	Landkreis Oder-Spree	15518, Falkenberg, Landkreis Oder-Spree, Brandenburg
+15518	Steinhöfel Steinhöfel	Brandenburg	Landkreis Oder-Spree	15518, Steinhöfel Steinhöfel, Landkreis Oder-Spree, Brandenburg
+15518	Madlitz-Wilmersdorf Alt Madlitz	Brandenburg	Landkreis Oder-Spree	15518, Madlitz-Wilmersdorf Alt Madlitz, Landkreis Oder-Spree, Brandenburg
+15518	Steinhöfel Hasenfelde	Brandenburg	Landkreis Oder-Spree	15518, Steinhöfel Hasenfelde, Landkreis Oder-Spree, Brandenburg
+15518	Steinhöfel Demnitz	Brandenburg	Landkreis Oder-Spree	15518, Steinhöfel Demnitz, Landkreis Oder-Spree, Brandenburg
+15518	Steinhöfel Heinersdorf	Brandenburg	Landkreis Oder-Spree	15518, Steinhöfel Heinersdorf, Landkreis Oder-Spree, Brandenburg
+15518	Steinhöfel Jänickendorf	Brandenburg	Landkreis Oder-Spree	15518, Steinhöfel Jänickendorf, Landkreis Oder-Spree, Brandenburg
+15518	Briesen (Mark)	Brandenburg	Landkreis Oder-Spree	15518, Briesen (Mark), Landkreis Oder-Spree, Brandenburg
+15518	Berkenbrück	Brandenburg	Landkreis Oder-Spree	15518, Berkenbrück, Landkreis Oder-Spree, Brandenburg
+15518	Steinhöfel Schönfelde	Brandenburg	Landkreis Oder-Spree	15518, Steinhöfel Schönfelde, Landkreis Oder-Spree, Brandenburg
+15518	Grünheide (Mark)	Brandenburg	Landkreis Oder-Spree	15518, Grünheide (Mark), Landkreis Oder-Spree, Brandenburg
+15518	Steinhöfel Tempelberg	Brandenburg	Landkreis Oder-Spree	15518, Steinhöfel Tempelberg, Landkreis Oder-Spree, Brandenburg
+15518	Madlitz-Wilmersdorf Falkenberg	Brandenburg	Landkreis Oder-Spree	15518, Madlitz-Wilmersdorf Falkenberg, Landkreis Oder-Spree, Brandenburg
+15518	Steinhöfel Arensdorf	Brandenburg	Landkreis Oder-Spree	15518, Steinhöfel Arensdorf, Landkreis Oder-Spree, Brandenburg
+15518	Briesen (Mark) Biegen	Brandenburg	Landkreis Oder-Spree	15518, Briesen (Mark) Biegen, Landkreis Oder-Spree, Brandenburg
+15518	Langewahl	Brandenburg	Landkreis Oder-Spree	15518, Langewahl, Landkreis Oder-Spree, Brandenburg
+15518	Briesen (Mark) Briesen (Mark)	Brandenburg	Landkreis Oder-Spree	15518, Briesen (Mark) Briesen (Mark), Landkreis Oder-Spree, Brandenburg
+15518	Rauen	Brandenburg	Landkreis Oder-Spree	15518, Rauen, Landkreis Oder-Spree, Brandenburg
+15518	Steinhöfel Neuendorf im Sande	Brandenburg	Landkreis Oder-Spree	15518, Steinhöfel Neuendorf im Sande, Landkreis Oder-Spree, Brandenburg
+15518	Steinhöfel Beerfelde	Brandenburg	Landkreis Oder-Spree	15518, Steinhöfel Beerfelde, Landkreis Oder-Spree, Brandenburg
+15518	Madlitz-Wilmersdorf Wilmersdorf	Brandenburg	Landkreis Oder-Spree	15518, Madlitz-Wilmersdorf Wilmersdorf, Landkreis Oder-Spree, Brandenburg
+15518	Steinhöfel Gölsdorf	Brandenburg	Landkreis Oder-Spree	15518, Steinhöfel Gölsdorf, Landkreis Oder-Spree, Brandenburg
+15518	Grünheide (Mark) Hangelsberg	Brandenburg	Landkreis Oder-Spree	15518, Grünheide (Mark) Hangelsberg, Landkreis Oder-Spree, Brandenburg
+15518	Steinhöfel Buchholz	Brandenburg	Landkreis Oder-Spree	15518, Steinhöfel Buchholz, Landkreis Oder-Spree, Brandenburg
+15518	Madlitz-Wilmersdorf	Brandenburg	Landkreis Oder-Spree	15518, Madlitz-Wilmersdorf, Landkreis Oder-Spree, Brandenburg
+15526	Reichenwalde Kolpin	Brandenburg	Landkreis Oder-Spree	15526, Reichenwalde Kolpin, Landkreis Oder-Spree, Brandenburg
+15526	Rietz-Neuendorf	Brandenburg	Landkreis Oder-Spree	15526, Rietz-Neuendorf, Landkreis Oder-Spree, Brandenburg
+15526	Reichenwalde	Brandenburg	Landkreis Oder-Spree	15526, Reichenwalde, Landkreis Oder-Spree, Brandenburg
+15526	Bad Saarow Neu Golm	Brandenburg	Landkreis Oder-Spree	15526, Bad Saarow Neu Golm, Landkreis Oder-Spree, Brandenburg
+15526	Reichenwalde Dahmsdorf	Brandenburg	Landkreis Oder-Spree	15526, Reichenwalde Dahmsdorf, Landkreis Oder-Spree, Brandenburg
+15526	Bad Saarow Petersdorf	Brandenburg	Landkreis Oder-Spree	15526, Bad Saarow Petersdorf, Landkreis Oder-Spree, Brandenburg
+15526	Bad Saarow	Brandenburg	Landkreis Oder-Spree	15526, Bad Saarow, Landkreis Oder-Spree, Brandenburg
+15526	Bad Saarow Bad Saarow	Brandenburg	Landkreis Oder-Spree	15526, Bad Saarow Bad Saarow, Landkreis Oder-Spree, Brandenburg
+15526	Reichenwalde Reichenwalde	Brandenburg	Landkreis Oder-Spree	15526, Reichenwalde Reichenwalde, Landkreis Oder-Spree, Brandenburg
+15526	Rietz-Neuendorf Alt Golm	Brandenburg	Landkreis Oder-Spree	15526, Rietz-Neuendorf Alt Golm, Landkreis Oder-Spree, Brandenburg
+15528	Spreenhagen Markgrafpieske	Brandenburg	Landkreis Oder-Spree	15528, Spreenhagen Markgrafpieske, Landkreis Oder-Spree, Brandenburg
+15528	Spreenhagen Hartmannsdorf	Brandenburg	Landkreis Oder-Spree	15528, Spreenhagen Hartmannsdorf, Landkreis Oder-Spree, Brandenburg
+15528	Spreenhagen Braunsdorf	Brandenburg	Landkreis Oder-Spree	15528, Spreenhagen Braunsdorf, Landkreis Oder-Spree, Brandenburg
+15528	Spreenhagen	Brandenburg	Landkreis Oder-Spree	15528, Spreenhagen, Landkreis Oder-Spree, Brandenburg
+15528	Spreenhagen Spreenhagen	Brandenburg	Landkreis Oder-Spree	15528, Spreenhagen Spreenhagen, Landkreis Oder-Spree, Brandenburg
+15528	Grünheide (Mark) Mönchwinkel	Brandenburg	Landkreis Oder-Spree	15528, Grünheide (Mark) Mönchwinkel, Landkreis Oder-Spree, Brandenburg
+15528	Grünheide (Mark) Spreeau	Brandenburg	Landkreis Oder-Spree	15528, Grünheide (Mark) Spreeau, Landkreis Oder-Spree, Brandenburg
+15528	Grünheide (Mark)	Brandenburg	Landkreis Oder-Spree	15528, Grünheide (Mark), Landkreis Oder-Spree, Brandenburg
+15537	Grünheide (Mark) Kagel	Brandenburg	Landkreis Oder-Spree	15537, Grünheide (Mark) Kagel, Landkreis Oder-Spree, Brandenburg
+15537	Wernsdorf	Brandenburg	Landkreis Dahme-Spreewald	15537, Wernsdorf, Landkreis Dahme-Spreewald, Brandenburg
+15537	Grünheide (Mark) Kienbaum	Brandenburg	Landkreis Oder-Spree	15537, Grünheide (Mark) Kienbaum, Landkreis Oder-Spree, Brandenburg
+15537	Gosen Gosen	Brandenburg	Landkreis Oder-Spree	15537, Gosen Gosen, Landkreis Oder-Spree, Brandenburg
+15537	Erkner	Brandenburg	Landkreis Oder-Spree	15537, Erkner, Landkreis Oder-Spree, Brandenburg
+15537	Grünheide (Mark) Grünheide	Brandenburg	Landkreis Oder-Spree	15537, Grünheide (Mark) Grünheide, Landkreis Oder-Spree, Brandenburg
+15537	Gosen Neu Zittau	Brandenburg	Landkreis Oder-Spree	15537, Gosen Neu Zittau, Landkreis Oder-Spree, Brandenburg
+15537	Grünheide (Mark)	Brandenburg	Landkreis Oder-Spree	15537, Grünheide (Mark), Landkreis Oder-Spree, Brandenburg
+15562	Rüdersdorf bei Berlin	Brandenburg	Landkreis Märkisch-Oderland	15562, Rüdersdorf bei Berlin, Landkreis Märkisch-Oderland, Brandenburg
+15566	Schöneiche bei Berlin	Brandenburg	Landkreis Oder-Spree	15566, Schöneiche bei Berlin, Landkreis Oder-Spree, Brandenburg
+15569	Woltersdorf	Brandenburg	Landkreis Oder-Spree	15569, Woltersdorf, Landkreis Oder-Spree, Brandenburg
+15711	Zeesen	Brandenburg	Landkreis Dahme-Spreewald	15711, Zeesen, Landkreis Dahme-Spreewald, Brandenburg
+15711	Schenkendorf	Brandenburg	Landkreis Dahme-Spreewald	15711, Schenkendorf, Landkreis Dahme-Spreewald, Brandenburg
+15711	Königs Wusterhausen	Brandenburg	Landkreis Dahme-Spreewald	15711, Königs Wusterhausen, Landkreis Dahme-Spreewald, Brandenburg
+15732	Eichwalde	Brandenburg	Landkreis Dahme-Spreewald	15732, Eichwalde, Landkreis Dahme-Spreewald, Brandenburg
+15732	Waltersdorf	Brandenburg	Landkreis Dahme-Spreewald	15732, Waltersdorf, Landkreis Dahme-Spreewald, Brandenburg
+15732	Schulzendorf	Brandenburg	Landkreis Dahme-Spreewald	15732, Schulzendorf, Landkreis Dahme-Spreewald, Brandenburg
+15738	Zeuthen	Brandenburg	Landkreis Dahme-Spreewald	15738, Zeuthen, Landkreis Dahme-Spreewald, Brandenburg
+15741	Bestensee	Brandenburg	Landkreis Dahme-Spreewald	15741, Bestensee, Landkreis Dahme-Spreewald, Brandenburg
+15741	Motzen	Brandenburg	Landkreis Dahme-Spreewald	15741, Motzen, Landkreis Dahme-Spreewald, Brandenburg
+15741	Gräbendorf	Brandenburg	Landkreis Dahme-Spreewald	15741, Gräbendorf, Landkreis Dahme-Spreewald, Brandenburg
+15741	Pätz	Brandenburg	Landkreis Dahme-Spreewald	15741, Pätz, Landkreis Dahme-Spreewald, Brandenburg
+15745	Wildau	Brandenburg	Landkreis Dahme-Spreewald	15745, Wildau, Landkreis Dahme-Spreewald, Brandenburg
+15746	Groß Köris	Brandenburg	Landkreis Dahme-Spreewald	15746, Groß Köris, Landkreis Dahme-Spreewald, Brandenburg
+15748	Märkisch Buchholz	Brandenburg	Landkreis Dahme-Spreewald	15748, Märkisch Buchholz, Landkreis Dahme-Spreewald, Brandenburg
+15748	Münchehofe	Brandenburg	Landkreis Dahme-Spreewald	15748, Münchehofe, Landkreis Dahme-Spreewald, Brandenburg
+15749	Gallun	Brandenburg	Landkreis Dahme-Spreewald	15749, Gallun, Landkreis Dahme-Spreewald, Brandenburg
+15749	Brusendorf	Brandenburg	Landkreis Dahme-Spreewald	15749, Brusendorf, Landkreis Dahme-Spreewald, Brandenburg
+15749	Kiekebusch	Brandenburg	Landkreis Dahme-Spreewald	15749, Kiekebusch, Landkreis Dahme-Spreewald, Brandenburg
+15749	Mittenwalde	Brandenburg	Landkreis Dahme-Spreewald	15749, Mittenwalde, Landkreis Dahme-Spreewald, Brandenburg
+15749	Ragow	Brandenburg	Landkreis Dahme-Spreewald	15749, Ragow, Landkreis Dahme-Spreewald, Brandenburg
+15751	Niederlehme	Brandenburg	Landkreis Dahme-Spreewald	15751, Niederlehme, Landkreis Dahme-Spreewald, Brandenburg
+15752	Prieros	Brandenburg	Landkreis Dahme-Spreewald	15752, Prieros, Landkreis Dahme-Spreewald, Brandenburg
+15752	Streganz	Brandenburg	Landkreis Dahme-Spreewald	15752, Streganz, Landkreis Dahme-Spreewald, Brandenburg
+15752	Kolberg	Brandenburg	Landkreis Dahme-Spreewald	15752, Kolberg, Landkreis Dahme-Spreewald, Brandenburg
+15754	Friedersdorf	Brandenburg	Landkreis Dahme-Spreewald	15754, Friedersdorf, Landkreis Dahme-Spreewald, Brandenburg
+15754	Dannenreich	Brandenburg	Landkreis Dahme-Spreewald	15754, Dannenreich, Landkreis Dahme-Spreewald, Brandenburg
+15754	Gussow	Brandenburg	Landkreis Dahme-Spreewald	15754, Gussow, Landkreis Dahme-Spreewald, Brandenburg
+15754	Bindow	Brandenburg	Landkreis Dahme-Spreewald	15754, Bindow, Landkreis Dahme-Spreewald, Brandenburg
+15754	Dolgenbrodt	Brandenburg	Landkreis Dahme-Spreewald	15754, Dolgenbrodt, Landkreis Dahme-Spreewald, Brandenburg
+15754	Blossin	Brandenburg	Landkreis Dahme-Spreewald	15754, Blossin, Landkreis Dahme-Spreewald, Brandenburg
+15754	Senzig	Brandenburg	Landkreis Dahme-Spreewald	15754, Senzig, Landkreis Dahme-Spreewald, Brandenburg
+15754	Wolzig	Brandenburg	Landkreis Dahme-Spreewald	15754, Wolzig, Landkreis Dahme-Spreewald, Brandenburg
+15755	Teupitz	Brandenburg	Landkreis Dahme-Spreewald	15755, Teupitz, Landkreis Dahme-Spreewald, Brandenburg
+15755	Töpchin	Brandenburg	Landkreis Dahme-Spreewald	15755, Töpchin, Landkreis Dahme-Spreewald, Brandenburg
+15755	Schwerin	Brandenburg	Landkreis Dahme-Spreewald	15755, Schwerin, Landkreis Dahme-Spreewald, Brandenburg
+15757	Freidorf	Brandenburg	Landkreis Dahme-Spreewald	15757, Freidorf, Landkreis Dahme-Spreewald, Brandenburg
+15757	Briesen	Brandenburg	Landkreis Dahme-Spreewald	15757, Briesen, Landkreis Dahme-Spreewald, Brandenburg
+15757	Oderin	Brandenburg	Landkreis Dahme-Spreewald	15757, Oderin, Landkreis Dahme-Spreewald, Brandenburg
+15757	Halbe	Brandenburg	Landkreis Dahme-Spreewald	15757, Halbe, Landkreis Dahme-Spreewald, Brandenburg
+15757	Löpten	Brandenburg	Landkreis Dahme-Spreewald	15757, Löpten, Landkreis Dahme-Spreewald, Brandenburg
+15758	Kablow	Brandenburg	Landkreis Dahme-Spreewald	15758, Kablow, Landkreis Dahme-Spreewald, Brandenburg
+15758	Zernsdorf	Brandenburg	Landkreis Dahme-Spreewald	15758, Zernsdorf, Landkreis Dahme-Spreewald, Brandenburg
+15806	Schöneiche	Brandenburg	Landkreis Teltow-Fläming	15806, Schöneiche, Landkreis Teltow-Fläming, Brandenburg
+15806	Glienick	Brandenburg	Landkreis Teltow-Fläming	15806, Glienick, Landkreis Teltow-Fläming, Brandenburg
+15806	Telz	Brandenburg	Landkreis Dahme-Spreewald	15806, Telz, Landkreis Dahme-Spreewald, Brandenburg
+15806	Gadsdorf	Brandenburg	Landkreis Teltow-Fläming	15806, Gadsdorf, Landkreis Teltow-Fläming, Brandenburg
+15806	Nunsdorf	Brandenburg	Landkreis Teltow-Fläming	15806, Nunsdorf, Landkreis Teltow-Fläming, Brandenburg
+15806	Groß Schulzendorf	Brandenburg	Landkreis Teltow-Fläming	15806, Groß Schulzendorf, Landkreis Teltow-Fläming, Brandenburg
+15806	Kallinchen	Brandenburg	Landkreis Teltow-Fläming	15806, Kallinchen, Landkreis Teltow-Fläming, Brandenburg
+15806	Mellensee	Brandenburg	Landkreis Teltow-Fläming	15806, Mellensee, Landkreis Teltow-Fläming, Brandenburg
+15806	Saalow	Brandenburg	Landkreis Teltow-Fläming	15806, Saalow, Landkreis Teltow-Fläming, Brandenburg
+15806	Nächst Neuendorf	Brandenburg	Landkreis Teltow-Fläming	15806, Nächst Neuendorf, Landkreis Teltow-Fläming, Brandenburg
+15806	Zossen	Brandenburg	Landkreis Teltow-Fläming	15806, Zossen, Landkreis Teltow-Fläming, Brandenburg
+15806	Kummersdorf-Alexanderdorf	Brandenburg	Landkreis Teltow-Fläming	15806, Kummersdorf-Alexanderdorf, Landkreis Teltow-Fläming, Brandenburg
+15806	Rehagen	Brandenburg	Landkreis Teltow-Fläming	15806, Rehagen, Landkreis Teltow-Fläming, Brandenburg
+15806	Groß Machnow	Brandenburg	Landkreis Teltow-Fläming	15806, Groß Machnow, Landkreis Teltow-Fläming, Brandenburg
+15827	Dahlewitz	Brandenburg	Landkreis Teltow-Fläming	15827, Dahlewitz, Landkreis Teltow-Fläming, Brandenburg
+15827	Blankenfelde	Brandenburg	Landkreis Teltow-Fläming	15827, Blankenfelde, Landkreis Teltow-Fläming, Brandenburg
+15831	Jühnsdorf	Brandenburg	Landkreis Teltow-Fläming	15831, Jühnsdorf, Landkreis Teltow-Fläming, Brandenburg
+15831	Mahlow	Brandenburg	Landkreis Teltow-Fläming	15831, Mahlow, Landkreis Teltow-Fläming, Brandenburg
+15831	Selchow	Brandenburg	Landkreis Dahme-Spreewald	15831, Selchow, Landkreis Dahme-Spreewald, Brandenburg
+15831	Diepensee	Brandenburg	Landkreis Teltow-Fläming	15831, Diepensee, Landkreis Teltow-Fläming, Brandenburg
+15831	Großziethen	Brandenburg	Landkreis Dahme-Spreewald	15831, Großziethen, Landkreis Dahme-Spreewald, Brandenburg
+15831	Groß Kienitz	Brandenburg	Landkreis Teltow-Fläming	15831, Groß Kienitz, Landkreis Teltow-Fläming, Brandenburg
+15831	Waßmannsdorf	Brandenburg	Landkreis Teltow-Fläming	15831, Waßmannsdorf, Landkreis Teltow-Fläming, Brandenburg
+15834	Rangsdorf	Brandenburg	Landkreis Teltow-Fläming	15834, Rangsdorf, Landkreis Teltow-Fläming, Brandenburg
+15837	Baruth/Mark	Brandenburg	Landkreis Teltow-Fläming	15837, Baruth/Mark, Landkreis Teltow-Fläming, Brandenburg
+15838	Sperenberg	Brandenburg	Landkreis Teltow-Fläming	15838, Sperenberg, Landkreis Teltow-Fläming, Brandenburg
+15838	Wünsdorf	Brandenburg	Landkreis Teltow-Fläming	15838, Wünsdorf, Landkreis Teltow-Fläming, Brandenburg
+15838	Klausdorf	Brandenburg	Landkreis Teltow-Fläming	15838, Klausdorf, Landkreis Teltow-Fläming, Brandenburg
+15838	Kummersdorf-Gut	Brandenburg	Landkreis Teltow-Fläming	15838, Kummersdorf-Gut, Landkreis Teltow-Fläming, Brandenburg
+15848	Plattkow	Brandenburg	Landkreis Dahme-Spreewald	15848, Plattkow, Landkreis Dahme-Spreewald, Brandenburg
+15848	Tauche Stremmen	Brandenburg	Landkreis Oder-Spree	15848, Tauche Stremmen, Landkreis Oder-Spree, Brandenburg
+15848	Friedland Leißnitz	Brandenburg	Landkreis Oder-Spree	15848, Friedland Leißnitz, Landkreis Oder-Spree, Brandenburg
+15848	Speichrow	Brandenburg	Landkreis Dahme-Spreewald	15848, Speichrow, Landkreis Dahme-Spreewald, Brandenburg
+15848	Tauche Trebatsch	Brandenburg	Landkreis Oder-Spree	15848, Tauche Trebatsch, Landkreis Oder-Spree, Brandenburg
+15848	Tauche Kossenblatt	Brandenburg	Landkreis Oder-Spree	15848, Tauche Kossenblatt, Landkreis Oder-Spree, Brandenburg
+15848	Beeskow Krügersdorf	Brandenburg	Landkreis Oder-Spree	15848, Beeskow Krügersdorf, Landkreis Oder-Spree, Brandenburg
+15848	Tauche Briescht	Brandenburg	Landkreis Oder-Spree	15848, Tauche Briescht, Landkreis Oder-Spree, Brandenburg
+15848	Friedland	Brandenburg	Landkreis Oder-Spree	15848, Friedland, Landkreis Oder-Spree, Brandenburg
+15848	Tauche Falkenberg	Brandenburg	Landkreis Oder-Spree	15848, Tauche Falkenberg, Landkreis Oder-Spree, Brandenburg
+15848	Beeskow Kohlsdorf	Brandenburg	Landkreis Oder-Spree	15848, Beeskow Kohlsdorf, Landkreis Oder-Spree, Brandenburg
+15848	Tauche Giesensdorf	Brandenburg	Landkreis Oder-Spree	15848, Tauche Giesensdorf, Landkreis Oder-Spree, Brandenburg
+15848	Tauche Mittweide	Brandenburg	Landkreis Oder-Spree	15848, Tauche Mittweide, Landkreis Oder-Spree, Brandenburg
+15848	Tauche Lindenberg	Brandenburg	Landkreis Oder-Spree	15848, Tauche Lindenberg, Landkreis Oder-Spree, Brandenburg
+15848	Friedland Pieskow	Brandenburg	Landkreis Oder-Spree	15848, Friedland Pieskow, Landkreis Oder-Spree, Brandenburg
+15848	Tauche Ranzig	Brandenburg	Landkreis Oder-Spree	15848, Tauche Ranzig, Landkreis Oder-Spree, Brandenburg
+15848	Tauche Tauche	Brandenburg	Landkreis Oder-Spree	15848, Tauche Tauche, Landkreis Oder-Spree, Brandenburg
+15848	Tauche Görsdorf bei Beeskow	Brandenburg	Landkreis Oder-Spree	15848, Tauche Görsdorf bei Beeskow, Landkreis Oder-Spree, Brandenburg
+15848	Tauche Werder	Brandenburg	Landkreis Oder-Spree	15848, Tauche Werder, Landkreis Oder-Spree, Brandenburg
+15848	Beeskow	Brandenburg	Landkreis Oder-Spree	15848, Beeskow, Landkreis Oder-Spree, Brandenburg
+15848	Rietz-Neuendorf Sauen	Brandenburg	Landkreis Oder-Spree	15848, Rietz-Neuendorf Sauen, Landkreis Oder-Spree, Brandenburg
+15848	Tauche	Brandenburg	Landkreis Oder-Spree	15848, Tauche, Landkreis Oder-Spree, Brandenburg
+15848	Rietz-Neuendorf Drahendorf	Brandenburg	Landkreis Oder-Spree	15848, Rietz-Neuendorf Drahendorf, Landkreis Oder-Spree, Brandenburg
+15848	Rietz-Neuendorf Groß Rietz	Brandenburg	Landkreis Oder-Spree	15848, Rietz-Neuendorf Groß Rietz, Landkreis Oder-Spree, Brandenburg
+15848	Friedland Kummerow	Brandenburg	Landkreis Oder-Spree	15848, Friedland Kummerow, Landkreis Oder-Spree, Brandenburg
+15848	Beeskow Neuendorf	Brandenburg	Landkreis Oder-Spree	15848, Beeskow Neuendorf, Landkreis Oder-Spree, Brandenburg
+15848	Beeskow Radinkendorf	Brandenburg	Landkreis Oder-Spree	15848, Beeskow Radinkendorf, Landkreis Oder-Spree, Brandenburg
+15848	Friedland Karras	Brandenburg	Landkreis Oder-Spree	15848, Friedland Karras, Landkreis Oder-Spree, Brandenburg
+15848	Rietz-Neuendorf Ahrensdorf	Brandenburg	Landkreis Oder-Spree	15848, Rietz-Neuendorf Ahrensdorf, Landkreis Oder-Spree, Brandenburg
+15848	Rietz-Neuendorf	Brandenburg	Landkreis Oder-Spree	15848, Rietz-Neuendorf, Landkreis Oder-Spree, Brandenburg
+15848	Friedland Weichensdorf	Brandenburg	Landkreis Oder-Spree	15848, Friedland Weichensdorf, Landkreis Oder-Spree, Brandenburg
+15848	Friedland Chossewitz	Brandenburg	Landkreis Oder-Spree	15848, Friedland Chossewitz, Landkreis Oder-Spree, Brandenburg
+15848	Friedland Niewisch	Brandenburg	Landkreis Oder-Spree	15848, Friedland Niewisch, Landkreis Oder-Spree, Brandenburg
+15848	Friedland Günthersdorf	Brandenburg	Landkreis Oder-Spree	15848, Friedland Günthersdorf, Landkreis Oder-Spree, Brandenburg
+15848	Ragow-Merz Ragow	Brandenburg	Landkreis Oder-Spree	15848, Ragow-Merz Ragow, Landkreis Oder-Spree, Brandenburg
+15848	Rietz-Neuendorf Birkholz	Brandenburg	Landkreis Oder-Spree	15848, Rietz-Neuendorf Birkholz, Landkreis Oder-Spree, Brandenburg
+15848	Beeskow Schneeberg	Brandenburg	Landkreis Oder-Spree	15848, Beeskow Schneeberg, Landkreis Oder-Spree, Brandenburg
+15848	Friedland Reudnitz	Brandenburg	Landkreis Oder-Spree	15848, Friedland Reudnitz, Landkreis Oder-Spree, Brandenburg
+15848	Rietz-Neuendorf Herzberg	Brandenburg	Landkreis Oder-Spree	15848, Rietz-Neuendorf Herzberg, Landkreis Oder-Spree, Brandenburg
+15848	Beeskow Oegeln	Brandenburg	Landkreis Oder-Spree	15848, Beeskow Oegeln, Landkreis Oder-Spree, Brandenburg
+15848	Friedland Friedland	Brandenburg	Landkreis Oder-Spree	15848, Friedland Friedland, Landkreis Oder-Spree, Brandenburg
+15848	Beeskow Bornow	Brandenburg	Landkreis Oder-Spree	15848, Beeskow Bornow, Landkreis Oder-Spree, Brandenburg
+15848	Friedland Schadow	Brandenburg	Landkreis Oder-Spree	15848, Friedland Schadow, Landkreis Oder-Spree, Brandenburg
+15848	Rietz-Neuendorf Buckow	Brandenburg	Landkreis Oder-Spree	15848, Rietz-Neuendorf Buckow, Landkreis Oder-Spree, Brandenburg
+15848	Rietz-Neuendorf Görzig	Brandenburg	Landkreis Oder-Spree	15848, Rietz-Neuendorf Görzig, Landkreis Oder-Spree, Brandenburg
+15848	Friedland Groß Briesen	Brandenburg	Landkreis Oder-Spree	15848, Friedland Groß Briesen, Landkreis Oder-Spree, Brandenburg
+15848	Ragow-Merz	Brandenburg	Landkreis Oder-Spree	15848, Ragow-Merz, Landkreis Oder-Spree, Brandenburg
+15848	Rietz-Neuendorf Behrensdorf	Brandenburg	Landkreis Oder-Spree	15848, Rietz-Neuendorf Behrensdorf, Landkreis Oder-Spree, Brandenburg
+15848	Friedland Klein Muckrow	Brandenburg	Landkreis Oder-Spree	15848, Friedland Klein Muckrow, Landkreis Oder-Spree, Brandenburg
+15848	Rietz-Neuendorf Pfaffendorf	Brandenburg	Landkreis Oder-Spree	15848, Rietz-Neuendorf Pfaffendorf, Landkreis Oder-Spree, Brandenburg
+15848	Ragow-Merz Merz	Brandenburg	Landkreis Oder-Spree	15848, Ragow-Merz Merz, Landkreis Oder-Spree, Brandenburg
+15848	Friedland Lindow	Brandenburg	Landkreis Oder-Spree	15848, Friedland Lindow, Landkreis Oder-Spree, Brandenburg
+15848	Rietz-Neuendorf Neubrück (Spree)	Brandenburg	Landkreis Oder-Spree	15848, Rietz-Neuendorf Neubrück (Spree), Landkreis Oder-Spree, Brandenburg
+15848	Friedland Zeust	Brandenburg	Landkreis Oder-Spree	15848, Friedland Zeust, Landkreis Oder-Spree, Brandenburg
+15848	Rietz-Neuendorf Wilmersdorf	Brandenburg	Landkreis Oder-Spree	15848, Rietz-Neuendorf Wilmersdorf, Landkreis Oder-Spree, Brandenburg
+15859	Philadelphia	Brandenburg	Landkreis Oder-Spree	15859, Philadelphia, Landkreis Oder-Spree, Brandenburg
+15859	Storkow (Mark)	Brandenburg	Landkreis Oder-Spree	15859, Storkow (Mark), Landkreis Oder-Spree, Brandenburg
+15859	Kehrigk	Brandenburg	Landkreis Oder-Spree	15859, Kehrigk, Landkreis Oder-Spree, Brandenburg
+15859	Rieplos	Brandenburg	Landkreis Oder-Spree	15859, Rieplos, Landkreis Oder-Spree, Brandenburg
+15859	Storkow (Mark) Bugk	Brandenburg	Landkreis Oder-Spree	15859, Storkow (Mark) Bugk, Landkreis Oder-Spree, Brandenburg
+15859	Kummersdorf	Brandenburg	Landkreis Oder-Spree	15859, Kummersdorf, Landkreis Oder-Spree, Brandenburg
+15859	Storkow (Mark) Groß Eichholz	Brandenburg	Landkreis Oder-Spree	15859, Storkow (Mark) Groß Eichholz, Landkreis Oder-Spree, Brandenburg
+15859	Storkow (Mark) Alt Stahnsdorf	Brandenburg	Landkreis Oder-Spree	15859, Storkow (Mark) Alt Stahnsdorf, Landkreis Oder-Spree, Brandenburg
+15859	Storkow (Mark) Selchow	Brandenburg	Landkreis Oder-Spree	15859, Storkow (Mark) Selchow, Landkreis Oder-Spree, Brandenburg
+15859	Storkow (Mark) Schwerin	Brandenburg	Landkreis Oder-Spree	15859, Storkow (Mark) Schwerin, Landkreis Oder-Spree, Brandenburg
+15859	Storkow (Mark) Wochowsee	Brandenburg	Landkreis Oder-Spree	15859, Storkow (Mark) Wochowsee, Landkreis Oder-Spree, Brandenburg
+15859	Storkow (Mark) Groß Schauen	Brandenburg	Landkreis Oder-Spree	15859, Storkow (Mark) Groß Schauen, Landkreis Oder-Spree, Brandenburg
+15859	Storkow (Mark) Limsdorf	Brandenburg	Landkreis Oder-Spree	15859, Storkow (Mark) Limsdorf, Landkreis Oder-Spree, Brandenburg
+15859	Storkow (Mark) Storkow	Brandenburg	Landkreis Oder-Spree	15859, Storkow (Mark) Storkow, Landkreis Oder-Spree, Brandenburg
+15859	Storkow (Mark) Kummersdorf	Brandenburg	Landkreis Oder-Spree	15859, Storkow (Mark) Kummersdorf, Landkreis Oder-Spree, Brandenburg
+15859	Storkow (Mark) Görsdorf bei Storkow	Brandenburg	Landkreis Oder-Spree	15859, Storkow (Mark) Görsdorf bei Storkow, Landkreis Oder-Spree, Brandenburg
+15864	Wendisch Rietz	Brandenburg	Landkreis Oder-Spree	15864, Wendisch Rietz, Landkreis Oder-Spree, Brandenburg
+15864	Diensdorf-Radlow	Brandenburg	Landkreis Oder-Spree	15864, Diensdorf-Radlow, Landkreis Oder-Spree, Brandenburg
+15864	Rietz-Neuendorf Glienicke	Brandenburg	Landkreis Oder-Spree	15864, Rietz-Neuendorf Glienicke, Landkreis Oder-Spree, Brandenburg
+15864	Rietz-Neuendorf	Brandenburg	Landkreis Oder-Spree	15864, Rietz-Neuendorf, Landkreis Oder-Spree, Brandenburg
+15868	Ullersdorf	Brandenburg	Landkreis Dahme-Spreewald	15868, Ullersdorf, Landkreis Dahme-Spreewald, Brandenburg
+15868	Friedland Groß Muckrow	Brandenburg	Landkreis Dahme-Spreewald	15868, Friedland Groß Muckrow, Landkreis Dahme-Spreewald, Brandenburg
+15868	Leeskow	Brandenburg	Landkreis Dahme-Spreewald	15868, Leeskow, Landkreis Dahme-Spreewald, Brandenburg
+15868	Doberburg	Brandenburg	Landkreis Dahme-Spreewald	15868, Doberburg, Landkreis Dahme-Spreewald, Brandenburg
+15868	Friedland	Brandenburg	Landkreis Dahme-Spreewald	15868, Friedland, Landkreis Dahme-Spreewald, Brandenburg
+15868	Lieberose	Brandenburg	Landkreis Dahme-Spreewald	15868, Lieberose, Landkreis Dahme-Spreewald, Brandenburg
+15868	Jamlitz	Brandenburg	Landkreis Dahme-Spreewald	15868, Jamlitz, Landkreis Dahme-Spreewald, Brandenburg
+15890	Siehdichum	Brandenburg	Landkreis Oder-Spree	15890, Siehdichum, Landkreis Oder-Spree, Brandenburg
+15890	Siehdichum Rießen	Brandenburg	Landkreis Oder-Spree	15890, Siehdichum Rießen, Landkreis Oder-Spree, Brandenburg
+15890	Vogelsang	Brandenburg	Landkreis Oder-Spree	15890, Vogelsang, Landkreis Oder-Spree, Brandenburg
+15890	Siehdichum Pohlitz	Brandenburg	Landkreis Oder-Spree	15890, Siehdichum Pohlitz, Landkreis Oder-Spree, Brandenburg
+15890	Siehdichum Schernsdorf	Brandenburg	Landkreis Oder-Spree	15890, Siehdichum Schernsdorf, Landkreis Oder-Spree, Brandenburg
+15890	Schlaubetal Bremsdorf	Brandenburg	Landkreis Oder-Spree	15890, Schlaubetal Bremsdorf, Landkreis Oder-Spree, Brandenburg
+15890	Eisenhüttenstadt Fürstenberg	Brandenburg	Landkreis Oder-Spree	15890, Eisenhüttenstadt Fürstenberg, Landkreis Oder-Spree, Brandenburg
+15890	Schlaubetal	Brandenburg	Landkreis Oder-Spree	15890, Schlaubetal, Landkreis Oder-Spree, Brandenburg
+15890	Schlaubetal Fünfeichen	Brandenburg	Landkreis Oder-Spree	15890, Schlaubetal Fünfeichen, Landkreis Oder-Spree, Brandenburg
+15890	Eisenhüttenstadt	Brandenburg	Landkreis Oder-Spree	15890, Eisenhüttenstadt, Landkreis Oder-Spree, Brandenburg
+15890	Schlaubetal Kieselwitz	Brandenburg	Landkreis Oder-Spree	15890, Schlaubetal Kieselwitz, Landkreis Oder-Spree, Brandenburg
+15890	Eisenhüttenstadt Schönfließ	Brandenburg	Landkreis Oder-Spree	15890, Eisenhüttenstadt Schönfließ, Landkreis Oder-Spree, Brandenburg
+15890	Eisenhüttenstadt Diehlo	Brandenburg	Landkreis Oder-Spree	15890, Eisenhüttenstadt Diehlo, Landkreis Oder-Spree, Brandenburg
+15898	Neuzelle Schwerzko	Brandenburg	Landkreis Oder-Spree	15898, Neuzelle Schwerzko, Landkreis Oder-Spree, Brandenburg
+15898	Neuzelle Göhlen	Brandenburg	Landkreis Oder-Spree	15898, Neuzelle Göhlen, Landkreis Oder-Spree, Brandenburg
+15898	Neuzelle Henzendorf	Brandenburg	Landkreis Oder-Spree	15898, Neuzelle Henzendorf, Landkreis Oder-Spree, Brandenburg
+15898	Neißemünde Coschen	Brandenburg	Landkreis Oder-Spree	15898, Neißemünde Coschen, Landkreis Oder-Spree, Brandenburg
+15898	Neuzelle Möbiskruge	Brandenburg	Landkreis Oder-Spree	15898, Neuzelle Möbiskruge, Landkreis Oder-Spree, Brandenburg
+15898	Neißemünde Ratzdorf	Brandenburg	Landkreis Oder-Spree	15898, Neißemünde Ratzdorf, Landkreis Oder-Spree, Brandenburg
+15898	Neuzelle Streichwitz	Brandenburg	Landkreis Oder-Spree	15898, Neuzelle Streichwitz, Landkreis Oder-Spree, Brandenburg
+15898	Neißemünde Breslack	Brandenburg	Landkreis Oder-Spree	15898, Neißemünde Breslack, Landkreis Oder-Spree, Brandenburg
+15898	Neuzelle Bomsdorf	Brandenburg	Landkreis Oder-Spree	15898, Neuzelle Bomsdorf, Landkreis Oder-Spree, Brandenburg
+15898	Neißemünde	Brandenburg	Landkreis Oder-Spree	15898, Neißemünde, Landkreis Oder-Spree, Brandenburg
+15898	Neuzelle Ossendorf	Brandenburg	Landkreis Oder-Spree	15898, Neuzelle Ossendorf, Landkreis Oder-Spree, Brandenburg
+15898	Neißemünde Wellmitz	Brandenburg	Landkreis Oder-Spree	15898, Neißemünde Wellmitz, Landkreis Oder-Spree, Brandenburg
+15898	Lawitz	Brandenburg	Landkreis Oder-Spree	15898, Lawitz, Landkreis Oder-Spree, Brandenburg
+15898	Neuzelle Kobbeln	Brandenburg	Landkreis Oder-Spree	15898, Neuzelle Kobbeln, Landkreis Oder-Spree, Brandenburg
+15898	Neuzelle Treppeln	Brandenburg	Landkreis Oder-Spree	15898, Neuzelle Treppeln, Landkreis Oder-Spree, Brandenburg
+15898	Neuzelle	Brandenburg	Landkreis Oder-Spree	15898, Neuzelle, Landkreis Oder-Spree, Brandenburg
+15898	Neuzelle Neuzelle	Brandenburg	Landkreis Oder-Spree	15898, Neuzelle Neuzelle, Landkreis Oder-Spree, Brandenburg
+15898	Neuzelle Steinsdorf	Brandenburg	Landkreis Oder-Spree	15898, Neuzelle Steinsdorf, Landkreis Oder-Spree, Brandenburg
+15898	Neuzelle Bahro	Brandenburg	Landkreis Oder-Spree	15898, Neuzelle Bahro, Landkreis Oder-Spree, Brandenburg
+15907	Lübben (Spreewald)	Brandenburg	Landkreis Dahme-Spreewald	15907, Lübben (Spreewald), Landkreis Dahme-Spreewald, Brandenburg
+15910	Gröditsch	Brandenburg	Landkreis Dahme-Spreewald	15910, Gröditsch, Landkreis Dahme-Spreewald, Brandenburg
+15910	Kuschkow	Brandenburg	Landkreis Dahme-Spreewald	15910, Kuschkow, Landkreis Dahme-Spreewald, Brandenburg
+15910	Schuhlen-Wiese	Brandenburg	Landkreis Dahme-Spreewald	15910, Schuhlen-Wiese, Landkreis Dahme-Spreewald, Brandenburg
+15910	Alt-Schadow	Brandenburg	Landkreis Dahme-Spreewald	15910, Alt-Schadow, Landkreis Dahme-Spreewald, Brandenburg
+15910	Schlepzig	Brandenburg	Landkreis Dahme-Spreewald	15910, Schlepzig, Landkreis Dahme-Spreewald, Brandenburg
+15910	Pretschen	Brandenburg	Landkreis Dahme-Spreewald	15910, Pretschen, Landkreis Dahme-Spreewald, Brandenburg
+15910	Rietzneuendorf-Staakow	Brandenburg	Landkreis Dahme-Spreewald	15910, Rietzneuendorf-Staakow, Landkreis Dahme-Spreewald, Brandenburg
+15910	Hohenbrück-Neu Schadow	Brandenburg	Landkreis Dahme-Spreewald	15910, Hohenbrück-Neu Schadow, Landkreis Dahme-Spreewald, Brandenburg
+15910	Wittmannsdorf-Bückchen	Brandenburg	Landkreis Dahme-Spreewald	15910, Wittmannsdorf-Bückchen, Landkreis Dahme-Spreewald, Brandenburg
+15910	Dürrenhofe	Brandenburg	Landkreis Dahme-Spreewald	15910, Dürrenhofe, Landkreis Dahme-Spreewald, Brandenburg
+15910	Unterspreewald	Brandenburg	Landkreis Dahme-Spreewald	15910, Unterspreewald, Landkreis Dahme-Spreewald, Brandenburg
+15910	Krausnick-Groß Wasserburg	Brandenburg	Landkreis Dahme-Spreewald	15910, Krausnick-Groß Wasserburg, Landkreis Dahme-Spreewald, Brandenburg
+15910	Schönwald	Brandenburg	Landkreis Dahme-Spreewald	15910, Schönwald, Landkreis Dahme-Spreewald, Brandenburg
+15913	Butzen	Brandenburg	Landkreis Dahme-Spreewald	15913, Butzen, Landkreis Dahme-Spreewald, Brandenburg
+15913	Goyatz	Brandenburg	Landkreis Dahme-Spreewald	15913, Goyatz, Landkreis Dahme-Spreewald, Brandenburg
+15913	Biebersdorf	Brandenburg	Landkreis Dahme-Spreewald	15913, Biebersdorf, Landkreis Dahme-Spreewald, Brandenburg
+15913	Straupitz	Brandenburg	Landkreis Dahme-Spreewald	15913, Straupitz, Landkreis Dahme-Spreewald, Brandenburg
+15913	Ressen-Zaue	Brandenburg	Landkreis Dahme-Spreewald	15913, Ressen-Zaue, Landkreis Dahme-Spreewald, Brandenburg
+15913	Alt Zauche	Brandenburg	Landkreis Dahme-Spreewald	15913, Alt Zauche, Landkreis Dahme-Spreewald, Brandenburg
+15913	Groß Leuthen	Brandenburg	Landkreis Dahme-Spreewald	15913, Groß Leuthen, Landkreis Dahme-Spreewald, Brandenburg
+15913	Byhleguhre	Brandenburg	Landkreis Dahme-Spreewald	15913, Byhleguhre, Landkreis Dahme-Spreewald, Brandenburg
+15913	Neu Zauche	Brandenburg	Landkreis Dahme-Spreewald	15913, Neu Zauche, Landkreis Dahme-Spreewald, Brandenburg
+15913	Groß Leine	Brandenburg	Landkreis Dahme-Spreewald	15913, Groß Leine, Landkreis Dahme-Spreewald, Brandenburg
+15913	Krugau	Brandenburg	Landkreis Dahme-Spreewald	15913, Krugau, Landkreis Dahme-Spreewald, Brandenburg
+15913	Laasow	Brandenburg	Landkreis Dahme-Spreewald	15913, Laasow, Landkreis Dahme-Spreewald, Brandenburg
+15913	Klein Leine	Brandenburg	Landkreis Dahme-Spreewald	15913, Klein Leine, Landkreis Dahme-Spreewald, Brandenburg
+15913	Briesensee	Brandenburg	Landkreis Dahme-Spreewald	15913, Briesensee, Landkreis Dahme-Spreewald, Brandenburg
+15913	Jessern	Brandenburg	Landkreis Dahme-Spreewald	15913, Jessern, Landkreis Dahme-Spreewald, Brandenburg
+15913	Wußwerk	Brandenburg	Landkreis Dahme-Spreewald	15913, Wußwerk, Landkreis Dahme-Spreewald, Brandenburg
+15913	Byhlen	Brandenburg	Landkreis Dahme-Spreewald	15913, Byhlen, Landkreis Dahme-Spreewald, Brandenburg
+15913	Dollgen	Brandenburg	Landkreis Dahme-Spreewald	15913, Dollgen, Landkreis Dahme-Spreewald, Brandenburg
+15913	Mochow	Brandenburg	Landkreis Dahme-Spreewald	15913, Mochow, Landkreis Dahme-Spreewald, Brandenburg
+15913	Lamsfeld-Groß Liebitz	Brandenburg	Landkreis Dahme-Spreewald	15913, Lamsfeld-Groß Liebitz, Landkreis Dahme-Spreewald, Brandenburg
+15913	Glietz	Brandenburg	Landkreis Dahme-Spreewald	15913, Glietz, Landkreis Dahme-Spreewald, Brandenburg
+15913	Sacrow-Waldow	Brandenburg	Landkreis Dahme-Spreewald	15913, Sacrow-Waldow, Landkreis Dahme-Spreewald, Brandenburg
+15913	Leibchel	Brandenburg	Landkreis Dahme-Spreewald	15913, Leibchel, Landkreis Dahme-Spreewald, Brandenburg
+15913	Caminchen	Brandenburg	Landkreis Dahme-Spreewald	15913, Caminchen, Landkreis Dahme-Spreewald, Brandenburg
+15926	Heideblick Waltersdorf	Brandenburg	Landkreis Dahme-Spreewald	15926, Heideblick Waltersdorf, Landkreis Dahme-Spreewald, Brandenburg
+15926	Heideblick Beesdau	Brandenburg	Landkreis Dahme-Spreewald	15926, Heideblick Beesdau, Landkreis Dahme-Spreewald, Brandenburg
+15926	Schlabendorf	Brandenburg	Landkreis Dahme-Spreewald	15926, Schlabendorf, Landkreis Dahme-Spreewald, Brandenburg
+15926	Bersteland	Brandenburg	Landkreis Dahme-Spreewald	15926, Bersteland, Landkreis Dahme-Spreewald, Brandenburg
+15926	Walddrehna	Brandenburg	Landkreis Dahme-Spreewald	15926, Walddrehna, Landkreis Dahme-Spreewald, Brandenburg
+15926	Heideblick Riedebeck	Brandenburg	Landkreis Dahme-Spreewald	15926, Heideblick Riedebeck, Landkreis Dahme-Spreewald, Brandenburg
+15926	Heideblick Weißack	Brandenburg	Landkreis Dahme-Spreewald	15926, Heideblick Weißack, Landkreis Dahme-Spreewald, Brandenburg
+15926	Heideblick Gehren	Brandenburg	Landkreis Dahme-Spreewald	15926, Heideblick Gehren, Landkreis Dahme-Spreewald, Brandenburg
+15926	Duben	Brandenburg	Landkreis Dahme-Spreewald	15926, Duben, Landkreis Dahme-Spreewald, Brandenburg
+15926	Heideblick	Brandenburg	Landkreis Dahme-Spreewald	15926, Heideblick, Landkreis Dahme-Spreewald, Brandenburg
+15926	Cahnsdorf	Brandenburg	Landkreis Dahme-Spreewald	15926, Cahnsdorf, Landkreis Dahme-Spreewald, Brandenburg
+15926	Heideblick Falkenberg	Brandenburg	Landkreis Dahme-Spreewald	15926, Heideblick Falkenberg, Landkreis Dahme-Spreewald, Brandenburg
+15926	Görlsdorf	Brandenburg	Landkreis Dahme-Spreewald	15926, Görlsdorf, Landkreis Dahme-Spreewald, Brandenburg
+15926	Heideblick Langengrassau	Brandenburg	Landkreis Dahme-Spreewald	15926, Heideblick Langengrassau, Landkreis Dahme-Spreewald, Brandenburg
+15926	Bersteland Reichwalde	Brandenburg	Landkreis Dahme-Spreewald	15926, Bersteland Reichwalde, Landkreis Dahme-Spreewald, Brandenburg
+15926	Heideblick Wüstermarke	Brandenburg	Landkreis Dahme-Spreewald	15926, Heideblick Wüstermarke, Landkreis Dahme-Spreewald, Brandenburg
+15926	Heideblick Goßmar	Brandenburg	Landkreis Dahme-Spreewald	15926, Heideblick Goßmar, Landkreis Dahme-Spreewald, Brandenburg
+15926	Heideblick Bornsdorf	Brandenburg	Landkreis Dahme-Spreewald	15926, Heideblick Bornsdorf, Landkreis Dahme-Spreewald, Brandenburg
+15926	Bersteland Freiwalde	Brandenburg	Landkreis Dahme-Spreewald	15926, Bersteland Freiwalde, Landkreis Dahme-Spreewald, Brandenburg
+15926	Heideblick Pitschen-Pickel	Brandenburg	Landkreis Dahme-Spreewald	15926, Heideblick Pitschen-Pickel, Landkreis Dahme-Spreewald, Brandenburg
+15926	Luckau	Brandenburg	Landkreis Dahme-Spreewald	15926, Luckau, Landkreis Dahme-Spreewald, Brandenburg
+15926	Bersteland Niewitz	Brandenburg	Landkreis Dahme-Spreewald	15926, Bersteland Niewitz, Landkreis Dahme-Spreewald, Brandenburg
+15936	Steinreich Glienig	Brandenburg	Landkreis Teltow-Fläming	15936, Steinreich Glienig, Landkreis Teltow-Fläming, Brandenburg
+15936	Dahme/Mark	Brandenburg	Landkreis Teltow-Fläming	15936, Dahme/Mark, Landkreis Teltow-Fläming, Brandenburg
+15936	Dahmetal	Brandenburg	Landkreis Teltow-Fläming	15936, Dahmetal, Landkreis Teltow-Fläming, Brandenburg
+15936	Steinreich	Brandenburg	Landkreis Teltow-Fläming	15936, Steinreich, Landkreis Teltow-Fläming, Brandenburg
+15938	Drahnsdorf	Brandenburg	Landkreis Dahme-Spreewald	15938, Drahnsdorf, Landkreis Dahme-Spreewald, Brandenburg
+15938	Kasel-Golzig	Brandenburg	Landkreis Dahme-Spreewald	15938, Kasel-Golzig, Landkreis Dahme-Spreewald, Brandenburg
+15938	Golßen	Brandenburg	Landkreis Dahme-Spreewald	15938, Golßen, Landkreis Dahme-Spreewald, Brandenburg
+15938	Steinreich	Brandenburg	Landkreis Dahme-Spreewald	15938, Steinreich, Landkreis Dahme-Spreewald, Brandenburg
+15938	Steinreich Sellendorf	Brandenburg	Landkreis Dahme-Spreewald	15938, Steinreich Sellendorf, Landkreis Dahme-Spreewald, Brandenburg
+16225	Eberswalde	Brandenburg	Landkreis Barnim	16225, Eberswalde, Landkreis Barnim, Brandenburg
+16227	Eberswalde	Brandenburg	Landkreis Barnim	16227, Eberswalde, Landkreis Barnim, Brandenburg
+16230	Chorin	Brandenburg	Landkreis Barnim	16230, Chorin, Landkreis Barnim, Brandenburg
+16230	Breydin	Brandenburg	Landkreis Barnim	16230, Breydin, Landkreis Barnim, Brandenburg
+16230	Britz	Brandenburg	Landkreis Barnim	16230, Britz, Landkreis Barnim, Brandenburg
+16230	Melchow	Brandenburg	Landkreis Barnim	16230, Melchow, Landkreis Barnim, Brandenburg
+16230	Sydower Fließ	Brandenburg	Landkreis Barnim	16230, Sydower Fließ, Landkreis Barnim, Brandenburg
+16244	Altenhof	Brandenburg	Landkreis Barnim	16244, Altenhof, Landkreis Barnim, Brandenburg
+16244	Finowfurt	Brandenburg	Landkreis Barnim	16244, Finowfurt, Landkreis Barnim, Brandenburg
+16247	Ziethen	Brandenburg	Landkreis Barnim	16247, Ziethen, Landkreis Barnim, Brandenburg
+16247	Friedrichswalde	Brandenburg	Landkreis Barnim	16247, Friedrichswalde, Landkreis Barnim, Brandenburg
+16247	Althüttendorf	Brandenburg	Landkreis Barnim	16247, Althüttendorf, Landkreis Barnim, Brandenburg
+16247	Neugrimnitz	Brandenburg	Landkreis Barnim	16247, Neugrimnitz, Landkreis Barnim, Brandenburg
+16247	Joachimsthal	Brandenburg	Landkreis Barnim	16247, Joachimsthal, Landkreis Barnim, Brandenburg
+16248	Niederfinow	Brandenburg	Landkreis Barnim	16248, Niederfinow, Landkreis Barnim, Brandenburg
+16248	Liepe	Brandenburg	Landkreis Barnim	16248, Liepe, Landkreis Barnim, Brandenburg
+16248	Hohensaaten	Brandenburg	Landkreis Märkisch-Oderland	16248, Hohensaaten, Landkreis Märkisch-Oderland, Brandenburg
+16248	Lunow-Stolzenhagen	Brandenburg	Landkreis Barnim	16248, Lunow-Stolzenhagen, Landkreis Barnim, Brandenburg
+16248	Oderberg	Brandenburg	Landkreis Barnim	16248, Oderberg, Landkreis Barnim, Brandenburg
+16248	Hohenfinow	Brandenburg	Landkreis Barnim	16248, Hohenfinow, Landkreis Barnim, Brandenburg
+16248	Bölkendorf	Brandenburg	Landkreis Uckermark	16248, Bölkendorf, Landkreis Uckermark, Brandenburg
+16248	Parsteinsee	Brandenburg	Landkreis Barnim	16248, Parsteinsee, Landkreis Barnim, Brandenburg
+16259	Tiefensee	Brandenburg	Landkreis Barnim	16259, Tiefensee, Landkreis Barnim, Brandenburg
+16259	Bad Freienwalde	Brandenburg	Landkreis Märkisch-Oderland	16259, Bad Freienwalde, Landkreis Märkisch-Oderland, Brandenburg
+16259	Neuenhagen	Brandenburg	Landkreis Märkisch-Oderland	16259, Neuenhagen, Landkreis Märkisch-Oderland, Brandenburg
+16259	Neulewin	Brandenburg	Landkreis Märkisch-Oderland	16259, Neulewin, Landkreis Märkisch-Oderland, Brandenburg
+16259	Höhenland Steinbeck	Brandenburg	Landkreis Märkisch-Oderland	16259, Höhenland Steinbeck, Landkreis Märkisch-Oderland, Brandenburg
+16259	Altglietzen	Brandenburg	Landkreis Märkisch-Oderland	16259, Altglietzen, Landkreis Märkisch-Oderland, Brandenburg
+16259	Bralitz	Brandenburg	Landkreis Märkisch-Oderland	16259, Bralitz, Landkreis Märkisch-Oderland, Brandenburg
+16259	Heckelberg-Brunow Heckelberg	Brandenburg	Landkreis Märkisch-Oderland	16259, Heckelberg-Brunow Heckelberg, Landkreis Märkisch-Oderland, Brandenburg
+16259	Schiffmühle	Brandenburg	Landkreis Märkisch-Oderland	16259, Schiffmühle, Landkreis Märkisch-Oderland, Brandenburg
+16259	Neulewin Neulewin	Brandenburg	Landkreis Märkisch-Oderland	16259, Neulewin Neulewin, Landkreis Märkisch-Oderland, Brandenburg
+16259	Beiersdorf-Freudenberg Freudenberg	Brandenburg	Landkreis Märkisch-Oderland	16259, Beiersdorf-Freudenberg Freudenberg, Landkreis Märkisch-Oderland, Brandenburg
+16259	Neulewin Neulietzegöricke	Brandenburg	Landkreis Märkisch-Oderland	16259, Neulewin Neulietzegöricke, Landkreis Märkisch-Oderland, Brandenburg
+16259	Hohenwutzen	Brandenburg	Landkreis Märkisch-Oderland	16259, Hohenwutzen, Landkreis Märkisch-Oderland, Brandenburg
+16259	Neulewin Güstebieser Loose	Brandenburg	Landkreis Märkisch-Oderland	16259, Neulewin Güstebieser Loose, Landkreis Märkisch-Oderland, Brandenburg
+16259	Falkenberg	Brandenburg	Landkreis Märkisch-Oderland	16259, Falkenberg, Landkreis Märkisch-Oderland, Brandenburg
+16259	Falkenberg Kruge/Gersdorf, Gersdorf	Brandenburg	Landkreis Märkisch-Oderland	16259, Falkenberg Kruge/Gersdorf, Gersdorf, Landkreis Märkisch-Oderland, Brandenburg
+16259	Höhenland Leuenberg	Brandenburg	Landkreis Märkisch-Oderland	16259, Höhenland Leuenberg, Landkreis Märkisch-Oderland, Brandenburg
+16259	Oderaue Mädewitz	Brandenburg	Landkreis Märkisch-Oderland	16259, Oderaue Mädewitz, Landkreis Märkisch-Oderland, Brandenburg
+16259	Oderaue Mädewitz, Altmädewitz	Brandenburg	Landkreis Märkisch-Oderland	16259, Oderaue Mädewitz, Altmädewitz, Landkreis Märkisch-Oderland, Brandenburg
+16259	Beiersdorf-Freudenberg Beiersdorf	Brandenburg	Landkreis Märkisch-Oderland	16259, Beiersdorf-Freudenberg Beiersdorf, Landkreis Märkisch-Oderland, Brandenburg
+16259	Oderaue	Brandenburg	Landkreis Märkisch-Oderland	16259, Oderaue, Landkreis Märkisch-Oderland, Brandenburg
+16259	Falkenberg Dannenberg/Mark	Brandenburg	Landkreis Märkisch-Oderland	16259, Falkenberg Dannenberg/Mark, Landkreis Märkisch-Oderland, Brandenburg
+16259	Falkenberg Falkenberg/Mark	Brandenburg	Landkreis Märkisch-Oderland	16259, Falkenberg Falkenberg/Mark, Landkreis Märkisch-Oderland, Brandenburg
+16259	Oderaue Neurüdnitz	Brandenburg	Landkreis Märkisch-Oderland	16259, Oderaue Neurüdnitz, Landkreis Märkisch-Oderland, Brandenburg
+16259	Oderaue Wustrow, Wustrow	Brandenburg	Landkreis Märkisch-Oderland	16259, Oderaue Wustrow, Wustrow, Landkreis Märkisch-Oderland, Brandenburg
+16259	Oderaue Wustrow, Neu-Wustrow	Brandenburg	Landkreis Märkisch-Oderland	16259, Oderaue Wustrow, Neu-Wustrow, Landkreis Märkisch-Oderland, Brandenburg
+16259	Falkenberg Kruge/Gersdorf, Kruge	Brandenburg	Landkreis Märkisch-Oderland	16259, Falkenberg Kruge/Gersdorf, Kruge, Landkreis Märkisch-Oderland, Brandenburg
+16259	Oderaue Neuküstrinchen	Brandenburg	Landkreis Märkisch-Oderland	16259, Oderaue Neuküstrinchen, Landkreis Märkisch-Oderland, Brandenburg
+16259	Oderaue Neureetz	Brandenburg	Landkreis Märkisch-Oderland	16259, Oderaue Neureetz, Landkreis Märkisch-Oderland, Brandenburg
+16259	Höhenland Wölsickendorf-Wollenberg, Wölsickendorf	Brandenburg	Landkreis Märkisch-Oderland	16259, Höhenland Wölsickendorf-Wollenberg, Wölsickendorf, Landkreis Märkisch-Oderland, Brandenburg
+16259	Höhenland Wölsickendorf-Wollenberg, Wollenberg	Brandenburg	Landkreis Märkisch-Oderland	16259, Höhenland Wölsickendorf-Wollenberg, Wollenberg, Landkreis Märkisch-Oderland, Brandenburg
+16259	Oderaue Zäckericker Loose	Brandenburg	Landkreis Märkisch-Oderland	16259, Oderaue Zäckericker Loose, Landkreis Märkisch-Oderland, Brandenburg
+16259	Oderaue Wustrow	Brandenburg	Landkreis Märkisch-Oderland	16259, Oderaue Wustrow, Landkreis Märkisch-Oderland, Brandenburg
+16259	Höhenland	Brandenburg	Landkreis Märkisch-Oderland	16259, Höhenland, Landkreis Märkisch-Oderland, Brandenburg
+16259	Beiersdorf-Freudenberg	Brandenburg	Landkreis Märkisch-Oderland	16259, Beiersdorf-Freudenberg, Landkreis Märkisch-Oderland, Brandenburg
+16259	Oderaue Altreetz	Brandenburg	Landkreis Märkisch-Oderland	16259, Oderaue Altreetz, Landkreis Märkisch-Oderland, Brandenburg
+16259	Heckelberg-Brunow Brunow	Brandenburg	Landkreis Märkisch-Oderland	16259, Heckelberg-Brunow Brunow, Landkreis Märkisch-Oderland, Brandenburg
+16259	Heckelberg-Brunow	Brandenburg	Landkreis Märkisch-Oderland	16259, Heckelberg-Brunow, Landkreis Märkisch-Oderland, Brandenburg
+16259	Falkenberg Kruge/Gersdorf	Brandenburg	Landkreis Märkisch-Oderland	16259, Falkenberg Kruge/Gersdorf, Landkreis Märkisch-Oderland, Brandenburg
+16259	Falkenberg Kruge/Gersdorf, Neugersdorf	Brandenburg	Landkreis Märkisch-Oderland	16259, Falkenberg Kruge/Gersdorf, Neugersdorf, Landkreis Märkisch-Oderland, Brandenburg
+16259	Oderaue Mädewitz, Neumädewitz	Brandenburg	Landkreis Märkisch-Oderland	16259, Oderaue Mädewitz, Neumädewitz, Landkreis Märkisch-Oderland, Brandenburg
+16259	Höhenland Wölsickendorf-Wollenberg	Brandenburg	Landkreis Märkisch-Oderland	16259, Höhenland Wölsickendorf-Wollenberg, Landkreis Märkisch-Oderland, Brandenburg
+16269	Bliesdorf Kunersdorf	Brandenburg	Landkreis Märkisch-Oderland	16269, Bliesdorf Kunersdorf, Landkreis Märkisch-Oderland, Brandenburg
+16269	Bliesdorf Metzdorf	Brandenburg	Landkreis Märkisch-Oderland	16269, Bliesdorf Metzdorf, Landkreis Märkisch-Oderland, Brandenburg
+16269	Bliesdorf Bliesdorf	Brandenburg	Landkreis Märkisch-Oderland	16269, Bliesdorf Bliesdorf, Landkreis Märkisch-Oderland, Brandenburg
+16269	Wriezener Höhe	Brandenburg	Landkreis Märkisch-Oderland	16269, Wriezener Höhe, Landkreis Märkisch-Oderland, Brandenburg
+16269	Wriezen	Brandenburg	Landkreis Märkisch-Oderland	16269, Wriezen, Landkreis Märkisch-Oderland, Brandenburg
+16269	Bliesdorf	Brandenburg	Landkreis Märkisch-Oderland	16269, Bliesdorf, Landkreis Märkisch-Oderland, Brandenburg
+16278	Frauenhagen	Brandenburg	Landkreis Uckermark	16278, Frauenhagen, Landkreis Uckermark, Brandenburg
+16278	Welsow	Brandenburg	Landkreis Uckermark	16278, Welsow, Landkreis Uckermark, Brandenburg
+16278	Angermünde	Brandenburg	Landkreis Uckermark	16278, Angermünde, Landkreis Uckermark, Brandenburg
+16278	Neukünkendorf	Brandenburg	Landkreis Uckermark	16278, Neukünkendorf, Landkreis Uckermark, Brandenburg
+16278	Crussow	Brandenburg	Landkreis Uckermark	16278, Crussow, Landkreis Uckermark, Brandenburg
+16278	Bruchhagen	Brandenburg	Landkreis Uckermark	16278, Bruchhagen, Landkreis Uckermark, Brandenburg
+16278	Mürow	Brandenburg	Landkreis Uckermark	16278, Mürow, Landkreis Uckermark, Brandenburg
+16278	Kerkow	Brandenburg	Landkreis Uckermark	16278, Kerkow, Landkreis Uckermark, Brandenburg
+16278	Günterberg	Brandenburg	Landkreis Uckermark	16278, Günterberg, Landkreis Uckermark, Brandenburg
+16278	Wilmersdorf	Brandenburg	Landkreis Uckermark	16278, Wilmersdorf, Landkreis Uckermark, Brandenburg
+16278	Steinhöfel	Brandenburg	Landkreis Uckermark	16278, Steinhöfel, Landkreis Uckermark, Brandenburg
+16278	Herzsprung	Brandenburg	Landkreis Uckermark	16278, Herzsprung, Landkreis Uckermark, Brandenburg
+16278	Pinnow	Brandenburg	Landkreis Uckermark	16278, Pinnow, Landkreis Uckermark, Brandenburg
+16278	Stolpe/Oder	Brandenburg	Landkreis Uckermark	16278, Stolpe/Oder, Landkreis Uckermark, Brandenburg
+16278	Greiffenberg	Brandenburg	Landkreis Uckermark	16278, Greiffenberg, Landkreis Uckermark, Brandenburg
+16278	Mark Landin	Brandenburg	Landkreis Uckermark	16278, Mark Landin, Landkreis Uckermark, Brandenburg
+16278	Schmargendorf	Brandenburg	Landkreis Uckermark	16278, Schmargendorf, Landkreis Uckermark, Brandenburg
+16278	Gellmersdorf	Brandenburg	Landkreis Uckermark	16278, Gellmersdorf, Landkreis Uckermark, Brandenburg
+16278	Biesenbrow	Brandenburg	Landkreis Uckermark	16278, Biesenbrow, Landkreis Uckermark, Brandenburg
+16278	Wolletz	Brandenburg	Landkreis Uckermark	16278, Wolletz, Landkreis Uckermark, Brandenburg
+16278	Görlsdorf	Brandenburg	Landkreis Uckermark	16278, Görlsdorf, Landkreis Uckermark, Brandenburg
+16278	Schöneberg	Brandenburg	Landkreis Uckermark	16278, Schöneberg, Landkreis Uckermark, Brandenburg
+16278	Schmiedeberg	Brandenburg	Landkreis Uckermark	16278, Schmiedeberg, Landkreis Uckermark, Brandenburg
+16303	Schwedt/Oder	Brandenburg	Landkreis Uckermark	16303, Schwedt/Oder, Landkreis Uckermark, Brandenburg
+16306	Woltersdorf	Brandenburg	Landkreis Uckermark	16306, Woltersdorf, Landkreis Uckermark, Brandenburg
+16306	Biesendahlshof	Brandenburg	Landkreis Uckermark	16306, Biesendahlshof, Landkreis Uckermark, Brandenburg
+16306	Casekow	Brandenburg	Landkreis Uckermark	16306, Casekow, Landkreis Uckermark, Brandenburg
+16306	Passow	Brandenburg	Landkreis Uckermark	16306, Passow, Landkreis Uckermark, Brandenburg
+16306	Zichow	Brandenburg	Landkreis Uckermark	16306, Zichow, Landkreis Uckermark, Brandenburg
+16306	Luckow-Petershagen	Brandenburg	Landkreis Uckermark	16306, Luckow-Petershagen, Landkreis Uckermark, Brandenburg
+16306	Wartin	Brandenburg	Landkreis Uckermark	16306, Wartin, Landkreis Uckermark, Brandenburg
+16306	Groß Pinnow	Brandenburg	Landkreis Uckermark	16306, Groß Pinnow, Landkreis Uckermark, Brandenburg
+16306	Blumberg	Brandenburg	Landkreis Uckermark	16306, Blumberg, Landkreis Uckermark, Brandenburg
+16306	Berkholz-Meyenburg	Brandenburg	Landkreis Uckermark	16306, Berkholz-Meyenburg, Landkreis Uckermark, Brandenburg
+16306	Hohenselchow	Brandenburg	Landkreis Uckermark	16306, Hohenselchow, Landkreis Uckermark, Brandenburg
+16306	Friedrichsthal	Brandenburg	Landkreis Uckermark	16306, Friedrichsthal, Landkreis Uckermark, Brandenburg
+16306	Vierraden	Brandenburg	Landkreis Uckermark	16306, Vierraden, Landkreis Uckermark, Brandenburg
+16306	Schönow	Brandenburg	Landkreis Uckermark	16306, Schönow, Landkreis Uckermark, Brandenburg
+16306	Stendell	Brandenburg	Landkreis Uckermark	16306, Stendell, Landkreis Uckermark, Brandenburg
+16307	Neurochlitz	Brandenburg	Landkreis Uckermark	16307, Neurochlitz, Landkreis Uckermark, Brandenburg
+16307	Gartz (Oder)	Brandenburg	Landkreis Uckermark	16307, Gartz (Oder), Landkreis Uckermark, Brandenburg
+16307	Tantow	Brandenburg	Landkreis Uckermark	16307, Tantow, Landkreis Uckermark, Brandenburg
+16307	Radekow	Brandenburg	Landkreis Uckermark	16307, Radekow, Landkreis Uckermark, Brandenburg
+16307	Geesow	Brandenburg	Landkreis Uckermark	16307, Geesow, Landkreis Uckermark, Brandenburg
+16307	Mescherin	Brandenburg	Landkreis Uckermark	16307, Mescherin, Landkreis Uckermark, Brandenburg
+16307	Rosow	Brandenburg	Landkreis Uckermark	16307, Rosow, Landkreis Uckermark, Brandenburg
+16307	Hohenreinkendorf	Brandenburg	Landkreis Uckermark	16307, Hohenreinkendorf, Landkreis Uckermark, Brandenburg
+16307	Schönfeld	Brandenburg	Landkreis Uckermark	16307, Schönfeld, Landkreis Uckermark, Brandenburg
+16321	Schönow	Brandenburg	Landkreis Barnim	16321, Schönow, Landkreis Barnim, Brandenburg
+16321	Danewitz	Brandenburg	Landkreis Barnim	16321, Danewitz, Landkreis Barnim, Brandenburg
+16321	Börnicke	Brandenburg	Landkreis Barnim	16321, Börnicke, Landkreis Barnim, Brandenburg
+16321	Lobetal	Brandenburg	Landkreis Barnim	16321, Lobetal, Landkreis Barnim, Brandenburg
+16321	Rüdnitz	Brandenburg	Landkreis Barnim	16321, Rüdnitz, Landkreis Barnim, Brandenburg
+16321	Bernau	Brandenburg	Landkreis Barnim	16321, Bernau, Landkreis Barnim, Brandenburg
+16321	Lindenberg	Brandenburg	Landkreis Barnim	16321, Lindenberg, Landkreis Barnim, Brandenburg
+16341	Schwanebeck	Brandenburg	Landkreis Barnim	16341, Schwanebeck, Landkreis Barnim, Brandenburg
+16341	Zepernick	Brandenburg	Landkreis Barnim	16341, Zepernick, Landkreis Barnim, Brandenburg
+16348	Klosterfelde	Brandenburg	Landkreis Barnim	16348, Klosterfelde, Landkreis Barnim, Brandenburg
+16348	Zerpenschleuse	Brandenburg	Landkreis Barnim	16348, Zerpenschleuse, Landkreis Barnim, Brandenburg
+16348	Groß Schönebeck (Schorfheide)	Brandenburg	Landkreis Barnim	16348, Groß Schönebeck (Schorfheide), Landkreis Barnim, Brandenburg
+16348	Marienwerder	Brandenburg	Landkreis Barnim	16348, Marienwerder, Landkreis Barnim, Brandenburg
+16348	Wandlitz	Brandenburg	Landkreis Barnim	16348, Wandlitz, Landkreis Barnim, Brandenburg
+16348	Prenden	Brandenburg	Landkreis Barnim	16348, Prenden, Landkreis Barnim, Brandenburg
+16348	Stolzenhagen	Brandenburg	Landkreis Barnim	16348, Stolzenhagen, Landkreis Barnim, Brandenburg
+16348	Ruhlsdorf	Brandenburg	Landkreis Barnim	16348, Ruhlsdorf, Landkreis Barnim, Brandenburg
+16352	Schönerlinde	Brandenburg	Landkreis Barnim	16352, Schönerlinde, Landkreis Barnim, Brandenburg
+16352	Schönwalde	Brandenburg	Landkreis Barnim	16352, Schönwalde, Landkreis Barnim, Brandenburg
+16352	Basdorf	Brandenburg	Landkreis Barnim	16352, Basdorf, Landkreis Barnim, Brandenburg
+16356	Seefeld	Brandenburg	Landkreis Barnim	16356, Seefeld, Landkreis Barnim, Brandenburg
+16356	Eiche	Brandenburg	Landkreis Barnim	16356, Eiche, Landkreis Barnim, Brandenburg
+16356	Hirschfelde	Brandenburg	Landkreis Barnim	16356, Hirschfelde, Landkreis Barnim, Brandenburg
+16356	Wilmersdorf	Brandenburg	Landkreis Barnim	16356, Wilmersdorf, Landkreis Barnim, Brandenburg
+16356	Schönfeld	Brandenburg	Landkreis Barnim	16356, Schönfeld, Landkreis Barnim, Brandenburg
+16356	Mehrow	Brandenburg	Landkreis Barnim	16356, Mehrow, Landkreis Barnim, Brandenburg
+16356	Blumberg	Brandenburg	Landkreis Barnim	16356, Blumberg, Landkreis Barnim, Brandenburg
+16356	Ahrensfelde	Brandenburg	Landkreis Barnim	16356, Ahrensfelde, Landkreis Barnim, Brandenburg
+16356	Krummensee	Brandenburg	Landkreis Barnim	16356, Krummensee, Landkreis Barnim, Brandenburg
+16356	Werneuchen	Brandenburg	Landkreis Barnim	16356, Werneuchen, Landkreis Barnim, Brandenburg
+16359	Biesenthal	Brandenburg	Landkreis Barnim	16359, Biesenthal, Landkreis Barnim, Brandenburg
+16359	Lanke	Brandenburg	Landkreis Barnim	16359, Lanke, Landkreis Barnim, Brandenburg
+16515	Nassenheide	Brandenburg	Landkreis Oberhavel	16515, Nassenheide, Landkreis Oberhavel, Brandenburg
+16515	Zühlsdorf	Brandenburg	Landkreis Oberhavel	16515, Zühlsdorf, Landkreis Oberhavel, Brandenburg
+16515	Zehlendorf	Brandenburg	Landkreis Oberhavel	16515, Zehlendorf, Landkreis Oberhavel, Brandenburg
+16515	Schmachtenhagen	Brandenburg	Landkreis Oberhavel	16515, Schmachtenhagen, Landkreis Oberhavel, Brandenburg
+16515	Neuholland	Brandenburg	Landkreis Oberhavel	16515, Neuholland, Landkreis Oberhavel, Brandenburg
+16515	Wensickendorf	Brandenburg	Landkreis Oberhavel	16515, Wensickendorf, Landkreis Oberhavel, Brandenburg
+16515	Oranienburg	Brandenburg	Landkreis Oberhavel	16515, Oranienburg, Landkreis Oberhavel, Brandenburg
+16515	Malz	Brandenburg	Landkreis Oberhavel	16515, Malz, Landkreis Oberhavel, Brandenburg
+16515	Freienhagen	Brandenburg	Landkreis Oberhavel	16515, Freienhagen, Landkreis Oberhavel, Brandenburg
+16515	Friedrichsthal	Brandenburg	Landkreis Oberhavel	16515, Friedrichsthal, Landkreis Oberhavel, Brandenburg
+16540	Stolpe	Brandenburg	Landkreis Oberhavel	16540, Stolpe, Landkreis Oberhavel, Brandenburg
+16540	Hohen Neuendorf	Brandenburg	Landkreis Oberhavel	16540, Hohen Neuendorf, Landkreis Oberhavel, Brandenburg
+16547	Birkenwerder	Brandenburg	Landkreis Oberhavel	16547, Birkenwerder, Landkreis Oberhavel, Brandenburg
+16548	Glienicke/Nordbahn	Brandenburg	Landkreis Oberhavel	16548, Glienicke/Nordbahn, Landkreis Oberhavel, Brandenburg
+16552	Schildow	Brandenburg	Landkreis Oberhavel	16552, Schildow, Landkreis Oberhavel, Brandenburg
+16556	Borgsdorf	Brandenburg	Landkreis Oberhavel	16556, Borgsdorf, Landkreis Oberhavel, Brandenburg
+16559	Kreuzbruch	Brandenburg	Landkreis Oberhavel	16559, Kreuzbruch, Landkreis Oberhavel, Brandenburg
+16559	Liebenthal	Brandenburg	Landkreis Oberhavel	16559, Liebenthal, Landkreis Oberhavel, Brandenburg
+16559	Liebenwalde	Brandenburg	Landkreis Oberhavel	16559, Liebenwalde, Landkreis Oberhavel, Brandenburg
+16559	Hammer	Brandenburg	Landkreis Oberhavel	16559, Hammer, Landkreis Oberhavel, Brandenburg
+16562	Bergfelde	Brandenburg	Landkreis Oberhavel	16562, Bergfelde, Landkreis Oberhavel, Brandenburg
+16565	Lehnitz	Brandenburg	Landkreis Oberhavel	16565, Lehnitz, Landkreis Oberhavel, Brandenburg
+16567	Schönfließ	Brandenburg	Landkreis Oberhavel	16567, Schönfließ, Landkreis Oberhavel, Brandenburg
+16567	Mühlenbeck	Brandenburg	Landkreis Oberhavel	16567, Mühlenbeck, Landkreis Oberhavel, Brandenburg
+16727	Velten	Brandenburg	Landkreis Oberhavel	16727, Velten, Landkreis Oberhavel, Brandenburg
+16727	Oberkrämer	Brandenburg	Landkreis Oberhavel	16727, Oberkrämer, Landkreis Oberhavel, Brandenburg
+16761	Hennigsdorf	Brandenburg	Landkreis Oberhavel	16761, Hennigsdorf, Landkreis Oberhavel, Brandenburg
+16766	Oberkrämer	Brandenburg	Landkreis Oberhavel	16766, Oberkrämer, Landkreis Oberhavel, Brandenburg
+16766	Kremmen	Brandenburg	Landkreis Oberhavel	16766, Kremmen, Landkreis Oberhavel, Brandenburg
+16767	Germendorf	Brandenburg	Landkreis Oberhavel	16767, Germendorf, Landkreis Oberhavel, Brandenburg
+16767	Leegebruch	Brandenburg	Landkreis Oberhavel	16767, Leegebruch, Landkreis Oberhavel, Brandenburg
+16775	Blumenow	Brandenburg	Landkreis Oberhavel	16775, Blumenow, Landkreis Oberhavel, Brandenburg
+16775	Burgwall	Brandenburg	Landkreis Oberhavel	16775, Burgwall, Landkreis Oberhavel, Brandenburg
+16775	Krewelin	Brandenburg	Landkreis Oberhavel	16775, Krewelin, Landkreis Oberhavel, Brandenburg
+16775	Mildenberg	Brandenburg	Landkreis Oberhavel	16775, Mildenberg, Landkreis Oberhavel, Brandenburg
+16775	Barsdorf	Brandenburg	Landkreis Oberhavel	16775, Barsdorf, Landkreis Oberhavel, Brandenburg
+16775	Großwoltersdorf	Brandenburg	Landkreis Oberhavel	16775, Großwoltersdorf, Landkreis Oberhavel, Brandenburg
+16775	Schulzendorf	Brandenburg	Landkreis Oberhavel	16775, Schulzendorf, Landkreis Oberhavel, Brandenburg
+16775	Sonnenberg	Brandenburg	Landkreis Oberhavel	16775, Sonnenberg, Landkreis Oberhavel, Brandenburg
+16775	Rönnebeck	Brandenburg	Landkreis Oberhavel	16775, Rönnebeck, Landkreis Oberhavel, Brandenburg
+16775	Marienthal	Brandenburg	Landkreis Oberhavel	16775, Marienthal, Landkreis Oberhavel, Brandenburg
+16775	Stechlin	Brandenburg	Landkreis Oberhavel	16775, Stechlin, Landkreis Oberhavel, Brandenburg
+16775	Badingen	Brandenburg	Landkreis Oberhavel	16775, Badingen, Landkreis Oberhavel, Brandenburg
+16775	Tornow	Brandenburg	Landkreis Oberhavel	16775, Tornow, Landkreis Oberhavel, Brandenburg
+16775	Bredereiche	Brandenburg	Landkreis Oberhavel	16775, Bredereiche, Landkreis Oberhavel, Brandenburg
+16775	Kappe	Brandenburg	Landkreis Oberhavel	16775, Kappe, Landkreis Oberhavel, Brandenburg
+16775	Zabelsdorf	Brandenburg	Landkreis Oberhavel	16775, Zabelsdorf, Landkreis Oberhavel, Brandenburg
+16775	Löwenberger Land	Brandenburg	Landkreis Oberhavel	16775, Löwenberger Land, Landkreis Oberhavel, Brandenburg
+16775	Schönermark	Brandenburg	Landkreis Oberhavel	16775, Schönermark, Landkreis Oberhavel, Brandenburg
+16775	Klein-Mutz	Brandenburg	Landkreis Oberhavel	16775, Klein-Mutz, Landkreis Oberhavel, Brandenburg
+16775	Gransee	Brandenburg	Landkreis Oberhavel	16775, Gransee, Landkreis Oberhavel, Brandenburg
+16792	Kurtschlag	Brandenburg	Landkreis Oberhavel	16792, Kurtschlag, Landkreis Oberhavel, Brandenburg
+16792	Zehdenick	Brandenburg	Landkreis Oberhavel	16792, Zehdenick, Landkreis Oberhavel, Brandenburg
+16792	Wesendorf	Brandenburg	Landkreis Oberhavel	16792, Wesendorf, Landkreis Oberhavel, Brandenburg
+16798	Zootzen	Brandenburg	Landkreis Oberhavel	16798, Zootzen, Landkreis Oberhavel, Brandenburg
+16798	Steinförde	Brandenburg	Landkreis Oberhavel	16798, Steinförde, Landkreis Oberhavel, Brandenburg
+16798	Himmelpfort	Brandenburg	Landkreis Oberhavel	16798, Himmelpfort, Landkreis Oberhavel, Brandenburg
+16798	Fürstenberg/Havel	Brandenburg	Landkreis Oberhavel	16798, Fürstenberg/Havel, Landkreis Oberhavel, Brandenburg
+16798	Altthymen	Brandenburg	Landkreis Oberhavel	16798, Altthymen, Landkreis Oberhavel, Brandenburg
+16816	Neuruppin	Brandenburg	Landkreis Ostprignitz-Ruppin	16816, Neuruppin, Landkreis Ostprignitz-Ruppin, Brandenburg
+16818	Dabergotz	Brandenburg	Landkreis Ostprignitz-Ruppin	16818, Dabergotz, Landkreis Ostprignitz-Ruppin, Brandenburg
+16818	Fehrbellin Wall	Brandenburg	Landkreis Ostprignitz-Ruppin	16818, Fehrbellin Wall, Landkreis Ostprignitz-Ruppin, Brandenburg
+16818	Walsleben	Brandenburg	Landkreis Ostprignitz-Ruppin	16818, Walsleben, Landkreis Ostprignitz-Ruppin, Brandenburg
+16818	Märkisch Linden	Brandenburg	Landkreis Ostprignitz-Ruppin	16818, Märkisch Linden, Landkreis Ostprignitz-Ruppin, Brandenburg
+16818	Basdorf	Brandenburg	Landkreis Ostprignitz-Ruppin	16818, Basdorf, Landkreis Ostprignitz-Ruppin, Brandenburg
+16818	Storbeck-Frankendorf	Brandenburg	Landkreis Ostprignitz-Ruppin	16818, Storbeck-Frankendorf, Landkreis Ostprignitz-Ruppin, Brandenburg
+16818	Rheinsberg Braunsberg	Brandenburg	Landkreis Ostprignitz-Ruppin	16818, Rheinsberg Braunsberg, Landkreis Ostprignitz-Ruppin, Brandenburg
+16818	Temnitzquell	Brandenburg	Landkreis Ostprignitz-Ruppin	16818, Temnitzquell, Landkreis Ostprignitz-Ruppin, Brandenburg
+16818	Fehrbellin Wustrau-Altfriesack	Brandenburg	Landkreis Ostprignitz-Ruppin	16818, Fehrbellin Wustrau-Altfriesack, Landkreis Ostprignitz-Ruppin, Brandenburg
+16818	Fehrbellin Deutschhof	Brandenburg	Landkreis Ostprignitz-Ruppin	16818, Fehrbellin Deutschhof, Landkreis Ostprignitz-Ruppin, Brandenburg
+16818	Fehrbellin Langen	Brandenburg	Landkreis Ostprignitz-Ruppin	16818, Fehrbellin Langen, Landkreis Ostprignitz-Ruppin, Brandenburg
+16827	Alt Ruppin	Brandenburg	Landkreis Ostprignitz-Ruppin	16827, Alt Ruppin, Landkreis Ostprignitz-Ruppin, Brandenburg
+16831	Rheinsberg	Brandenburg	Landkreis Ostprignitz-Ruppin	16831, Rheinsberg, Landkreis Ostprignitz-Ruppin, Brandenburg
+16831	Rheinsberg Zechlinerhütte	Brandenburg	Landkreis Ostprignitz-Ruppin	16831, Rheinsberg Zechlinerhütte, Landkreis Ostprignitz-Ruppin, Brandenburg
+16831	Rheinsberg Kleinzerlang	Brandenburg	Landkreis Ostprignitz-Ruppin	16831, Rheinsberg Kleinzerlang, Landkreis Ostprignitz-Ruppin, Brandenburg
+16831	Rheinsberg Großzerlang	Brandenburg	Landkreis Ostprignitz-Ruppin	16831, Rheinsberg Großzerlang, Landkreis Ostprignitz-Ruppin, Brandenburg
+16831	Rheinsberg Schwanow	Brandenburg	Landkreis Ostprignitz-Ruppin	16831, Rheinsberg Schwanow, Landkreis Ostprignitz-Ruppin, Brandenburg
+16831	Rheinsberg Zühlen	Brandenburg	Landkreis Ostprignitz-Ruppin	16831, Rheinsberg Zühlen, Landkreis Ostprignitz-Ruppin, Brandenburg
+16831	Rheinsberg Heinrichsdorf	Brandenburg	Landkreis Ostprignitz-Ruppin	16831, Rheinsberg Heinrichsdorf, Landkreis Ostprignitz-Ruppin, Brandenburg
+16831	Rheinsberg Linow	Brandenburg	Landkreis Ostprignitz-Ruppin	16831, Rheinsberg Linow, Landkreis Ostprignitz-Ruppin, Brandenburg
+16831	Rheinsberg Zechow	Brandenburg	Landkreis Ostprignitz-Ruppin	16831, Rheinsberg Zechow, Landkreis Ostprignitz-Ruppin, Brandenburg
+16833	Fehrbellin Brunne	Brandenburg	Landkreis Ostprignitz-Ruppin	16833, Fehrbellin Brunne, Landkreis Ostprignitz-Ruppin, Brandenburg
+16833	Fehrbellin Betzin	Brandenburg	Landkreis Ostprignitz-Ruppin	16833, Fehrbellin Betzin, Landkreis Ostprignitz-Ruppin, Brandenburg
+16833	Fehrbellin Dechtow	Brandenburg	Landkreis Ostprignitz-Ruppin	16833, Fehrbellin Dechtow, Landkreis Ostprignitz-Ruppin, Brandenburg
+16833	Fehrbellin Lentzke	Brandenburg	Landkreis Ostprignitz-Ruppin	16833, Fehrbellin Lentzke, Landkreis Ostprignitz-Ruppin, Brandenburg
+16833	Fehrbellin Linum	Brandenburg	Landkreis Ostprignitz-Ruppin	16833, Fehrbellin Linum, Landkreis Ostprignitz-Ruppin, Brandenburg
+16833	Fehrbellin Walchow	Brandenburg	Landkreis Ostprignitz-Ruppin	16833, Fehrbellin Walchow, Landkreis Ostprignitz-Ruppin, Brandenburg
+16833	Fehrbellin Tarmow	Brandenburg	Landkreis Ostprignitz-Ruppin	16833, Fehrbellin Tarmow, Landkreis Ostprignitz-Ruppin, Brandenburg
+16833	Fehrbellin Karwesee	Brandenburg	Landkreis Ostprignitz-Ruppin	16833, Fehrbellin Karwesee, Landkreis Ostprignitz-Ruppin, Brandenburg
+16833	Fehrbellin Königshorst	Brandenburg	Landkreis Ostprignitz-Ruppin	16833, Fehrbellin Königshorst, Landkreis Ostprignitz-Ruppin, Brandenburg
+16833	Fehrbellin Hakenberg	Brandenburg	Landkreis Ostprignitz-Ruppin	16833, Fehrbellin Hakenberg, Landkreis Ostprignitz-Ruppin, Brandenburg
+16833	Fehrbellin Protzen	Brandenburg	Landkreis Ostprignitz-Ruppin	16833, Fehrbellin Protzen, Landkreis Ostprignitz-Ruppin, Brandenburg
+16833	Fehrbellin	Brandenburg	Landkreis Ostprignitz-Ruppin	16833, Fehrbellin, Landkreis Ostprignitz-Ruppin, Brandenburg
+16835	Lindow (Mark) Schönberg (Mark)	Brandenburg	Landkreis Ostprignitz-Ruppin	16835, Lindow (Mark) Schönberg (Mark), Landkreis Ostprignitz-Ruppin, Brandenburg
+16835	Vielitz	Brandenburg	Landkreis Ostprignitz-Ruppin	16835, Vielitz, Landkreis Ostprignitz-Ruppin, Brandenburg
+16835	Seebeck-Strubensee	Brandenburg	Landkreis Ostprignitz-Ruppin	16835, Seebeck-Strubensee, Landkreis Ostprignitz-Ruppin, Brandenburg
+16835	Rheinsberg Dierberg	Brandenburg	Landkreis Ostprignitz-Ruppin	16835, Rheinsberg Dierberg, Landkreis Ostprignitz-Ruppin, Brandenburg
+16835	Herzberg	Brandenburg	Landkreis Ostprignitz-Ruppin	16835, Herzberg, Landkreis Ostprignitz-Ruppin, Brandenburg
+16835	Lindow (Mark)	Brandenburg	Landkreis Ostprignitz-Ruppin	16835, Lindow (Mark), Landkreis Ostprignitz-Ruppin, Brandenburg
+16835	Rüthnick	Brandenburg	Landkreis Ostprignitz-Ruppin	16835, Rüthnick, Landkreis Ostprignitz-Ruppin, Brandenburg
+16835	Lindow (Mark) Hindenberg	Brandenburg	Landkreis Ostprignitz-Ruppin	16835, Lindow (Mark) Hindenberg, Landkreis Ostprignitz-Ruppin, Brandenburg
+16837	Rheinsberg Dorf Zechlin	Brandenburg	Landkreis Ostprignitz-Ruppin	16837, Rheinsberg Dorf Zechlin, Landkreis Ostprignitz-Ruppin, Brandenburg
+16837	Rheinsberg Wallitz	Brandenburg	Landkreis Ostprignitz-Ruppin	16837, Rheinsberg Wallitz, Landkreis Ostprignitz-Ruppin, Brandenburg
+16837	Rheinsberg Flecken Zechlin	Brandenburg	Landkreis Ostprignitz-Ruppin	16837, Rheinsberg Flecken Zechlin, Landkreis Ostprignitz-Ruppin, Brandenburg
+16837	Wittstock/Dosse Zempow	Brandenburg	Landkreis Ostprignitz-Ruppin	16837, Wittstock/Dosse Zempow, Landkreis Ostprignitz-Ruppin, Brandenburg
+16837	Rheinsberg Kagar	Brandenburg	Landkreis Ostprignitz-Ruppin	16837, Rheinsberg Kagar, Landkreis Ostprignitz-Ruppin, Brandenburg
+16837	Rheinsberg Luhme	Brandenburg	Landkreis Ostprignitz-Ruppin	16837, Rheinsberg Luhme, Landkreis Ostprignitz-Ruppin, Brandenburg
+16845	Temnitztal	Brandenburg	Landkreis Ostprignitz-Ruppin	16845, Temnitztal, Landkreis Ostprignitz-Ruppin, Brandenburg
+16845	Neustadt (Dosse)	Brandenburg	Landkreis Ostprignitz-Ruppin	16845, Neustadt (Dosse), Landkreis Ostprignitz-Ruppin, Brandenburg
+16845	Dreetz	Brandenburg	Landkreis Ostprignitz-Ruppin	16845, Dreetz, Landkreis Ostprignitz-Ruppin, Brandenburg
+16845	Temnitztal Wildberg	Brandenburg	Landkreis Ostprignitz-Ruppin	16845, Temnitztal Wildberg, Landkreis Ostprignitz-Ruppin, Brandenburg
+16845	Sieversdorf-Hohenofen	Brandenburg	Landkreis Ostprignitz-Ruppin	16845, Sieversdorf-Hohenofen, Landkreis Ostprignitz-Ruppin, Brandenburg
+16845	Temnitztal Garz	Brandenburg	Landkreis Ostprignitz-Ruppin	16845, Temnitztal Garz, Landkreis Ostprignitz-Ruppin, Brandenburg
+16845	Märkisch Linden	Brandenburg	Landkreis Ostprignitz-Ruppin	16845, Märkisch Linden, Landkreis Ostprignitz-Ruppin, Brandenburg
+16845	Breddin	Brandenburg	Landkreis Ostprignitz-Ruppin	16845, Breddin, Landkreis Ostprignitz-Ruppin, Brandenburg
+16845	Fehrbellin Manker	Brandenburg	Landkreis Ostprignitz-Ruppin	16845, Fehrbellin Manker, Landkreis Ostprignitz-Ruppin, Brandenburg
+16845	Großderschau	Brandenburg	Landkreis Havelland	16845, Großderschau, Landkreis Havelland, Brandenburg
+16845	Stüdenitz-Schönermark	Brandenburg	Landkreis Ostprignitz-Ruppin	16845, Stüdenitz-Schönermark, Landkreis Ostprignitz-Ruppin, Brandenburg
+16845	Zernitz-Lohm	Brandenburg	Landkreis Ostprignitz-Ruppin	16845, Zernitz-Lohm, Landkreis Ostprignitz-Ruppin, Brandenburg
+16845	Kyritz Holzhausen	Brandenburg	Landkreis Ostprignitz-Ruppin	16845, Kyritz Holzhausen, Landkreis Ostprignitz-Ruppin, Brandenburg
+16866	Kunow	Brandenburg	Landkreis Prignitz	16866, Kunow, Landkreis Prignitz, Brandenburg
+16866	Kolrep	Brandenburg	Landkreis Prignitz	16866, Kolrep, Landkreis Prignitz, Brandenburg
+16866	Wutike	Brandenburg	Landkreis Prignitz	16866, Wutike, Landkreis Prignitz, Brandenburg
+16866	Kyritz Drewen	Brandenburg	Landkreis Ostprignitz-Ruppin	16866, Kyritz Drewen, Landkreis Ostprignitz-Ruppin, Brandenburg
+16866	Schrepkow	Brandenburg	Landkreis Prignitz	16866, Schrepkow, Landkreis Prignitz, Brandenburg
+16866	Demerthin	Brandenburg	Landkreis Prignitz	16866, Demerthin, Landkreis Prignitz, Brandenburg
+16866	Vehlow	Brandenburg	Landkreis Prignitz	16866, Vehlow, Landkreis Prignitz, Brandenburg
+16866	Rehfeld-Berlitt	Brandenburg	Landkreis Ostprignitz-Ruppin	16866, Rehfeld-Berlitt, Landkreis Ostprignitz-Ruppin, Brandenburg
+16866	Barenthin	Brandenburg	Landkreis Prignitz	16866, Barenthin, Landkreis Prignitz, Brandenburg
+16866	Kyritz	Brandenburg	Landkreis Ostprignitz-Ruppin	16866, Kyritz, Landkreis Ostprignitz-Ruppin, Brandenburg
+16866	Granzow	Brandenburg	Landkreis Prignitz	16866, Granzow, Landkreis Prignitz, Brandenburg
+16866	Schönhagen	Brandenburg	Landkreis Prignitz	16866, Schönhagen, Landkreis Prignitz, Brandenburg
+16866	Teetz-Ganz	Brandenburg	Landkreis Ostprignitz-Ruppin	16866, Teetz-Ganz, Landkreis Ostprignitz-Ruppin, Brandenburg
+16866	Groß Welle	Brandenburg	Landkreis Prignitz	16866, Groß Welle, Landkreis Prignitz, Brandenburg
+16866	Dannenwalde	Brandenburg	Landkreis Prignitz	16866, Dannenwalde, Landkreis Prignitz, Brandenburg
+16866	Döllen	Brandenburg	Landkreis Prignitz	16866, Döllen, Landkreis Prignitz, Brandenburg
+16866	Görike	Brandenburg	Landkreis Prignitz	16866, Görike, Landkreis Prignitz, Brandenburg
+16866	Vehlin	Brandenburg	Landkreis Prignitz	16866, Vehlin, Landkreis Prignitz, Brandenburg
+16866	Kyritz Kötzlin	Brandenburg	Landkreis Ostprignitz-Ruppin	16866, Kyritz Kötzlin, Landkreis Ostprignitz-Ruppin, Brandenburg
+16866	Gumtow	Brandenburg	Landkreis Prignitz	16866, Gumtow, Landkreis Prignitz, Brandenburg
+16866	Bork-Lellichow	Brandenburg	Landkreis Ostprignitz-Ruppin	16866, Bork-Lellichow, Landkreis Ostprignitz-Ruppin, Brandenburg
+16868	Wusterhausen (Dosse)	Brandenburg	Landkreis Ostprignitz-Ruppin	16868, Wusterhausen (Dosse), Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Heiligengrabe Papenbruch	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Heiligengrabe Papenbruch, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Heiligengrabe	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Heiligengrabe, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Heiligengrabe Blandikow	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Heiligengrabe Blandikow, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Heiligengrabe Maulbeerwalde	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Heiligengrabe Maulbeerwalde, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Heiligengrabe Jabel	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Heiligengrabe Jabel, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Wittstock/Dosse Groß Haßlow	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Wittstock/Dosse Groß Haßlow, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Heiligengrabe Wernikow	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Heiligengrabe Wernikow, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Heiligengrabe Blesendorf	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Heiligengrabe Blesendorf, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Heiligengrabe Zaatzke	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Heiligengrabe Zaatzke, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Wittstock/Dosse Fretzdorf	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Wittstock/Dosse Fretzdorf, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Heiligengrabe Liebenthal	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Heiligengrabe Liebenthal, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Wittstock/Dosse Dossow	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Wittstock/Dosse Dossow, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Wittstock/Dosse Christdorf	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Wittstock/Dosse Christdorf, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Wittstock/Dosse Schweinrich	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Wittstock/Dosse Schweinrich, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Wittstock/Dosse Rossow	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Wittstock/Dosse Rossow, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Wittstock/Dosse Berlinchen	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Wittstock/Dosse Berlinchen, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Heiligengrabe Grabow bei Blumenthal	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Heiligengrabe Grabow bei Blumenthal, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Wittstock/Dosse Niemerlang	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Wittstock/Dosse Niemerlang, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Wittstock/Dosse Gadow	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Wittstock/Dosse Gadow, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Wittstock/Dosse Wulfersdorf	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Wittstock/Dosse Wulfersdorf, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Wittstock/Dosse Dranse	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Wittstock/Dosse Dranse, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Wittstock/Dosse Herzsprung	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Wittstock/Dosse Herzsprung, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Wittstock/Dosse	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Wittstock/Dosse, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Wittstock/Dosse Zootzen	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Wittstock/Dosse Zootzen, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Wittstock/Dosse Goldbeck	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Wittstock/Dosse Goldbeck, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Wittstock/Dosse Königsberg	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Wittstock/Dosse Königsberg, Landkreis Ostprignitz-Ruppin, Brandenburg
+16909	Wittstock/Dosse Sewekow	Brandenburg	Landkreis Ostprignitz-Ruppin	16909, Wittstock/Dosse Sewekow, Landkreis Ostprignitz-Ruppin, Brandenburg
+16918	Wittstock/Dosse Freyenstein	Brandenburg	Landkreis Ostprignitz-Ruppin	16918, Wittstock/Dosse Freyenstein, Landkreis Ostprignitz-Ruppin, Brandenburg
+16921	Alt Krüssow	Brandenburg	Landkreis Prignitz	16921, Alt Krüssow, Landkreis Prignitz, Brandenburg
+16928	Pritzwalk	Brandenburg	Landkreis Prignitz	16928, Pritzwalk, Landkreis Prignitz, Brandenburg
+16928	Groß Woltersdorf	Brandenburg	Landkreis Prignitz	16928, Groß Woltersdorf, Landkreis Prignitz, Brandenburg
+16928	Heiligengrabe Blumenthal	Brandenburg	Landkreis Prignitz	16928, Heiligengrabe Blumenthal, Landkreis Prignitz, Brandenburg
+16928	Alt Krüssow	Brandenburg	Landkreis Prignitz	16928, Alt Krüssow, Landkreis Prignitz, Brandenburg
+16928	Gerdshagen	Brandenburg	Landkreis Prignitz	16928, Gerdshagen, Landkreis Prignitz, Brandenburg
+16928	Steffenshagen	Brandenburg	Landkreis Prignitz	16928, Steffenshagen, Landkreis Prignitz, Brandenburg
+16928	Boddin-Langnow	Brandenburg	Landkreis Prignitz	16928, Boddin-Langnow, Landkreis Prignitz, Brandenburg
+16928	Beveringen	Brandenburg	Landkreis Prignitz	16928, Beveringen, Landkreis Prignitz, Brandenburg
+16928	Vettin	Brandenburg	Landkreis Prignitz	16928, Vettin, Landkreis Prignitz, Brandenburg
+16928	Kuhsdorf	Brandenburg	Landkreis Prignitz	16928, Kuhsdorf, Landkreis Prignitz, Brandenburg
+16928	Heiligengrabe Rosenwinkel	Brandenburg	Landkreis Prignitz	16928, Heiligengrabe Rosenwinkel, Landkreis Prignitz, Brandenburg
+16928	Sadenbeck	Brandenburg	Landkreis Prignitz	16928, Sadenbeck, Landkreis Prignitz, Brandenburg
+16928	Helle	Brandenburg	Landkreis Prignitz	16928, Helle, Landkreis Prignitz, Brandenburg
+16928	Lindenberg	Brandenburg	Landkreis Prignitz	16928, Lindenberg, Landkreis Prignitz, Brandenburg
+16928	Wilmersdorf	Brandenburg	Landkreis Prignitz	16928, Wilmersdorf, Landkreis Prignitz, Brandenburg
+16928	Mesendorf	Brandenburg	Landkreis Prignitz	16928, Mesendorf, Landkreis Prignitz, Brandenburg
+16928	Falkenhagen	Brandenburg	Landkreis Prignitz	16928, Falkenhagen, Landkreis Prignitz, Brandenburg
+16928	Tüchen	Brandenburg	Landkreis Prignitz	16928, Tüchen, Landkreis Prignitz, Brandenburg
+16928	Kuhbier	Brandenburg	Landkreis Prignitz	16928, Kuhbier, Landkreis Prignitz, Brandenburg
+16928	Kemnitz	Brandenburg	Landkreis Prignitz	16928, Kemnitz, Landkreis Prignitz, Brandenburg
+16928	Buchholz	Brandenburg	Landkreis Prignitz	16928, Buchholz, Landkreis Prignitz, Brandenburg
+16928	Klein Woltersdorf	Brandenburg	Landkreis Prignitz	16928, Klein Woltersdorf, Landkreis Prignitz, Brandenburg
+16928	Schönebeck	Brandenburg	Landkreis Prignitz	16928, Schönebeck, Landkreis Prignitz, Brandenburg
+16928	Hoppenrade	Brandenburg	Landkreis Prignitz	16928, Hoppenrade, Landkreis Prignitz, Brandenburg
+16928	Kehrberg	Brandenburg	Landkreis Prignitz	16928, Kehrberg, Landkreis Prignitz, Brandenburg
+16928	Groß Pankow	Brandenburg	Landkreis Prignitz	16928, Groß Pankow, Landkreis Prignitz, Brandenburg
+16945	Kümmernitztal	Brandenburg	Landkreis Prignitz	16945, Kümmernitztal, Landkreis Prignitz, Brandenburg
+16945	Meyenburg	Brandenburg	Landkreis Prignitz	16945, Meyenburg, Landkreis Prignitz, Brandenburg
+16945	Marienfließ	Brandenburg	Landkreis Prignitz	16945, Marienfließ, Landkreis Prignitz, Brandenburg
+16945	Halenbeck-Rohlsdorf	Brandenburg	Landkreis Prignitz	16945, Halenbeck-Rohlsdorf, Landkreis Prignitz, Brandenburg
+16949	Putlitz	Brandenburg	Landkreis Prignitz	16949, Putlitz, Landkreis Prignitz, Brandenburg
+16949	Triglitz	Brandenburg	Landkreis Prignitz	16949, Triglitz, Landkreis Prignitz, Brandenburg
+17268	Densow	Brandenburg	Landkreis Uckermark	17268, Densow, Landkreis Uckermark, Brandenburg
+17268	Gandenitz	Brandenburg	Landkreis Uckermark	17268, Gandenitz, Landkreis Uckermark, Brandenburg
+17268	Beutel	Brandenburg	Landkreis Uckermark	17268, Beutel, Landkreis Uckermark, Brandenburg
+17268	Klosterwalde	Brandenburg	Landkreis Uckermark	17268, Klosterwalde, Landkreis Uckermark, Brandenburg
+17268	Milmersdorf	Brandenburg	Landkreis Uckermark	17268, Milmersdorf, Landkreis Uckermark, Brandenburg
+17268	Herzfelde	Brandenburg	Landkreis Uckermark	17268, Herzfelde, Landkreis Uckermark, Brandenburg
+17268	Röddelin	Brandenburg	Landkreis Uckermark	17268, Röddelin, Landkreis Uckermark, Brandenburg
+17268	Mittenwalde	Brandenburg	Landkreis Uckermark	17268, Mittenwalde, Landkreis Uckermark, Brandenburg
+17268	Gollin	Brandenburg	Landkreis Uckermark	17268, Gollin, Landkreis Uckermark, Brandenburg
+17268	Hammelspring	Brandenburg	Landkreis Uckermark	17268, Hammelspring, Landkreis Uckermark, Brandenburg
+17268	Groß Dölln	Brandenburg	Landkreis Uckermark	17268, Groß Dölln, Landkreis Uckermark, Brandenburg
+17268	Temmen-Ringenwalde	Brandenburg	Landkreis Uckermark	17268, Temmen-Ringenwalde, Landkreis Uckermark, Brandenburg
+17268	Petznick	Brandenburg	Landkreis Uckermark	17268, Petznick, Landkreis Uckermark, Brandenburg
+17268	Gerswalde	Brandenburg	Landkreis Uckermark	17268, Gerswalde, Landkreis Uckermark, Brandenburg
+17268	Grunewald	Brandenburg	Landkreis Uckermark	17268, Grunewald, Landkreis Uckermark, Brandenburg
+17268	Vietmannsdorf	Brandenburg	Landkreis Uckermark	17268, Vietmannsdorf, Landkreis Uckermark, Brandenburg
+17268	Storkow	Brandenburg	Landkreis Uckermark	17268, Storkow, Landkreis Uckermark, Brandenburg
+17268	Templin	Brandenburg	Landkreis Uckermark	17268, Templin, Landkreis Uckermark, Brandenburg
+17268	Flieth-Stegelitz	Brandenburg	Landkreis Uckermark	17268, Flieth-Stegelitz, Landkreis Uckermark, Brandenburg
+17268	Boitzenburger Land	Brandenburg	Landkreis Uckermark	17268, Boitzenburger Land, Landkreis Uckermark, Brandenburg
+17279	Lychen	Brandenburg	Landkreis Uckermark	17279, Lychen, Landkreis Uckermark, Brandenburg
+17291	Schenkenberg	Brandenburg	Landkreis Uckermark	17291, Schenkenberg, Landkreis Uckermark, Brandenburg
+17291	Göritz	Brandenburg	Landkreis Uckermark	17291, Göritz, Landkreis Uckermark, Brandenburg
+17291	Oberuckersee	Brandenburg	Landkreis Uckermark	17291, Oberuckersee, Landkreis Uckermark, Brandenburg
+17291	Schönfeld	Brandenburg	Landkreis Uckermark	17291, Schönfeld, Landkreis Uckermark, Brandenburg
+17291	Uckerfelde	Brandenburg	Landkreis Uckermark	17291, Uckerfelde, Landkreis Uckermark, Brandenburg
+17291	Prenzlau	Brandenburg	Landkreis Uckermark	17291, Prenzlau, Landkreis Uckermark, Brandenburg
+17291	Nordwestuckermark	Brandenburg	Landkreis Uckermark	17291, Nordwestuckermark, Landkreis Uckermark, Brandenburg
+17291	Grünow	Brandenburg	Landkreis Uckermark	17291, Grünow, Landkreis Uckermark, Brandenburg
+17291	Randowtal	Brandenburg	Landkreis Uckermark	17291, Randowtal, Landkreis Uckermark, Brandenburg
+17291	Gramzow	Brandenburg	Landkreis Uckermark	17291, Gramzow, Landkreis Uckermark, Brandenburg
+17291	Carmzow-Wallmow	Brandenburg	Landkreis Uckermark	17291, Carmzow-Wallmow, Landkreis Uckermark, Brandenburg
+17326	Brüssow	Brandenburg	Landkreis Uckermark	17326, Brüssow, Landkreis Uckermark, Brandenburg
+17337	Uckerland	Brandenburg	Landkreis Uckermark	17337, Uckerland, Landkreis Uckermark, Brandenburg
+19309	Mellen	Brandenburg	Landkreis Prignitz	19309, Mellen, Landkreis Prignitz, Brandenburg
+19309	Eldenburg	Brandenburg	Landkreis Prignitz	19309, Eldenburg, Landkreis Prignitz, Brandenburg
+19309	Besandten	Brandenburg	Landkreis Prignitz	19309, Besandten, Landkreis Prignitz, Brandenburg
+19309	Lenzen (Elbe)	Brandenburg	Landkreis Prignitz	19309, Lenzen (Elbe), Landkreis Prignitz, Brandenburg
+19309	Lanz	Brandenburg	Landkreis Prignitz	19309, Lanz, Landkreis Prignitz, Brandenburg
+19309	Wootz	Brandenburg	Landkreis Prignitz	19309, Wootz, Landkreis Prignitz, Brandenburg
+19322	Weisen	Brandenburg	Landkreis Prignitz	19322, Weisen, Landkreis Prignitz, Brandenburg
+19322	Rühstädt	Brandenburg	Landkreis Prignitz	19322, Rühstädt, Landkreis Prignitz, Brandenburg
+19322	Breese	Brandenburg	Landkreis Prignitz	19322, Breese, Landkreis Prignitz, Brandenburg
+19322	Wittenberge	Brandenburg	Landkreis Prignitz	19322, Wittenberge, Landkreis Prignitz, Brandenburg
+19322	Groß Breese	Brandenburg	Landkreis Prignitz	19322, Groß Breese, Landkreis Prignitz, Brandenburg
+19322	Cumlosen	Brandenburg	Landkreis Prignitz	19322, Cumlosen, Landkreis Prignitz, Brandenburg
+19336	Viesecke	Brandenburg	Landkreis Prignitz	19336, Viesecke, Landkreis Prignitz, Brandenburg
+19336	Bad Wilsnack	Brandenburg	Landkreis Prignitz	19336, Bad Wilsnack, Landkreis Prignitz, Brandenburg
+19336	Legde/Quitzöbel	Brandenburg	Landkreis Prignitz	19336, Legde/Quitzöbel, Landkreis Prignitz, Brandenburg
+19336	Kletzke	Brandenburg	Landkreis Prignitz	19336, Kletzke, Landkreis Prignitz, Brandenburg
+19339	Glöwen	Brandenburg	Landkreis Prignitz	19339, Glöwen, Landkreis Prignitz, Brandenburg
+19339	Netzow	Brandenburg	Landkreis Prignitz	19339, Netzow, Landkreis Prignitz, Brandenburg
+19339	Bendelin	Brandenburg	Landkreis Prignitz	19339, Bendelin, Landkreis Prignitz, Brandenburg
+19348	Perleberg	Brandenburg	Landkreis Prignitz	19348, Perleberg, Landkreis Prignitz, Brandenburg
+19348	Krampfer	Brandenburg	Landkreis Prignitz	19348, Krampfer, Landkreis Prignitz, Brandenburg
+19348	Wolfshagen	Brandenburg	Landkreis Prignitz	19348, Wolfshagen, Landkreis Prignitz, Brandenburg
+19348	Retzin	Brandenburg	Landkreis Prignitz	19348, Retzin, Landkreis Prignitz, Brandenburg
+19348	Baek	Brandenburg	Landkreis Prignitz	19348, Baek, Landkreis Prignitz, Brandenburg
+19348	Gülitz-Reetz	Brandenburg	Landkreis Prignitz	19348, Gülitz-Reetz, Landkreis Prignitz, Brandenburg
+19348	Pirow	Brandenburg	Landkreis Prignitz	19348, Pirow, Landkreis Prignitz, Brandenburg
+19348	Nebelin	Brandenburg	Landkreis Prignitz	19348, Nebelin, Landkreis Prignitz, Brandenburg
+19348	Kleinow	Brandenburg	Landkreis Prignitz	19348, Kleinow, Landkreis Prignitz, Brandenburg
+19348	Berge	Brandenburg	Landkreis Prignitz	19348, Berge, Landkreis Prignitz, Brandenburg
+19348	Klein Gottschow	Brandenburg	Landkreis Prignitz	19348, Klein Gottschow, Landkreis Prignitz, Brandenburg
+19357	Mankmuß	Brandenburg	Landkreis Prignitz	19357, Mankmuß, Landkreis Prignitz, Brandenburg
