@@ -33,7 +33,11 @@ from .hereqgis_dialog import HEREqgisDialog
 import os.path
 import requests, json
 from PyQt5.QtCore import QVariant
-from qgis.core import QgsPointXY, QgsGeometry, QgsVectorLayer, QgsProject, QgsFeature, QgsField
+from qgis.core import QgsPointXY, QgsGeometry, QgsVectorLayer, QgsProject, QgsFeature, QgsField, QgsMessageLog
+from qgis.PyQt.QtWidgets import QProgressBar
+from qgis.PyQt.QtCore import *
+from qgis.utils import iface
+
 
 class HEREqgis:
     """QGIS Plugin Implementation."""
@@ -326,24 +330,35 @@ class HEREqgis:
             print(e)
 
     def batchGeocodeField(self):
+
         appId = self.dlg.AppId.text()
         appCode = self.dlg.AppCode.text()
         #concat addresses for batch requesting
         layer_list = [tree_layer.layer() for tree_layer in QgsProject.instance().layerTreeRoot().findLayers()]
         Resultlayer = self.createGeocodedLayer()
         pr = Resultlayer.dataProvider()
+
         #print(self.dlg.LayerSelect.currentData())
         for layer in layer_list:
             if layer.id() ==self.dlg.LayerSelect.currentData():
                 idx = layer.fields().indexFromName(self.dlg.AddressField.currentText())
                 features = layer.getFeatures()
+                ResultFeatureList = []
+                addressList = []
                 for fet in features:
-                    self.dlg.geocodeResult.setText("")
-                    address = fet.attributes()[idx]
+                    addressList.append(fet.attributes()[idx])
+                progressMessageBar = iface.messageBar().createMessage("Looping through " + str(len(addressList))+" addresses ...")
+                progress = QProgressBar()
+                progress.setMaximum(len(addressList))
+                progress.setAlignment(Qt.AlignLeft|Qt.AlignVCenter)
+                progressMessageBar.layout().addWidget(progress)
+                iface.messageBar().pushWidget(progressMessageBar, level=1)
+                i = 1
+                for address in addressList:
+                    progress.setValue(i + 1)
                     url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + appId + "&app_code=" + appCode + "&searchtext=" + address
-                    self.dlg.geocodeResult.setText(url)
                     r = requests.get(url)
-
+                    
                     try:
                         #ass the response may hold more than one result we only use the best one:
                         responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
@@ -371,10 +386,11 @@ class HEREqgis:
                             geocodeResponse["NumberQuality"],
                             geocodeResponse["MatchType"]
                         ])
-                        pr.addFeatures([ResultFet])
-                        self.dlg.geocodeResult.setText("geocoded entry " + str(fet.id()) + ": " + geocodeResponse["Label"])
+                        ResultFeatureList.append(ResultFet)
                     except Exception as e:
                         print(e)
+        pr.addFeatures(ResultFeatureList)
+        iface.messageBar().clearWidgets()
         QgsProject.instance().addMapLayer(Resultlayer)
 
 
