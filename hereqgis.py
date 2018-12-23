@@ -455,10 +455,37 @@ class HEREqgis:
                     self.dlg.LayerSelect.addItem(layer.name(), layer.id())
 
     def searchFieldPopulate(self):
-        print("add fields to address field")
+        self.dlg.AddressField.clear()
+        layer_list = [tree_layer.layer() for tree_layer in QgsProject.instance().layerTreeRoot().findLayers()]
+        #print(self.dlg.LayerSelect.currentData())
+        for layer in layer_list:
+            if layer.id() ==self.dlg.LayerSelect.currentData():
+                pr = layer.dataProvider()
+                for field in pr.fields():
+                    self.dlg.AddressField.addItem(field.name())
+
 
     def searchFieldsPopulate(self):
-        print("add fields to address fields")
+        layer_list = [tree_layer.layer() for tree_layer in QgsProject.instance().layerTreeRoot().findLayers()]
+        #print(self.dlg.LayerSelect.currentData())
+        self.dlg.CountryBox.clear()
+        self.dlg.StateBox.clear()
+        self.dlg.CountyBox.clear()
+        self.dlg.ZipBox.clear()
+        self.dlg.CityBox.clear()
+        self.dlg.StreetBox.clear()
+        self.dlg.NumberBox.clear()
+        for layer in layer_list:
+            if layer.id() ==self.dlg.LayerSelect_2.currentData():
+                pr = layer.dataProvider()
+                for field in pr.fields():
+                    self.dlg.CountryBox.addItem(field.name())
+                    self.dlg.StateBox.addItem(field.name())
+                    self.dlg.CountyBox.addItem(field.name())
+                    self.dlg.ZipBox.addItem(field.name())
+                    self.dlg.CityBox.addItem(field.name())
+                    self.dlg.StreetBox.addItem(field.name())
+                    self.dlg.NumberBox.addItem(field.name())
 
     def run(self):
         from qgis.core import QgsProject
