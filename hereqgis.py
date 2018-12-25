@@ -279,6 +279,19 @@ class HEREqgis:
         ])
         layer.updateFields()
         return(layer)
+    def messageShow(self, progress, count, max):
+        if not progress:
+            progressMessageBar = iface.messageBar().createMessage("Looping through " + str(max) +" records ...")
+            progress = QProgressBar()
+            progress.setMaximum(max)
+            progress.setAlignment(Qt.AlignLeft|Qt.AlignVCenter)
+            progressMessageBar.layout().addWidget(progress)
+            iface.messageBar().pushWidget(progressMessageBar, level=1)
+            iface.mainWindow().repaint()
+        #    return progress
+        if progress:
+            progress.setValue(count)
+        return(progress)
     def geocode(self):
         #getting values fronm the dialog:
         #if self.dlg.geocodeMode.currentText()=="single address":
@@ -343,52 +356,49 @@ class HEREqgis:
             if layer.id() ==self.dlg.LayerSelect.currentData():
                 idx = layer.fields().indexFromName(self.dlg.AddressField.currentText())
                 features = layer.getFeatures()
-                ResultFeatureList = []
-                addressList = []
-                for fet in features:
-                    addressList.append(fet.attributes()[idx])
-                progressMessageBar = iface.messageBar().createMessage("Looping through " + str(len(addressList))+" addresses ...")
-                progress = QProgressBar()
-                progress.setMaximum(len(addressList))
-                progress.setAlignment(Qt.AlignLeft|Qt.AlignVCenter)
-                progressMessageBar.layout().addWidget(progress)
-                iface.messageBar().pushWidget(progressMessageBar, level=1)
-                i = 1
-                for address in addressList:
-                    progress.setValue(i + 1)
-                    url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + appId + "&app_code=" + appCode + "&searchtext=" + address
-                    r = requests.get(url)
-                    
-                    try:
-                        #ass the response may hold more than one result we only use the best one:
-                        responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
-                        geocodeResponse = self.convertGeocodeResponse(responseAddress)
-                        lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
-                        lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
-                        ResultFet = QgsFeature()
-                        ResultFet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
-                        ResultFet.setAttributes([
-                            fet.id(),
-                            address,
-                            geocodeResponse["Label"],
-                            geocodeResponse["Country"],
-                            geocodeResponse["State"],
-                            geocodeResponse["County"],
-                            geocodeResponse["City"],
-                            geocodeResponse["District"],
-                            geocodeResponse["Street"],
-                            geocodeResponse["HouseNumber"],
-                            geocodeResponse["PostalCode"],
-                            geocodeResponse["Relevance"],
-                            geocodeResponse["CountryQuality"],
-                            geocodeResponse["CityQuality"],
-                            geocodeResponse["StreetQuality"],
-                            geocodeResponse["NumberQuality"],
-                            geocodeResponse["MatchType"]
-                        ])
-                        ResultFeatureList.append(ResultFet)
-                    except Exception as e:
-                        print(e)
+                break
+
+        ResultFeatureList = []
+        addressList = []
+        for fet in features:
+            addressList.append(fet.attributes()[idx])
+        progressItem = self.messageShow(None,0,len(addressList))
+        i = 1
+        for address in addressList:
+            progressItem = self.messageShow(progressItem,i,len(addressList))
+            url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + appId + "&app_code=" + appCode + "&searchtext=" + address
+            r = requests.get(url)
+            try:
+                #ass the response may hold more than one result we only use the best one:
+                responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
+                geocodeResponse = self.convertGeocodeResponse(responseAddress)
+                lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
+                lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
+                ResultFet = QgsFeature()
+                ResultFet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
+                ResultFet.setAttributes([
+                    fet.id(),
+                    address,
+                    geocodeResponse["Label"],
+                    geocodeResponse["Country"],
+                    geocodeResponse["State"],
+                    geocodeResponse["County"],
+                    geocodeResponse["City"],
+                    geocodeResponse["District"],
+                    geocodeResponse["Street"],
+                    geocodeResponse["HouseNumber"],
+                    geocodeResponse["PostalCode"],
+                    geocodeResponse["Relevance"],
+                    geocodeResponse["CountryQuality"],
+                    geocodeResponse["CityQuality"],
+                    geocodeResponse["StreetQuality"],
+                    geocodeResponse["NumberQuality"],
+                    geocodeResponse["MatchType"]
+                ])
+                ResultFeatureList.append(ResultFet)
+                i+=1
+            except Exception as e:
+                print(e)
         pr.addFeatures(ResultFeatureList)
         iface.messageBar().clearWidgets()
         QgsProject.instance().addMapLayer(Resultlayer)
