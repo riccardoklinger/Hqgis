@@ -58,7 +58,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
@@ -162,19 +162,6 @@
         <string>Geocode Multiple Addresses</string>
        </property>
       </widget>
-      <widget class="QTextBrowser" name="geocodeResult">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>80</y>
-         <width>431</width>
-         <height>111</height>
-        </rect>
-       </property>
-      </widget>
      </widget>
      <widget class="QWidget" name="tab_5">
       <attribute name="title">
@@ -186,27 +173,10 @@
          <x>0</x>
          <y>0</y>
          <width>431</width>
-         <height>291</height>
+         <height>321</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_5">
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_5">
-          <property name="text">
-           <string>State</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="layerLab_3">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="text">
-           <string>Layer</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_4">
           <property name="text">
@@ -217,17 +187,10 @@
         <item row="0" column="1">
          <widget class="QComboBox" name="LayerSelect_2"/>
         </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_6">
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_5">
           <property name="text">
-           <string>County</string>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="0">
-         <widget class="QLabel" name="label_9">
-          <property name="text">
-           <string>House number</string>
+           <string>State</string>
           </property>
          </widget>
         </item>
@@ -238,12 +201,29 @@
           </property>
          </widget>
         </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>House number</string>
+          </property>
+         </widget>
+        </item>
         <item row="6" column="0">
          <widget class="QLabel" name="label_8">
           <property name="text">
            <string>Street</string>
           </property>
          </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>County</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QComboBox" name="StateBox"/>
         </item>
         <item row="4" column="0">
          <widget class="QLabel" name="label_10">
@@ -254,9 +234,6 @@
         </item>
         <item row="1" column="1">
          <widget class="QComboBox" name="CountryBox"/>
-        </item>
-        <item row="2" column="1">
-         <widget class="QComboBox" name="StateBox"/>
         </item>
         <item row="3" column="1">
          <widget class="QComboBox" name="CountyBox"/>
@@ -272,6 +249,16 @@
         </item>
         <item row="7" column="1">
          <widget class="QComboBox" name="NumberBox"/>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="layerLab_3">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Layer</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -388,6 +375,19 @@
      </property>
     </widget>
    </widget>
+  </widget>
+  <widget class="QTextBrowser" name="statusShower">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>410</y>
+     <width>339</width>
+     <height>31</height>
+    </rect>
+   </property>
   </widget>
  </widget>
  <resources/>

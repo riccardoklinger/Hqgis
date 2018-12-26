@@ -343,7 +343,7 @@ class HEREqgis:
             print(e)
 
     def batchGeocodeField(self):
-
+        import time
         appId = self.dlg.AppId.text()
         appCode = self.dlg.AppCode.text()
         #concat addresses for batch requesting
@@ -359,17 +359,18 @@ class HEREqgis:
                 break
 
         ResultFeatureList = []
-        addressList = []
-        for fet in features:
-            addressList.append(fet.attributes()[idx])
-        progressItem = self.messageShow(None,0,len(addressList))
-        i = 1
-        for address in addressList:
-            progressItem = self.messageShow(progressItem,i,len(addressList))
-            url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + appId + "&app_code=" + appCode + "&searchtext=" + address
+        #addressList = []
+        #for fet in features:
+        #    addressList.append(fet.attributes()[idx])
+        progressItem = self.messageShow(None,0,layer.featureCount())
+        i = 0
+        for feature in layer.getFeatures():
+            i+=1
+            progressItem.setValue(i)
+            #progressItem = self.messageShow(progressItem,i,layer.featureCount())
+            url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + appId + "&app_code=" + appCode + "&searchtext=" + feature.attributes()[idx]
             r = requests.get(url)
             try:
-                #ass the response may hold more than one result we only use the best one:
                 responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
                 geocodeResponse = self.convertGeocodeResponse(responseAddress)
                 lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
@@ -377,8 +378,8 @@ class HEREqgis:
                 ResultFet = QgsFeature()
                 ResultFet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
                 ResultFet.setAttributes([
-                    fet.id(),
-                    address,
+                    feature.id(),
+                    feature.attributes()[idx],
                     geocodeResponse["Label"],
                     geocodeResponse["Country"],
                     geocodeResponse["State"],
@@ -396,7 +397,6 @@ class HEREqgis:
                     geocodeResponse["MatchType"]
                 ])
                 ResultFeatureList.append(ResultFet)
-                i+=1
             except Exception as e:
                 print(e)
         pr.addFeatures(ResultFeatureList)
@@ -405,75 +405,89 @@ class HEREqgis:
 
 
     def batchGeocodeFields(self):
-
-        #if self.dlg.geocodeMode.currentText()=="single address":
-        address = self.dlg.AddressInput.text()
-        if address == "":
-            address = "11 Wall Street, New York, USA"
+        import time
         appId = self.dlg.AppId.text()
         appCode = self.dlg.AppCode.text()
-        url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + appId + "&app_code=" + appCode + "&searchtext=" + address
-        print(appCode,appId, address)
-        postData = {"app_id":appId, "app_code":appCode, "searchtext":address}
-        r = requests.get(url)
-        #print(r.json())
-        ##
-        #print(json.loads(r.text))
-        try:
-            #ass the response may hold more than one result we only use the best one:
-            responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
-            lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
-            lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
-            layer = QgsVectorLayer(
-                """Point?crs=epsg:4326&
-                field=id:integer
-                &field=address:string(200)
-                &field=country:string(200)
-                &field=state:string(200)
-                &field=county:string(200)
-                &field=city:string(200)
-                &field=district:string(200)
-                &field=street:string(200)
-                &field=number:string(200)
-                &field=zip:string(200)
-                &field=relevance:float
-                &field=qu_country:float
-                &field=qu_city:float
-                &field=qu_street:float
-                &field=qu_number:float
-                &field=matchtype:string(200)
-                &index=yes""",
-                "AddressLayer",
-                "memory"
-            )
-            layer.commitChanges()
-            fet = QgsFeature()
-            print(lat,lng)
-            fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
-            print("cords set")
-            fet.setAttributes([
-                0,   responseAddress["Location"]["Address"]["Label"],
-                responseAddress["Location"]["Address"]["Country"],
-                responseAddress["Location"]["Address"]["State"],
-                responseAddress["Location"]["Address"]["County"],
-                responseAddress["Location"]["Address"]["City"],
-                responseAddress["Location"]["Address"]["District"],
-                responseAddress["Location"]["Address"]["Street"],
-                responseAddress["Location"]["Address"]["HouseNumber"],
-                responseAddress["Location"]["Address"]["PostalCode"],
-                responseAddress["Relevance"],
-                responseAddress["MatchQuality"]["Country"],
-                responseAddress["MatchQuality"]["City"],
-                responseAddress["MatchQuality"]["Street"][0],
-                responseAddress["MatchQuality"]["HouseNumber"],
-                responseAddress["MatchType"]
-            ])
-            #print("feature set")
-            pr = layer.dataProvider()
-            pr.addFeatures([fet])
-            QgsProject.instance().addMapLayer(layer)
-        except Exception as e:
-            print(e)
+        #mapping from inputs:
+        layer_list = [tree_layer.layer() for tree_layer in QgsProject.instance().layerTreeRoot().findLayers()]
+        Resultlayer = self.createGeocodedLayer()
+        pr = Resultlayer.dataProvider()
+        indexer = {}
+        for layer in layer_list:
+            if layer.id() == self.dlg.LayerSelect_2.currentData():
+                indexer["country"]=layer.fields().indexFromName(self.dlg.CountryBox.currentText())
+                indexer["state"]=layer.fields().indexFromName(self.dlg.StateBox.currentText())
+                indexer["county"]=layer.fields().indexFromName(self.dlg.CountyBox.currentText())
+                indexer["zip"]=layer.fields().indexFromName(self.dlg.ZipBox.currentText())
+                indexer["city"]=layer.fields().indexFromName(self.dlg.CityBox.currentText())
+                indexer["street"]=layer.fields().indexFromName(self.dlg.StreetBox.currentText())
+                indexer["number"]=layer.fields().indexFromName(self.dlg.NumberBox.currentText())
+                break
+        ResultFeatureList = [] #got result storing
+        #precreate field-lists for API call:
+        addressLists = {}
+        for key in indexer.keys():
+            if indexer[key] != -1:
+                parts = []
+                oldIDs = []
+                features = layer.getFeatures()
+                for fet in features:
+                    oldIDs.append(fet.id())
+                    parts.append(str(fet.attributes()[indexer[key]]))
+                addressLists[key] = parts
+                addressLists["oldIds"] = oldIDs
+
+        #let's create the progress bar already with the number of features in the layer
+        progressMessageBar = iface.messageBar().createMessage("Looping through " + str(layer.featureCount()) +" records ...")
+        progress = QProgressBar()
+        progress.setMaximum(layer.featureCount())
+        progress.setAlignment(Qt.AlignLeft|Qt.AlignVCenter)
+        progressMessageBar.layout().addWidget(progress)
+        iface.messageBar().pushWidget(progressMessageBar, level=1)
+
+        for id in range(0, layer.featureCount()-1):
+            urlPart=""
+            oldAddress=""
+            for key in addressLists.keys():
+                if key != "oldIds":
+                    urlPart+="&" + key +  "=" + addressLists[key][id]
+                    oldAddress += addressLists[key][id] + ","
+            url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + appId + "&app_code=" + appCode + urlPart
+            r = requests.get(url)
+            if r.status_code == 200:
+                if len(json.loads(r.text)["Response"]["View"])>0:
+                #ass the response may hold more than one result we only use the best one:
+                    responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
+                    geocodeResponse = self.convertGeocodeResponse(responseAddress)
+                    lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
+                    lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
+                    ResultFet = QgsFeature()
+                    ResultFet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
+                    ResultFet.setAttributes([
+                        addressLists["oldIds"][id],
+                        oldAddress,
+                        geocodeResponse["Label"],
+                        geocodeResponse["Country"],
+                        geocodeResponse["State"],
+                        geocodeResponse["County"],
+                        geocodeResponse["City"],
+                        geocodeResponse["District"],
+                        geocodeResponse["Street"],
+                        geocodeResponse["HouseNumber"],
+                        geocodeResponse["PostalCode"],
+                        geocodeResponse["Relevance"],
+                        geocodeResponse["CountryQuality"],
+                        geocodeResponse["CityQuality"],
+                        geocodeResponse["StreetQuality"],
+                        geocodeResponse["NumberQuality"],
+                        geocodeResponse["MatchType"]
+                    ])
+                    ResultFeatureList.append(ResultFet)
+            progress.setValue(id)
+            iface.mainWindow().repaint()
+        pr.addFeatures(ResultFeatureList)
+        iface.messageBar().clearWidgets()
+        QgsProject.instance().addMapLayer(Resultlayer)
     def getCredFunction(self):
         import webbrowser
         webbrowser.open('https://developer.here.com/')
@@ -528,6 +542,14 @@ class HEREqgis:
         for layer in layer_list:
             if layer.id() ==self.dlg.LayerSelect_2.currentData():
                 pr = layer.dataProvider()
+                #sometimes no field is available for a geocode component
+                self.dlg.CountryBox.addItem("")
+                self.dlg.StateBox.addItem("")
+                self.dlg.CountyBox.addItem("")
+                self.dlg.ZipBox.addItem("")
+                self.dlg.CityBox.addItem("")
+                self.dlg.StreetBox.addItem("")
+                self.dlg.NumberBox.addItem("")
                 for field in pr.fields():
                     self.dlg.CountryBox.addItem(field.name())
                     self.dlg.StateBox.addItem(field.name())
