@@ -581,7 +581,6 @@ class HEREqgis:
         self.dlg.saveCreds.clicked.connect(self.saveCredFunction)
         self.dlg.loadCreds.clicked.connect(self.loadCredFunction)
         #fill all layer/attributes
-        self.dlg.LayerSelect.clear()
         self.dlg.LayerSelect_2.clear()
         layer_list = [tree_layer.layer() for tree_layer in QgsProject.instance().layerTreeRoot().findLayers()]
         for layer in layer_list:
