@@ -407,20 +407,18 @@ class HEREqgis:
         appId = self.dlg.AppId.text()
         appCode = self.dlg.AppCode.text()
         #mapping from inputs:
-        layer_list = [tree_layer.layer() for tree_layer in QgsProject.instance().layerTreeRoot().findLayers()]
+
         Resultlayer = self.createGeocodedLayer()
         pr = Resultlayer.dataProvider()
         indexer = {}
-        for layer in layer_list:
-            if layer.id() == self.dlg.LayerSelect_2.currentData():
-                indexer["country"]=layer.fields().indexFromName(self.dlg.CountryBox.currentText())
-                indexer["state"]=layer.fields().indexFromName(self.dlg.StateBox.currentText())
-                indexer["county"]=layer.fields().indexFromName(self.dlg.CountyBox.currentText())
-                indexer["zip"]=layer.fields().indexFromName(self.dlg.ZipBox.currentText())
-                indexer["city"]=layer.fields().indexFromName(self.dlg.CityBox.currentText())
-                indexer["street"]=layer.fields().indexFromName(self.dlg.StreetBox.currentText())
-                indexer["number"]=layer.fields().indexFromName(self.dlg.NumberBox.currentText())
-                break
+        layer = self.dlg.mapLayerBox_2.currentLayer()
+        indexer["country"]=layer.fields().indexFromName(self.dlg.CountryBox.currentField())
+        indexer["state"]=layer.fields().indexFromName(self.dlg.StateBox.currentField())
+        indexer["county"]=layer.fields().indexFromName(self.dlg.CountyBox.currentField())
+        indexer["zip"]=layer.fields().indexFromName(self.dlg.ZipBox.currentField())
+        indexer["city"]=layer.fields().indexFromName(self.dlg.CityBox.currentField())
+        indexer["street"]=layer.fields().indexFromName(self.dlg.StreetBox.currentField())
+        indexer["number"]=layer.fields().indexFromName(self.dlg.NumberBox.currentField())
         ResultFeatureList = [] #got result storing
         #precreate field-lists for API call:
         addressLists = {}
@@ -519,51 +517,64 @@ class HEREqgis:
             self.dlg.credentialInteraction.setText("no credits found in. Check for file" + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
             #self.dlg.geocodeButton.setEnabled(False)
 
-    def searchFieldPopulate(self):
-        self.dlg.AddressField.clear()
-        layer_list = [tree_layer.layer() for tree_layer in QgsProject.instance().layerTreeRoot().findLayers()]
-        #print(self.dlg.LayerSelect.currentData())
-        for layer in layer_list:
-            if layer.id() ==self.dlg.LayerSelect.currentData():
-                pr = layer.dataProvider()
-                for field in pr.fields():
-                    self.dlg.AddressField.addItem(field.name())
+    # def searchFieldPopulate(self):
+        # self.dlg.AddressField.clear()
+        # layer_list = [tree_layer.layer() for tree_layer in QgsProject.instance().layerTreeRoot().findLayers()]
+        # #print(self.dlg.LayerSelect.currentData())
+        # for layer in layer_list:
+        #     if layer.id() ==self.dlg.LayerSelect.currentData():
+        #         pr = layer.dataProvider()
+        #         for field in pr.fields():
+        #             self.dlg.AddressField.addItem(field.name())
 
 
-    def searchFieldsPopulate(self):
-        layer_list = [tree_layer.layer() for tree_layer in QgsProject.instance().layerTreeRoot().findLayers()]
-        #print(self.dlg.LayerSelect.currentData())
-        self.dlg.CountryBox.clear()
-        self.dlg.StateBox.clear()
-        self.dlg.CountyBox.clear()
-        self.dlg.ZipBox.clear()
-        self.dlg.CityBox.clear()
-        self.dlg.StreetBox.clear()
-        self.dlg.NumberBox.clear()
-        for layer in layer_list:
-            if layer.id() ==self.dlg.LayerSelect_2.currentData():
-                pr = layer.dataProvider()
-                #sometimes no field is available for a geocode component
-                self.dlg.CountryBox.addItem("")
-                self.dlg.StateBox.addItem("")
-                self.dlg.CountyBox.addItem("")
-                self.dlg.ZipBox.addItem("")
-                self.dlg.CityBox.addItem("")
-                self.dlg.StreetBox.addItem("")
-                self.dlg.NumberBox.addItem("")
-                for field in pr.fields():
-                    self.dlg.CountryBox.addItem(field.name())
-                    self.dlg.StateBox.addItem(field.name())
-                    self.dlg.CountyBox.addItem(field.name())
-                    self.dlg.ZipBox.addItem(field.name())
-                    self.dlg.CityBox.addItem(field.name())
-                    self.dlg.StreetBox.addItem(field.name())
-                    self.dlg.NumberBox.addItem(field.name())
+    # def searchFieldsPopulate(self):
+    #     layer_list = [tree_layer.layer() for tree_layer in QgsProject.instance().layerTreeRoot().findLayers()]
+    #     #print(self.dlg.LayerSelect.currentData())
+    #     self.dlg.CountryBox.clear()
+    #     self.dlg.StateBox.clear()
+    #     self.dlg.CountyBox.clear()
+    #     self.dlg.ZipBox.clear()
+    #     self.dlg.CityBox.clear()
+    #     self.dlg.StreetBox.clear()
+    #     self.dlg.NumberBox.clear()
+    #     for layer in layer_list:
+    #         if layer.id() ==self.dlg.LayerSelect_2.currentData():
+    #             pr = layer.dataProvider()
+    #             #sometimes no field is available for a geocode component
+    #             self.dlg.CountryBox.addItem("")
+    #             self.dlg.StateBox.addItem("")
+    #             self.dlg.CountyBox.addItem("")
+    #             self.dlg.ZipBox.addItem("")
+    #             self.dlg.CityBox.addItem("")
+    #             self.dlg.StreetBox.addItem("")
+    #             self.dlg.NumberBox.addItem("")
+    #             for field in pr.fields():
+    #                 self.dlg.CountryBox.addItem(field.name())
+    #                 self.dlg.StateBox.addItem(field.name())
+    #                 self.dlg.CountyBox.addItem(field.name())
+    #                 self.dlg.ZipBox.addItem(field.name())
+    #                 self.dlg.CityBox.addItem(field.name())
+    #                 self.dlg.StreetBox.addItem(field.name())
+    #                 self.dlg.NumberBox.addItem(field.name())
     def loadFields(self):
+        self.dlg.CountryBox.setLayer(self.dlg.mapLayerBox_2.currentLayer())
+        self.dlg.StateBox.setLayer(self.dlg.mapLayerBox_2.currentLayer())
+        self.dlg.CountyBox.setLayer(self.dlg.mapLayerBox_2.currentLayer())
+        self.dlg.ZipBox.setLayer(self.dlg.mapLayerBox_2.currentLayer())
+        self.dlg.CityBox.setLayer(self.dlg.mapLayerBox_2.currentLayer())
+        self.dlg.StreetBox.setLayer(self.dlg.mapLayerBox_2.currentLayer())
+        self.dlg.NumberBox.setLayer(self.dlg.mapLayerBox_2.currentLayer())
+        self.dlg.CountryBox.setAllowEmptyFieldName(True)
+        self.dlg.StateBox.setAllowEmptyFieldName(True)
+        self.dlg.CountyBox.setAllowEmptyFieldName(True)
+        self.dlg.ZipBox.setAllowEmptyFieldName(True)
+        self.dlg.CityBox.setAllowEmptyFieldName(True)
+        self.dlg.StreetBox.setAllowEmptyFieldName(True)
+        self.dlg.NumberBox.setAllowEmptyFieldName(True)
+    def loadField(self):
         self.dlg.fieldBox.setLayer(self.dlg.mapLayerBox.currentLayer())
         self.dlg.fieldBox.setAllowEmptyFieldName(True)
-    def printfield(self):
-        print(self.dlg.fieldBox.currentField())
     def run(self):
         from qgis.core import QgsProject
         from qgis.core import QgsMapLayerProxyModel
@@ -576,22 +587,26 @@ class HEREqgis:
 
         #self.dlg.geocodeMode.currentIndexChanged.connect(self.geocodeInput)
         #self.dlg.LayerSelect.currentIndexChanged.connect(self.searchFieldPopulate)
-        self.dlg.LayerSelect_2.currentIndexChanged.connect(self.searchFieldsPopulate)
+        #self.dlg.LayerSelect_2.currentIndexChanged.connect(self.searchFieldsPopulate)
         self.dlg.getCreds.clicked.connect(self.getCredFunction)
         self.dlg.saveCreds.clicked.connect(self.saveCredFunction)
         self.dlg.loadCreds.clicked.connect(self.loadCredFunction)
         #fill all layer/attributes
-        self.dlg.LayerSelect_2.clear()
-        layer_list = [tree_layer.layer() for tree_layer in QgsProject.instance().layerTreeRoot().findLayers()]
-        for layer in layer_list:
-            if layer.type() == 0:
+        #self.dlg.LayerSelect_2.clear()
+        #layer_list = [tree_layer.layer() for tree_layer in QgsProject.instance().layerTreeRoot().findLayers()]
+        #for layer in layer_list:
+        #    if layer.type() == 0:
                 #self.dlg.LayerSelect.addItem(layer.name(), layer.id())
 
-                self.dlg.LayerSelect_2.addItem(layer.name(), layer.id())
+        #        self.dlg.LayerSelect_2.addItem(layer.name(), layer.id())
         self.dlg.mapLayerBox.setAllowEmptyLayer(False)
         self.dlg.mapLayerBox.setFilters(QgsMapLayerProxyModel.VectorLayer)
-        self.dlg.mapLayerBox.currentIndexChanged.connect(self.loadFields)
-        self.dlg.fieldBox.currentIndexChanged.connect(self.printfield)
+        self.dlg.mapLayerBox.currentIndexChanged.connect(self.loadField)
+        self.loadField()
+        self.dlg.mapLayerBox_2.setAllowEmptyLayer(False)
+        self.dlg.mapLayerBox_2.setFilters(QgsMapLayerProxyModel.VectorLayer)
+        self.loadFields()
+        self.dlg.mapLayerBox_2.currentIndexChanged.connect(self.loadFields)
         self.dlg.geocodeAddressButton.clicked.connect(self.geocode)
         self.dlg.batchGeocodeFieldButton.clicked.connect(self.batchGeocodeField)
         self.dlg.batchGeocodeFieldsButton.clicked.connect(self.batchGeocodeFields)
