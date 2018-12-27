@@ -58,7 +58,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
@@ -106,6 +106,26 @@
         <string>Geocode Single Address</string>
        </property>
       </widget>
+      <widget class="QgsMapLayerComboBox" name="mMapLayerComboBox">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>200</y>
+         <width>160</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QgsFieldComboBox" name="mFieldComboBox">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>240</y>
+         <width>160</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="tab_4">
       <attribute name="title">
@@ -131,12 +151,6 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QComboBox" name="LayerSelect"/>
-        </item>
-        <item row="1" column="1">
-         <widget class="QComboBox" name="AddressField"/>
-        </item>
         <item row="1" column="0">
          <widget class="QLabel" name="layerLab_2">
           <property name="enabled">
@@ -146,6 +160,12 @@
            <string>Address Field</string>
           </property>
          </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QgsMapLayerComboBox" name="mapLayerBox"/>
+        </item>
+        <item row="1" column="1">
+         <widget class="QgsFieldComboBox" name="fieldBox"/>
         </item>
        </layout>
       </widget>
@@ -390,6 +410,18 @@
    </property>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QgsFieldComboBox</class>
+   <extends>QComboBox</extends>
+   <header>qgsfieldcombobox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QgsMapLayerComboBox</class>
+   <extends>QComboBox</extends>
+   <header>qgsmaplayercombobox.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>

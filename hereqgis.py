@@ -344,31 +344,25 @@ class HEREqgis:
 
     def batchGeocodeField(self):
         import time
+        print("new run")
         appId = self.dlg.AppId.text()
         appCode = self.dlg.AppCode.text()
-        #concat addresses for batch requesting
-        layer_list = [tree_layer.layer() for tree_layer in QgsProject.instance().layerTreeRoot().findLayers()]
         Resultlayer = self.createGeocodedLayer()
         pr = Resultlayer.dataProvider()
-
-        #print(self.dlg.LayerSelect.currentData())
-        for layer in layer_list:
-            if layer.id() ==self.dlg.LayerSelect.currentData():
-                idx = layer.fields().indexFromName(self.dlg.AddressField.currentText())
-                features = layer.getFeatures()
-                break
-
+        layer = self.dlg.mapLayerBox.currentLayer()
+        features = layer.getFeatures()
         ResultFeatureList = []
-        #addressList = []
-        #for fet in features:
-        #    addressList.append(fet.attributes()[idx])
-        progressItem = self.messageShow(None,0,layer.featureCount())
+
+        #let's create the progress bar already with the number of features in the layer
+        progressMessageBar = iface.messageBar().createMessage("Looping through " + str(layer.featureCount()) +" records ...")
+        progress = QProgressBar()
+        progress.setMaximum(layer.featureCount())
+        progress.setAlignment(Qt.AlignLeft|Qt.AlignVCenter)
+        progressMessageBar.layout().addWidget(progress)
+        iface.messageBar().pushWidget(progressMessageBar, level=0)
         i = 0
         for feature in layer.getFeatures():
-            i+=1
-            progressItem.setValue(i)
-            #progressItem = self.messageShow(progressItem,i,layer.featureCount())
-            url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + appId + "&app_code=" + appCode + "&searchtext=" + feature.attributes()[idx]
+            url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + appId + "&app_code=" + appCode + "&searchtext=" + feature[self.dlg.fieldBox.currentField()]
             r = requests.get(url)
             try:
                 responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
@@ -379,7 +373,7 @@ class HEREqgis:
                 ResultFet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
                 ResultFet.setAttributes([
                     feature.id(),
-                    feature.attributes()[idx],
+                    feature[self.dlg.fieldBox.currentField()],
                     geocodeResponse["Label"],
                     geocodeResponse["Country"],
                     geocodeResponse["State"],
@@ -399,13 +393,17 @@ class HEREqgis:
                 ResultFeatureList.append(ResultFet)
             except Exception as e:
                 print(e)
+            i += 1
+            time.sleep(0.2)
+            progress.setValue(i)
+            time.sleep(0.2)
         pr.addFeatures(ResultFeatureList)
         iface.messageBar().clearWidgets()
         QgsProject.instance().addMapLayer(Resultlayer)
 
 
     def batchGeocodeFields(self):
-        import time
+        import time, sys
         appId = self.dlg.AppId.text()
         appCode = self.dlg.AppCode.text()
         #mapping from inputs:
@@ -443,7 +441,7 @@ class HEREqgis:
         progress.setMaximum(layer.featureCount())
         progress.setAlignment(Qt.AlignLeft|Qt.AlignVCenter)
         progressMessageBar.layout().addWidget(progress)
-        iface.messageBar().pushWidget(progressMessageBar, level=1)
+        iface.messageBar().pushWidget(progressMessageBar, level=0)
 
         for id in range(0, layer.featureCount()-1):
             urlPart=""
@@ -455,8 +453,9 @@ class HEREqgis:
             url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + appId + "&app_code=" + appCode + urlPart
             r = requests.get(url)
             if r.status_code == 200:
+                #sys.stdout.write("test" + url + "\\n")
                 if len(json.loads(r.text)["Response"]["View"])>0:
-                #ass the response may hold more than one result we only use the best one:
+                #as the response may hold more than one result we only use the best one:
                     responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
                     geocodeResponse = self.convertGeocodeResponse(responseAddress)
                     lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
@@ -483,8 +482,10 @@ class HEREqgis:
                         geocodeResponse["MatchType"]
                     ])
                     ResultFeatureList.append(ResultFet)
+            time.sleep(0.2)
             progress.setValue(id)
-            iface.mainWindow().repaint()
+            #iface.mainWindow().repaint()
+            time.sleep(0.2)
         pr.addFeatures(ResultFeatureList)
         iface.messageBar().clearWidgets()
         QgsProject.instance().addMapLayer(Resultlayer)
@@ -558,9 +559,14 @@ class HEREqgis:
                     self.dlg.CityBox.addItem(field.name())
                     self.dlg.StreetBox.addItem(field.name())
                     self.dlg.NumberBox.addItem(field.name())
-
+    def loadFields(self):
+        self.dlg.fieldBox.setLayer(self.dlg.mapLayerBox.currentLayer())
+        self.dlg.fieldBox.setAllowEmptyFieldName(True)
+    def printfield(self):
+        print(self.dlg.fieldBox.currentField())
     def run(self):
         from qgis.core import QgsProject
+        from qgis.core import QgsMapLayerProxyModel
         """Run method that performs all the real work"""
         # show the dialog
         self.dlg.show()
@@ -569,7 +575,7 @@ class HEREqgis:
         #self.geocodeInput()
 
         #self.dlg.geocodeMode.currentIndexChanged.connect(self.geocodeInput)
-        self.dlg.LayerSelect.currentIndexChanged.connect(self.searchFieldPopulate)
+        #self.dlg.LayerSelect.currentIndexChanged.connect(self.searchFieldPopulate)
         self.dlg.LayerSelect_2.currentIndexChanged.connect(self.searchFieldsPopulate)
         self.dlg.getCreds.clicked.connect(self.getCredFunction)
         self.dlg.saveCreds.clicked.connect(self.saveCredFunction)
@@ -580,9 +586,13 @@ class HEREqgis:
         layer_list = [tree_layer.layer() for tree_layer in QgsProject.instance().layerTreeRoot().findLayers()]
         for layer in layer_list:
             if layer.type() == 0:
-                self.dlg.LayerSelect.addItem(layer.name(), layer.id())
-                self.dlg.LayerSelect_2.addItem(layer.name(), layer.id())
+                #self.dlg.LayerSelect.addItem(layer.name(), layer.id())
 
+                self.dlg.LayerSelect_2.addItem(layer.name(), layer.id())
+        self.dlg.mapLayerBox.setAllowEmptyLayer(False)
+        self.dlg.mapLayerBox.setFilters(QgsMapLayerProxyModel.VectorLayer)
+        self.dlg.mapLayerBox.currentIndexChanged.connect(self.loadFields)
+        self.dlg.fieldBox.currentIndexChanged.connect(self.printfield)
         self.dlg.geocodeAddressButton.clicked.connect(self.geocode)
         self.dlg.batchGeocodeFieldButton.clicked.connect(self.batchGeocodeField)
         self.dlg.batchGeocodeFieldsButton.clicked.connect(self.batchGeocodeFields)
