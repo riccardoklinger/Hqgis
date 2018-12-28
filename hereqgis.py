@@ -21,35 +21,26 @@
  *                                                                         *
  ***************************************************************************/
 """
-from PyQt5.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
+from PyQt5.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, QUrl
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QAction, QFileDialog
-from PyQt5 import QtGui, QtWidgets
+from PyQt5 import QtGui, QtWidgets, QtNetwork
 
 # Initialize Qt resources from file resources.py
 from .resources import *
 # Import the code for the dialog
 from .hereqgis_dialog import HEREqgisDialog
 import os.path
-import requests, json
+import requests, json, urllib
 from PyQt5.QtCore import QVariant
-from qgis.core import QgsPointXY, QgsGeometry, QgsVectorLayer, QgsProject, QgsFeature, QgsField, QgsMessageLog
+from qgis.core import QgsPointXY, QgsGeometry, QgsVectorLayer, QgsProject, QgsFeature, QgsField, QgsMessageLog, QgsNetworkAccessManager
 from qgis.PyQt.QtWidgets import QProgressBar
 from qgis.PyQt.QtCore import *
 from qgis.utils import iface
 
 
 class HEREqgis:
-    """QGIS Plugin Implementation."""
-
     def __init__(self, iface):
-        """Constructor.
-
-        :param iface: An interface instance that will be passed to this class
-            which provides the hook by which you can manipulate the QGIS
-            application at run time.
-        :type iface: QgsInterface
-        """
         # Save reference to the QGIS interface
         self.iface = iface
         # initialize plugin directory
@@ -80,16 +71,7 @@ class HEREqgis:
 
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
-        """Get the translation for a string using Qt translation API.
 
-        We implement this ourselves since we do not inherit QObject.
-
-        :param message: String for translation.
-        :type message: str, QString
-
-        :returns: Translated version of message.
-        :rtype: QString
-        """
         # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
         return QCoreApplication.translate('HEREqgis', message)
 
@@ -105,45 +87,6 @@ class HEREqgis:
         status_tip=None,
         whats_this=None,
         parent=None):
-        """Add a toolbar icon to the toolbar.
-
-        :param icon_path: Path to the icon for this action. Can be a resource
-            path (e.g. ':/plugins/foo/bar.png') or a normal file system path.
-        :type icon_path: str
-
-        :param text: Text that should be shown in menu items for this action.
-        :type text: str
-
-        :param callback: Function to be called when the action is triggered.
-        :type callback: function
-
-        :param enabled_flag: A flag indicating if the action should be enabled
-            by default. Defaults to True.
-        :type enabled_flag: bool
-
-        :param add_to_menu: Flag indicating whether the action should also
-            be added to the menu. Defaults to True.
-        :type add_to_menu: bool
-
-        :param add_to_toolbar: Flag indicating whether the action should also
-            be added to the toolbar. Defaults to True.
-        :type add_to_toolbar: bool
-
-        :param status_tip: Optional text to show in a popup when mouse pointer
-            hovers over the action.
-        :type status_tip: str
-
-        :param parent: Parent widget for the new action. Defaults None.
-        :type parent: QWidget
-
-        :param whats_this: Optional text to show in the status bar when the
-            mouse pointer hovers over the action.
-
-        :returns: The action that was created. Note that the action is also
-            added to self.actions list.
-        :rtype: QAction
-        """
-
         icon = QIcon(icon_path)
         action = QAction(icon, text, parent)
         action.triggered.connect(callback)
@@ -292,21 +235,15 @@ class HEREqgis:
         if progress:
             progress.setValue(count)
         return(progress)
+
     def geocode(self):
-        #getting values fronm the dialog:
-        #if self.dlg.geocodeMode.currentText()=="single address":
+        self.getCredentials()
         address = self.dlg.AddressInput.text()
         if address == "":
-            address = "11 Wall Street, New York, USA"
-        appId = self.dlg.AppId.text()
-        appCode = self.dlg.AppCode.text()
-        url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + appId + "&app_code=" + appCode + "&searchtext=" + address
-        print(appCode,appId, address)
-        postData = {"app_id":appId, "app_code":appCode, "searchtext":address}
+            address = "11 WallStreet, NewYork, USA"
+
+        url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + self.appId + "&app_code=" + self.appCode + "&searchtext=" + address
         r = requests.get(url)
-        #print(r.json())
-        ##
-        #print(json.loads(r.text))
         try:
             #ass the response may hold more than one result we only use the best one:
             responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
@@ -344,9 +281,7 @@ class HEREqgis:
 
     def batchGeocodeField(self):
         import time
-        print("new run")
-        appId = self.dlg.AppId.text()
-        appCode = self.dlg.AppCode.text()
+        self.getCredentials()
         Resultlayer = self.createGeocodedLayer()
         pr = Resultlayer.dataProvider()
         layer = self.dlg.mapLayerBox.currentLayer()
@@ -362,7 +297,7 @@ class HEREqgis:
         iface.messageBar().pushWidget(progressMessageBar, level=0)
         i = 0
         for feature in layer.getFeatures():
-            url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + appId + "&app_code=" + appCode + "&searchtext=" + feature[self.dlg.fieldBox.currentField()]
+            url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + self.appId + "&app_code=" + self.appCode + "&searchtext=" + feature[self.dlg.fieldBox.currentField()]
             r = requests.get(url)
             try:
                 responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
@@ -394,18 +329,16 @@ class HEREqgis:
             except Exception as e:
                 print(e)
             i += 1
-            time.sleep(0.2)
+            time.sleep(0.3)
             progress.setValue(i)
-            time.sleep(0.2)
+            time.sleep(0.3)
         pr.addFeatures(ResultFeatureList)
         iface.messageBar().clearWidgets()
         QgsProject.instance().addMapLayer(Resultlayer)
 
-
     def batchGeocodeFields(self):
         import time, sys
-        appId = self.dlg.AppId.text()
-        appCode = self.dlg.AppCode.text()
+        self.getCredentials()
         #mapping from inputs:
 
         Resultlayer = self.createGeocodedLayer()
@@ -448,7 +381,7 @@ class HEREqgis:
                 if key != "oldIds":
                     urlPart+="&" + key +  "=" + addressLists[key][id]
                     oldAddress += addressLists[key][id] + ","
-            url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + appId + "&app_code=" + appCode + urlPart
+            url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + self.appId + "&app_code=" + self.appCode + urlPart
             r = requests.get(url)
             if r.status_code == 200:
                 #sys.stdout.write("test" + url + "\\n")
@@ -480,13 +413,17 @@ class HEREqgis:
                         geocodeResponse["MatchType"]
                     ])
                     ResultFeatureList.append(ResultFet)
-            time.sleep(0.2)
+            time.sleep(0.5)
             progress.setValue(id)
             #iface.mainWindow().repaint()
-            time.sleep(0.2)
+            time.sleep(0.5)
         pr.addFeatures(ResultFeatureList)
         iface.messageBar().clearWidgets()
         QgsProject.instance().addMapLayer(Resultlayer)
+    
+    def getCredentials(self):
+        self.appId = self.dlg.AppId.text()
+        self.appCode = self.dlg.AppCode.text()
     def getCredFunction(self):
         import webbrowser
         webbrowser.open('https://developer.here.com/')
@@ -517,46 +454,6 @@ class HEREqgis:
             self.dlg.credentialInteraction.setText("no credits found in. Check for file" + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
             #self.dlg.geocodeButton.setEnabled(False)
 
-    # def searchFieldPopulate(self):
-        # self.dlg.AddressField.clear()
-        # layer_list = [tree_layer.layer() for tree_layer in QgsProject.instance().layerTreeRoot().findLayers()]
-        # #print(self.dlg.LayerSelect.currentData())
-        # for layer in layer_list:
-        #     if layer.id() ==self.dlg.LayerSelect.currentData():
-        #         pr = layer.dataProvider()
-        #         for field in pr.fields():
-        #             self.dlg.AddressField.addItem(field.name())
-
-
-    # def searchFieldsPopulate(self):
-    #     layer_list = [tree_layer.layer() for tree_layer in QgsProject.instance().layerTreeRoot().findLayers()]
-    #     #print(self.dlg.LayerSelect.currentData())
-    #     self.dlg.CountryBox.clear()
-    #     self.dlg.StateBox.clear()
-    #     self.dlg.CountyBox.clear()
-    #     self.dlg.ZipBox.clear()
-    #     self.dlg.CityBox.clear()
-    #     self.dlg.StreetBox.clear()
-    #     self.dlg.NumberBox.clear()
-    #     for layer in layer_list:
-    #         if layer.id() ==self.dlg.LayerSelect_2.currentData():
-    #             pr = layer.dataProvider()
-    #             #sometimes no field is available for a geocode component
-    #             self.dlg.CountryBox.addItem("")
-    #             self.dlg.StateBox.addItem("")
-    #             self.dlg.CountyBox.addItem("")
-    #             self.dlg.ZipBox.addItem("")
-    #             self.dlg.CityBox.addItem("")
-    #             self.dlg.StreetBox.addItem("")
-    #             self.dlg.NumberBox.addItem("")
-    #             for field in pr.fields():
-    #                 self.dlg.CountryBox.addItem(field.name())
-    #                 self.dlg.StateBox.addItem(field.name())
-    #                 self.dlg.CountyBox.addItem(field.name())
-    #                 self.dlg.ZipBox.addItem(field.name())
-    #                 self.dlg.CityBox.addItem(field.name())
-    #                 self.dlg.StreetBox.addItem(field.name())
-    #                 self.dlg.NumberBox.addItem(field.name())
     def loadFields(self):
         self.dlg.CountryBox.setLayer(self.dlg.mapLayerBox_2.currentLayer())
         self.dlg.StateBox.setLayer(self.dlg.mapLayerBox_2.currentLayer())
@@ -583,22 +480,10 @@ class HEREqgis:
         self.dlg.show()
         #try to load credentials:
         self.loadCredFunction()
-        #self.geocodeInput()
 
-        #self.dlg.geocodeMode.currentIndexChanged.connect(self.geocodeInput)
-        #self.dlg.LayerSelect.currentIndexChanged.connect(self.searchFieldPopulate)
-        #self.dlg.LayerSelect_2.currentIndexChanged.connect(self.searchFieldsPopulate)
         self.dlg.getCreds.clicked.connect(self.getCredFunction)
         self.dlg.saveCreds.clicked.connect(self.saveCredFunction)
         self.dlg.loadCreds.clicked.connect(self.loadCredFunction)
-        #fill all layer/attributes
-        #self.dlg.LayerSelect_2.clear()
-        #layer_list = [tree_layer.layer() for tree_layer in QgsProject.instance().layerTreeRoot().findLayers()]
-        #for layer in layer_list:
-        #    if layer.type() == 0:
-                #self.dlg.LayerSelect.addItem(layer.name(), layer.id())
-
-        #        self.dlg.LayerSelect_2.addItem(layer.name(), layer.id())
         self.dlg.mapLayerBox.setAllowEmptyLayer(False)
         self.dlg.mapLayerBox.setFilters(QgsMapLayerProxyModel.VectorLayer)
         self.dlg.mapLayerBox.currentIndexChanged.connect(self.loadField)

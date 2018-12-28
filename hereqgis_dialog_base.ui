@@ -58,7 +58,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
@@ -104,26 +104,6 @@
        </property>
        <property name="text">
         <string>Geocode Single Address</string>
-       </property>
-      </widget>
-      <widget class="QgsMapLayerComboBox" name="mMapLayerComboBox">
-       <property name="geometry">
-        <rect>
-         <x>150</x>
-         <y>200</y>
-         <width>160</width>
-         <height>27</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QgsFieldComboBox" name="mFieldComboBox">
-       <property name="geometry">
-        <rect>
-         <x>150</x>
-         <y>240</y>
-         <width>160</width>
-         <height>27</height>
-        </rect>
        </property>
       </widget>
      </widget>
