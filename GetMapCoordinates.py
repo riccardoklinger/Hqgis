@@ -35,19 +35,13 @@ class GetMapCoordinates(QgsMapToolEmitPoint):
         lat = pt4326.y()
         lon = pt4326.x()
         self.getCredentials()
-
         #change dockwidget corrdinate with the original crs
         if self.dlg.captureButton.isChecked():
             url = "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=" + str(lat) + "%2C" + str(lon) +"%2C10&mode=retrieveAddresses&maxresults=1&gen=9&app_id=" + self.appId + "&app_code=" + self.appCode
             print(url)
             r = requests.get(url)
             try:
-                #ass the response may hold more than one result we only use the best one:
                 self.dlg.fromAddress.setText(json.loads(r.text)["Response"]["View"][0]["Result"][0]["Location"]["Address"]["Label"])
-                #geocodeResponse = self.convertGeocodeResponse(responseAddress)
-                #lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
-                #lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
-                #self.dlg.ToLabel.setText(str("%.4f" % lat)+' , '+str("%.4f" % lng))
             except:
                 self.dlg.fromAddress.setText("no address found")
                 print("something went wrong")
@@ -58,12 +52,7 @@ class GetMapCoordinates(QgsMapToolEmitPoint):
             print(url)
             r = requests.get(url)
             try:
-                #ass the response may hold more than one result we only use the best one:
                 self.dlg.toAddress.setText(json.loads(r.text)["Response"]["View"][0]["Result"][0]["Location"]["Address"]["Label"])
-                #geocodeResponse = self.convertGeocodeResponse(responseAddress)
-                #lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
-                #lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
-                #self.dlg.ToLabel.setText(str("%.4f" % lat)+' , '+str("%.4f" % lng))
             except:
                 self.dlg.toAddress.setText("no address found")
                 print("something went wrong")
@@ -71,8 +60,7 @@ class GetMapCoordinates(QgsMapToolEmitPoint):
             self.setWidget(self.dlg)
             self.iface.mapCanvas().setCursor(Qt.ArrowCursor)
             self.dlg.captureButton_2.setChecked(False)
-        #assign point in 4326 crs to attribute so it can be used in other classes.
-        #self.pt4326=pt4326
+
 
     def setWidget(self, dockwidget):
         print(dockwidget)
