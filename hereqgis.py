@@ -28,6 +28,7 @@ from PyQt5 import QtGui, QtWidgets, QtNetwork
 
 # Initialize Qt resources from file resources.py
 from .resources import *
+from .GetMapCoordinates import GetMapCoordinates
 # Import the code for the dialog
 from .hereqgis_dialog import HEREqgisDialog
 import os.path
@@ -68,6 +69,8 @@ class HEREqgis:
         # TODO: We are going to let the user set this up in a future iteration
         self.toolbar = self.iface.addToolBar(u'HEREqgis')
         self.toolbar.setObjectName(u'HEREqgis')
+        self.getMapCoordinates = GetMapCoordinates(self.iface)
+        self.getMapCoordTool=None
 
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
@@ -193,6 +196,7 @@ class HEREqgis:
         except:
             geocodeResponse["MatchType"] = ""
         return(geocodeResponse)
+
     def createGeocodedLayer(self):
         layer = QgsVectorLayer(
             """Point?
@@ -420,7 +424,7 @@ class HEREqgis:
         pr.addFeatures(ResultFeatureList)
         iface.messageBar().clearWidgets()
         QgsProject.instance().addMapLayer(Resultlayer)
-    
+
     def getCredentials(self):
         self.appId = self.dlg.AppId.text()
         self.appCode = self.dlg.AppCode.text()
@@ -472,6 +476,70 @@ class HEREqgis:
     def loadField(self):
         self.dlg.fieldBox.setLayer(self.dlg.mapLayerBox.currentLayer())
         self.dlg.fieldBox.setAllowEmptyFieldName(True)
+    def setGetMapToolCoordFrom(self):
+        """ Method that is connected to the target button. Activates and deactivates map tool """
+        if self.dlg.captureButton.isChecked():
+            print("true FROM")
+            self.iface.mapCanvas().unsetMapTool(self.getMapCoordTool)
+            self.dlg.captureButton_2.setChecked(True)
+            return
+        if self.dlg.captureButton.isChecked() == False:
+            self.iface.mapCanvas().setCursor(Qt.CrossCursor)
+            print("false FROM")
+            self.iface.mapCanvas().setMapTool(self.getMapCoordTool)
+            self.dlg.captureButton_2.setChecked(False)
+            return
+    def setGetMapToolCoordTo(self):
+        if self.dlg.captureButton_2.isChecked():
+
+            print("true TO")
+            self.dlg.captureButton.setChecked(True)
+            self.iface.mapCanvas().unsetMapTool(self.getMapCoordTool)
+            return
+        if self.dlg.captureButton_2.isChecked() == False:
+            print("false TO")
+            self.iface.mapCanvas().setCursor(Qt.CrossCursor)
+            self.dlg.captureButton.setChecked(False)
+            self.iface.mapCanvas().setMapTool(self.getMapCoordTool)
+            return
+    def geocodelineFrom(self):
+        self.getCredentials()
+        address = self.dlg.fromAddress.text()
+        url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + self.appId + "&app_code=" + self.appCode + "&searchtext=" + address
+        r = requests.get(url)
+        try:
+            #ass the response may hold more than one result we only use the best one:
+            responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
+            #geocodeResponse = self.convertGeocodeResponse(responseAddress)
+            lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
+            lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
+            self.dlg.FromLabel.setText(str("%.5f" % lat)+','+str("%.5f" % lng))
+        except:
+            print("something went wrong")
+    def geocodelineTo(self):
+        self.getCredentials()
+        address = self.dlg.toAddress.text()
+        url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + self.appId + "&app_code=" + self.appCode + "&searchtext=" + address
+        r = requests.get(url)
+        try:
+            #ass the response may hold more than one result we only use the best one:
+            responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
+            #geocodeResponse = self.convertGeocodeResponse(responseAddress)
+            lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
+            lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
+            self.dlg.ToLabel.setText(str("%.5f" % lat)+','+str("%.5f" % lng))
+        except:
+            print("something went wrong")
+    def calculateRouteSingle(self):
+        self.getCredentials()
+        type = self.dlg.Type.currentText()
+        mode = self.dlg.TransportMode.currentText()
+        traffic = self.dlg.trafficMode.currentText()
+        url = "https://route.api.here.com/routing/7.2/calculateroute.json?app_id=" + self.appId + "&app_code=" + self.appCode + "&mode=" + type + ";" + mode + ";traffic:" + traffic + "&waypoint0=geo!"  + self.dlg.FromLabel.text() + "&waypoint1=geo!" + self.dlg.ToLabel.text()
+        print(url)
+        r = requests.get(url)
+        self.dlg.statusShower.setText("")
+        self.dlg.statusShower.setText("distance: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["distance"]) + "time: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["baseTime"]))
     def run(self):
         from qgis.core import QgsProject
         from qgis.core import QgsMapLayerProxyModel
@@ -496,6 +564,24 @@ class HEREqgis:
         self.dlg.batchGeocodeFieldButton.clicked.connect(self.batchGeocodeField)
         self.dlg.batchGeocodeFieldsButton.clicked.connect(self.batchGeocodeFields)
 
+        self.dlg.calcRouteSingleButton.clicked.connect(self.calculateRouteSingle)
+
+        #coordButton
+        # Activate click tool in canvas.
+        self.dlg.captureButton.setIcon(QIcon(os.path.join(os.path.dirname(__file__),"target.png")))
+        self.dlg.captureButton_2.setIcon(QIcon(os.path.join(os.path.dirname(__file__),"target.png")))
+
+        #self.dlg.captureButton.setChecked(True)
+        self.dlg.captureButton.pressed.connect(self.setGetMapToolCoordFrom)
+        self.dlg.captureButton_2.pressed.connect(self.setGetMapToolCoordTo)
+        self.dlg.fromAddress.editingFinished .connect(self.geocodelineFrom)
+        self.dlg.toAddress.editingFinished .connect(self.geocodelineTo)
+        #self.dlg.captureButton.setChecked(True)
+        self.getMapCoordTool=self.getMapCoordinates
+        self.getMapCoordTool.setButton(self.dlg.captureButton)
+        self.getMapCoordTool.setButton(self.dlg.captureButton_2)
+        self.getMapCoordTool.setWidget(self.dlg)
+        self.iface.mapCanvas().setMapTool(self.getMapCoordTool)
         # Run the dialog event loop
         result = self.dlg.exec_()
         # See if OK was pressed
