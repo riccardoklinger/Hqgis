@@ -539,7 +539,7 @@ class HEREqgis:
         print(url)
         r = requests.get(url)
         self.dlg.statusShower.setText("")
-        self.dlg.statusShower.setText("distance: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["distance"]) + "time: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["baseTime"]))
+        self.dlg.statusShower.setText("distance: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["distance"]) + " time: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["baseTime"]))
     def run(self):
         from qgis.core import QgsProject
         from qgis.core import QgsMapLayerProxyModel
