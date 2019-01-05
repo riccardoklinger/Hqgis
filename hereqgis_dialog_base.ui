@@ -42,7 +42,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -523,6 +523,11 @@
       </attribute>
      </widget>
     </widget>
+   </widget>
+   <widget class="QWidget" name="tab_10">
+    <attribute name="title">
+     <string>POI Search</string>
+    </attribute>
    </widget>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
