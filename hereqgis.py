@@ -34,7 +34,7 @@ from .hereqgis_dialog import HEREqgisDialog
 import os.path
 import requests, json, urllib
 from PyQt5.QtCore import QVariant
-from qgis.core import QgsPointXY, QgsGeometry,QgsMapLayerProxyModel, QgsVectorLayer, QgsProject, QgsFeature, QgsField, QgsMessageLog, QgsNetworkAccessManager
+from qgis.core import QgsPoint, QgsPointXY, QgsGeometry,QgsMapLayerProxyModel, QgsVectorLayer, QgsProject, QgsFeature, QgsField, QgsMessageLog, QgsNetworkAccessManager
 from qgis.PyQt.QtWidgets import QProgressBar
 from qgis.PyQt.QtCore import *
 from qgis.utils import iface
@@ -286,6 +286,18 @@ class HEREqgis:
             QgsField("vicinity",QVariant.String),
             QgsField("distance",QVariant.Double),
             QgsField("category",QVariant.String),
+        ])
+        layer.updateFields()
+        return(layer)
+    def createRouteLayer(self):
+        layer = QgsVectorLayer("Linestring?epsg:4326&index=yes","RouteLayer", "memory")
+        layer.dataProvider().addAttributes([
+            QgsField("id",QVariant.Int),
+            QgsField("distance",QVariant.Double),
+            QgsField("time",QVariant.Double),
+            QgsField("mode",QVariant.String),
+            QgsField("traffic",QVariant.String),
+            QgsField("type",QVariant.String)
         ])
         layer.updateFields()
         return(layer)
@@ -601,10 +613,13 @@ class HEREqgis:
             lineEdits[1].setText(str("%.5f" % lat)+','+str("%.5f" % lng))
         except:
             print("something went wrong")
-        if lineEdits[1].text() != "":
-            lineEdits[2].setEnabled(True)
-        else:
-            lineEdits[2].setEnabled(False)
+        try:
+            if lineEdits[1].text() != "":
+                lineEdits[2].setEnabled(True)
+            else:
+                lineEdits[2].setEnabled(False)
+        except:
+            print("routing")
     def geocodelinePlace(self):
         self.getCredentials()
         address = self.dlg.placesAddress.text()
@@ -632,11 +647,35 @@ class HEREqgis:
         type = self.dlg.Type.currentText()
         mode = self.dlg.TransportMode.currentText()
         traffic = self.dlg.trafficMode.currentText()
-        url = "https://route.api.here.com/routing/7.2/calculateroute.json?app_id=" + self.appId + "&app_code=" + self.appCode + "&mode=" + type + ";" + mode + ";traffic:" + traffic + "&waypoint0=geo!"  + self.dlg.FromLabel.text() + "&waypoint1=geo!" + self.dlg.ToLabel.text()
+        url = "https://route.api.here.com/routing/7.2/calculateroute.json?app_id=" + self.appId + "&app_code=" + self.appCode + "&routeAttributes=shape&mode=" + type + ";" + mode + ";traffic:" + traffic + "&waypoint0=geo!"  + self.dlg.FromLabel.text() + "&waypoint1=geo!" + self.dlg.ToLabel.text()
         print(url)
         r = requests.get(url)
-        self.dlg.status2.setText("distance: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["distance"]) +  " time: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["baseTime"]))
-
+        layer = self.createRouteLayer()
+        if r.status_code == 200:
+            try:
+                self.dlg.status2.setText("distance: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["distance"]) +  " time: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["baseTime"]))
+                responseRoute = json.loads(r.text)["response"]["route"][0]["shape"]
+                print(responseRoute)
+                vertices = []
+                for routePoint in responseRoute:
+                    lat = float(routePoint.split(",")[0])
+                    lng = float(routePoint.split(",")[1])
+                    vertices.append(QgsPoint(lng,lat))
+                fet = QgsFeature()
+                fet.setGeometry(QgsGeometry.fromPolyline(vertices))
+                fet.setAttributes([
+                    0,
+                    json.loads(r.text)["response"]["route"][0]["summary"]["distance"],
+                    json.loads(r.text)["response"]["route"][0]["summary"]["baseTime"],
+                    mode,
+                    traffic,
+                    type
+                ])
+                pr = layer.dataProvider()
+                pr.addFeatures([fet])
+                QgsProject.instance().addMapLayer(layer)
+            except Exception as e:
+                print(e)
     def getPlacesSingle(self):
         self.getCredentials()
         radius = self.dlg.RadiusBox.value()
@@ -675,7 +714,7 @@ class HEREqgis:
                     QgsProject.instance().addMapLayer(layer)
                 except Exception as e:
                     print(e)
-        
+
     def run(self):
 
         """Run method that performs all the real work"""

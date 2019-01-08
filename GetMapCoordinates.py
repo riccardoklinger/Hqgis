@@ -2,7 +2,7 @@ from qgis.PyQt.QtCore import Qt, QUrl
 from qgis.PyQt.QtGui import *
 from qgis.PyQt.QtWidgets import *
 from qgis.core import Qgis,QgsCoordinateReferenceSystem, QgsCoordinateTransform, QgsProject
-from qgis.gui import QgsMapToolEmitPoint
+from qgis.gui import QgsMapToolEmitPoint, QgsMapToolPan
 import requests,json
 
 class GetMapCoordinates(QgsMapToolEmitPoint):
@@ -22,8 +22,10 @@ class GetMapCoordinates(QgsMapToolEmitPoint):
         self.appId = self.dlg.AppId.text()
         self.appCode = self.dlg.AppCode.text()
     def clicked(self, pt, b):
-
-        print(b)
+        if b==1:
+            print("hoops")
+        else:
+            print("active")
         #if self.dlg.captureButton.isChecked():
         '''Capture the coordinate when the mouse button has been released,
         format it, and copy it to dashboard'''
@@ -73,6 +75,7 @@ class GetMapCoordinates(QgsMapToolEmitPoint):
             self.setWidget(self.dlg)
             self.iface.mapCanvas().setCursor(Qt.ArrowCursor)
             self.dlg.captureButton_4.setChecked(False)
+        QgsMapToolPan.activate(self)
 
     def setWidget(self, dockwidget):
         print(dockwidget)
