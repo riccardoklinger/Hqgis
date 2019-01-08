@@ -25,7 +25,7 @@ from PyQt5.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, QUr
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QAction, QFileDialog
 from PyQt5 import QtGui, QtWidgets, QtNetwork
-
+from functools import partial
 # Initialize Qt resources from file resources.py
 from .resources import *
 from .GetMapCoordinates import GetMapCoordinates
@@ -34,7 +34,7 @@ from .hereqgis_dialog import HEREqgisDialog
 import os.path
 import requests, json, urllib
 from PyQt5.QtCore import QVariant
-from qgis.core import QgsPointXY, QgsGeometry, QgsVectorLayer, QgsProject, QgsFeature, QgsField, QgsMessageLog, QgsNetworkAccessManager
+from qgis.core import QgsPointXY, QgsGeometry,QgsMapLayerProxyModel, QgsVectorLayer, QgsProject, QgsFeature, QgsField, QgsMessageLog, QgsNetworkAccessManager
 from qgis.PyQt.QtWidgets import QProgressBar
 from qgis.PyQt.QtCore import *
 from qgis.utils import iface
@@ -122,6 +122,52 @@ class HEREqgis:
             text=self.tr(u'Access the HERE API'),
             callback=self.run,
             parent=self.iface.mainWindow())
+        self.loadCredFunction()
+
+        self.dlg.getCreds.clicked.connect(self.getCredFunction)
+        self.dlg.saveCreds.clicked.connect(self.saveCredFunction)
+        self.dlg.loadCreds.clicked.connect(self.loadCredFunction)
+        self.dlg.mapLayerBox.setAllowEmptyLayer(False)
+        self.dlg.mapLayerBox.setFilters(QgsMapLayerProxyModel.VectorLayer)
+        self.dlg.mapLayerBox.currentIndexChanged.connect(self.loadField)
+        self.loadField()
+        self.dlg.mapLayerBox_2.setAllowEmptyLayer(False)
+        self.dlg.mapLayerBox_2.setFilters(QgsMapLayerProxyModel.VectorLayer)
+        self.loadFields()
+        self.dlg.mapLayerBox_2.currentIndexChanged.connect(self.loadFields)
+        self.dlg.geocodeAddressButton.clicked.connect(self.geocode)
+        self.dlg.batchGeocodeFieldButton.clicked.connect(self.batchGeocodeField)
+        self.dlg.batchGeocodeFieldsButton.clicked.connect(self.batchGeocodeFields)
+
+        self.dlg.calcRouteSingleButton.clicked.connect(self.calculateRouteSingle)
+
+        #coordButton
+        # Activate click tool in canvas.
+        self.dlg.captureButton.setIcon(QIcon(os.path.join(os.path.dirname(__file__),"target.png")))
+        self.dlg.captureButton_2.setIcon(QIcon(os.path.join(os.path.dirname(__file__),"target.png")))
+
+        #self.dlg.captureButton.setChecked(True)
+        self.dlg.captureButton.pressed.connect(self.setGetMapToolCoordFrom)
+        self.dlg.captureButton_2.pressed.connect(self.setGetMapToolCoordTo)
+        self.dlg.fromAddress.editingFinished .connect(partial(self.geocodeline,[self.dlg.fromAddress,self.dlg.FromLabel]))
+
+        self.dlg.toAddress.editingFinished .connect(partial(self.geocodeline,[self.dlg.toAddress,self.dlg.ToLabel]))
+        #self.dlg.captureButton.setChecked(True)
+        self.getMapCoordTool=self.getMapCoordinates
+        self.getMapCoordTool.setButton(self.dlg.captureButton)
+        self.getMapCoordTool.setButton(self.dlg.captureButton_2)
+        self.getMapCoordTool.setButton(self.dlg.captureButton_4)
+        self.getMapCoordTool.setWidget(self.dlg)
+        self.iface.mapCanvas().setMapTool(self.getMapCoordTool)
+        self.dlg.captureButton_4.setIcon(QIcon(os.path.join(os.path.dirname(__file__),"target.png")))
+        self.dlg.findPOISButton.setEnabled(False)
+        self.dlg.captureButton_4.pressed.connect(self.setGetMapToolCoordPlace)
+
+        self.dlg.findPOISButton.clicked.connect(self.getPlacesSingle)
+        self.dlg.listWidget.sortItems(0)
+        self.dlg.listWidget.itemSelectionChanged.connect(self.checkPlacesInput)
+        self.dlg.placesAddress.editingFinished .connect(partial(self.geocodeline,[self.dlg.placesAddress,self.dlg.placeLabel, self.dlg.findPOISButton]))
+
 
 
     def unload(self):
@@ -226,6 +272,24 @@ class HEREqgis:
         ])
         layer.updateFields()
         return(layer)
+    def createPlaceLayer(self):
+        layer = QgsVectorLayer(
+            """Point?
+            crs=epsg:4326
+            &index=yes""",
+            "PlaceLayer",
+            "memory"
+        )
+        layer.dataProvider().addAttributes([
+            QgsField("id",QVariant.Int),
+            QgsField("title",QVariant.String),
+            QgsField("vicinity",QVariant.String),
+            QgsField("distance",QVariant.Double),
+            QgsField("category",QVariant.String),
+        ])
+        layer.updateFields()
+        return(layer)
+
     def messageShow(self, progress, count, max):
         if not progress:
             progressMessageBar = iface.messageBar().createMessage("Looping through " + str(max) +" records ...")
@@ -424,7 +488,7 @@ class HEREqgis:
         pr.addFeatures(ResultFeatureList)
         iface.messageBar().clearWidgets()
         QgsProject.instance().addMapLayer(Resultlayer)
-
+        self.dlg.exec_()
     def getCredentials(self):
         self.appId = self.dlg.AppId.text()
         self.appCode = self.dlg.AppCode.text()
@@ -491,7 +555,6 @@ class HEREqgis:
             return
     def setGetMapToolCoordTo(self):
         if self.dlg.captureButton_2.isChecked():
-
             print("true TO")
             self.dlg.captureButton.setChecked(True)
             self.iface.mapCanvas().unsetMapTool(self.getMapCoordTool)
@@ -500,6 +563,14 @@ class HEREqgis:
             print("false TO")
             self.iface.mapCanvas().setCursor(Qt.CrossCursor)
             self.dlg.captureButton.setChecked(False)
+            self.iface.mapCanvas().setMapTool(self.getMapCoordTool)
+            return
+    def setGetMapToolCoordPlace(self):
+        if self.dlg.captureButton_4.isChecked():
+            self.iface.mapCanvas().unsetMapTool(self.getMapCoordTool)
+            return
+        if self.dlg.captureButton_4.isChecked() == False:
+            self.iface.mapCanvas().setCursor(Qt.CrossCursor)
             self.iface.mapCanvas().setMapTool(self.getMapCoordTool)
             return
     def geocodelineFrom(self):
@@ -516,9 +587,9 @@ class HEREqgis:
             self.dlg.FromLabel.setText(str("%.5f" % lat)+','+str("%.5f" % lng))
         except:
             print("something went wrong")
-    def geocodelineTo(self):
+    def geocodeline(self, lineEdits):
         self.getCredentials()
-        address = self.dlg.toAddress.text()
+        address = lineEdits[0].text()
         url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + self.appId + "&app_code=" + self.appCode + "&searchtext=" + address
         r = requests.get(url)
         try:
@@ -527,9 +598,35 @@ class HEREqgis:
             #geocodeResponse = self.convertGeocodeResponse(responseAddress)
             lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
             lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
-            self.dlg.ToLabel.setText(str("%.5f" % lat)+','+str("%.5f" % lng))
+            lineEdits[1].setText(str("%.5f" % lat)+','+str("%.5f" % lng))
         except:
             print("something went wrong")
+        if lineEdits[1].text() != "":
+            lineEdits[2].setEnabled(True)
+        else:
+            lineEdits[2].setEnabled(False)
+    def geocodelinePlace(self):
+        self.getCredentials()
+        address = self.dlg.placesAddress.text()
+        self.dlg.findPOISButton.setEnabled(True)
+        print(self.dlg.findPOISButton.enabled())
+        if address != "":
+            url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + self.appId + "&app_code=" + self.appCode + "&searchtext=" + address
+            r = requests.get(url)
+            try:
+                #ass the response may hold more than one result we only use the best one:
+                responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
+                #geocodeResponse = self.convertGeocodeResponse(responseAddress)
+                lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
+                lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
+                self.dlg.placeLabel.setText(str("%.5f" % lat)+','+str("%.5f" % lng))
+            except:
+                print("something went wrong")
+    def checkPlacesInput(self):
+        if self.dlg.placeLabel.text() != "" and len(self.dlg.listWidget.selectedItems())>0:
+            self.dlg.findPOISButton.setEnabled(True)
+        else:
+            self.dlg.findPOISButton.setEnabled(False)
     def calculateRouteSingle(self):
         self.getCredentials()
         type = self.dlg.Type.currentText()
@@ -541,51 +638,51 @@ class HEREqgis:
         self.dlg.status2.setText("distance: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["distance"]) +  " time: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["baseTime"]))
 
     def getPlacesSingle(self):
-        print(places)
+        self.getCredentials()
+        radius = self.dlg.RadiusBox.value()
+        categories = self.dlg.listWidget.selectedItems()
+        categoriesList = []
+        for category in categories:
+            categoriesList.append(category.text())
+        categories = ",".join(categoriesList)
+        coordinates = self.dlg.placeLabel.text()
 
+        url = "https://places.cit.api.here.com/places/v1/discover/explore?in=" + coordinates + ";r=" + str(radius*1000) + "&cat=" + categories +"&drilldown=false&size=10000&X-Mobility-Mode=drive&app_id=" + self.appId + "&app_code=" + self.appCode
+        r = requests.get(url)
+        print(url)
+        if r.status_code == 200:
+            if len(json.loads(r.text)["results"]["items"])>0:
+                try:
+                    #ass the response may hold more than one result we only use the best one:
+                    responsePlaces = json.loads(r.text)["results"]["items"]
+                    layer = self.createPlaceLayer()
+                    features = []
+                    for place in responsePlaces:
+                        lat = place["position"][0]
+                        lng = place["position"][1]
+                        fet = QgsFeature()
+                        fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
+                        fet.setAttributes([
+                            place["id"],
+                            place["title"],
+                            place["vicinity"],
+                            place["distance"],
+                            place["category"]["title"]
+                        ])
+                        features.append(fet)
+                    pr = layer.dataProvider()
+                    pr.addFeatures(features)
+                    QgsProject.instance().addMapLayer(layer)
+                except Exception as e:
+                    print(e)
+        
     def run(self):
-        from qgis.core import QgsProject
-        from qgis.core import QgsMapLayerProxyModel
+
         """Run method that performs all the real work"""
         # show the dialog
         self.dlg.show()
         #try to load credentials:
-        self.loadCredFunction()
 
-        self.dlg.getCreds.clicked.connect(self.getCredFunction)
-        self.dlg.saveCreds.clicked.connect(self.saveCredFunction)
-        self.dlg.loadCreds.clicked.connect(self.loadCredFunction)
-        self.dlg.mapLayerBox.setAllowEmptyLayer(False)
-        self.dlg.mapLayerBox.setFilters(QgsMapLayerProxyModel.VectorLayer)
-        self.dlg.mapLayerBox.currentIndexChanged.connect(self.loadField)
-        self.loadField()
-        self.dlg.mapLayerBox_2.setAllowEmptyLayer(False)
-        self.dlg.mapLayerBox_2.setFilters(QgsMapLayerProxyModel.VectorLayer)
-        self.loadFields()
-        self.dlg.mapLayerBox_2.currentIndexChanged.connect(self.loadFields)
-        self.dlg.geocodeAddressButton.clicked.connect(self.geocode)
-        self.dlg.batchGeocodeFieldButton.clicked.connect(self.batchGeocodeField)
-        self.dlg.batchGeocodeFieldsButton.clicked.connect(self.batchGeocodeFields)
-
-        self.dlg.calcRouteSingleButton.clicked.connect(self.calculateRouteSingle)
-
-        #coordButton
-        # Activate click tool in canvas.
-        self.dlg.captureButton.setIcon(QIcon(os.path.join(os.path.dirname(__file__),"target.png")))
-        self.dlg.captureButton_2.setIcon(QIcon(os.path.join(os.path.dirname(__file__),"target.png")))
-
-        #self.dlg.captureButton.setChecked(True)
-        self.dlg.captureButton.pressed.connect(self.setGetMapToolCoordFrom)
-        self.dlg.captureButton_2.pressed.connect(self.setGetMapToolCoordTo)
-        self.dlg.fromAddress.editingFinished .connect(self.geocodelineFrom)
-        self.dlg.toAddress.editingFinished .connect(self.geocodelineTo)
-        #self.dlg.captureButton.setChecked(True)
-        self.getMapCoordTool=self.getMapCoordinates
-        self.getMapCoordTool.setButton(self.dlg.captureButton)
-        self.getMapCoordTool.setButton(self.dlg.captureButton_2)
-        self.getMapCoordTool.setWidget(self.dlg)
-        self.iface.mapCanvas().setMapTool(self.getMapCoordTool)
-        self.dlg.findPOISButton.clicked.connect(self.getPlacesSingle)
         # Run the dialog event loop
         result = self.dlg.exec_()
         # See if OK was pressed

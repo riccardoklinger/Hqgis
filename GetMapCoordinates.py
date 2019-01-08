@@ -49,7 +49,6 @@ class GetMapCoordinates(QgsMapToolEmitPoint):
             self.dlg.captureButton.setChecked(False)
         if self.dlg.captureButton_2.isChecked():
             url = "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=" + str(lat) + "%2C" + str(lon) +"%2C10&mode=retrieveAddresses&maxresults=1&gen=9&app_id=" + self.appId + "&app_code=" + self.appCode
-            print(url)
             r = requests.get(url)
             try:
                 self.dlg.toAddress.setText(json.loads(r.text)["Response"]["View"][0]["Result"][0]["Location"]["Address"]["Label"])
@@ -60,7 +59,20 @@ class GetMapCoordinates(QgsMapToolEmitPoint):
             self.setWidget(self.dlg)
             self.iface.mapCanvas().setCursor(Qt.ArrowCursor)
             self.dlg.captureButton_2.setChecked(False)
+        if self.dlg.captureButton_4.isChecked():
+            url = "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=" + str(lat) + "%2C" + str(lon) +"%2C10&mode=retrieveAddresses&maxresults=1&gen=9&app_id=" + self.appId + "&app_code=" + self.appCode
 
+            r = requests.get(url)
+            try:
+                self.dlg.placesAddress.setText(json.loads(r.text)["Response"]["View"][0]["Result"][0]["Location"]["Address"]["Label"])
+            except:
+                self.dlg.placesAddress.setText("no address found")
+                print("something went wrong")
+            self.dlg.placeLabel.setText(str("%.5f" % lat)+','+str("%.5f" % lon))
+            self.dlg.findPOISButton.setEnabled(True)
+            self.setWidget(self.dlg)
+            self.iface.mapCanvas().setCursor(Qt.ArrowCursor)
+            self.dlg.captureButton_4.setChecked(False)
 
     def setWidget(self, dockwidget):
         print(dockwidget)

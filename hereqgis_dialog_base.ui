@@ -42,7 +42,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
@@ -272,11 +272,11 @@
        <x>0</x>
        <y>0</y>
        <width>441</width>
-       <height>221</height>
+       <height>381</height>
       </rect>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_7">
       <attribute name="title">
@@ -288,10 +288,10 @@
          <x>0</x>
          <y>0</y>
          <width>431</width>
-         <height>111</height>
+         <height>229</height>
         </rect>
        </property>
-       <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0,0,0,0,0,0,0" rowminimumheight="0,0,0,0,0,0,0,0">
+       <layout class="QGridLayout" name="gridLayout_2">
         <item row="3" column="0">
          <widget class="QLabel" name="label_15">
           <property name="text">
@@ -379,10 +379,112 @@
           </property>
          </widget>
         </item>
+        <item row="5" column="1">
+         <widget class="QComboBox" name="TransportMode">
+          <item>
+           <property name="text">
+            <string>pedestrian</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>bicycle</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>public transport </string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>car</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>high-occupancy vehicle</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>truck</string>
+           </property>
+          </item>
+         </widget>
+        </item>
         <item row="3" column="1">
          <widget class="QLabel" name="ToLabel">
           <property name="text">
            <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <widget class="QComboBox" name="trafficMode">
+          <item>
+           <property name="text">
+            <string>disabled</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>enabled</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QComboBox" name="Type">
+          <item>
+           <property name="text">
+            <string>fastest</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>shortest</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>balanced</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="7" column="1">
+         <widget class="QDateTimeEdit" name="dateTimeEdit">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_16">
+          <property name="text">
+           <string>Type</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_18">
+          <property name="text">
+           <string>Travel Mode</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="label_17">
+          <property name="text">
+           <string>Traffic</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="label_19">
+          <property name="text">
+           <string>Start Time</string>
           </property>
          </widget>
         </item>
@@ -392,7 +494,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>150</y>
+         <y>320</y>
          <width>431</width>
          <height>32</height>
         </rect>
@@ -406,178 +508,12 @@
       <attribute name="title">
        <string>single layer input</string>
       </attribute>
-      <widget class="QPushButton" name="calcRouteSingleButton_2">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>150</y>
-         <width>431</width>
-         <height>32</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Calculate Routes from Layer</string>
-       </property>
-      </widget>
      </widget>
      <widget class="QWidget" name="tab_9">
       <attribute name="title">
        <string>dual layer input</string>
       </attribute>
-      <widget class="QPushButton" name="calcRouteSingleButton_3">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>150</y>
-         <width>431</width>
-         <height>32</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Calculate Routes from Layers</string>
-       </property>
-      </widget>
      </widget>
-    </widget>
-    <widget class="QWidget" name="formLayoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>260</y>
-       <width>431</width>
-       <height>115</height>
-      </rect>
-     </property>
-     <layout class="QFormLayout" name="formLayout">
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_16">
-        <property name="text">
-         <string>Type</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="Type">
-        <item>
-         <property name="text">
-          <string>fastest</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>shortest</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>balanced</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_18">
-        <property name="text">
-         <string>Travel Mode</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QComboBox" name="TransportMode">
-        <item>
-         <property name="text">
-          <string>pedestrian</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>bicycle</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>public transport </string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>car</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>high-occupancy vehicle</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>truck</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="label_17">
-        <property name="text">
-         <string>Traffic</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QComboBox" name="trafficMode">
-        <item>
-         <property name="text">
-          <string>disabled</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>enabled</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="label_19">
-        <property name="text">
-         <string>Start Time</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QDateTimeEdit" name="dateTimeEdit">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-    <widget class="Line" name="line">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>250</y>
-       <width>441</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_12">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>230</y>
-       <width>141</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Route Settings</string>
-     </property>
     </widget>
    </widget>
    <widget class="QWidget" name="tab_10">
@@ -618,7 +554,7 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLabel" name="FromLabel_2">
+         <widget class="QLabel" name="placeLabel">
           <property name="text">
            <string/>
           </property>
@@ -632,7 +568,7 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="fromAddress_2">
+         <widget class="QLineEdit" name="placesAddress">
           <property name="placeholderText">
            <string>11 Wall Street, New York, NY</string>
           </property>
@@ -665,7 +601,7 @@
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QSpinBox" name="spinBox">
+         <widget class="QSpinBox" name="RadiusBox">
           <property name="value">
            <number>10</number>
           </property>
@@ -675,6 +611,9 @@
          <widget class="QListWidget" name="listWidget">
           <property name="selectionMode">
            <enum>QAbstractItemView::MultiSelection</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
           </property>
           <item>
            <property name="text">
