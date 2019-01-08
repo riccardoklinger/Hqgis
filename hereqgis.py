@@ -538,8 +538,11 @@ class HEREqgis:
         url = "https://route.api.here.com/routing/7.2/calculateroute.json?app_id=" + self.appId + "&app_code=" + self.appCode + "&mode=" + type + ";" + mode + ";traffic:" + traffic + "&waypoint0=geo!"  + self.dlg.FromLabel.text() + "&waypoint1=geo!" + self.dlg.ToLabel.text()
         print(url)
         r = requests.get(url)
-        self.dlg.statusShower.setText("")
-        self.dlg.statusShower.setText("distance: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["distance"]) + "time: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["baseTime"]))
+        self.dlg.status2.setText("distance: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["distance"]) +  " time: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["baseTime"]))
+
+    def getPlacesSingle(self):
+        print(places)
+
     def run(self):
         from qgis.core import QgsProject
         from qgis.core import QgsMapLayerProxyModel
@@ -582,6 +585,7 @@ class HEREqgis:
         self.getMapCoordTool.setButton(self.dlg.captureButton_2)
         self.getMapCoordTool.setWidget(self.dlg)
         self.iface.mapCanvas().setMapTool(self.getMapCoordTool)
+        self.dlg.findPOISButton.clicked.connect(self.getPlacesSingle)
         # Run the dialog event loop
         result = self.dlg.exec_()
         # See if OK was pressed
