@@ -75,7 +75,6 @@ class GetMapCoordinates(QgsMapToolEmitPoint):
             self.setWidget(self.dlg)
             self.iface.mapCanvas().setCursor(Qt.ArrowCursor)
             self.dlg.captureButton_4.setChecked(False)
-        QgsMapToolPan.activate(self)
 
     def setWidget(self, dockwidget):
         print(dockwidget)

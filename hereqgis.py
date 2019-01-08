@@ -650,30 +650,31 @@ class HEREqgis:
         url = "https://route.api.here.com/routing/7.2/calculateroute.json?app_id=" + self.appId + "&app_code=" + self.appCode + "&routeAttributes=shape&mode=" + type + ";" + mode + ";traffic:" + traffic + "&waypoint0=geo!"  + self.dlg.FromLabel.text() + "&waypoint1=geo!" + self.dlg.ToLabel.text()
         print(url)
         r = requests.get(url)
-        layer = self.createRouteLayer()
+
         if r.status_code == 200:
             try:
                 self.dlg.status2.setText("distance: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["distance"]) +  " time: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["baseTime"]))
-                responseRoute = json.loads(r.text)["response"]["route"][0]["shape"]
-                print(responseRoute)
-                vertices = []
-                for routePoint in responseRoute:
-                    lat = float(routePoint.split(",")[0])
-                    lng = float(routePoint.split(",")[1])
-                    vertices.append(QgsPoint(lng,lat))
-                fet = QgsFeature()
-                fet.setGeometry(QgsGeometry.fromPolyline(vertices))
-                fet.setAttributes([
-                    0,
-                    json.loads(r.text)["response"]["route"][0]["summary"]["distance"],
-                    json.loads(r.text)["response"]["route"][0]["summary"]["baseTime"],
-                    mode,
-                    traffic,
-                    type
-                ])
-                pr = layer.dataProvider()
-                pr.addFeatures([fet])
-                QgsProject.instance().addMapLayer(layer)
+                if self.dlg.routeLayerCheckBox.checkState():
+                    layer = self.createRouteLayer()
+                    responseRoute = json.loads(r.text)["response"]["route"][0]["shape"]
+                    vertices = []
+                    for routePoint in responseRoute:
+                        lat = float(routePoint.split(",")[0])
+                        lng = float(routePoint.split(",")[1])
+                        vertices.append(QgsPoint(lng,lat))
+                    fet = QgsFeature()
+                    fet.setGeometry(QgsGeometry.fromPolyline(vertices))
+                    fet.setAttributes([
+                        0,
+                        json.loads(r.text)["response"]["route"][0]["summary"]["distance"],
+                        json.loads(r.text)["response"]["route"][0]["summary"]["baseTime"],
+                        mode,
+                        traffic,
+                        type
+                    ])
+                    pr = layer.dataProvider()
+                    pr.addFeatures([fet])
+                    QgsProject.instance().addMapLayer(layer)
             except Exception as e:
                 print(e)
     def getPlacesSingle(self):

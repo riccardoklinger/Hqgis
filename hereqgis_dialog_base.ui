@@ -26,7 +26,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -288,14 +288,62 @@
          <x>0</x>
          <y>0</y>
          <width>431</width>
-         <height>229</height>
+         <height>241</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_15">
+        <item row="5" column="1">
+         <widget class="QComboBox" name="TransportMode">
+          <item>
+           <property name="text">
+            <string>pedestrian</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>bicycle</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>public transport </string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>car</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>high-occupancy vehicle</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>truck</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="label_17">
           <property name="text">
-           <string>Coordinates</string>
+           <string>Traffic</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="fromAddress">
+          <property name="placeholderText">
+           <string>11 Wall Street, New York, NY</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1">
+         <widget class="QDateTimeEdit" name="dateTimeEdit">
+          <property name="enabled">
+           <bool>false</bool>
           </property>
          </widget>
         </item>
@@ -337,20 +385,6 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_14">
-          <property name="text">
-           <string>Coordinates</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLabel" name="FromLabel">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="0">
          <widget class="QLabel" name="label_3">
           <property name="text">
@@ -358,10 +392,29 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="fromAddress">
-          <property name="placeholderText">
-           <string>11 Wall Street, New York, NY</string>
+        <item row="4" column="1">
+         <widget class="QComboBox" name="Type">
+          <item>
+           <property name="text">
+            <string>fastest</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>shortest</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>balanced</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_18">
+          <property name="text">
+           <string>Travel Mode</string>
           </property>
          </widget>
         </item>
@@ -372,6 +425,13 @@
           </property>
          </widget>
         </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="label_19">
+          <property name="text">
+           <string>Start Time</string>
+          </property>
+         </widget>
+        </item>
         <item row="2" column="0">
          <widget class="QLabel" name="label_11">
           <property name="text">
@@ -379,38 +439,25 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="1">
-         <widget class="QComboBox" name="TransportMode">
-          <item>
-           <property name="text">
-            <string>pedestrian</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>bicycle</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>public transport </string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>car</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>high-occupancy vehicle</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>truck</string>
-           </property>
-          </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="FromLabel">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_16">
+          <property name="text">
+           <string>Type</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_14">
+          <property name="text">
+           <string>Coordinates</string>
+          </property>
          </widget>
         </item>
         <item row="3" column="1">
@@ -434,57 +481,20 @@
           </item>
          </widget>
         </item>
-        <item row="4" column="1">
-         <widget class="QComboBox" name="Type">
-          <item>
-           <property name="text">
-            <string>fastest</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>shortest</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>balanced</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="7" column="1">
-         <widget class="QDateTimeEdit" name="dateTimeEdit">
-          <property name="enabled">
-           <bool>false</bool>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_15">
+          <property name="text">
+           <string>Coordinates</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_16">
+        <item row="8" column="1">
+         <widget class="QCheckBox" name="routeLayerCheckBox">
           <property name="text">
-           <string>Type</string>
+           <string>create memory  route layer</string>
           </property>
-         </widget>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="label_18">
-          <property name="text">
-           <string>Travel Mode</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="0">
-         <widget class="QLabel" name="label_17">
-          <property name="text">
-           <string>Traffic</string>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="0">
-         <widget class="QLabel" name="label_19">
-          <property name="text">
-           <string>Start Time</string>
+          <property name="checked">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -495,7 +505,7 @@
         <rect>
          <x>0</x>
          <y>320</y>
-         <width>431</width>
+         <width>401</width>
          <height>32</height>
         </rect>
        </property>
