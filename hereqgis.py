@@ -22,7 +22,7 @@
  ***************************************************************************/
 """
 from PyQt5.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, QUrl
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon, QColor
 from PyQt5.QtWidgets import QAction, QFileDialog
 from PyQt5 import QtGui, QtWidgets, QtNetwork
 from functools import partial
@@ -34,7 +34,7 @@ from .hereqgis_dialog import HEREqgisDialog
 import os.path
 import requests, json, urllib
 from PyQt5.QtCore import QVariant
-from qgis.core import QgsPoint, QgsPointXY, QgsGeometry,QgsMapLayerProxyModel, QgsVectorLayer, QgsProject, QgsFeature, QgsField, QgsMessageLog, QgsNetworkAccessManager
+from qgis.core import QgsPoint,QgsSymbol, QgsRendererRange, QgsGraduatedSymbolRenderer, QgsPointXY, QgsGeometry,QgsMapLayerProxyModel, QgsVectorLayer, QgsProject, QgsFeature, QgsField, QgsMessageLog, QgsNetworkAccessManager
 from qgis.PyQt.QtWidgets import QProgressBar
 from qgis.PyQt.QtCore import *
 from qgis.utils import iface
@@ -147,9 +147,6 @@ class HEREqgis:
         self.dlg.captureButton_2.setIcon(QIcon(os.path.join(os.path.dirname(__file__),"target.png")))
 
         #self.dlg.captureButton.setChecked(True)
-        self.dlg.captureButton.pressed.connect(self.setGetMapToolCoordFrom)
-        self.dlg.captureButton_2.pressed.connect(self.setGetMapToolCoordTo)
-        self.dlg.fromAddress.editingFinished .connect(partial(self.geocodeline,[self.dlg.fromAddress,self.dlg.FromLabel]))
 
         self.dlg.toAddress.editingFinished .connect(partial(self.geocodeline,[self.dlg.toAddress,self.dlg.ToLabel]))
         #self.dlg.captureButton.setChecked(True)
@@ -157,17 +154,26 @@ class HEREqgis:
         self.getMapCoordTool.setButton(self.dlg.captureButton)
         self.getMapCoordTool.setButton(self.dlg.captureButton_2)
         self.getMapCoordTool.setButton(self.dlg.captureButton_4)
+        self.getMapCoordTool.setButton(self.dlg.captureButton_3)
         self.getMapCoordTool.setWidget(self.dlg)
         self.iface.mapCanvas().setMapTool(self.getMapCoordTool)
+        self.dlg.captureButton.pressed.connect(self.setGetMapToolCoordFrom)
+        self.dlg.captureButton_2.pressed.connect(self.setGetMapToolCoordTo)
+        self.dlg.fromAddress.editingFinished.connect(partial(self.geocodeline,[self.dlg.fromAddress,self.dlg.FromLabel]))
         self.dlg.captureButton_4.setIcon(QIcon(os.path.join(os.path.dirname(__file__),"target.png")))
         self.dlg.findPOISButton.setEnabled(False)
         self.dlg.captureButton_4.pressed.connect(self.setGetMapToolCoordPlace)
+        self.dlg.captureButton_3.setIcon(QIcon(os.path.join(os.path.dirname(__file__),"target.png")))
+        self.dlg.calcIsoButton.setEnabled(False)
+        self.dlg.captureButton_3.pressed.connect(self.setGetMapToolCoordIso)
 
         self.dlg.findPOISButton.clicked.connect(self.getPlacesSingle)
         self.dlg.listWidget.sortItems(0)
         self.dlg.listWidget.itemSelectionChanged.connect(self.checkPlacesInput)
-        self.dlg.placesAddress.editingFinished .connect(partial(self.geocodeline,[self.dlg.placesAddress,self.dlg.placeLabel, self.dlg.findPOISButton]))
-
+        self.dlg.placesAddress.editingFinished.connect(partial(self.geocodeline,[self.dlg.placesAddress,self.dlg.placeLabel, self.dlg.findPOISButton]))
+        self.dlg.IsoAddress.editingFinished.connect(partial(self.geocodeline,[self.dlg.IsoAddress,self.dlg.IsoLabel, self.dlg.calcIsoButton]))
+        self.dlg.metric.currentTextChanged.connect(self.selectMetric)
+        self.dlg.calcIsoButton.clicked.connect(self.getIsochronesSingle)
 
 
     def unload(self):
@@ -286,6 +292,24 @@ class HEREqgis:
             QgsField("vicinity",QVariant.String),
             QgsField("distance",QVariant.Double),
             QgsField("category",QVariant.String),
+        ])
+        layer.updateFields()
+        return(layer)
+    def createIsoLayer(self):
+        layer = QgsVectorLayer(
+            """Polygon?
+            crs=epsg:4326
+            &index=yes""",
+            "isoLayer",
+            "memory"
+        )
+        layer.dataProvider().addAttributes([
+            QgsField("id",QVariant.Int),
+            QgsField("range",QVariant.Int),
+            QgsField("metric",QVariant.String),
+            QgsField("mode",QVariant.String),
+            QgsField("traffic",QVariant.String),
+            QgsField("type",QVariant.String)
         ])
         layer.updateFields()
         return(layer)
@@ -409,9 +433,9 @@ class HEREqgis:
             except Exception as e:
                 print(e)
             i += 1
-            time.sleep(0.3)
+            #time.sleep(0.3)
             progress.setValue(i)
-            time.sleep(0.3)
+            #time.sleep(0.3)
         pr.addFeatures(ResultFeatureList)
         iface.messageBar().clearWidgets()
         QgsProject.instance().addMapLayer(Resultlayer)
@@ -585,6 +609,15 @@ class HEREqgis:
             self.iface.mapCanvas().setCursor(Qt.CrossCursor)
             self.iface.mapCanvas().setMapTool(self.getMapCoordTool)
             return
+    def setGetMapToolCoordIso(self):
+        if self.dlg.captureButton_3.isChecked():
+            self.iface.mapCanvas().unsetMapTool(self.getMapCoordTool)
+            return
+        if self.dlg.captureButton_3.isChecked() == False:
+            self.iface.mapCanvas().setCursor(Qt.CrossCursor)
+            self.iface.mapCanvas().setMapTool(self.getMapCoordTool)
+            return
+
     def geocodelineFrom(self):
         self.getCredentials()
         address = self.dlg.fromAddress.text()
@@ -642,6 +675,13 @@ class HEREqgis:
             self.dlg.findPOISButton.setEnabled(True)
         else:
             self.dlg.findPOISButton.setEnabled(False)
+    def selectMetric(self):
+        if self.dlg.metric.currentText() == "Time":
+            self.dlg.travelDistances.setEnabled(False)
+            self.dlg.travelTimes.setEnabled(True)
+        else:
+            self.dlg.travelDistances.setEnabled(True)
+            self.dlg.travelTimes.setEnabled(False)
     def calculateRouteSingle(self):
         self.getCredentials()
         type = self.dlg.Type.currentText()
@@ -712,6 +752,82 @@ class HEREqgis:
                         features.append(fet)
                     pr = layer.dataProvider()
                     pr.addFeatures(features)
+                    QgsProject.instance().addMapLayer(layer)
+                except Exception as e:
+                    print(e)
+    def getIsochronesSingle(self):
+        print("get Isochrones")
+        self.getCredentials()
+        #getting intervals:
+        if self.dlg.metric.currentText() == "Time":
+            intervalArray = self.dlg.travelTimes.text().split(",")
+        else:
+            intervalArray = self.dlg.travelDistances.text().split(",")
+        ranges = [int(x) for x in intervalArray]
+        #create colors:
+        ranges.sort()
+        rangediff = ranges[-1] - ranges[0]
+        layer = self.createIsoLayer()
+        sym = QgsSymbol.defaultSymbol(layer.geometryType())
+        rngs=[]
+        sym.setColor(QColor(0,255,0,255))
+        rng = QgsRendererRange(0, ranges[0], sym, str(0) + " - " + str(ranges[0]))
+        rngs.append(rng)
+        for rangeItem in range(1,len(ranges)-1):
+            sym = QgsSymbol.defaultSymbol(layer.geometryType())
+            #colors.append([int(0 + ((255/range)*(rangeItem-ranges[0]))),int(255-((255/range)*(rangeItem-ranges[0])),0])
+            sym.setColor(QColor(int(0 + ((255/rangediff)*(ranges[rangeItem]-ranges[0]))),int(255-((255/rangediff)*(ranges[rangeItem]-ranges[0]))),0,255))
+            print(int(0 + ((255/rangediff)*(ranges[rangeItem]-ranges[0]))),int(255-((255/rangediff)*(ranges[rangeItem]-ranges[0]))),0,255)
+            rng = QgsRendererRange(ranges[rangeItem-1]+1, ranges[rangeItem], sym, str(ranges[rangeItem-1]+1) + " - " + str(ranges[rangeItem]))
+            rngs.append(rng)
+        sym = QgsSymbol.defaultSymbol(layer.geometryType())
+        sym.setColor(QColor(255,0,0,255))
+        rng = QgsRendererRange(ranges[-2]+1, ranges[-1], sym, str(ranges[-2]+1) + " - " + str(ranges[-1]))
+        rngs.append(rng)
+        field="range"
+        renderer = QgsGraduatedSymbolRenderer(field, rngs)
+        type = self.dlg.Type_2.currentText()
+        mode = self.dlg.TransportMode_2.currentText()
+        traffic = self.dlg.trafficMode_2.currentText()
+        url = "https://isoline.route.api.here.com/routing/7.2/calculateisoline.json?" + \
+        "app_id=" + self.appId + \
+        "&app_code=" + self.appCode +\
+        "&range=" + ",".join(intervalArray)+ \
+        "&mode=" + type + ";" + mode + ";traffic:" + traffic + \
+        "&rangetype=" + self.dlg.metric.currentText().lower() + \
+        "&" + self.dlg.OriginDestination.currentText().lower() + "=geo!" + \
+        self.dlg.IsoLabel.text()
+        r = requests.get(url)
+        print(url)
+
+        if r.status_code == 200:
+            if len(json.loads(r.text)["response"]["isoline"])>0:
+                try:
+
+                    response = json.loads(r.text)["response"]["isoline"]
+                    features=[]
+                    fid = 0
+                    for poly in response:
+                        coordinates = []
+                        for vertex in poly["component"][0]["shape"]:
+                            lat = float(vertex.split(",")[0])
+                            lng = float(vertex.split(",")[1])
+                            coordinates.append(QgsPointXY(lng,lat))
+                        fet = QgsFeature()
+                        fet.setGeometry(QgsGeometry.fromPolygonXY([coordinates]))
+                        fet.setAttributes([
+                            fid,
+                            poly["range"],
+                            self.dlg.metric.currentText().lower(),
+                            mode,
+                            traffic,
+                            type
+                        ])
+                        features.append(fet)
+                        fid+=1
+                    pr = layer.dataProvider()
+                    pr.addFeatures(reversed(features))
+                    layer.setRenderer(renderer)
                     QgsProject.instance().addMapLayer(layer)
                 except Exception as e:
                     print(e)

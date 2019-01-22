@@ -22,10 +22,6 @@ class GetMapCoordinates(QgsMapToolEmitPoint):
         self.appId = self.dlg.AppId.text()
         self.appCode = self.dlg.AppCode.text()
     def clicked(self, pt, b):
-        if b==1:
-            print("hoops")
-        else:
-            print("active")
         #if self.dlg.captureButton.isChecked():
         '''Capture the coordinate when the mouse button has been released,
         format it, and copy it to dashboard'''
@@ -75,6 +71,22 @@ class GetMapCoordinates(QgsMapToolEmitPoint):
             self.setWidget(self.dlg)
             self.iface.mapCanvas().setCursor(Qt.ArrowCursor)
             self.dlg.captureButton_4.setChecked(False)
+            
+        if self.dlg.captureButton_3.isChecked():
+            url = "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=" + str(lat) + "%2C" + str(lon) +"%2C10&mode=retrieveAddresses&maxresults=1&gen=9&app_id=" + self.appId + "&app_code=" + self.appCode
+
+            r = requests.get(url)
+            print(r.text)
+            try:
+                self.dlg.IsoAddress.setText(json.loads(r.text)["Response"]["View"][0]["Result"][0]["Location"]["Address"]["Label"])
+            except:
+                self.dlg.IsoAddress.setText("no address found")
+                print("something went wrong")
+            self.dlg.IsoLabel.setText(str("%.5f" % lat)+','+str("%.5f" % lon))
+            self.dlg.calcIsoButton.setEnabled(True)
+            self.setWidget(self.dlg)
+            self.iface.mapCanvas().setCursor(Qt.ArrowCursor)
+            self.dlg.captureButton_3.setChecked(False)
 
     def setWidget(self, dockwidget):
         print(dockwidget)
