@@ -34,7 +34,7 @@ from .hereqgis_dialog import HEREqgisDialog
 import os.path
 import requests, json, urllib
 from PyQt5.QtCore import QVariant
-from qgis.core import QgsPoint,QgsSymbol, QgsRendererRange, QgsGraduatedSymbolRenderer, QgsPointXY, QgsGeometry,QgsMapLayerProxyModel, QgsVectorLayer, QgsProject, QgsFeature, QgsField, QgsMessageLog, QgsNetworkAccessManager
+from qgis.core import QgsPoint,QgsSymbol, QgsRendererRange, QgsGraduatedSymbolRenderer, QgsPointXY, QgsGeometry,QgsMapLayerProxyModel, QgsVectorLayer, QgsProject, QgsCoordinateReferenceSystem, QgsFeature, QgsField, QgsMessageLog, QgsNetworkAccessManager
 from qgis.PyQt.QtWidgets import QProgressBar
 from qgis.PyQt.QtCore import *
 from qgis.utils import iface
@@ -251,9 +251,7 @@ class HEREqgis:
 
     def createGeocodedLayer(self):
         layer = QgsVectorLayer(
-            """Point?
-            crs=epsg:4326
-            &index=yes""",
+            "Point?crs=EPSG:4326",
             "AddressLayer",
             "memory"
         )
@@ -280,9 +278,7 @@ class HEREqgis:
         return(layer)
     def createPlaceLayer(self):
         layer = QgsVectorLayer(
-            """Point?
-            crs=epsg:4326
-            &index=yes""",
+            "Point?crs=EPSG:4326",
             "PlaceLayer",
             "memory"
         )
@@ -297,9 +293,7 @@ class HEREqgis:
         return(layer)
     def createIsoLayer(self):
         layer = QgsVectorLayer(
-            """Polygon?
-            crs=epsg:4326
-            &index=yes""",
+            "Polygon?crs=EPSG:4326",
             "isoLayer",
             "memory"
         )
@@ -312,9 +306,14 @@ class HEREqgis:
             QgsField("type",QVariant.String)
         ])
         layer.updateFields()
+        
         return(layer)
     def createRouteLayer(self):
-        layer = QgsVectorLayer("Linestring?epsg:4326&index=yes","RouteLayer", "memory")
+        layer = QgsVectorLayer(
+            "Linestring?EPSG:4326",
+            "RouteLayer", 
+            "memory"
+        )
         layer.dataProvider().addAttributes([
             QgsField("id",QVariant.Int),
             QgsField("distance",QVariant.Double),
@@ -433,8 +432,8 @@ class HEREqgis:
             except Exception as e:
                 print(e)
             i += 1
-            #time.sleep(0.3)
             progress.setValue(i)
+            #time.sleep(0.3)
             #time.sleep(0.3)
         pr.addFeatures(ResultFeatureList)
         iface.messageBar().clearWidgets()
