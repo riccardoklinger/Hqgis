@@ -764,27 +764,28 @@ class HEREqgis:
             intervalArray = self.dlg.travelDistances.text().split(",")
         ranges = [int(x) for x in intervalArray]
         #create colors:
-        ranges.sort()
-        rangediff = ranges[-1] - ranges[0]
         layer = self.createIsoLayer()
-        sym = QgsSymbol.defaultSymbol(layer.geometryType())
-        rngs=[]
-        sym.setColor(QColor(0,255,0,255))
-        rng = QgsRendererRange(0, ranges[0], sym, str(0) + " - " + str(ranges[0]))
-        rngs.append(rng)
-        for rangeItem in range(1,len(ranges)-1):
+        if len(ranges)>1:
+            ranges.sort()
+            rangediff = ranges[-1] - ranges[0]
             sym = QgsSymbol.defaultSymbol(layer.geometryType())
-            #colors.append([int(0 + ((255/range)*(rangeItem-ranges[0]))),int(255-((255/range)*(rangeItem-ranges[0])),0])
-            sym.setColor(QColor(int(0 + ((255/rangediff)*(ranges[rangeItem]-ranges[0]))),int(255-((255/rangediff)*(ranges[rangeItem]-ranges[0]))),0,255))
-            print(int(0 + ((255/rangediff)*(ranges[rangeItem]-ranges[0]))),int(255-((255/rangediff)*(ranges[rangeItem]-ranges[0]))),0,255)
-            rng = QgsRendererRange(ranges[rangeItem-1]+1, ranges[rangeItem], sym, str(ranges[rangeItem-1]+1) + " - " + str(ranges[rangeItem]))
+            rngs=[]
+            sym.setColor(QColor(0,255,0,255))
+            rng = QgsRendererRange(0, ranges[0], sym, str(0) + " - " + str(ranges[0]))
             rngs.append(rng)
-        sym = QgsSymbol.defaultSymbol(layer.geometryType())
-        sym.setColor(QColor(255,0,0,255))
-        rng = QgsRendererRange(ranges[-2]+1, ranges[-1], sym, str(ranges[-2]+1) + " - " + str(ranges[-1]))
-        rngs.append(rng)
-        field="range"
-        renderer = QgsGraduatedSymbolRenderer(field, rngs)
+            for rangeItem in range(1,len(ranges)-1):
+                sym = QgsSymbol.defaultSymbol(layer.geometryType())
+                #colors.append([int(0 + ((255/range)*(rangeItem-ranges[0]))),int(255-((255/range)*(rangeItem-ranges[0])),0])
+                sym.setColor(QColor(int(0 + ((255/rangediff)*(ranges[rangeItem]-ranges[0]))),int(255-((255/rangediff)*(ranges[rangeItem]-ranges[0]))),0,255))
+                print(int(0 + ((255/rangediff)*(ranges[rangeItem]-ranges[0]))),int(255-((255/rangediff)*(ranges[rangeItem]-ranges[0]))),0,255)
+                rng = QgsRendererRange(ranges[rangeItem-1]+1, ranges[rangeItem], sym, str(ranges[rangeItem-1]+1) + " - " + str(ranges[rangeItem]))
+                rngs.append(rng)
+            sym = QgsSymbol.defaultSymbol(layer.geometryType())
+            sym.setColor(QColor(255,0,0,255))
+            rng = QgsRendererRange(ranges[-2]+1, ranges[-1], sym, str(ranges[-2]+1) + " - " + str(ranges[-1]))
+            rngs.append(rng)
+            field="range"
+            renderer = QgsGraduatedSymbolRenderer(field, rngs)
         type = self.dlg.Type_2.currentText()
         mode = self.dlg.TransportMode_2.currentText()
         traffic = self.dlg.trafficMode_2.currentText()
@@ -826,7 +827,8 @@ class HEREqgis:
                         fid+=1
                     pr = layer.dataProvider()
                     pr.addFeatures(reversed(features))
-                    layer.setRenderer(renderer)
+                    if len(ranges)>1:
+                        layer.setRenderer(renderer)
                     QgsProject.instance().addMapLayer(layer)
                 except Exception as e:
                     print(e)
