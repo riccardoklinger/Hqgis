@@ -829,6 +829,7 @@ class HEREqgis:
                     pr.addFeatures(reversed(features))
                     if len(ranges)>1:
                         layer.setRenderer(renderer)
+                    layer.setOpacity(0.5)
                     QgsProject.instance().addMapLayer(layer)
                 except Exception as e:
                     print(e)
