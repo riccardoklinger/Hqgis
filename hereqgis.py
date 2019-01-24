@@ -310,7 +310,7 @@ class HEREqgis:
         return(layer)
     def createRouteLayer(self):
         layer = QgsVectorLayer(
-            "Linestring?EPSG:4326",
+            "Linestring?crs=EPSG:4326",
             "RouteLayer", 
             "memory"
         )
