@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>HEREqgisDialogBase</class>
- <widget class="QDialog" name="HEREqgisDialogBase">
+ <class>HqgisDialogBase</class>
+ <widget class="QDialog" name="HqgisDialogBase">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>HEREqgis</string>
+   <string>Hqgis</string>
   </property>
   <widget class="QTabWidget" name="tabWidget">
    <property name="enabled">
@@ -26,7 +26,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -1161,7 +1161,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_14">
       <attribute name="title">
@@ -1600,7 +1600,7 @@
   <connection>
    <sender>button_box</sender>
    <signal>rejected()</signal>
-   <receiver>HEREqgisDialogBase</receiver>
+   <receiver>HqgisDialogBase</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1616,7 +1616,7 @@
   <connection>
    <sender>button_box</sender>
    <signal>accepted()</signal>
-   <receiver>HEREqgisDialogBase</receiver>
+   <receiver>HqgisDialogBase</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">

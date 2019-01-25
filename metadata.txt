@@ -7,7 +7,7 @@
 # This file should be included when you package your plugin.# Mandatory items:
 
 [general]
-name=HEREqgis
+name=Hqgis
 qgisMinimumVersion=3.0
 description=Routing, Geocoding, POI search, Isochrones with the HERE API.
 version=0.1.3
@@ -16,8 +16,8 @@ email=riccardo.klinger@gmail.com
 
 about=Access the HERE API from inside QGIS using your own HERE-API key. Currently supports Geocoding, Routing, POI-search and isochrone analysis.
 
-tracker=https://github.com/riccardoklinger/HereQGIS/issues
-repository=https://github.com/riccardoklinger/HereQGIS
+tracker=https://github.com/riccardoklinger/Hqgis/issues
+repository=https://github.com/riccardoklinger/Hqgis
 # End of mandatory metadata
 
 # Recommended items:
@@ -31,7 +31,7 @@ changelog= 0.1.3: rendering of isochrones fixed
 # Tags are comma separated with spaces allowed
 tags=HERE, routing, python, Isochrone, POI, API
 
-homepage=https://github.com/riccardoklinger/HereQGIS
+homepage=https://github.com/riccardoklinger/Hqgis
 category=Web
 icon=icon.png
 # experimental flag
