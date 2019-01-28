@@ -34,7 +34,7 @@ from .hqgis_dialog import HqgisDialog
 import os.path
 import requests, json, urllib
 from PyQt5.QtCore import QVariant
-from qgis.core import QgsPoint,QgsSymbol, QgsRendererRange, QgsGraduatedSymbolRenderer, QgsPointXY, QgsGeometry,QgsMapLayerProxyModel, QgsVectorLayer, QgsProject, QgsCoordinateReferenceSystem, QgsFeature, QgsField, QgsMessageLog, QgsNetworkAccessManager
+from qgis.core import QgsPoint,QgsSymbol, QgsRendererRange, QgsGraduatedSymbolRenderer, QgsPointXY, QgsGeometry,QgsMapLayerProxyModel, QgsVectorLayer, QgsProject, QgsCoordinateReferenceSystem, QgsCoordinateTransform, QgsFeature, QgsField, QgsMessageLog, QgsNetworkAccessManager
 from qgis.PyQt.QtWidgets import QProgressBar
 from qgis.PyQt.QtCore import *
 from qgis.utils import iface
@@ -144,6 +144,7 @@ class Hqgis:
         self.dlg.mapLayerBox_2.setAllowEmptyLayer(False)
         self.dlg.mapLayerBox_2.setFilters(QgsMapLayerProxyModel.VectorLayer)
         self.loadFields()
+        
         self.dlg.mapLayerBox_2.currentIndexChanged.connect(self.loadFields)
         self.dlg.geocodeAddressButton.clicked.connect(self.geocode)
         self.dlg.batchGeocodeFieldButton.clicked.connect(self.batchGeocodeField)
@@ -180,6 +181,12 @@ class Hqgis:
         self.dlg.findPOISButton.clicked.connect(self.getPlacesSingle)
         self.dlg.listWidget.sortItems(0)
         self.dlg.listWidget.itemSelectionChanged.connect(self.checkPlacesInput)
+        self.dlg.findPOISButtonBatch.clicked.connect(self.getPlacesBatch)
+        self.dlg.FindPOISLayer.setAllowEmptyLayer(False)
+        self.dlg.FindPOISLayer.setFilters(QgsMapLayerProxyModel.PointLayer)
+        self.dlg.findPOISButtonBatch.setEnabled(False)
+        self.dlg.listWidgetBatch.sortItems(0)
+        self.dlg.listWidgetBatch.itemSelectionChanged.connect(self.checkPlacesInputBatch)
         self.dlg.placesAddress.editingFinished.connect(partial(self.geocodeline,[self.dlg.placesAddress,self.dlg.placeLabel, self.dlg.findPOISButton]))
         self.dlg.IsoAddress.editingFinished.connect(partial(self.geocodeline,[self.dlg.IsoAddress,self.dlg.IsoLabel, self.dlg.calcIsoButton]))
         self.dlg.metric.currentTextChanged.connect(self.selectMetric)
@@ -305,6 +312,22 @@ class Hqgis:
         )
         layer.dataProvider().addAttributes([
             QgsField("id",QVariant.Int),
+            QgsField("title",QVariant.String),
+            QgsField("vicinity",QVariant.String),
+            QgsField("distance",QVariant.Double),
+            QgsField("category",QVariant.String),
+        ])
+        layer.updateFields()
+        return(layer)
+    def createPlaceLayerBatch(self):
+        layer = QgsVectorLayer(
+            "Point?crs=EPSG:4326",
+            "PlaceLayer",
+            "memory"
+        )
+        layer.dataProvider().addAttributes([
+            QgsField("id",QVariant.Int),
+            QgsField("origin_id",QVariant.Int),
             QgsField("title",QVariant.String),
             QgsField("vicinity",QVariant.String),
             QgsField("distance",QVariant.Double),
@@ -695,6 +718,11 @@ class Hqgis:
             self.dlg.findPOISButton.setEnabled(True)
         else:
             self.dlg.findPOISButton.setEnabled(False)
+    def checkPlacesInputBatch(self):
+        if len(self.dlg.listWidgetBatch.selectedItems())>0:
+            self.dlg.findPOISButtonBatch.setEnabled(True)
+        else:
+            self.dlg.findPOISButtonBatch.setEnabled(False)
     def selectMetric(self):
         if self.dlg.metric.currentText() == "Time":
             self.dlg.travelDistances.setEnabled(False)
@@ -775,6 +803,78 @@ class Hqgis:
                     QgsProject.instance().addMapLayer(layer)
                 except Exception as e:
                     print(e)
+    def getPlacesBatch(self):
+        self.getCredentials()
+        radius = self.dlg.RadiusBoxBatch.value()
+        categories = self.dlg.listWidgetBatch.selectedItems()
+        categoriesList = []
+        for category in categories:
+            categoriesList.append(category.text())
+        categories = ",".join(categoriesList)
+        layer = self.createPlaceLayerBatch()
+        originLayer = self.dlg.FindPOISLayer.currentLayer()
+        originFeatures = originLayer.getFeatures()
+        layerCRS = originLayer.crs()
+        if layerCRS != QgsCoordinateReferenceSystem(4326):
+            sourceCrs = layerCRS
+            destCrs = QgsCoordinateReferenceSystem(4326)
+            tr = QgsCoordinateTransform(sourceCrs, destCrs, QgsProject.instance())
+        progressMessageBar = iface.messageBar().createMessage("Looping through " + str(originLayer.featureCount()) +" records ...")
+        progress = QProgressBar()
+        progress.setMaximum(originLayer.featureCount())
+        progress.setAlignment(Qt.AlignLeft|Qt.AlignVCenter)
+        progressMessageBar.layout().addWidget(progress)
+        iface.messageBar().pushWidget(progressMessageBar, level=0)
+        i = 0
+        for originFeature in originFeatures:
+            if layerCRS != QgsCoordinateReferenceSystem(4326):
+                #we reproject:
+                geom = originFeature.geometry()
+                newGeom = tr.transform(geom.asPoint())
+                x = newGeom.x()
+                y = newGeom.y()
+            else:
+                x = originFeature.geometry().asPoint().x()
+                y = originFeature.geometry().asPoint().y()
+            coordinates = str(y) + "," + str(x)
+            url = "https://places.cit.api.here.com/places/v1/discover/explore?in=" + coordinates + ";r=" + str(radius*1000) + "&cat=" + categories +"&drilldown=false&size=10000&X-Mobility-Mode=drive&app_id=" + self.appId + "&app_code=" + self.appCode
+            r = requests.get(url)
+            print(url)
+            i += 1
+            progress.setValue(i)
+            iface.mainWindow().repaint()
+        
+
+            if r.status_code == 200:
+                if len(json.loads(r.text)["results"]["items"])>0:
+                    if len(json.loads(r.text)["results"]["items"])>99:
+                        iface.messageBar().pushMessage("Warning", "The maximum number of POIs for original feature " + str(originFeature.id()) + " of 100 POIs reached.", level=1)
+                    try:
+                        #ass the response may hold more than one result we only use the best one:
+                        responsePlaces = json.loads(r.text)["results"]["items"]
+                        #layer = self.createPlaceLayer()
+                        features = []
+                        for place in responsePlaces:
+                            lat = place["position"][0]
+                            lng = place["position"][1]
+                            fet = QgsFeature()
+                            fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
+                            fet.setAttributes([
+                                place["id"],
+                                originFeature.id(),
+                                place["title"],
+                                place["vicinity"],
+                                place["distance"],
+                                place["category"]["title"]
+                            ])
+                            features.append(fet)
+                        pr = layer.dataProvider()
+                        pr.addFeatures(features)
+                        QgsProject.instance().addMapLayer(layer)
+                    except Exception as e:
+                        print(e)
+        iface.messageBar().clearWidgets()
+    
     def getIsochronesSingle(self):
         print("get Isochrones")
         self.getCredentials()
