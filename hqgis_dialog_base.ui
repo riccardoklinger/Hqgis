@@ -42,7 +42,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
@@ -276,7 +276,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_7">
       <attribute name="title">
@@ -576,7 +576,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_11">
       <attribute name="title">
@@ -1113,7 +1113,7 @@
       <attribute name="title">
        <string>single layer input</string>
       </attribute>
-      <widget class="QPushButton" name="calcRouteSingleButton_3">
+      <widget class="QPushButton" name="findPOISButtonBatch">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -1126,23 +1126,478 @@
         <string>Find POIs around Points</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_24">
+      <widget class="QWidget" name="gridLayoutWidget_7">
        <property name="geometry">
         <rect>
-         <x>60</x>
-         <y>110</y>
-         <width>281</width>
-         <height>51</height>
+         <x>0</x>
+         <y>0</y>
+         <width>431</width>
+         <height>311</height>
         </rect>
        </property>
-       <property name="font">
-        <font>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>not implemented yet</string>
-       </property>
+       <layout class="QGridLayout" name="gridLayout_7">
+        <item row="0" column="1">
+         <widget class="QgsMapLayerComboBox" name="FindPOISLayer"/>
+        </item>
+        <item row="1" column="1">
+         <widget class="QSpinBox" name="RadiusBoxBatch">
+          <property name="value">
+           <number>10</number>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_36">
+          <property name="text">
+           <string>From Layer</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_37">
+          <property name="text">
+           <string>Radius [km]</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_38">
+          <property name="text">
+           <string>Categories</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QListWidget" name="listWidgetBatch">
+          <property name="selectionMode">
+           <enum>QAbstractItemView::MultiSelection</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>accommodation</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>administrative-areas-buildings</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>administrative-region</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>airport</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>ambulance-services</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>amusement-holiday-park</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>atm-bank-exchange</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>bar-pub</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>body-of-water</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>bookshop</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>building</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>business-industry</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>business-services</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>camping</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>car-dealer-repair</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>car-rental</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>casino</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>cinema</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>city-town-village</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>clothing-accessories-shop</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>coffee</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>coffee-tea</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>communication-media</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>dance-night-club</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>department-store</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>eat-drink</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>education-facility</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>electronics-shop</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>ev-charging-station</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>facilities</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>facility</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>fair-convention-facility</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>ferry-terminal</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>fire-department</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>food-drink</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>forest-heath-vegetation</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>going-out</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>government-community-facility</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>hardware-house-garden-shop</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>hospital-health-care-facility</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>hospital-health-care-facility</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>hostel</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>hotel</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>intersection</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>kiosk-convenience-store</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>landmark-attraction</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>leisure-outdoor</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>library</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>mall</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>motel</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>mountain-hill</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>museum</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>natural-geographical</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>outdoor-area-complex</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>parking-facility</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>petrol-station</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>pharmacy</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>police-emergency</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>police-station</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>postal-area</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>post-office</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>public-transport</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>railway-station</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>recreation</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>religious-place</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>restaurant</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>service</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>shop</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>shopping</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>sights-museums</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>snacks-fast-food</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>sport-outdoor-shop</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>sports-facility-venue</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>street-square</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>taxi-stand</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>tea</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>theatre-music-culture</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>toilet-rest-area</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>tourist-information</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>transport</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>travel-agency</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>undersea-feature</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>wine-and-liquor</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>zoo</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </widget>
@@ -1455,6 +1910,24 @@
       <attribute name="title">
        <string>Multiple Addresses</string>
       </attribute>
+      <widget class="QLabel" name="label_27">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>140</y>
+         <width>281</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>not implemented yet</string>
+       </property>
+      </widget>
      </widget>
     </widget>
    </widget>

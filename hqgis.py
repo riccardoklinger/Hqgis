@@ -123,7 +123,17 @@ class Hqgis:
             callback=self.run,
             parent=self.iface.mainWindow())
         self.loadCredFunction()
-
+        if self.dlg.AppId.text() == "" or self.dlg.AppCode.text() == "":
+            self.dlg.status2.setText("No credentials in credentials tab found.")
+            self.dlg.geocodeAddressButton.setEnabled(False)
+            self.dlg.batchGeocodeFieldButton.setEnabled(False)
+            self.dlg.batchGeocodeFieldsButton.setEnabled(False)
+            self.dlg.calcRouteSingleButton.setEnabled(False)
+            self.dlg.findPOISButton.setEnabled(False)
+            self.dlg.findPOISButtonBatch.setEnabled(False)
+            self.dlg.calcIsoButton.setEnabled(False)
+        self.dlg.AppId.editingFinished.connect(self.enableButtons)
+        self.dlg.AppCode.editingFinished.connect(self.enableButtons)
         self.dlg.getCreds.clicked.connect(self.getCredFunction)
         self.dlg.saveCreds.clicked.connect(self.saveCredFunction)
         self.dlg.loadCreds.clicked.connect(self.loadCredFunction)
@@ -174,7 +184,8 @@ class Hqgis:
         self.dlg.IsoAddress.editingFinished.connect(partial(self.geocodeline,[self.dlg.IsoAddress,self.dlg.IsoLabel, self.dlg.calcIsoButton]))
         self.dlg.metric.currentTextChanged.connect(self.selectMetric)
         self.dlg.calcIsoButton.clicked.connect(self.getIsochronesSingle)
-
+        
+        
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
@@ -185,6 +196,16 @@ class Hqgis:
             self.iface.removeToolBarIcon(action)
         # remove the toolbar
         del self.toolbar
+    def enableButtons(self):
+        if self.dlg.AppId.text() != "" and self.dlg.AppCode.text() != "" :
+            self.dlg.geocodeAddressButton.setEnabled(True)
+            self.dlg.batchGeocodeFieldButton.setEnabled(True)
+            self.dlg.batchGeocodeFieldsButton.setEnabled(True)
+            self.dlg.calcRouteSingleButton.setEnabled(True)
+            self.dlg.findPOISButton.setEnabled(True)
+            self.dlg.findPOISButtonBatch.setEnabled(True)
+            self.dlg.calcIsoButton.setEnabled(True)
+            self.dlg.status2.setText("")
     def convertGeocodeResponse(self, responseAddress):
         geocodeResponse = {}
         try:
