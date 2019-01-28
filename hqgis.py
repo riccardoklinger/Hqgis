@@ -848,7 +848,7 @@ class Hqgis:
             if r.status_code == 200:
                 if len(json.loads(r.text)["results"]["items"])>0:
                     if len(json.loads(r.text)["results"]["items"])>99:
-                        iface.messageBar().pushMessage("Warning", "The maximum number of POIs for original feature " + str(originFeature.id()) + " of 100 POIs reached.", level=1)
+                        iface.messageBar().pushMessage("Warning", "The maximum number of POIs for original feature " + str(originFeature.id()) + " of 100 POIs reached.", level=1, duration=5)
                     try:
                         #ass the response may hold more than one result we only use the best one:
                         responsePlaces = json.loads(r.text)["results"]["items"]
