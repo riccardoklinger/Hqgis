@@ -132,6 +132,7 @@ class Hqgis:
             self.dlg.findPOISButton.setEnabled(False)
             self.dlg.findPOISButtonBatch.setEnabled(False)
             self.dlg.calcIsoButton.setEnabled(False)
+            self.dlg.calcIsoButtonBatch.setEnabled(False)
         self.dlg.AppId.editingFinished.connect(self.enableButtons)
         self.dlg.AppCode.editingFinished.connect(self.enableButtons)
         self.dlg.getCreds.clicked.connect(self.getCredFunction)
@@ -144,7 +145,7 @@ class Hqgis:
         self.dlg.mapLayerBox_2.setAllowEmptyLayer(False)
         self.dlg.mapLayerBox_2.setFilters(QgsMapLayerProxyModel.VectorLayer)
         self.loadFields()
-        
+
         self.dlg.mapLayerBox_2.currentIndexChanged.connect(self.loadFields)
         self.dlg.geocodeAddressButton.clicked.connect(self.geocode)
         self.dlg.batchGeocodeFieldButton.clicked.connect(self.batchGeocodeField)
@@ -193,6 +194,8 @@ class Hqgis:
         self.dlg.metric.currentTextChanged.connect(self.selectMetric)
         self.dlg.calcIsoButton.clicked.connect(self.getIsochronesSingle)
         self.dlg.calcIsoButtonBatch.setEnabled(False)
+        self.dlg.travelTimesBatch.editingFinished.connect(self.enableBatchISO)
+        self.dlg.travelDistancesBatch.editingFinished.connect(self.enableBatchISO)
         self.dlg.calcIsoButtonBatch.clicked.connect(self.getIsochronesBatch)
 
 
@@ -214,7 +217,11 @@ class Hqgis:
             self.dlg.findPOISButton.setEnabled(True)
             self.dlg.findPOISButtonBatch.setEnabled(True)
             self.dlg.calcIsoButton.setEnabled(True)
+            self.dlg.calcIsoButtonBatch.setEnabled(True)
             self.dlg.status2.setText("")
+    def enableBatchISO(self):
+        if self.dlg.travelTimesBatch.text() != "" or self.dlg.travelDistancesBatch.text() != "":
+            self.dlg.calcIsoButtonBatch.setEnabled(True)
     def convertGeocodeResponse(self, responseAddress):
         geocodeResponse = {}
         try:
@@ -863,7 +870,7 @@ class Hqgis:
             i += 1
             progress.setValue(i)
             iface.mainWindow().repaint()
-        
+
 
             if r.status_code == 200:
                 if len(json.loads(r.text)["results"]["items"])>0:
@@ -894,7 +901,7 @@ class Hqgis:
                     except Exception as e:
                         print(e)
         iface.messageBar().clearWidgets()
-    
+
     def getIsochronesSingle(self):
         print("get Isochrones")
         self.getCredentials()
@@ -984,7 +991,7 @@ class Hqgis:
             intervalArray = self.dlg.travelDistancesBatch.text().split(",")
         ranges = [int(x) for x in intervalArray]
         #create colors:
-        layer = self.createIsoLayer()
+        layer = self.createIsoLayerBatch()
         if len(ranges)>1:
             ranges.sort()
             rangediff = ranges[-1] - ranges[0]
@@ -1009,53 +1016,78 @@ class Hqgis:
         type = self.dlg.TypeBatch.currentText()
         mode = self.dlg.TransportModeBatch.currentText()
         traffic = self.dlg.trafficModeBatch.currentText()
-        #layerOrigin = self.dlg.IsoAddressBatch.
-        #now iterate through features:
-        url = "https://isoline.route.api.here.com/routing/7.2/calculateisoline.json?" + \
-        "app_id=" + self.appId + \
-        "&app_code=" + self.appCode +\
-        "&range=" + ",".join(intervalArray)+ \
-        "&mode=" + type + ";" + mode + ";traffic:" + traffic + \
-        "&rangetype=" + self.dlg.metricBatch.currentText().lower() + \
-        "&" + self.dlg.OriginDestinationBatch.currentText().lower() + "=geo!" + \
-        self.dlg.IsoLabel.text()
-        r = requests.get(url)
-        print(url)
-
-        if r.status_code == 200:
-            if len(json.loads(r.text)["response"]["isoline"])>0:
-                try:
-
-                    response = json.loads(r.text)["response"]["isoline"]
-                    features=[]
-                    fid = 0
-                    for poly in response:
-                        coordinates = []
-                        for vertex in poly["component"][0]["shape"]:
-                            lat = float(vertex.split(",")[0])
-                            lng = float(vertex.split(",")[1])
-                            coordinates.append(QgsPointXY(lng,lat))
-                        fet = QgsFeature()
-                        fet.setGeometry(QgsGeometry.fromPolygonXY([coordinates]))
-                        fet.setAttributes([
-                            fid,
-                            poly["range"],
-                            self.dlg.metric.currentText().lower(),
-                            mode,
-                            traffic,
-                            type
-                        ])
-                        features.append(fet)
-                        fid+=1
-                    pr = layer.dataProvider()
-                    pr.addFeatures(reversed(features))
-                    if len(ranges)>1:
-                        layer.setRenderer(renderer)
-                    layer.setOpacity(0.5)
-                    QgsProject.instance().addMapLayer(layer)
-                except Exception as e:
-                    print(e)
-
+        originLayer = self.dlg.IsoAddressBatch.currentLayer()
+        originFeatures = originLayer.getFeatures()
+        layerCRS = originLayer.crs()
+        if layerCRS != QgsCoordinateReferenceSystem(4326):
+            sourceCrs = layerCRS
+            destCrs = QgsCoordinateReferenceSystem(4326)
+            tr = QgsCoordinateTransform(sourceCrs, destCrs, QgsProject.instance())
+        progressMessageBar = iface.messageBar().createMessage("Looping through " + str(originLayer.featureCount()) +" records ...")
+        progress = QProgressBar()
+        progress.setMaximum(originLayer.featureCount())
+        progress.setAlignment(Qt.AlignLeft|Qt.AlignVCenter)
+        progressMessageBar.layout().addWidget(progress)
+        iface.messageBar().pushWidget(progressMessageBar, level=0)
+        i = 0
+        for originFeature in originFeatures:
+            if layerCRS != QgsCoordinateReferenceSystem(4326):
+                #we reproject:
+                geom = originFeature.geometry()
+                newGeom = tr.transform(geom.asPoint())
+                x = newGeom.x()
+                y = newGeom.y()
+            else:
+                x = originFeature.geometry().asPoint().x()
+                y = originFeature.geometry().asPoint().y()
+            coordinates = str(y) + "," + str(x)
+            url = "https://isoline.route.api.here.com/routing/7.2/calculateisoline.json?" + \
+            "app_id=" + self.appId + \
+            "&app_code=" + self.appCode +\
+            "&range=" + ",".join(intervalArray)+ \
+            "&mode=" + type + ";" + mode + ";traffic:" + traffic + \
+            "&rangetype=" + self.dlg.metricBatch.currentText().lower() + \
+            "&" + self.dlg.OriginDestinationBatch.currentText().lower() + "=geo!" + \
+            coordinates
+            r = requests.get(url)
+            print(url)
+            i += 1
+            progress.setValue(i)
+            iface.mainWindow().repaint()
+            if r.status_code == 200:
+                if len(json.loads(r.text)["response"]["isoline"])>0:
+                    try:
+                        response = json.loads(r.text)["response"]["isoline"]
+                        features=[]
+                        fid = 0
+                        for poly in response:
+                            coordinates = []
+                            for vertex in poly["component"][0]["shape"]:
+                                lat = float(vertex.split(",")[0])
+                                lng = float(vertex.split(",")[1])
+                                coordinates.append(QgsPointXY(lng,lat))
+                            fet = QgsFeature()
+                            fet.setGeometry(QgsGeometry.fromPolygonXY([coordinates]))
+                            fet.setAttributes([
+                                fid,
+                                originFeature.id(),
+                                poly["range"],
+                                self.dlg.metric.currentText().lower(),
+                                mode,
+                                traffic,
+                                type
+                            ])
+                            features.append(fet)
+                            fid+=1
+                        pr = layer.dataProvider()
+                        pr.addFeatures(reversed(features))
+                        if len(ranges)>1:
+                            layer.setRenderer(renderer)
+                        layer.setOpacity(0.5)
+                        QgsProject.instance().addMapLayer(layer)
+                    except Exception as e:
+                        print(e)
+        iface.messageBar().clearWidgets()
     def run(self):
 
         """Run method that performs all the real work"""
