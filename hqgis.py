@@ -148,7 +148,8 @@ class Hqgis:
         self.dlg.geocodeAddressButton.clicked.connect(self.geocode)
         self.dlg.batchGeocodeFieldButton.clicked.connect(self.batchGeocodeField)
         self.dlg.batchGeocodeFieldsButton.clicked.connect(self.batchGeocodeFields)
-
+        self.dlg.FindPOISLayer.setFilters(QgsMapLayerProxyModel.PointLayer)
+        self.dlg.IsoAddressBatch.setFilters(QgsMapLayerProxyModel.PointLayer)
         self.dlg.calcRouteSingleButton.clicked.connect(self.calculateRouteSingle)
 
         #coordButton
@@ -184,8 +185,9 @@ class Hqgis:
         self.dlg.IsoAddress.editingFinished.connect(partial(self.geocodeline,[self.dlg.IsoAddress,self.dlg.IsoLabel, self.dlg.calcIsoButton]))
         self.dlg.metric.currentTextChanged.connect(self.selectMetric)
         self.dlg.calcIsoButton.clicked.connect(self.getIsochronesSingle)
-        
-        
+        self.dlg.calcIsoButtonBatch.setEnabled(False)
+        self.dlg.calcIsoButtonBatch.clicked.connect(self.getIsochronesBatch)
+
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
@@ -327,12 +329,30 @@ class Hqgis:
             QgsField("type",QVariant.String)
         ])
         layer.updateFields()
-        
+
+        return(layer)
+    def createIsoLayerBatch(self):
+        layer = QgsVectorLayer(
+            "Polygon?crs=EPSG:4326",
+            "isoLayer",
+            "memory"
+        )
+        layer.dataProvider().addAttributes([
+            QgsField("id",QVariant.Int),
+            QgsField("origin_id",QVariant.Int),
+            QgsField("range",QVariant.Int),
+            QgsField("metric",QVariant.String),
+            QgsField("mode",QVariant.String),
+            QgsField("traffic",QVariant.String),
+            QgsField("type",QVariant.String)
+        ])
+        layer.updateFields()
+
         return(layer)
     def createRouteLayer(self):
         layer = QgsVectorLayer(
             "Linestring?crs=EPSG:4326",
-            "RouteLayer", 
+            "RouteLayer",
             "memory"
         )
         layer.dataProvider().addAttributes([
@@ -817,6 +837,87 @@ class Hqgis:
         "&mode=" + type + ";" + mode + ";traffic:" + traffic + \
         "&rangetype=" + self.dlg.metric.currentText().lower() + \
         "&" + self.dlg.OriginDestination.currentText().lower() + "=geo!" + \
+        self.dlg.IsoLabel.text()
+        r = requests.get(url)
+        print(url)
+
+        if r.status_code == 200:
+            if len(json.loads(r.text)["response"]["isoline"])>0:
+                try:
+
+                    response = json.loads(r.text)["response"]["isoline"]
+                    features=[]
+                    fid = 0
+                    for poly in response:
+                        coordinates = []
+                        for vertex in poly["component"][0]["shape"]:
+                            lat = float(vertex.split(",")[0])
+                            lng = float(vertex.split(",")[1])
+                            coordinates.append(QgsPointXY(lng,lat))
+                        fet = QgsFeature()
+                        fet.setGeometry(QgsGeometry.fromPolygonXY([coordinates]))
+                        fet.setAttributes([
+                            fid,
+                            poly["range"],
+                            self.dlg.metric.currentText().lower(),
+                            mode,
+                            traffic,
+                            type
+                        ])
+                        features.append(fet)
+                        fid+=1
+                    pr = layer.dataProvider()
+                    pr.addFeatures(reversed(features))
+                    if len(ranges)>1:
+                        layer.setRenderer(renderer)
+                    layer.setOpacity(0.5)
+                    QgsProject.instance().addMapLayer(layer)
+                except Exception as e:
+                    print(e)
+    def getIsochronesBatch(self):
+        print("get Isochrones")
+        self.getCredentials()
+        #getting intervals:
+        if self.dlg.metricBatch.currentText() == "Time":
+            intervalArray = self.dlg.travelTimesBatch.text().split(",")
+        else:
+            intervalArray = self.dlg.travelDistancesBatch.text().split(",")
+        ranges = [int(x) for x in intervalArray]
+        #create colors:
+        layer = self.createIsoLayer()
+        if len(ranges)>1:
+            ranges.sort()
+            rangediff = ranges[-1] - ranges[0]
+            sym = QgsSymbol.defaultSymbol(layer.geometryType())
+            rngs=[]
+            sym.setColor(QColor(0,255,0,255))
+            rng = QgsRendererRange(0, ranges[0], sym, str(0) + " - " + str(ranges[0]))
+            rngs.append(rng)
+            for rangeItem in range(1,len(ranges)-1):
+                sym = QgsSymbol.defaultSymbol(layer.geometryType())
+                #colors.append([int(0 + ((255/range)*(rangeItem-ranges[0]))),int(255-((255/range)*(rangeItem-ranges[0])),0])
+                sym.setColor(QColor(int(0 + ((255/rangediff)*(ranges[rangeItem]-ranges[0]))),int(255-((255/rangediff)*(ranges[rangeItem]-ranges[0]))),0,255))
+                print(int(0 + ((255/rangediff)*(ranges[rangeItem]-ranges[0]))),int(255-((255/rangediff)*(ranges[rangeItem]-ranges[0]))),0,255)
+                rng = QgsRendererRange(ranges[rangeItem-1]+1, ranges[rangeItem], sym, str(ranges[rangeItem-1]+1) + " - " + str(ranges[rangeItem]))
+                rngs.append(rng)
+            sym = QgsSymbol.defaultSymbol(layer.geometryType())
+            sym.setColor(QColor(255,0,0,255))
+            rng = QgsRendererRange(ranges[-2]+1, ranges[-1], sym, str(ranges[-2]+1) + " - " + str(ranges[-1]))
+            rngs.append(rng)
+            field="range"
+            renderer = QgsGraduatedSymbolRenderer(field, rngs)
+        type = self.dlg.TypeBatch.currentText()
+        mode = self.dlg.TransportModeBatch.currentText()
+        traffic = self.dlg.trafficModeBatch.currentText()
+        #layerOrigin = self.dlg.IsoAddressBatch.
+        #now iterate through features:
+        url = "https://isoline.route.api.here.com/routing/7.2/calculateisoline.json?" + \
+        "app_id=" + self.appId + \
+        "&app_code=" + self.appCode +\
+        "&range=" + ",".join(intervalArray)+ \
+        "&mode=" + type + ";" + mode + ";traffic:" + traffic + \
+        "&rangetype=" + self.dlg.metricBatch.currentText().lower() + \
+        "&" + self.dlg.OriginDestinationBatch.currentText().lower() + "=geo!" + \
         self.dlg.IsoLabel.text()
         r = requests.get(url)
         print(url)
