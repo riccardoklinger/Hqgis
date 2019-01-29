@@ -76,7 +76,7 @@ class GetMapCoordinates(QgsMapToolEmitPoint):
             url = "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=" + str(lat) + "%2C" + str(lon) +"%2C10&mode=retrieveAddresses&maxresults=1&gen=9&app_id=" + self.appId + "&app_code=" + self.appCode
 
             r = requests.get(url)
-            print(r.text)
+            #print(r.text)
             try:
                 self.dlg.IsoAddress.setText(json.loads(r.text)["Response"]["View"][0]["Result"][0]["Location"]["Address"]["Label"])
             except:
