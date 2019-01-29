@@ -197,7 +197,9 @@ class Hqgis:
         self.dlg.travelTimesBatch.editingFinished.connect(self.enableBatchISO)
         self.dlg.travelDistancesBatch.editingFinished.connect(self.enableBatchISO)
         self.dlg.calcIsoButtonBatch.clicked.connect(self.getIsochronesBatch)
-
+        self.dlg.trafficModeBatch.currentIndexChanged.connect(partial(self.enableTime,[self.dlg.trafficModeBatch,self.dlg.dateTimeEditBatch]))
+        self.dlg.trafficMode_2.currentIndexChanged.connect(partial(self.enableTime,[self.dlg.trafficMode_2,self.dlg.dateTimeEdit_2]))
+        self.dlg.trafficMode.currentIndexChanged.connect(partial(self.enableTime,[self.dlg.trafficMode,self.dlg.dateTimeEdit]))
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
@@ -219,6 +221,16 @@ class Hqgis:
             self.dlg.calcIsoButton.setEnabled(True)
             self.dlg.calcIsoButtonBatch.setEnabled(True)
             self.dlg.status2.setText("")
+    def enableTime(self, lineEdits):
+        if lineEdits[0].currentText()=="enabled":
+            lineEdits[1].setEnabled(True)
+            print("time enabled")
+            #print(lineEdits[1].dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'"))
+            #2019-01-28T02:27:52Z
+            #2019-01-27T02:00:00Z
+        else:
+            lineEdits[1].setEnabled(False)
+            print("time disabled")
     def enableBatchISO(self):
         if self.dlg.travelTimesBatch.text() != "" or self.dlg.travelDistancesBatch.text() != "":
             self.dlg.calcIsoButtonBatch.setEnabled(True)
@@ -763,12 +775,15 @@ class Hqgis:
         mode = self.dlg.TransportMode.currentText()
         traffic = self.dlg.trafficMode.currentText()
         url = "https://route.api.here.com/routing/7.2/calculateroute.json?app_id=" + self.appId + "&app_code=" + self.appCode + "&routeAttributes=shape&mode=" + type + ";" + mode + ";traffic:" + traffic + "&waypoint0=geo!"  + self.dlg.FromLabel.text() + "&waypoint1=geo!" + self.dlg.ToLabel.text()
+        if self.dlg.trafficMode.currentText() == "enabled":
+            #print(self.dlg.dateTimeEditBatch.dateTime())
+            url += "&departure=" + self.dlg.dateTimeEdit.dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'")
         print(url)
         r = requests.get(url)
 
         if r.status_code == 200:
             try:
-                self.dlg.status2.setText("distance: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["distance"]) +  " time: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["baseTime"]))
+                self.dlg.status2.setText("distance: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["distance"]) +  " time: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["travelTime"]))
                 if self.dlg.routeLayerCheckBox.checkState():
                     layer = self.createRouteLayer()
                     responseRoute = json.loads(r.text)["response"]["route"][0]["shape"]
@@ -782,7 +797,7 @@ class Hqgis:
                     fet.setAttributes([
                         0,
                         json.loads(r.text)["response"]["route"][0]["summary"]["distance"],
-                        json.loads(r.text)["response"]["route"][0]["summary"]["baseTime"],
+                        json.loads(r.text)["response"]["route"][0]["summary"]["travelTime"],
                         mode,
                         traffic,
                         type
@@ -903,6 +918,7 @@ class Hqgis:
         iface.messageBar().clearWidgets()
 
     def getIsochronesSingle(self):
+        #print(self.dlg.dateTimeEditBatch.dateTime().toPyDate())
         print("get Isochrones")
         self.getCredentials()
         #getting intervals:
@@ -945,6 +961,9 @@ class Hqgis:
         "&rangetype=" + self.dlg.metric.currentText().lower() + \
         "&" + self.dlg.OriginDestination.currentText().lower() + "=geo!" + \
         self.dlg.IsoLabel.text()
+        if self.dlg.trafficMode_2.currentText() == "enabled":
+            #print(self.dlg.dateTimeEditBatch.dateTime())
+            url += "&departure=" + self.dlg.dateTimeEdit_2.dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'")
         r = requests.get(url)
         print(url)
 
@@ -1049,6 +1068,9 @@ class Hqgis:
             "&rangetype=" + self.dlg.metricBatch.currentText().lower() + \
             "&" + self.dlg.OriginDestinationBatch.currentText().lower() + "=geo!" + \
             coordinates
+            if self.dlg.trafficModeBatch.currentText() == "enabled":
+                #print(self.dlg.dateTimeEditBatch.dateTime())
+                url += "&departure=" + self.dlg.dateTimeEditBatch.dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'")
             r = requests.get(url)
             print(url)
             i += 1
