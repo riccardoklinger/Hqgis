@@ -196,6 +196,7 @@ class Hqgis:
         self.dlg.calcIsoButtonBatch.setEnabled(False)
         self.dlg.travelTimesBatch.editingFinished.connect(self.enableBatchISO)
         self.dlg.travelDistancesBatch.editingFinished.connect(self.enableBatchISO)
+        self.dlg.metricBatch.currentTextChanged.connect(self.selectMetricBatch)
         self.dlg.calcIsoButtonBatch.clicked.connect(self.getIsochronesBatch)
         self.dlg.trafficModeBatch.currentIndexChanged.connect(partial(self.enableTime,[self.dlg.trafficModeBatch,self.dlg.dateTimeEditBatch]))
         self.dlg.trafficMode_2.currentIndexChanged.connect(partial(self.enableTime,[self.dlg.trafficMode_2,self.dlg.dateTimeEdit_2]))
@@ -769,6 +770,13 @@ class Hqgis:
         else:
             self.dlg.travelDistances.setEnabled(True)
             self.dlg.travelTimes.setEnabled(False)
+    def selectMetricBatch(self):
+        if self.dlg.metricBatch.currentText() == "Time":
+            self.dlg.travelDistancesBatch.setEnabled(False)
+            self.dlg.travelTimesBatch.setEnabled(True)
+        else:
+            self.dlg.travelDistancesBatch.setEnabled(True)
+            self.dlg.travelTimesBatch.setEnabled(False)
     def calculateRouteSingle(self):
         self.getCredentials()
         type = self.dlg.Type.currentText()
