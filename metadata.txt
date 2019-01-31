@@ -10,7 +10,7 @@
 name=Hqgis
 qgisMinimumVersion=3.0
 description=Routing, Geocoding, POI search, Isochrones with the HERE API.
-version=0.3.1
+version=0.3.2
 author=Riccardo Klinger
 email=riccardo.klinger@gmail.com
 
@@ -24,7 +24,8 @@ repository=https://github.com/riccardoklinger/Hqgis
 # Recommended items:
 
 # Uncomment the following line and add your changelog:
-changelog= 0.3.1: respect of traffic in routing and isochrone calculations
+changelog= 0.3.2: solves issue with distance based isochrones https://github.com/riccardoklinger/Hqgis/issues/16
+	0.3.1: respect of traffic in routing and isochrone calculations
 	0.2.1: new batch mode for POI search, differnet name
 	0.1.3: rendering of isochrones fixed
 	0.1.2: no CRS warning for routes as well
