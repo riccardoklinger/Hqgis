@@ -17,6 +17,10 @@ The Hqgis plugin comes with different analytical tools as the HERE API povides d
 
    Using the POI search you can query the HERE API for places of interest around an address/coordinate pair in a given vicinity (radius). The API will respond with a maximum of 100 search results in the categories you queried.
    ![POI Search Tab Hqgis](https://i.imgur.com/2mzqDDw.png)
+
++ Isochrone Analysis
+   Isochrones, or lines of equal (travel) times are possible to calculated using different modes and types as well as for different times of the day. This can be done on a single address/map point or using a point layer. The result will be color coded (categorized) in QGIS in red (long travel times/distances) to grenn (short travel times/distances). Find some nice examples at [Topi Tjukanovs Homepage](https://tjukanov.org/vintage-isochrones/).
+   
    
 ## Installation
 Currently the plugin is only hosted here on github as the version is premature. 
