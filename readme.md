@@ -20,7 +20,7 @@ The Hqgis plugin comes with different analytical tools as the HERE API povides d
 
 + Isochrone Analysis
 
-   Isochrones, or lines of equal (travel) times are possible to calculated using different modes and types as well as for different times of the day. This can be done on a single address/map point or using a point layer. The result will be color coded (categorized) in QGIS in red (long travel times/distances) to grenn (short travel times/distances). Find some nice examples at [Topi Tjukanovs Homepage](https://tjukanov.org/vintage-isochrones/).
+   Isochrones, or lines of equal (travel) times are possible to calculated using different modes and types as well as for different times of the day. This can be done on a single address/map point or using a point layer. The result will be color coded (categorized) in QGIS in red (long travel times/distances) to grenn (short travel times/distances). Find some nice examples at [Topi Tjukanovs Homepage](https://tjukanov.org/vintage-isochrones/).  
    ![Isochrones in HQGIS](https://i.imgur.com/pX9qEeJ.png)
    
    
