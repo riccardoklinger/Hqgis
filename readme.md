@@ -8,17 +8,18 @@ The Hqgis plugin comes with different analytical tools as the HERE API povides d
 + Geocode
 
    With the three tools you can geocode a single address, choose a point layer / delimited layer with an address field or a layer with dedicated address-content fields (like street, city, zip code, etc.). You will receive a single point memory layer with found addresses, quality indicators and the original searched address/address content.
-   ![Geocoding Tab Hqgis](https://i.imgur.com/IC0Z7B7.png)
+   ![Geocoding Tab Hqgis](https://i.imgur.com/f1KV0NL.png)
 + Routing
 
    Currently the toolset supports one-to-one routing ("manual input") using different routing types (fast, short, balanced) and routing modes (pedestrian, bicycle, car, ...). The reuslt will be added as a memory layer to your QGIS project.
-   ![Routing Tab Hqgis](https://i.imgur.com/wzydRrk.png)
+   ![Routing Tab Hqgis](https://i.imgur.com/vJZQSFn.png)
 + POI search
 
    Using the POI search you can query the HERE API for places of interest around an address/coordinate pair in a given vicinity (radius). The API will respond with a maximum of 100 search results in the categories you queried.
-   ![POI Search Tab Hqgis](https://i.imgur.com/2mzqDDw.png)
+   ![POI Search Tab Hqgis](https://i.imgur.com/7ALhD7e.png)
 
 + Isochrone Analysis
+
    Isochrones, or lines of equal (travel) times are possible to calculated using different modes and types as well as for different times of the day. This can be done on a single address/map point or using a point layer. The result will be color coded (categorized) in QGIS in red (long travel times/distances) to grenn (short travel times/distances). Find some nice examples at [Topi Tjukanovs Homepage](https://tjukanov.org/vintage-isochrones/).
    ![Isochrones in HQGIS](https://i.imgur.com/pX9qEeJ.png)
    
