@@ -1102,7 +1102,7 @@ class Hqgis:
                                 fid,
                                 originFeature.id(),
                                 poly["range"],
-                                self.dlg.metric.currentText().lower(),
+                                self.dlg.metricBatch.currentText().lower(),
                                 mode,
                                 traffic,
                                 type
