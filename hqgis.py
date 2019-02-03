@@ -33,7 +33,7 @@ from .GetMapCoordinates import GetMapCoordinates
 from .hqgis_dialog import HqgisDialog
 import os.path
 import requests, json, urllib
-from PyQt5.QtCore import QVariant
+from PyQt5.QtCore import QVariant, QDateTime
 from qgis.core import QgsPoint,QgsSymbol, QgsRendererRange, QgsGraduatedSymbolRenderer, QgsPointXY, QgsGeometry,QgsMapLayerProxyModel, QgsVectorLayer, QgsProject, QgsCoordinateReferenceSystem, QgsCoordinateTransform, QgsFeature, QgsField, QgsMessageLog, QgsNetworkAccessManager
 from qgis.PyQt.QtWidgets import QProgressBar
 from qgis.PyQt.QtCore import *
@@ -369,6 +369,7 @@ class Hqgis:
             QgsField("metric",QVariant.String),
             QgsField("mode",QVariant.String),
             QgsField("traffic",QVariant.String),
+            QgsField("timestamp", QVariant.DateTime),
             QgsField("type",QVariant.String)
         ])
         layer.updateFields()
@@ -387,6 +388,7 @@ class Hqgis:
             QgsField("metric",QVariant.String),
             QgsField("mode",QVariant.String),
             QgsField("traffic",QVariant.String),
+            QgsField("timestamp", QVariant.DateTime),
             QgsField("type",QVariant.String)
         ])
         layer.updateFields()
@@ -972,6 +974,10 @@ class Hqgis:
         if self.dlg.trafficMode_2.currentText() == "enabled":
             #print(self.dlg.dateTimeEditBatch.dateTime())
             url += "&departure=" + self.dlg.dateTimeEdit_2.dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'")
+            time2 = self.dlg.dateTimeEdit_2.dateTime().toString("yyyyMMdd-hh:mm:ss")
+            timestamp = QDateTime.fromString(time2,"yyyyMMdd-hh:mm:ss");
+        else:
+            timestamp = None
         r = requests.get(url)
         print(url)
 
@@ -996,6 +1002,7 @@ class Hqgis:
                             self.dlg.metric.currentText().lower(),
                             mode,
                             traffic,
+                            timestamp,
                             type
                         ])
                         features.append(fet)
@@ -1077,13 +1084,19 @@ class Hqgis:
             "&" + self.dlg.OriginDestinationBatch.currentText().lower() + "=geo!" + \
             coordinates
             if self.dlg.trafficModeBatch.currentText() == "enabled":
+                time = self.dlg.dateTimeEditBatch.dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'")
                 #print(self.dlg.dateTimeEditBatch.dateTime())
-                url += "&departure=" + self.dlg.dateTimeEditBatch.dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'")
+                url += "&departure=" + time
+                time2 = self.dlg.dateTimeEditBatch.dateTime().toString("yyyyMMdd-hh:mm:ss")
+                timestamp = QDateTime.fromString(time2,"yyyyMMdd-hh:mm:ss");
+            else:
+                timestamp = None
             r = requests.get(url)
             print(url)
             i += 1
             progress.setValue(i)
             iface.mainWindow().repaint()
+
             if r.status_code == 200:
                 if len(json.loads(r.text)["response"]["isoline"])>0:
                     try:
@@ -1098,6 +1111,7 @@ class Hqgis:
                                 coordinates.append(QgsPointXY(lng,lat))
                             fet = QgsFeature()
                             fet.setGeometry(QgsGeometry.fromPolygonXY([coordinates]))
+
                             fet.setAttributes([
                                 fid,
                                 originFeature.id(),
@@ -1105,6 +1119,7 @@ class Hqgis:
                                 self.dlg.metricBatch.currentText().lower(),
                                 mode,
                                 traffic,
+                                timestamp,
                                 type
                             ])
                             features.append(fet)
