@@ -406,6 +406,7 @@ class Hqgis:
             QgsField("time",QVariant.Double),
             QgsField("mode",QVariant.String),
             QgsField("traffic",QVariant.String),
+            QgsField("timestamp", QVariant.DateTime),
             QgsField("type",QVariant.String)
         ])
         layer.updateFields()
@@ -788,6 +789,10 @@ class Hqgis:
         if self.dlg.trafficMode.currentText() == "enabled":
             #print(self.dlg.dateTimeEditBatch.dateTime())
             url += "&departure=" + self.dlg.dateTimeEdit.dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'")
+            time2 = self.dlg.dateTimeEdit.dateTime().toString("yyyyMMdd-hh:mm:ss")
+            timestamp = QDateTime.fromString(time2,"yyyyMMdd-hh:mm:ss");
+        else:
+            timestamp = None
         print(url)
         r = requests.get(url)
 
@@ -810,6 +815,7 @@ class Hqgis:
                         json.loads(r.text)["response"]["route"][0]["summary"]["travelTime"],
                         mode,
                         traffic,
+                        timestamp,
                         type
                     ])
                     pr = layer.dataProvider()
