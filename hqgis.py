@@ -784,6 +784,8 @@ class Hqgis:
         self.getCredentials()
         type = self.dlg.Type.currentText()
         mode = self.dlg.TransportMode.currentText()
+        if mode == 'public transport':
+            mode = 'publicTransport'
         traffic = self.dlg.trafficMode.currentText()
         url = "https://route.api.here.com/routing/7.2/calculateroute.json?app_id=" + self.appId + "&app_code=" + self.appCode + "&routeAttributes=shape&mode=" + type + ";" + mode + ";traffic:" + traffic + "&waypoint0=geo!"  + self.dlg.FromLabel.text() + "&waypoint1=geo!" + self.dlg.ToLabel.text()
         if self.dlg.trafficMode.currentText() == "enabled":
@@ -969,6 +971,8 @@ class Hqgis:
         type = self.dlg.Type_2.currentText()
         mode = self.dlg.TransportMode_2.currentText()
         traffic = self.dlg.trafficMode_2.currentText()
+        if mode == 'public transport':
+            mode = 'publicTransport'
         url = "https://isoline.route.api.here.com/routing/7.2/calculateisoline.json?" + \
         "app_id=" + self.appId + \
         "&app_code=" + self.appCode +\
@@ -1055,6 +1059,8 @@ class Hqgis:
             renderer = QgsGraduatedSymbolRenderer(field, rngs)
         type = self.dlg.TypeBatch.currentText()
         mode = self.dlg.TransportModeBatch.currentText()
+        if mode == 'public transport':
+            mode = 'publicTransport'
         traffic = self.dlg.trafficModeBatch.currentText()
         originLayer = self.dlg.IsoAddressBatch.currentLayer()
         originFeatures = originLayer.getFeatures()

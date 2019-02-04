@@ -10,7 +10,7 @@
 name=Hqgis
 qgisMinimumVersion=3.0
 description=Routing, Geocoding, POI search, Isochrones with the HERE API.
-version=0.3.4
+version=0.3.5
 author=Riccardo Klinger
 email=riccardo.klinger@gmail.com
 
@@ -24,7 +24,8 @@ repository=https://github.com/riccardoklinger/Hqgis
 # Recommended items:
 
 # Uncomment the following line and add your changelog:
-changelog= 0.3.4 saving of time attribute in Attribute tabel for Isochrones and Routing
+changelog= 0.3.5 public transport routes solved
+	0.3.4 saving of time attribute in Attribute tabel for Isochrones and Routing
 	0.3.3: correct values for attribute "metric" in batch-isochrone mode
 	0.3.2: solves issue with distance based isochrones https://github.com/riccardoklinger/Hqgis/issues/16
 	0.3.1: respect of traffic in routing and isochrone calculations

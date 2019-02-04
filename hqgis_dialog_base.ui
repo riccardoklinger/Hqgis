@@ -306,7 +306,7 @@
           </item>
           <item>
            <property name="text">
-            <string>public transport </string>
+            <string>public transport</string>
            </property>
           </item>
           <item>
@@ -1771,11 +1771,6 @@
           </item>
           <item>
            <property name="text">
-            <string>public transport </string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
             <string>car</string>
            </property>
           </item>
@@ -2088,11 +2083,6 @@
           <item>
            <property name="text">
             <string>bicycle</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>public transport </string>
            </property>
           </item>
           <item>
