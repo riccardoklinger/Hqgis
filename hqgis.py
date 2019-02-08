@@ -34,14 +34,16 @@ from .hqgis_dialog import HqgisDialog
 import os.path
 import requests, json, urllib
 from PyQt5.QtCore import QVariant, QDateTime
-from qgis.core import QgsPoint,QgsSymbol, QgsRendererRange, QgsGraduatedSymbolRenderer, QgsPointXY, QgsGeometry,QgsMapLayerProxyModel, QgsVectorLayer, QgsProject, QgsCoordinateReferenceSystem, QgsCoordinateTransform, QgsFeature, QgsField, QgsMessageLog, QgsNetworkAccessManager
+from qgis.core import QgsApplication, QgsPoint, QgsSymbol, QgsRendererRange, QgsGraduatedSymbolRenderer, QgsPointXY, QgsGeometry,QgsMapLayerProxyModel, QgsVectorLayer, QgsProject, QgsCoordinateReferenceSystem, QgsCoordinateTransform, QgsFeature, QgsField, QgsMessageLog, QgsNetworkAccessManager
 from qgis.PyQt.QtWidgets import QProgressBar
 from qgis.PyQt.QtCore import *
 from qgis.utils import iface
+from Hqgis.HqgisProvider import HqgisProvider
 
 
 class Hqgis:
     def __init__(self, iface):
+        self.provider = HqgisProvider()
         # Save reference to the QGIS interface
         self.iface = iface
         # initialize plugin directory
@@ -115,7 +117,7 @@ class Hqgis:
 
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
-
+        QgsApplication.processingRegistry().addProvider(self.provider)
         icon_path = ':/plugins/hereqgis/icon.png'
         self.add_action(
             icon_path,
@@ -204,6 +206,7 @@ class Hqgis:
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
+        QgsApplication.processingRegistry().removeProvider(self.provider)
         for action in self.actions:
             self.iface.removePluginWebMenu(
                 self.tr(u'&Hqgis'),
