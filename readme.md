@@ -29,18 +29,18 @@ Currently the plugin is only hosted here on github as the version is premature.
 If you want to use it in QGIS, please download the repository and place the content of the zip in your python plugins folder (linux: */home/USER/.local/share/QGIS/QGIS3/profiles/default/python/plugins* / win: *C:\Users\USER\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins*). You can also install it directly in QGIS using the [plugin from ZIP option](https://gis.stackexchange.com/questions/302196/downloading-and-saving-plugins-for-qgis-3-4)
 
 ## Credentials
-The plugin needs to have credentials from HERE. Therefore you need to register a freemium account (free of charge at [HERE.com](https://developer.here.com/). 
-Fill in the generated app ID and app code in the credentials-tab of the plugin.
+The plugin needs to have credentials from HERE. Therefore you need to register at least a freemium account (free of charge at [HERE.com](https://developer.here.com/) by creating a project and generate a JavaScript/REST App-Code and Id if not already generated.
+Fill in the generated app ID and app code in the credentials-tab of the plugin and click on "save credentials".
 
 ![Credential Tab Hqgis](https://i.imgur.com/8kOkAHD.png)
 
-The credentials will be stored for convenience in a file called credentials.json in the *cred* subfolder of your Hqgis plugin folder (linux: */home/USER/.local/share/QGIS/QGIS3/profiles/default/python/plugins* / win: *C:\Users\USER\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins*). 
+The credentials will be stored for convenience in a file called credentials.json in the *creds* subfolder of your Hqgis plugin folder (linux: */home/USER/.local/share/QGIS/QGIS3/profiles/default/python/plugins* / win: *C:\Users\USER\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins*). 
 
 ## TOS / Usage
 Please take a look at the [*Terms and Contitions*](https://developer.here.com/terms-and-conditions) when using the Freemium plan (as most people might want to...).
 Furthermore:
-According to the [*Acceptable Use Policy*](https://legal.here.com/en-gb/terms/acceptable-use-policy) you're not allowed to store the results. Yet you can use them *cached* aka work with the memory layer for 30days max.
-Further Questions and Answers can be found at the [*FAQ*](https://developer.here.com/faqs) page as well as the [main page of the freemium model](https://go.engage.here.com/freemium)
+According to the [*Acceptable Use Policy*](https://legal.here.com/en-gb/terms/acceptable-use-policy) you're not allowed to store the results. Yet you can use them *cached* aka work with the memory layer for 30 days max.
+Further Questions and Answers can be found at the [*FAQ*](https://developer.here.com/faqs) page as well as the [main page of the freemium model](https://go.engage.here.com/freemium).
 
 ## Known Limitations
 The plugin is using the [requests module](http://docs.python-requests.org/en/master/) at the current stage and is not respecting any proxy settings from QGIS.
