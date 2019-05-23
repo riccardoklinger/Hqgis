@@ -25,9 +25,9 @@ from qgis.core import QgsProcessingProvider
 from processing.core.ProcessingConfig import Setting, ProcessingConfig
 from .HqgisAlgorithm import geocodeList
 
-__author__ = 'Tom Chadwin'
-__date__ = '2019-02-06'
-__copyright__ = '(C) 2019 by Tom Chadwin'
+__author__ = 'Riccardo Klinger'
+__date__ = '2019-05-23'
+__copyright__ = '(C) 2019 by Riccardo Klinger'
 
 # This will get replaced with a git SHA1 when you do a git archive
 
