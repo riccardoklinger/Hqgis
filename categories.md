@@ -1,5 +1,5 @@
 # List of Categories
-'accommodation',	[0]
+'accommodation',	[0]<br>
 'administrative-areas-buildings',	[1]
 'administrative-region',	[2]
 'airport',	[3]
