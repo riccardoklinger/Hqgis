@@ -109,9 +109,9 @@ class geocodeList(QgsProcessingAlgorithm):
         """
         Returns a localised short helper string for the algorithm. This string
         should provide a basic description about what the algorithm does and the
-        parameters and outputs associated with it..
+        parameters and outputs associated with it.
         """
-        return self.tr("This processing algroithm supports geocoding of a list of addresses in a single field originating from a txt/csv/table.<br> Make sure your HERE credentials are stored in the file: <br>'" + os.path.dirname(os.path.realpath(__file__))+ os.sep + "creds" + os.sep + "credentials.json'<br>using the plugin itself. Please read the referenced <a href='https://github.com/riccardoklinger/Hqgis#tos--usage'>Terms of Usage</a> prior usage" )
+        return self.tr("This processing algorithm supports geocoding of a list of addresses in a single field originating from a txt/csv/table.<br> Make sure your HERE credentials are stored in the file: <br>'" + os.path.dirname(os.path.realpath(__file__))+ os.sep + "creds" + os.sep + "credentials.json'<br>using the plugin itself. Please read the referenced <a href='https://github.com/riccardoklinger/Hqgis#tos--usage'>Terms of Usage</a> prior usage" )
     def loadCredFunctionAlg(self):
         import json, os
         #fileLocation = QFileDialog.getOpenFileName(self.dlg, "JSON with credentials",os.path.dirname(os.path.realpath(__file__))+ os.sep + "creds", "JSON(*.JSON)")
@@ -355,6 +355,17 @@ class geocodeList(QgsProcessingAlgorithm):
         # to processing.run to ensure that all temporary layer outputs are available
         # to the executed algorithm, and that the executed algorithm can send feedback
         # reports to the user (and correctly handle cancelation and progress reports!)
+        if False:
+            buffered_layer = processing.run("native:buffer", {
+                'INPUT': dest_id,
+                'DISTANCE': 1.5,
+                'SEGMENTS': 5,
+                'END_CAP_STYLE': 0,
+                'JOIN_STYLE': 0,
+                'MITER_LIMIT': 2,
+                'DISSOLVE': False,
+                'OUTPUT': 'memory:'
+            }, context=context, feedback=feedback)['OUTPUT']
 
         # Return the results of the algorithm. In this case our only result is
         # the feature sink which contains the processed features, but some
