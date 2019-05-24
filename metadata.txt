@@ -10,7 +10,7 @@
 name=Hqgis
 qgisMinimumVersion=3.0
 description=Routing, Geocoding, POI search, Isochrones with the HERE API.
-version=0.4.2
+version=0.4.3
 author=Riccardo Klinger
 email=riccardo.klinger@gmail.com
 
@@ -24,7 +24,8 @@ repository=https://github.com/riccardoklinger/Hqgis
 # Recommended items:
 
 # Uncomment the following line and add your changelog:
-changelog= 0.4.2 removed MacOS directory as reported by Paolo here https://github.com/riccardoklinger/Hqgis/issues/26
+changelog= 0.4.3 adds POI search to processing toolbox
+	0.4.2 removed MacOS directory as reported by Paolo here https://github.com/riccardoklinger/Hqgis/issues/26
 	0.4.1 adds geoprocessing capabilities for geoding single field addresses from txt/layer
 	0.3.6 bicylce isochrones are not supported by HERE. removed the option
 	0.3.5 public transport routes solved
@@ -45,7 +46,7 @@ homepage=https://github.com/riccardoklinger/Hqgis
 category=Web
 icon=icon.png
 # experimental flag
-experimental=True
+experimental=False
 
 # deprecated flag (applies to the whole plugin, not just a single version)
 deprecated=False
