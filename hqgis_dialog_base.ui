@@ -316,7 +316,7 @@
           </item>
           <item>
            <property name="text">
-            <string>high-occupancy vehicle</string>
+            <string>carHOV</string>
            </property>
           </item>
           <item>
@@ -1771,7 +1771,7 @@
           </item>
           <item>
            <property name="text">
-            <string>high-occupancy vehicle</string>
+            <string>carHOV</string>
            </property>
           </item>
           <item>
@@ -2082,7 +2082,7 @@
           </item>
           <item>
            <property name="text">
-            <string>high-occupancy vehicle</string>
+            <string>carHOV</string>
            </property>
           </item>
           <item>
