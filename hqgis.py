@@ -118,7 +118,7 @@ class Hqgis:
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
         QgsApplication.processingRegistry().addProvider(self.provider)
-        icon_path = ':/plugins/hereqgis/icon.png'
+        icon_path = ':/plugins/Hqgis/icon.png'
         self.add_action(
             icon_path,
             text=self.tr(u'Access the HERE API'),

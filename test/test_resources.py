@@ -18,7 +18,7 @@ from PyQt5.QtGui import QIcon
 
 
 
-class HEREqgisDialogTest(unittest.TestCase):
+class HqgisDialogTest(unittest.TestCase):
     """Test rerources work."""
 
     def setUp(self):
@@ -31,12 +31,12 @@ class HEREqgisDialogTest(unittest.TestCase):
 
     def test_icon_png(self):
         """Test we can click OK."""
-        path = ':/plugins/HEREqgis/icon.png'
+        path = ':/plugins/Hqgis/icon.png'
         icon = QIcon(path)
         self.assertFalse(icon.isNull())
 
 if __name__ == "__main__":
-    suite = unittest.makeSuite(HEREqgisResourcesTest)
+    suite = unittest.makeSuite(HqgisResourcesTest)
     runner = unittest.TextTestRunner(verbosity=2)
     runner.run(suite)
 

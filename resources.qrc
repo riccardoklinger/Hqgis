@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/plugins/hereqgis" >
+    <qresource prefix="/plugins/Hqgis" >
         <file>icon.png</file>
     </qresource>
 </RCC>

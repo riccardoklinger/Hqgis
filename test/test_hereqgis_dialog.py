@@ -16,18 +16,18 @@ import unittest
 
 from PyQt5.QtGui import QDialogButtonBox, QDialog
 
-from hereqgis_dialog import HEREqgisDialog
+from hqgis_dialog import hqgisDialog
 
 from utilities import get_qgis_app
 QGIS_APP = get_qgis_app()
 
 
-class HEREqgisDialogTest(unittest.TestCase):
+class HqgisDialogTest(unittest.TestCase):
     """Test dialog works."""
 
     def setUp(self):
         """Runs before each test."""
-        self.dialog = HEREqgisDialog(None)
+        self.dialog = HqgisDialog(None)
 
     def tearDown(self):
         """Runs after each test."""
@@ -49,7 +49,7 @@ class HEREqgisDialogTest(unittest.TestCase):
         self.assertEqual(result, QDialog.Rejected)
 
 if __name__ == "__main__":
-    suite = unittest.makeSuite(HEREqgisDialogTest)
+    suite = unittest.makeSuite(HqgisDialogTest)
     runner = unittest.TextTestRunner(verbosity=2)
     runner.run(suite)
 
