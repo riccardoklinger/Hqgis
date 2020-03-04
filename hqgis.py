@@ -435,7 +435,7 @@ class Hqgis:
         if address == "":
             address = "11 WallStreet, NewYork, USA"
 
-        url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + self.appId + "&app_code=" + self.appCode + "&searchtext=" + address
+        url = "https://geocoder.api.here.com/6.2/geocode.json?apiKey=" + self.appId + "&searchtext=" + address
         r = requests.get(url)
         try:
             #ass the response may hold more than one result we only use the best one:
