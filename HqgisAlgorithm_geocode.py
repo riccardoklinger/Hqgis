@@ -123,8 +123,8 @@ class geocodeList(QgsProcessingAlgorithm):
             scriptDirectory = os.path.dirname(os.path.realpath(__file__))
             with open(scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json') as f:
                 data = json.load(f)
-                creds["id"] = data["ID"]
-                creds["code"] = data["CODE"]
+                creds["id"] = data["KEY"]
+                #creds["code"] = data["CODE"]
 
             #self.dlg.credentialInteraction.setText("credits used from " + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
         except:
@@ -314,7 +314,7 @@ class geocodeList(QgsProcessingAlgorithm):
                 break
 
             #get the location from the API:
-            ApiUrl = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + creds["id"] + "&app_code=" + creds["code"] + "&searchtext=" + feature[addressField]
+            ApiUrl = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + creds["id"] + "&searchtext=" + feature[addressField]
             r = requests.get(ApiUrl)
             responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
             geocodeResponse = self.convertGeocodeResponse(responseAddress)

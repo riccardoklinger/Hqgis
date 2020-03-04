@@ -133,8 +133,8 @@ class getPois(QgsProcessingAlgorithm):
             scriptDirectory = os.path.dirname(os.path.realpath(__file__))
             with open(scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json') as f:
                 data = json.load(f)
-                creds["id"] = data["ID"]
-                creds["code"] = data["CODE"]
+                creds["id"] = data["KEY"]
+                #creds["code"] = data["CODE"]
 
             #self.dlg.credentialInteraction.setText("credits used from " + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
         except:
@@ -456,7 +456,7 @@ class getPois(QgsProcessingAlgorithm):
             coordinates = str(y) + "," + str(x)
             #get the location from the API:
             header = {"referer": "HQGIS"}
-            ApiUrl = 'https://places.cit.api.here.com/places/v1/discover/explore?in=' + coordinates + ";r=" + str(radius) + "&cat=" + categories +"&drilldown=false&size=10000&X-Mobility-Mode=" + self.modes[mode] + "&app_id=" + creds["id"] + "&app_code=" + creds["code"]
+            ApiUrl = 'https://places.cit.api.here.com/places/v1/discover/explore?in=' + coordinates + ";r=" + str(radius) + "&cat=" + categories +"&drilldown=false&size=10000&X-Mobility-Mode=" + self.modes[mode] + "&apiKey=" + creds["id"]
             feedback.pushInfo('calling Url {}'.format(ApiUrl))
             r = requests.get(ApiUrl, headers=header)
             responsePlaces = json.loads(r.text)["results"]["items"]

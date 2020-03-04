@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>451</width>
-    <height>477</height>
+    <height>551</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,7 +23,7 @@
       <bool>true</bool>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -80,7 +80,7 @@
              <x>0</x>
              <y>0</y>
              <width>431</width>
-             <height>61</height>
+             <height>68</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_4">
@@ -136,7 +136,7 @@
              <x>0</x>
              <y>0</y>
              <width>431</width>
-             <height>251</height>
+             <height>284</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_5">
@@ -251,7 +251,7 @@
        <item>
         <widget class="QTabWidget" name="tabWidget_3">
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="tab_7">
           <attribute name="title">
@@ -527,7 +527,7 @@
        <item>
         <widget class="QTabWidget" name="tabWidget_4">
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="tab_11">
           <attribute name="title">
@@ -902,12 +902,12 @@
                </item>
                <item>
                 <property name="text">
-                 <string>postal-area</string>
+                 <string>post-office</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>post-office</string>
+                 <string>postal-area</string>
                 </property>
                </item>
                <item>
@@ -1391,12 +1391,12 @@
                </item>
                <item>
                 <property name="text">
-                 <string>postal-area</string>
+                 <string>post-office</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>post-office</string>
+                 <string>postal-area</string>
                 </property>
                </item>
                <item>
@@ -1542,7 +1542,7 @@
           <bool>true</bool>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="tab_14">
           <attribute name="title">
@@ -2050,28 +2050,14 @@
          <item row="0" column="2">
           <widget class="QLineEdit" name="AppId">
            <property name="placeholderText">
-            <string>6evN87VoDTiHtpLvEoLE</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QLineEdit" name="AppCode">
-           <property name="placeholderText">
-            <string>LgbkS8Sa66CKpqDxAmiyaw</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>App Code</string>
+            <string>s8788xpr_P_jIuTrlWUUC6fXafad_KRGyDqpWFfasNIg8</string>
            </property>
           </widget>
          </item>
          <item row="0" column="0">
           <widget class="QLabel" name="label">
            <property name="text">
-            <string>App ID</string>
+            <string>API Key</string>
            </property>
           </widget>
          </item>

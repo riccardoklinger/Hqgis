@@ -26,9 +26,9 @@ from processing.core.ProcessingConfig import Setting, ProcessingConfig
 from .HqgisAlgorithm_geocode import geocodeList
 from .HqgisAlgorithm_POIs import getPois
 
-__author__ = 'Tom Chadwin'
-__date__ = '2019-02-06'
-__copyright__ = '(C) 2019 by Tom Chadwin'
+__author__ = 'Riccardo Klinger'
+__date__ = '2020-03-04'
+__copyright__ = '(C) 2020 Riccardo Klinger'
 
 # This will get replaced with a git SHA1 when you do a git archive
 
