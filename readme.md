@@ -32,7 +32,7 @@ If you want to use it in QGIS, please download the repository and place the cont
 The plugin needs to have credentials from HERE. Therefore you need to register at least a freemium account (free of charge at [HERE.com](https://developer.here.com/) by creating a project and generate a REST API Key if not already generated.
 Fill in the generated API Key in the credentials-tab of the plugin and click on "save credentials".
 
-![Credential Tab Hqgis](https://i.imgur.com/hSfo2CW.png)
+![Credential Tab Hqgis](https://i.imgur.com/IPvR5LV.png)
 
 The credentials will be stored for convenience in a file called credentials.json in the *creds* subfolder of your Hqgis plugin folder (linux: */home/USER/.local/share/QGIS/QGIS3/profiles/default/python/plugins* / win: *C:\Users\USER\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins*).
 
