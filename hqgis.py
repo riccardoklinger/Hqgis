@@ -337,11 +337,11 @@ class Hqgis:
             "memory"
         )
         layer.dataProvider().addAttributes([
-            QgsField("id",QVariant.Int),
+            QgsField("id",QVariant.String),
             QgsField("title",QVariant.String),
-            QgsField("vicinity",QVariant.String),
+            QgsField("label",QVariant.String),
             QgsField("distance",QVariant.Double),
-            QgsField("category",QVariant.String),
+            QgsField("categories",QVariant.String)
         ])
         layer.updateFields()
         return(layer)
@@ -355,9 +355,9 @@ class Hqgis:
             QgsField("id",QVariant.Int),
             QgsField("origin_id",QVariant.Int),
             QgsField("title",QVariant.String),
-            QgsField("vicinity",QVariant.String),
+            QgsField("label",QVariant.String),
             QgsField("distance",QVariant.Double),
-            QgsField("category",QVariant.String),
+            QgsField("categories",QVariant.String)
         ])
         layer.updateFields()
         return(layer)
@@ -838,28 +838,31 @@ class Hqgis:
             categoriesList.append(category.text())
         categories = ",".join(categoriesList)
         coordinates = self.dlg.placeLabel.text()
-
-        url = "https://places.cit.api.here.com/places/v1/discover/explore?in=" + coordinates + ";r=" + str(radius*1000) + "&cat=" + categories +"&drilldown=false&size=10000&X-Mobility-Mode=drive&apiKey=" + self.appId
+        url = 'https://browse.search.hereapi.com/v1/browse?at=' + coordinates + "&categories=" + categories +"&limit=100&apiKey=" + self.appId
         r = requests.get(url)
         print(url)
         if r.status_code == 200:
-            if len(json.loads(r.text)["results"]["items"])>0:
+            if len(json.loads(r.text)["items"])>0:
                 try:
-                    #ass the response may hold more than one result we only use the best one:
-                    responsePlaces = json.loads(r.text)["results"]["items"]
+                    #as the response may hold more than one result we only use the best one:
+                    responsePlaces = json.loads(r.text)["items"]
                     layer = self.createPlaceLayer()
                     features = []
                     for place in responsePlaces:
-                        lat = place["position"][0]
-                        lng = place["position"][1]
+                        lat = place["position"]["lat"]
+                        lng = place["position"]["lng"]
+                        # iterate over categories:
+                        categoriesResp = []
+                        for cat in place["categories"]:
+                            categoriesResp.append(cat["id"])
                         fet = QgsFeature()
                         fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
                         fet.setAttributes([
                             place["id"],
                             place["title"],
-                            place["vicinity"],
+                            place["address"]["label"],
                             place["distance"],
-                            place["category"]["title"]
+                            ";".join(categoriesResp)
                         ])
                         features.append(fet)
                     pr = layer.dataProvider()

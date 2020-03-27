@@ -254,36 +254,36 @@ class getPois(QgsProcessingAlgorithm):
                 allowMultiple=True
             )
         )
-        self.modes = [
-            "walk", #indicates that the user is on foot.
-            "drive", #indicates that the user is driving.
-            "public_transport", #indicates that the user is on public transport.
-            "bicycle", #indicates that the user is on bicycle.
-            "none" #if the user is neither on foot nor driving.
-        ]
-        self.addParameter(
-            QgsProcessingParameterEnum(
-                self.MODES,
-                self.tr('Traffic Mode'),
-                options=self.modes,
-                #defaultValue=0,
-                optional=False,
-                allowMultiple=False
-            )
-        )
-        self.addParameter(
-            QgsProcessingParameterNumber(
-                self.RADIUS,
-                self.tr('Radius around Points [m]'),
+        #self.modes = [
+        #    "walk", #indicates that the user is on foot.
+        #    "drive", #indicates that the user is driving.
+        #    "public_transport", #indicates that the user is on public transport.
+        #    "bicycle", #indicates that the user is on bicycle.
+        #    "none" #if the user is neither on foot nor driving.
+        #]
+        #self.addParameter(
+        #    QgsProcessingParameterEnum(
+        #        self.MODES,
+        #        self.tr('Traffic Mode'),
+        #        options=self.modes,
+        #        #defaultValue=0,
+        #        optional=False,
+        #        allowMultiple=False
+        #    )
+        #)
+        #self.addParameter(
+        #    QgsProcessingParameterNumber(
+        #        self.RADIUS,
+        #        self.tr('Radius around Points [m]'),
                 #parentParameterName=self.INPUT,
                 #options=self.keys,
-                defaultValue=100,
-                minValue=1,
-                maxValue=100000,
+        #        defaultValue=100,
+        #        minValue=1,
+        #        maxValue=100000,
             #    defaultUnit="DistanceMeters",
-                optional=False,
-            )#.setDefaultUnit(QgsUnitTypes.DistanceMeters)
-        )
+        #        optional=False,
+        #    )#.setDefaultUnit(QgsUnitTypes.DistanceMeters)
+        #)
 
         # We add a feature sink in which to store our processed features (this
         # usually takes the form of a newly created vector layer when the
@@ -456,7 +456,7 @@ class getPois(QgsProcessingAlgorithm):
             coordinates = str(y) + "," + str(x)
             #get the location from the API:
             header = {"referer": "HQGIS"}
-            ApiUrl = 'https://browse.search.hereapi.com/v1/browse?at=' + coordinates + "&categories=" + categories +"&size=100&apiKey=" + creds["id"]
+            ApiUrl = 'https://browse.search.hereapi.com/v1/browse?at=' + coordinates + "&categories=" + categories +"&limit=100&apiKey=" + creds["id"]
             feedback.pushInfo('calling Url {}'.format(ApiUrl))
             r = requests.get(ApiUrl, headers=header)
             responsePlaces = json.loads(r.text)["items"]
