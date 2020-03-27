@@ -247,7 +247,7 @@
             </rect>
            </property>
            <property name="text">
-            <string>Geocode Multiple Addresses by fields</string>
+            <string>Geocode Multiple Addresses by Fields</string>
            </property>
           </widget>
          </widget>
