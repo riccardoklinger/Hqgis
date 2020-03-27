@@ -568,7 +568,7 @@ class Hqgis:
         progressMessageBar.layout().addWidget(progress)
         iface.messageBar().pushWidget(progressMessageBar, level=0)
 
-        for id in range(0, layer.featureCount()-1):
+        for id in range(0, layer.featureCount()):
             urlPart=""
             oldAddress=""
             for key in addressLists.keys():
