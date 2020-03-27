@@ -372,16 +372,16 @@ class getPois(QgsProcessingAlgorithm):
             self.INPUT,
             context
         )
-        radius = self.parameterAsString(
-            parameters,
-            self.RADIUS,
-            context
-        )
-        mode = self.parameterAsEnum(
-            parameters,
-            self.MODES,
-            context
-        )
+        #radius = self.parameterAsString(
+        #    parameters,
+        #    self.RADIUS,
+        #    context
+        #)
+        #mode = self.parameterAsEnum(
+        #    parameters,
+        #    self.MODES,
+        #    context
+        #)
         categories = self.parameterAsEnums(
             parameters,
             self.KEYS,
@@ -400,9 +400,9 @@ class getPois(QgsProcessingAlgorithm):
         fields.append(QgsField("id",QVariant.String))
         fields.append(QgsField("origin_id",QVariant.Int))
         fields.append(QgsField("title",QVariant.String))
-        fields.append(QgsField("vicinity",QVariant.String))
+        fields.append(QgsField("label",QVariant.String))
         fields.append(QgsField("distance",QVariant.Double))
-        fields.append(QgsField("category",QVariant.String))
+        fields.append(QgsField("categories",QVariant.String))
         (sink, dest_id) = self.parameterAsSink(
             parameters,
             self.OUTPUT,
@@ -456,22 +456,26 @@ class getPois(QgsProcessingAlgorithm):
             coordinates = str(y) + "," + str(x)
             #get the location from the API:
             header = {"referer": "HQGIS"}
-            ApiUrl = 'https://places.cit.api.here.com/places/v1/discover/explore?in=' + coordinates + ";r=" + str(radius) + "&cat=" + categories +"&drilldown=false&size=10000&X-Mobility-Mode=" + self.modes[mode] + "&apiKey=" + creds["id"]
+            ApiUrl = 'https://browse.search.hereapi.com/v1/browse?at=' + coordinates + "&categories=" + categories +"&size=100&apiKey=" + creds["id"]
             feedback.pushInfo('calling Url {}'.format(ApiUrl))
             r = requests.get(ApiUrl, headers=header)
-            responsePlaces = json.loads(r.text)["results"]["items"]
+            responsePlaces = json.loads(r.text)["items"]
             for place in responsePlaces:
-                lat = place["position"][0]
-                lng = place["position"][1]
+                lat = place["position"]["lat"]
+                lng = place["position"]["lng"]
+                # iterate over categories:
+                categoriesResp = []
+                for cat in place["categories"]:
+                    categoriesResp.append(cat["id"])
                 fet = QgsFeature()
                 fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
                 fet.setAttributes([
                     place["id"],
                     feature.id(),
                     place["title"],
-                    place["vicinity"],
+                    place["address"]["label"],
                     place["distance"],
-                    place["category"]["title"]
+                    ";".join(categoriesResp)
                 ])
                 sink.addFeature(fet, QgsFeatureSink.FastInsert)
             #lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
