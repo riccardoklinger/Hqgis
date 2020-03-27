@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>451</width>
-    <height>477</height>
+    <width>514</width>
+    <height>551</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,7 +23,7 @@
       <bool>true</bool>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -37,42 +37,54 @@
          </property>
          <widget class="QWidget" name="tab_3">
           <attribute name="title">
-           <string>single address</string>
+           <string>Single Address</string>
           </attribute>
-          <layout class="QVBoxLayout" name="verticalLayout_3">
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout">
-             <item>
-              <widget class="QLabel" name="addressLab">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <property name="text">
-                <string>Address</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="AddressInput">
-               <property name="placeholderText">
-                <string>11 Wall Street, New York, NY</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QPushButton" name="geocodeAddressButton">
-             <property name="text">
-              <string>Geocode Single Address</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
+          <widget class="QPushButton" name="geocodeAddressButton">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>370</y>
+             <width>431</width>
+             <height>32</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Geocode Single Address</string>
+           </property>
+          </widget>
+          <widget class="QWidget" name="horizontalLayoutWidget">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>431</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QLabel" name="addressLab">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="text">
+               <string>Address</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="AddressInput">
+              <property name="placeholderText">
+               <string>11 Wall Street, New York, NY</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
          </widget>
          <widget class="QWidget" name="tab_4">
           <attribute name="title">
-           <string>address field in layer</string>
+           <string>Address Field in Layer</string>
           </attribute>
           <widget class="QWidget" name="gridLayoutWidget_3">
            <property name="geometry">
@@ -80,13 +92,10 @@
              <x>0</x>
              <y>0</y>
              <width>431</width>
-             <height>61</height>
+             <height>71</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_4">
-            <item row="1" column="1">
-             <widget class="QgsFieldComboBox" name="fieldBox"/>
-            </item>
             <item row="1" column="0">
              <widget class="QLabel" name="layerLab_2">
               <property name="enabled">
@@ -96,6 +105,12 @@
                <string>Address Field</string>
               </property>
              </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QgsMapLayerComboBox" name="mapLayerBox"/>
+            </item>
+            <item row="1" column="1">
+             <widget class="QgsFieldComboBox" name="fieldBox"/>
             </item>
             <item row="0" column="0">
              <widget class="QLabel" name="layerLab">
@@ -107,16 +122,13 @@
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
-             <widget class="QgsMapLayerComboBox" name="mapLayerBox"/>
-            </item>
            </layout>
           </widget>
           <widget class="QPushButton" name="batchGeocodeFieldButton">
            <property name="geometry">
             <rect>
-             <x>0</x>
-             <y>320</y>
+             <x>10</x>
+             <y>370</y>
              <width>431</width>
              <height>32</height>
             </rect>
@@ -128,7 +140,7 @@
          </widget>
          <widget class="QWidget" name="tab_5">
           <attribute name="title">
-           <string>address fields in layer</string>
+           <string>Address Fields in Layer</string>
           </attribute>
           <widget class="QWidget" name="gridLayoutWidget_4">
            <property name="geometry">
@@ -136,7 +148,7 @@
              <x>0</x>
              <y>0</y>
              <width>431</width>
-             <height>251</height>
+             <height>301</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_5">
@@ -228,14 +240,14 @@
           <widget class="QPushButton" name="batchGeocodeFieldsButton">
            <property name="geometry">
             <rect>
-             <x>0</x>
-             <y>320</y>
+             <x>10</x>
+             <y>370</y>
              <width>431</width>
              <height>32</height>
             </rect>
            </property>
            <property name="text">
-            <string>Geocode Multiple Addresses by fields</string>
+            <string>Geocode Multiple Addresses by Fields</string>
            </property>
           </widget>
          </widget>
@@ -251,11 +263,11 @@
        <item>
         <widget class="QTabWidget" name="tabWidget_3">
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="tab_7">
           <attribute name="title">
-           <string>manual input</string>
+           <string>Manual Input</string>
           </attribute>
           <layout class="QVBoxLayout" name="verticalLayout_4">
            <item>
@@ -477,44 +489,6 @@
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="tab_8">
-          <attribute name="title">
-           <string>single layer input</string>
-          </attribute>
-          <layout class="QVBoxLayout" name="verticalLayout_5">
-           <item>
-            <widget class="QLabel" name="label_13">
-             <property name="font">
-              <font>
-               <pointsize>14</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>not implemented yet</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="tab_9">
-          <attribute name="title">
-           <string>dual layer input</string>
-          </attribute>
-          <layout class="QVBoxLayout" name="verticalLayout_6">
-           <item>
-            <widget class="QLabel" name="label_20">
-             <property name="font">
-              <font>
-               <pointsize>14</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>not implemented yet</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
         </widget>
        </item>
       </layout>
@@ -527,43 +501,15 @@
        <item>
         <widget class="QTabWidget" name="tabWidget_4">
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="tab_11">
           <attribute name="title">
-           <string>manual input</string>
+           <string>Single Address Input</string>
           </attribute>
           <layout class="QVBoxLayout" name="verticalLayout_7">
            <item>
             <layout class="QGridLayout" name="gridLayout_3">
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_21">
-               <property name="text">
-                <string>Coordinates</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QLabel" name="placeLabel">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_12">
-               <property name="text">
-                <string>From Address</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QLineEdit" name="placesAddress">
-               <property name="placeholderText">
-                <string>11 Wall Street, New York, NY</string>
-               </property>
-              </widget>
-             </item>
              <item row="0" column="2">
               <widget class="QToolButton" name="captureButton_4">
                <property name="text">
@@ -583,21 +529,28 @@
                </property>
               </widget>
              </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_22">
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_21">
                <property name="text">
-                <string>Radius [km]</string>
+                <string>Coordinates</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_12">
+               <property name="text">
+                <string>From Address</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_23">
+               <property name="text">
+                <string>Categories</string>
                </property>
               </widget>
              </item>
              <item row="2" column="1">
-              <widget class="QSpinBox" name="RadiusBox">
-               <property name="value">
-                <number>10</number>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="1">
               <widget class="QListWidget" name="listWidget">
                <property name="selectionMode">
                 <enum>QAbstractItemView::MultiSelection</enum>
@@ -902,12 +855,12 @@
                </item>
                <item>
                 <property name="text">
-                 <string>postal-area</string>
+                 <string>post-office</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>post-office</string>
+                 <string>postal-area</string>
                 </property>
                </item>
                <item>
@@ -1027,10 +980,17 @@
                </item>
               </widget>
              </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="label_23">
+             <item row="1" column="1">
+              <widget class="QLabel" name="placeLabel">
                <property name="text">
-                <string>Categories</string>
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLineEdit" name="placesAddress">
+               <property name="placeholderText">
+                <string>11 Wall Street, New York, NY</string>
                </property>
               </widget>
              </item>
@@ -1050,18 +1010,15 @@
          </widget>
          <widget class="QWidget" name="tab_12">
           <attribute name="title">
-           <string>single layer input</string>
+           <string>Single Layer Input</string>
           </attribute>
           <layout class="QVBoxLayout" name="verticalLayout_8">
            <item>
             <layout class="QGridLayout" name="gridLayout_7">
-             <item row="0" column="1">
-              <widget class="QgsMapLayerComboBox" name="FindPOISLayer"/>
-             </item>
-             <item row="1" column="1">
-              <widget class="QSpinBox" name="RadiusBoxBatch">
-               <property name="value">
-                <number>10</number>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_38">
+               <property name="text">
+                <string>Categories</string>
                </property>
               </widget>
              </item>
@@ -1072,21 +1029,7 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_37">
-               <property name="text">
-                <string>Radius [km]</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_38">
-               <property name="text">
-                <string>Categories</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
+             <item row="1" column="1">
               <widget class="QListWidget" name="listWidgetBatch">
                <property name="selectionMode">
                 <enum>QAbstractItemView::MultiSelection</enum>
@@ -1391,12 +1334,12 @@
                </item>
                <item>
                 <property name="text">
-                 <string>postal-area</string>
+                 <string>post-office</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>post-office</string>
+                 <string>postal-area</string>
                 </property>
                </item>
                <item>
@@ -1516,6 +1459,9 @@
                </item>
               </widget>
              </item>
+             <item row="0" column="1">
+              <widget class="QgsMapLayerComboBox" name="FindPOISLayer"/>
+             </item>
             </layout>
            </item>
            <item>
@@ -1542,7 +1488,7 @@
           <bool>true</bool>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="tab_14">
           <attribute name="title">
@@ -2050,28 +1996,14 @@
          <item row="0" column="2">
           <widget class="QLineEdit" name="AppId">
            <property name="placeholderText">
-            <string>6evN87VoDTiHtpLvEoLE</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QLineEdit" name="AppCode">
-           <property name="placeholderText">
-            <string>LgbkS8Sa66CKpqDxAmiyaw</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>App Code</string>
+            <string>s8788xpr_P_jIuTrlWUUC6f7afad_aRGyDqpWFfasNIg8</string>
            </property>
           </widget>
          </item>
          <item row="0" column="0">
           <widget class="QLabel" name="label">
            <property name="text">
-            <string>App ID</string>
+            <string>API Key</string>
            </property>
           </widget>
          </item>

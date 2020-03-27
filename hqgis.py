@@ -125,7 +125,7 @@ class Hqgis:
             callback=self.run,
             parent=self.iface.mainWindow())
         self.loadCredFunction()
-        if self.dlg.AppId.text() == "" or self.dlg.AppCode.text() == "":
+        if self.dlg.AppId.text() == "":
             self.dlg.status2.setText("No credentials in credentials tab found.")
             self.dlg.geocodeAddressButton.setEnabled(False)
             self.dlg.batchGeocodeFieldButton.setEnabled(False)
@@ -136,7 +136,7 @@ class Hqgis:
             self.dlg.calcIsoButton.setEnabled(False)
             self.dlg.calcIsoButtonBatch.setEnabled(False)
         self.dlg.AppId.editingFinished.connect(self.enableButtons)
-        self.dlg.AppCode.editingFinished.connect(self.enableButtons)
+        #self.dlg.AppCode.editingFinished.connect(self.enableButtons)
         self.dlg.getCreds.clicked.connect(self.getCredFunction)
         self.dlg.saveCreds.clicked.connect(self.saveCredFunction)
         self.dlg.loadCreds.clicked.connect(self.loadCredFunction)
@@ -206,6 +206,7 @@ class Hqgis:
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
+        print(self.provider)
         QgsApplication.processingRegistry().removeProvider(self.provider)
         for action in self.actions:
             self.iface.removePluginWebMenu(
@@ -215,7 +216,7 @@ class Hqgis:
         # remove the toolbar
         del self.toolbar
     def enableButtons(self):
-        if self.dlg.AppId.text() != "" and self.dlg.AppCode.text() != "" :
+        if self.dlg.AppId.text() != "":
             self.dlg.geocodeAddressButton.setEnabled(True)
             self.dlg.batchGeocodeFieldButton.setEnabled(True)
             self.dlg.batchGeocodeFieldsButton.setEnabled(True)
@@ -336,11 +337,11 @@ class Hqgis:
             "memory"
         )
         layer.dataProvider().addAttributes([
-            QgsField("id",QVariant.Int),
+            QgsField("id",QVariant.String),
             QgsField("title",QVariant.String),
-            QgsField("vicinity",QVariant.String),
+            QgsField("label",QVariant.String),
             QgsField("distance",QVariant.Double),
-            QgsField("category",QVariant.String),
+            QgsField("categories",QVariant.String)
         ])
         layer.updateFields()
         return(layer)
@@ -354,9 +355,9 @@ class Hqgis:
             QgsField("id",QVariant.Int),
             QgsField("origin_id",QVariant.Int),
             QgsField("title",QVariant.String),
-            QgsField("vicinity",QVariant.String),
+            QgsField("label",QVariant.String),
             QgsField("distance",QVariant.Double),
-            QgsField("category",QVariant.String),
+            QgsField("categories",QVariant.String)
         ])
         layer.updateFields()
         return(layer)
@@ -435,7 +436,7 @@ class Hqgis:
         if address == "":
             address = "11 WallStreet, NewYork, USA"
 
-        url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + self.appId + "&app_code=" + self.appCode + "&searchtext=" + address
+        url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + self.appId + "&searchtext=" + address
         r = requests.get(url)
         try:
             #ass the response may hold more than one result we only use the best one:
@@ -490,7 +491,7 @@ class Hqgis:
         iface.messageBar().pushWidget(progressMessageBar, level=0)
         i = 0
         for feature in layer.getFeatures():
-            url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + self.appId + "&app_code=" + self.appCode + "&searchtext=" + feature[self.dlg.fieldBox.currentField()]
+            url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + self.appId + "&searchtext=" + feature[self.dlg.fieldBox.currentField()]
             r = requests.get(url)
             try:
                 responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
@@ -567,14 +568,14 @@ class Hqgis:
         progressMessageBar.layout().addWidget(progress)
         iface.messageBar().pushWidget(progressMessageBar, level=0)
 
-        for id in range(0, layer.featureCount()-1):
+        for id in range(0, layer.featureCount()):
             urlPart=""
             oldAddress=""
             for key in addressLists.keys():
                 if key != "oldIds":
                     urlPart+="&" + key +  "=" + addressLists[key][id]
                     oldAddress += addressLists[key][id] + ","
-            url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + self.appId + "&app_code=" + self.appCode + urlPart
+            url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + self.appId + urlPart
             r = requests.get(url)
             if r.status_code == 200:
                 #sys.stdout.write("test" + url + "\\n")
@@ -616,7 +617,7 @@ class Hqgis:
         self.dlg.exec_()
     def getCredentials(self):
         self.appId = self.dlg.AppId.text()
-        self.appCode = self.dlg.AppCode.text()
+        #self.appCode = self.dlg.AppCode.text()
     def getCredFunction(self):
         import webbrowser
         webbrowser.open('https://developer.here.com/')
@@ -625,7 +626,7 @@ class Hqgis:
         self.dlg.credentialInteraction.setText("")
         fileLocation = os.path.dirname(os.path.realpath(__file__))+ os.sep + "creds"
         with open(fileLocation + os.sep + 'credentials.json', 'w') as outfile:
-            stringJSON = {"ID": self.dlg.AppId.text(), "CODE":  self.dlg.AppCode.text()}
+            stringJSON = {"KEY": self.dlg.AppId.text()}
             json.dump(stringJSON, outfile)
         self.dlg.credentialInteraction.setText("credentials saved to " + fileLocation + os.sep + 'credentials.json')
     def loadCredFunction(self):
@@ -640,8 +641,8 @@ class Hqgis:
             scriptDirectory = os.path.dirname(os.path.realpath(__file__))
             with open(scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json') as f:
                 data = json.load(f)
-                self.dlg.AppId.setText(data["ID"])
-                self.dlg.AppCode.setText(data["CODE"])
+                self.dlg.AppId.setText(data["KEY"])
+                #self.dlg.AppCode.setText(data["CODE"])
             self.dlg.credentialInteraction.setText("credits used from " + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
         except:
             self.dlg.credentialInteraction.setText("no credits found in. Check for file" + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
@@ -710,7 +711,7 @@ class Hqgis:
     def geocodelineFrom(self):
         self.getCredentials()
         address = self.dlg.fromAddress.text()
-        url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + self.appId + "&app_code=" + self.appCode + "&searchtext=" + address
+        url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + self.appId + "&searchtext=" + address
         r = requests.get(url)
         try:
             #ass the response may hold more than one result we only use the best one:
@@ -724,7 +725,7 @@ class Hqgis:
     def geocodeline(self, lineEdits):
         self.getCredentials()
         address = lineEdits[0].text()
-        url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + self.appId + "&app_code=" + self.appCode + "&searchtext=" + address
+        url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + self.appId + "&searchtext=" + address
         r = requests.get(url)
         try:
             #ass the response may hold more than one result we only use the best one:
@@ -748,7 +749,7 @@ class Hqgis:
         self.dlg.findPOISButton.setEnabled(True)
         print(self.dlg.findPOISButton.enabled())
         if address != "":
-            url = "https://geocoder.api.here.com/6.2/geocode.json?app_id=" + self.appId + "&app_code=" + self.appCode + "&searchtext=" + address
+            url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + self.appId + "&searchtext=" + address
             r = requests.get(url)
             try:
                 #ass the response may hold more than one result we only use the best one:
@@ -790,7 +791,7 @@ class Hqgis:
         if mode == 'public transport':
             mode = 'publicTransport'
         traffic = self.dlg.trafficMode.currentText()
-        url = "https://route.api.here.com/routing/7.2/calculateroute.json?app_id=" + self.appId + "&app_code=" + self.appCode + "&routeAttributes=shape&mode=" + type + ";" + mode + ";traffic:" + traffic + "&waypoint0=geo!"  + self.dlg.FromLabel.text() + "&waypoint1=geo!" + self.dlg.ToLabel.text()
+        url = "https://route.ls.hereapi.com/routing/7.2/calculateroute.json?apiKey=" + self.appId + "&routeAttributes=shape&mode=" + type + ";" + mode + ";traffic:" + traffic + "&waypoint0=geo!"  + self.dlg.FromLabel.text() + "&waypoint1=geo!" + self.dlg.ToLabel.text()
         if self.dlg.trafficMode.currentText() == "enabled":
             #print(self.dlg.dateTimeEditBatch.dateTime())
             url += "&departure=" + self.dlg.dateTimeEdit.dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'")
@@ -837,28 +838,33 @@ class Hqgis:
             categoriesList.append(category.text())
         categories = ",".join(categoriesList)
         coordinates = self.dlg.placeLabel.text()
-
-        url = "https://places.cit.api.here.com/places/v1/discover/explore?in=" + coordinates + ";r=" + str(radius*1000) + "&cat=" + categories +"&drilldown=false&size=10000&X-Mobility-Mode=drive&app_id=" + self.appId + "&app_code=" + self.appCode
+        url = 'https://browse.search.hereapi.com/v1/browse?at=' + coordinates + "&categories=" + categories +"&limit=100&apiKey=" + self.appId
         r = requests.get(url)
         print(url)
         if r.status_code == 200:
-            if len(json.loads(r.text)["results"]["items"])>0:
+            if len(json.loads(r.text)["items"])>99:
+                iface.messageBar().pushMessage("Warning", "The maximum number of POIs for original address at " + coordinates + " of 100 POIs reached.", level=1, duration=5)
+            if len(json.loads(r.text)["items"])>0:
                 try:
-                    #ass the response may hold more than one result we only use the best one:
-                    responsePlaces = json.loads(r.text)["results"]["items"]
+                    #as the response may hold more than one result we only use the best one:
+                    responsePlaces = json.loads(r.text)["items"]
                     layer = self.createPlaceLayer()
                     features = []
                     for place in responsePlaces:
-                        lat = place["position"][0]
-                        lng = place["position"][1]
+                        lat = place["position"]["lat"]
+                        lng = place["position"]["lng"]
+                        # iterate over categories:
+                        categoriesResp = []
+                        for cat in place["categories"]:
+                            categoriesResp.append(cat["id"])
                         fet = QgsFeature()
                         fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
                         fet.setAttributes([
                             place["id"],
                             place["title"],
-                            place["vicinity"],
+                            place["address"]["label"],
                             place["distance"],
-                            place["category"]["title"]
+                            ";".join(categoriesResp)
                         ])
                         features.append(fet)
                     pr = layer.dataProvider()
@@ -900,7 +906,7 @@ class Hqgis:
                 x = originFeature.geometry().asPoint().x()
                 y = originFeature.geometry().asPoint().y()
             coordinates = str(y) + "," + str(x)
-            url = "https://places.cit.api.here.com/places/v1/discover/explore?in=" + coordinates + ";r=" + str(radius*1000) + "&cat=" + categories +"&drilldown=false&size=10000&X-Mobility-Mode=drive&app_id=" + self.appId + "&app_code=" + self.appCode
+            url = 'https://browse.search.hereapi.com/v1/browse?at=' + coordinates + "&categories=" + categories +"&limit=100&apiKey=" + self.appId
             r = requests.get(url)
             print(url)
             i += 1
@@ -909,26 +915,30 @@ class Hqgis:
 
 
             if r.status_code == 200:
-                if len(json.loads(r.text)["results"]["items"])>0:
-                    if len(json.loads(r.text)["results"]["items"])>99:
+                if len(json.loads(r.text)["items"])>0:
+                    if len(json.loads(r.text)["items"])>99:
                         iface.messageBar().pushMessage("Warning", "The maximum number of POIs for original feature " + str(originFeature.id()) + " of 100 POIs reached.", level=1, duration=5)
                     try:
                         #ass the response may hold more than one result we only use the best one:
-                        responsePlaces = json.loads(r.text)["results"]["items"]
+                        responsePlaces = json.loads(r.text)["items"]
                         #layer = self.createPlaceLayer()
                         features = []
                         for place in responsePlaces:
-                            lat = place["position"][0]
-                            lng = place["position"][1]
+                            lat = place["position"]["lat"]
+                            lng = place["position"]["lng"]
+                            # iterate over categories:
+                            categoriesResp = []
+                            for cat in place["categories"]:
+                                categoriesResp.append(cat["id"])
                             fet = QgsFeature()
                             fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
                             fet.setAttributes([
                                 place["id"],
                                 originFeature.id(),
                                 place["title"],
-                                place["vicinity"],
+                                place["address"]["label"],
                                 place["distance"],
-                                place["category"]["title"]
+                                ";".join(categoriesResp)
                             ])
                             features.append(fet)
                         pr = layer.dataProvider()
@@ -976,9 +986,8 @@ class Hqgis:
         traffic = self.dlg.trafficMode_2.currentText()
         if mode == 'public transport':
             mode = 'publicTransport'
-        url = "https://isoline.route.api.here.com/routing/7.2/calculateisoline.json?" + \
-        "app_id=" + self.appId + \
-        "&app_code=" + self.appCode +\
+        url = "https://isoline.route.ls.hereapi.com/routing/7.2/calculateisoline.json?" + \
+        "apiKey=" + self.appId + \
         "&range=" + ",".join(intervalArray)+ \
         "&mode=" + type + ";" + mode + ";traffic:" + traffic + \
         "&rangetype=" + self.dlg.metric.currentText().lower() + \
@@ -1090,9 +1099,8 @@ class Hqgis:
                 x = originFeature.geometry().asPoint().x()
                 y = originFeature.geometry().asPoint().y()
             coordinates = str(y) + "," + str(x)
-            url = "https://isoline.route.api.here.com/routing/7.2/calculateisoline.json?" + \
-            "app_id=" + self.appId + \
-            "&app_code=" + self.appCode +\
+            url = "https://isoline.route.ls.hereapi.com/routing/7.2/calculateisoline.json?" + \
+            "apiKey=" + self.appId + \
             "&range=" + ",".join(intervalArray)+ \
             "&mode=" + type + ";" + mode + ";traffic:" + traffic + \
             "&rangetype=" + self.dlg.metricBatch.currentText().lower() + \

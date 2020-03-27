@@ -10,12 +10,12 @@
 name=Hqgis
 qgisMinimumVersion=3.0
 description=Routing, Geocoding, POI search, Isochrones with the HERE API.
-version=0.4.4
+version=1.0
 author=Riccardo Klinger
 email=riccardo.klinger@gmail.com
 
 about=Access the HERE API from inside QGIS using your own HERE-API key. Currently supports Geocoding, Routing, POI-search and isochrone analysis.
-Attention: The plugin needs to have credentials from HERE. Therefore you need to register a freemium account (free of charge at HERE.com). Fill in the generated app ID and app code in the credentials-tab of the plugin.
+Attention: The plugin needs to have credentials from HERE. Therefore you need to register a freemium account (free of charge at HERE.com). Fill in the generated API key in the credentials-tab of the plugin.
 
 tracker=https://github.com/riccardoklinger/Hqgis/issues
 repository=https://github.com/riccardoklinger/Hqgis
@@ -24,7 +24,8 @@ repository=https://github.com/riccardoklinger/Hqgis
 # Recommended items:
 
 # Uncomment the following line and add your changelog:
-changelog= 0.4.4 resolved an issue with high-occupancy car routing 
+changelog= 1.0 new API connection and authentication, small bugfixes, hdpi support thanks to @tjukanov
+	0.4.4 resolved an issue with high-occupancy car routing
 	0.4.3 adds POI search to processing toolbox
 	0.4.2 removed MacOS directory as reported by Paolo here https://github.com/riccardoklinger/Hqgis/issues/26
 	0.4.1 adds geoprocessing capabilities for geoding single field addresses from txt/layer
@@ -34,7 +35,7 @@ changelog= 0.4.4 resolved an issue with high-occupancy car routing
 	0.3.3: correct values for attribute "metric" in batch-isochrone mode
 	0.3.2: solves issue with distance based isochrones https://github.com/riccardoklinger/Hqgis/issues/16
 	0.3.1: respect of traffic in routing and isochrone calculations
-	0.2.1: new batch mode for POI search, differnet name
+	0.2.1: new batch mode for POI search, different name
 	0.1.3: rendering of isochrones fixed
 	0.1.2: no CRS warning for routes as well
 	0.1.1: default CRS for new memory layers

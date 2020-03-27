@@ -20,7 +20,7 @@ class GetMapCoordinates(QgsMapToolEmitPoint):
 
     def getCredentials(self):
         self.appId = self.dlg.AppId.text()
-        self.appCode = self.dlg.AppCode.text()
+        #self.appCode = self.dlg.AppCode.text()
     def clicked(self, pt, b):
         #if self.dlg.captureButton.isChecked():
         '''Capture the coordinate when the mouse button has been released,
@@ -35,7 +35,7 @@ class GetMapCoordinates(QgsMapToolEmitPoint):
         self.getCredentials()
         #change dockwidget corrdinate with the original crs
         if self.dlg.captureButton.isChecked():
-            url = "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=" + str(lat) + "%2C" + str(lon) +"%2C10&mode=retrieveAddresses&maxresults=1&gen=9&app_id=" + self.appId + "&app_code=" + self.appCode
+            url = "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=" + str(lat) + "%2C" + str(lon) +"%2C10&mode=retrieveAddresses&maxresults=1&gen=9&app_id=" + self.appId
             print(url)
             r = requests.get(url)
             try:
@@ -46,7 +46,7 @@ class GetMapCoordinates(QgsMapToolEmitPoint):
             self.dlg.FromLabel.setText(str("%.5f" % lat)+','+str("%.5f" % lon))
             self.dlg.captureButton.setChecked(False)
         if self.dlg.captureButton_2.isChecked():
-            url = "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=" + str(lat) + "%2C" + str(lon) +"%2C10&mode=retrieveAddresses&maxresults=1&gen=9&app_id=" + self.appId + "&app_code=" + self.appCode
+            url = "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=" + str(lat) + "%2C" + str(lon) +"%2C10&mode=retrieveAddresses&maxresults=1&gen=9&app_id=" + self.appId
             r = requests.get(url)
             try:
                 self.dlg.toAddress.setText(json.loads(r.text)["Response"]["View"][0]["Result"][0]["Location"]["Address"]["Label"])
@@ -58,7 +58,7 @@ class GetMapCoordinates(QgsMapToolEmitPoint):
             self.iface.mapCanvas().setCursor(Qt.ArrowCursor)
             self.dlg.captureButton_2.setChecked(False)
         if self.dlg.captureButton_4.isChecked():
-            url = "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=" + str(lat) + "%2C" + str(lon) +"%2C10&mode=retrieveAddresses&maxresults=1&gen=9&app_id=" + self.appId + "&app_code=" + self.appCode
+            url = "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=" + str(lat) + "%2C" + str(lon) +"%2C10&mode=retrieveAddresses&maxresults=1&gen=9&app_id=" + self.appId
 
             r = requests.get(url)
             try:
@@ -71,9 +71,9 @@ class GetMapCoordinates(QgsMapToolEmitPoint):
             self.setWidget(self.dlg)
             self.iface.mapCanvas().setCursor(Qt.ArrowCursor)
             self.dlg.captureButton_4.setChecked(False)
-            
+
         if self.dlg.captureButton_3.isChecked():
-            url = "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=" + str(lat) + "%2C" + str(lon) +"%2C10&mode=retrieveAddresses&maxresults=1&gen=9&app_id=" + self.appId + "&app_code=" + self.appCode
+            url = "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=" + str(lat) + "%2C" + str(lon) +"%2C10&mode=retrieveAddresses&maxresults=1&gen=9&app_id=" + self.appId
 
             r = requests.get(url)
             #print(r.text)
