@@ -842,6 +842,8 @@ class Hqgis:
         r = requests.get(url)
         print(url)
         if r.status_code == 200:
+            if len(json.loads(r.text)["items"])>99:
+                iface.messageBar().pushMessage("Warning", "The maximum number of POIs for original address at " + coordinates + " of 100 POIs reached.", level=1, duration=5)
             if len(json.loads(r.text)["items"])>0:
                 try:
                     #as the response may hold more than one result we only use the best one:
@@ -904,7 +906,7 @@ class Hqgis:
                 x = originFeature.geometry().asPoint().x()
                 y = originFeature.geometry().asPoint().y()
             coordinates = str(y) + "," + str(x)
-            url = "https://places.cit.api.here.com/places/v1/discover/explore?in=" + coordinates + ";r=" + str(radius*1000) + "&cat=" + categories +"&drilldown=false&size=10000&X-Mobility-Mode=drive&app_id=" + self.appId
+            url = 'https://browse.search.hereapi.com/v1/browse?at=' + coordinates + "&categories=" + categories +"&limit=100&apiKey=" + self.appId
             r = requests.get(url)
             print(url)
             i += 1
@@ -913,26 +915,30 @@ class Hqgis:
 
 
             if r.status_code == 200:
-                if len(json.loads(r.text)["results"]["items"])>0:
-                    if len(json.loads(r.text)["results"]["items"])>99:
+                if len(json.loads(r.text)["items"])>0:
+                    if len(json.loads(r.text)["items"])>99:
                         iface.messageBar().pushMessage("Warning", "The maximum number of POIs for original feature " + str(originFeature.id()) + " of 100 POIs reached.", level=1, duration=5)
                     try:
                         #ass the response may hold more than one result we only use the best one:
-                        responsePlaces = json.loads(r.text)["results"]["items"]
+                        responsePlaces = json.loads(r.text)["items"]
                         #layer = self.createPlaceLayer()
                         features = []
                         for place in responsePlaces:
-                            lat = place["position"][0]
-                            lng = place["position"][1]
+                            lat = place["position"]["lat"]
+                            lng = place["position"]["lng"]
+                            # iterate over categories:
+                            categoriesResp = []
+                            for cat in place["categories"]:
+                                categoriesResp.append(cat["id"])
                             fet = QgsFeature()
                             fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
                             fet.setAttributes([
                                 place["id"],
                                 originFeature.id(),
                                 place["title"],
-                                place["vicinity"],
+                                place["address"]["label"],
                                 place["distance"],
-                                place["category"]["title"]
+                                ";".join(categoriesResp)
                             ])
                             features.append(fet)
                         pr = layer.dataProvider()
