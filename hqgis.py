@@ -32,7 +32,7 @@ from .GetMapCoordinates import GetMapCoordinates
 # Import the code for the dialog
 from .hqgis_dialog import HqgisDialog
 import os.path
-import requests, json, urllib
+import requests, json, urllib, os
 from PyQt5.QtCore import QVariant, QDateTime
 from qgis.core import (QgsApplication, QgsPoint, QgsSymbol, QgsRendererRange,
     QgsGraduatedSymbolRenderer, QgsPointXY, QgsGeometry,QgsMapLayerProxyModel,
@@ -621,8 +621,8 @@ class Hqgis:
         QgsProject.instance().addMapLayer(Resultlayer)
         self.dlg.exec_()
     def getCredentials(self):
-        self.appId = self.dlg.AppId.text()
-        #self.appCode = self.dlg.AppCode.text()
+        s = QgsSettings()
+        self.appId = s.value("HQGIS/api_key", None)
     def getCredFunction(self):
         import webbrowser
         webbrowser.open('https://developer.here.com/')
@@ -633,7 +633,6 @@ class Hqgis:
         self.dlg.credentialInteraction.setText("")
         self.dlg.credentialInteraction.setText("credentials saved to QGIS Global Settings")
     def loadCredFunction(self):
-        import json, os
         s = QgsSettings()
         try:
             apikey = s.value("HQGIS/api_key", None)
