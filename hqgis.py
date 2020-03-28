@@ -627,13 +627,11 @@ class Hqgis:
         import webbrowser
         webbrowser.open('https://developer.here.com/')
     def saveCredFunction(self):
+        s = QgsSettings()
+        s.setValue("HQGIS/api_key", self.dlg.AppId.text())
         print("save credits")
         self.dlg.credentialInteraction.setText("")
-        fileLocation = os.path.dirname(os.path.realpath(__file__))+ os.sep + "creds"
-        with open(fileLocation + os.sep + 'credentials.json', 'w') as outfile:
-            stringJSON = {"KEY": self.dlg.AppId.text()}
-            json.dump(stringJSON, outfile)
-        self.dlg.credentialInteraction.setText("credentials saved to " + fileLocation + os.sep + 'credentials.json')
+        self.dlg.credentialInteraction.setText("credentials saved to QGIS Global Settings")
     def loadCredFunction(self):
         import json, os
         #fileLocation = QFileDialog.getOpenFileName(self.dlg, "JSON with credentials",os.path.dirname(os.path.realpath(__file__))+ os.sep + "creds", "JSON(*.JSON)")
