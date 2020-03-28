@@ -34,7 +34,12 @@ from .hqgis_dialog import HqgisDialog
 import os.path
 import requests, json, urllib
 from PyQt5.QtCore import QVariant, QDateTime
-from qgis.core import QgsApplication, QgsPoint, QgsSymbol, QgsRendererRange, QgsGraduatedSymbolRenderer, QgsPointXY, QgsGeometry,QgsMapLayerProxyModel, QgsVectorLayer, QgsProject, QgsCoordinateReferenceSystem, QgsCoordinateTransform, QgsFeature, QgsField, QgsMessageLog, QgsNetworkAccessManager
+from qgis.core import (QgsApplication, QgsPoint, QgsSymbol, QgsRendererRange,
+    QgsGraduatedSymbolRenderer, QgsPointXY, QgsGeometry,QgsMapLayerProxyModel,
+    QgsVectorLayer, QgsProject, QgsCoordinateReferenceSystem,
+    QgsCoordinateTransform, QgsFeature, QgsField, QgsMessageLog,
+    QgsNetworkAccessManager, QgsSettings
+)
 from qgis.PyQt.QtWidgets import QProgressBar
 from qgis.PyQt.QtCore import *
 from qgis.utils import iface
