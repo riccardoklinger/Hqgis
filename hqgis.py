@@ -32,14 +32,29 @@ from .GetMapCoordinates import GetMapCoordinates
 # Import the code for the dialog
 from .hqgis_dialog import HqgisDialog
 import os.path
-import requests, json, urllib, os
+import requests
+import json
+import urllib
+import os
 from PyQt5.QtCore import QVariant, QDateTime
-from qgis.core import (QgsApplication, QgsPoint, QgsSymbol, QgsRendererRange,
-    QgsGraduatedSymbolRenderer, QgsPointXY, QgsGeometry,QgsMapLayerProxyModel,
-    QgsVectorLayer, QgsProject, QgsCoordinateReferenceSystem,
-    QgsCoordinateTransform, QgsFeature, QgsField, QgsMessageLog,
-    QgsNetworkAccessManager, QgsSettings
-)
+from qgis.core import (
+    QgsApplication,
+    QgsPoint,
+    QgsSymbol,
+    QgsRendererRange,
+    QgsGraduatedSymbolRenderer,
+    QgsPointXY,
+    QgsGeometry,
+    QgsMapLayerProxyModel,
+    QgsVectorLayer,
+    QgsProject,
+    QgsCoordinateReferenceSystem,
+    QgsCoordinateTransform,
+    QgsFeature,
+    QgsField,
+    QgsMessageLog,
+    QgsNetworkAccessManager,
+    QgsSettings)
 from qgis.PyQt.QtWidgets import QProgressBar
 from qgis.PyQt.QtCore import *
 from qgis.utils import iface
@@ -77,7 +92,7 @@ class Hqgis:
         self.toolbar = self.iface.addToolBar(u'Hqgis')
         self.toolbar.setObjectName(u'Hqgis')
         self.getMapCoordinates = GetMapCoordinates(self.iface)
-        self.getMapCoordTool=None
+        self.getMapCoordTool = None
 
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
@@ -85,18 +100,17 @@ class Hqgis:
         # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
         return QCoreApplication.translate('Hqgis', message)
 
-
     def add_action(
-        self,
-        icon_path,
-        text,
-        callback,
-        enabled_flag=True,
-        add_to_menu=True,
-        add_to_toolbar=True,
-        status_tip=None,
-        whats_this=None,
-        parent=None):
+            self,
+            icon_path,
+            text,
+            callback,
+            enabled_flag=True,
+            add_to_menu=True,
+            add_to_toolbar=True,
+            status_tip=None,
+            whats_this=None,
+            parent=None):
         icon = QIcon(icon_path)
         action = QAction(icon, text, parent)
         action.triggered.connect(callback)
@@ -131,7 +145,8 @@ class Hqgis:
             parent=self.iface.mainWindow())
         self.loadCredFunction()
         if self.dlg.AppId.text() == "":
-            self.dlg.status2.setText("No credentials in credentials tab found.")
+            self.dlg.status2.setText(
+                "No credentials in credentials tab found.")
             self.dlg.geocodeAddressButton.setEnabled(False)
             self.dlg.batchGeocodeFieldButton.setEnabled(False)
             self.dlg.batchGeocodeFieldsButton.setEnabled(False)
@@ -141,7 +156,7 @@ class Hqgis:
             self.dlg.calcIsoButton.setEnabled(False)
             self.dlg.calcIsoButtonBatch.setEnabled(False)
         self.dlg.AppId.editingFinished.connect(self.enableButtons)
-        #self.dlg.AppCode.editingFinished.connect(self.enableButtons)
+        # self.dlg.AppCode.editingFinished.connect(self.enableButtons)
         self.dlg.getCreds.clicked.connect(self.getCredFunction)
         self.dlg.saveCreds.clicked.connect(self.saveCredFunction)
         self.dlg.loadCreds.clicked.connect(self.loadCredFunction)
@@ -155,22 +170,34 @@ class Hqgis:
 
         self.dlg.mapLayerBox_2.currentIndexChanged.connect(self.loadFields)
         self.dlg.geocodeAddressButton.clicked.connect(self.geocode)
-        self.dlg.batchGeocodeFieldButton.clicked.connect(self.batchGeocodeField)
-        self.dlg.batchGeocodeFieldsButton.clicked.connect(self.batchGeocodeFields)
+        self.dlg.batchGeocodeFieldButton.clicked.connect(
+            self.batchGeocodeField)
+        self.dlg.batchGeocodeFieldsButton.clicked.connect(
+            self.batchGeocodeFields)
         self.dlg.FindPOISLayer.setFilters(QgsMapLayerProxyModel.PointLayer)
         self.dlg.IsoAddressBatch.setFilters(QgsMapLayerProxyModel.PointLayer)
-        self.dlg.calcRouteSingleButton.clicked.connect(self.calculateRouteSingle)
+        self.dlg.calcRouteSingleButton.clicked.connect(
+            self.calculateRouteSingle)
 
-        #coordButton
+        # coordButton
         # Activate click tool in canvas.
-        self.dlg.captureButton.setIcon(QIcon(os.path.join(os.path.dirname(__file__),"target.png")))
-        self.dlg.captureButton_2.setIcon(QIcon(os.path.join(os.path.dirname(__file__),"target.png")))
+        self.dlg.captureButton.setIcon(
+            QIcon(
+                os.path.join(
+                    os.path.dirname(__file__),
+                    "target.png")))
+        self.dlg.captureButton_2.setIcon(
+            QIcon(
+                os.path.join(
+                    os.path.dirname(__file__),
+                    "target.png")))
 
-        #self.dlg.captureButton.setChecked(True)
+        # self.dlg.captureButton.setChecked(True)
 
-        self.dlg.toAddress.editingFinished .connect(partial(self.geocodeline,[self.dlg.toAddress,self.dlg.ToLabel]))
-        #self.dlg.captureButton.setChecked(True)
-        self.getMapCoordTool=self.getMapCoordinates
+        self.dlg.toAddress.editingFinished .connect(
+            partial(self.geocodeline, [self.dlg.toAddress, self.dlg.ToLabel]))
+        # self.dlg.captureButton.setChecked(True)
+        self.getMapCoordTool = self.getMapCoordinates
         self.getMapCoordTool.setButton(self.dlg.captureButton)
         self.getMapCoordTool.setButton(self.dlg.captureButton_2)
         self.getMapCoordTool.setButton(self.dlg.captureButton_4)
@@ -179,11 +206,20 @@ class Hqgis:
         self.iface.mapCanvas().setMapTool(self.getMapCoordTool)
         self.dlg.captureButton.pressed.connect(self.setGetMapToolCoordFrom)
         self.dlg.captureButton_2.pressed.connect(self.setGetMapToolCoordTo)
-        self.dlg.fromAddress.editingFinished.connect(partial(self.geocodeline,[self.dlg.fromAddress,self.dlg.FromLabel]))
-        self.dlg.captureButton_4.setIcon(QIcon(os.path.join(os.path.dirname(__file__),"target.png")))
+        self.dlg.fromAddress.editingFinished.connect(
+            partial(self.geocodeline, [self.dlg.fromAddress, self.dlg.FromLabel]))
+        self.dlg.captureButton_4.setIcon(
+            QIcon(
+                os.path.join(
+                    os.path.dirname(__file__),
+                    "target.png")))
         self.dlg.findPOISButton.setEnabled(False)
         self.dlg.captureButton_4.pressed.connect(self.setGetMapToolCoordPlace)
-        self.dlg.captureButton_3.setIcon(QIcon(os.path.join(os.path.dirname(__file__),"target.png")))
+        self.dlg.captureButton_3.setIcon(
+            QIcon(
+                os.path.join(
+                    os.path.dirname(__file__),
+                    "target.png")))
         self.dlg.calcIsoButton.setEnabled(False)
         self.dlg.captureButton_3.pressed.connect(self.setGetMapToolCoordIso)
 
@@ -195,19 +231,30 @@ class Hqgis:
         self.dlg.FindPOISLayer.setFilters(QgsMapLayerProxyModel.PointLayer)
         self.dlg.findPOISButtonBatch.setEnabled(False)
         self.dlg.listWidgetBatch.sortItems(0)
-        self.dlg.listWidgetBatch.itemSelectionChanged.connect(self.checkPlacesInputBatch)
-        self.dlg.placesAddress.editingFinished.connect(partial(self.geocodeline,[self.dlg.placesAddress,self.dlg.placeLabel, self.dlg.findPOISButton]))
-        self.dlg.IsoAddress.editingFinished.connect(partial(self.geocodeline,[self.dlg.IsoAddress,self.dlg.IsoLabel, self.dlg.calcIsoButton]))
+        self.dlg.listWidgetBatch.itemSelectionChanged.connect(
+            self.checkPlacesInputBatch)
+        self.dlg.placesAddress.editingFinished.connect(
+            partial(
+                self.geocodeline, [
+                    self.dlg.placesAddress, self.dlg.placeLabel, self.dlg.findPOISButton]))
+        self.dlg.IsoAddress.editingFinished.connect(
+            partial(
+                self.geocodeline, [
+                    self.dlg.IsoAddress, self.dlg.IsoLabel, self.dlg.calcIsoButton]))
         self.dlg.metric.currentTextChanged.connect(self.selectMetric)
         self.dlg.calcIsoButton.clicked.connect(self.getIsochronesSingle)
         self.dlg.calcIsoButtonBatch.setEnabled(False)
         self.dlg.travelTimesBatch.editingFinished.connect(self.enableBatchISO)
-        self.dlg.travelDistancesBatch.editingFinished.connect(self.enableBatchISO)
+        self.dlg.travelDistancesBatch.editingFinished.connect(
+            self.enableBatchISO)
         self.dlg.metricBatch.currentTextChanged.connect(self.selectMetricBatch)
         self.dlg.calcIsoButtonBatch.clicked.connect(self.getIsochronesBatch)
-        self.dlg.trafficModeBatch.currentIndexChanged.connect(partial(self.enableTime,[self.dlg.trafficModeBatch,self.dlg.dateTimeEditBatch]))
-        self.dlg.trafficMode_2.currentIndexChanged.connect(partial(self.enableTime,[self.dlg.trafficMode_2,self.dlg.dateTimeEdit_2]))
-        self.dlg.trafficMode.currentIndexChanged.connect(partial(self.enableTime,[self.dlg.trafficMode,self.dlg.dateTimeEdit]))
+        self.dlg.trafficModeBatch.currentIndexChanged.connect(partial(
+            self.enableTime, [self.dlg.trafficModeBatch, self.dlg.dateTimeEditBatch]))
+        self.dlg.trafficMode_2.currentIndexChanged.connect(
+            partial(self.enableTime, [self.dlg.trafficMode_2, self.dlg.dateTimeEdit_2]))
+        self.dlg.trafficMode.currentIndexChanged.connect(
+            partial(self.enableTime, [self.dlg.trafficMode, self.dlg.dateTimeEdit]))
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
@@ -220,6 +267,7 @@ class Hqgis:
             self.iface.removeToolBarIcon(action)
         # remove the toolbar
         del self.toolbar
+
     def enableButtons(self):
         if self.dlg.AppId.text() != "":
             self.dlg.geocodeAddressButton.setEnabled(True)
@@ -231,80 +279,83 @@ class Hqgis:
             self.dlg.calcIsoButton.setEnabled(True)
             self.dlg.calcIsoButtonBatch.setEnabled(True)
             self.dlg.status2.setText("")
+
     def enableTime(self, lineEdits):
-        if lineEdits[0].currentText()=="enabled":
+        if lineEdits[0].currentText() == "enabled":
             lineEdits[1].setEnabled(True)
             print("time enabled")
-            #print(lineEdits[1].dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'"))
-            #2019-01-28T02:27:52Z
-            #2019-01-27T02:00:00Z
+            # print(lineEdits[1].dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'"))
+            # 2019-01-28T02:27:52Z
+            # 2019-01-27T02:00:00Z
         else:
             lineEdits[1].setEnabled(False)
             print("time disabled")
+
     def enableBatchISO(self):
         if self.dlg.travelTimesBatch.text() != "" or self.dlg.travelDistancesBatch.text() != "":
             self.dlg.calcIsoButtonBatch.setEnabled(True)
+
     def convertGeocodeResponse(self, responseAddress):
         geocodeResponse = {}
         try:
             geocodeResponse["Label"] = responseAddress["Location"]["Address"]["Label"]
-        except:
+        except BaseException:
             geocodeResponse["Label"] = ""
         try:
             geocodeResponse["Country"] = responseAddress["Location"]["Address"]["Country"]
-        except:
+        except BaseException:
             geocodeResponse["Country"] = ""
         try:
             geocodeResponse["State"] = responseAddress["Location"]["Address"]["State"]
-        except:
-            geocodeResponse["State"]  = ""
+        except BaseException:
+            geocodeResponse["State"] = ""
         try:
             geocodeResponse["County"] = responseAddress["Location"]["Address"]["County"]
-        except:
+        except BaseException:
             geocodeResponse["County"] = ""
         try:
             geocodeResponse["City"] = responseAddress["Location"]["Address"]["City"]
-        except:
+        except BaseException:
             geocodeResponse["City"] = ""
         try:
             geocodeResponse["District"] = responseAddress["Location"]["Address"]["District"]
-        except:
+        except BaseException:
             geocodeResponse["District"] = ""
         try:
             geocodeResponse["Street"] = responseAddress["Location"]["Address"]["Street"]
-        except:
+        except BaseException:
             geocodeResponse["Street"] = ""
         try:
             geocodeResponse["HouseNumber"] = responseAddress["Location"]["Address"]["HouseNumber"]
-        except:
+        except BaseException:
             geocodeResponse["HouseNumber"] = ""
         try:
             geocodeResponse["PostalCode"] = responseAddress["Location"]["Address"]["PostalCode"]
-        except:
+        except BaseException:
             geocodeResponse["PostalCode"] = ""
         try:
             geocodeResponse["Relevance"] = responseAddress["Relevance"]
-        except:
+        except BaseException:
             geocodeResponse["Relevance"] = None
         try:
             geocodeResponse["CountryQuality"] = responseAddress["MatchQuality"]["Country"]
-        except:
+        except BaseException:
             geocodeResponse["CountryQuality"] = None
         try:
             geocodeResponse["CityQuality"] = responseAddress["MatchQuality"]["City"]
-        except:
+        except BaseException:
             geocodeResponse["CityQuality"] = None
         try:
             geocodeResponse["StreetQuality"] = responseAddress["MatchQuality"]["Street"][0]
-        except:
+        except BaseException:
             geocodeResponse["StreetQuality"] = None
         try:
             geocodeResponse["NumberQuality"] = responseAddress["MatchQuality"]["HouseNumber"]
-        except:
+        except BaseException:
             geocodeResponse["NumberQuality"] = None
         try:
             geocodeResponse["MatchType"] = responseAddress["MatchType"]
-        except:
+        except BaseException:
             geocodeResponse["MatchType"] = ""
         return(geocodeResponse)
 
@@ -315,26 +366,27 @@ class Hqgis:
             "memory"
         )
         layer.dataProvider().addAttributes([
-            QgsField("id",QVariant.Int),
-            QgsField("oldAddress",QVariant.String),
-            QgsField("address",QVariant.String),
-            QgsField("country",QVariant.String),
-            QgsField("state",QVariant.String),
-            QgsField("county",QVariant.String),
-            QgsField("city",QVariant.String),
-            QgsField("district",QVariant.String),
-            QgsField("street",QVariant.String),
-            QgsField("number",QVariant.String),
-            QgsField("zip",QVariant.String),
-            QgsField("relevance",QVariant.Double),
-            QgsField("qu_country",QVariant.Double),
-            QgsField("qu_city",QVariant.Double),
-            QgsField("qu_street",QVariant.Double),
-            QgsField("qu_number",QVariant.Double),
-            QgsField("matchtype",QVariant.String)
+            QgsField("id", QVariant.Int),
+            QgsField("oldAddress", QVariant.String),
+            QgsField("address", QVariant.String),
+            QgsField("country", QVariant.String),
+            QgsField("state", QVariant.String),
+            QgsField("county", QVariant.String),
+            QgsField("city", QVariant.String),
+            QgsField("district", QVariant.String),
+            QgsField("street", QVariant.String),
+            QgsField("number", QVariant.String),
+            QgsField("zip", QVariant.String),
+            QgsField("relevance", QVariant.Double),
+            QgsField("qu_country", QVariant.Double),
+            QgsField("qu_city", QVariant.Double),
+            QgsField("qu_street", QVariant.Double),
+            QgsField("qu_number", QVariant.Double),
+            QgsField("matchtype", QVariant.String)
         ])
         layer.updateFields()
         return(layer)
+
     def createPlaceLayer(self):
         layer = QgsVectorLayer(
             "Point?crs=EPSG:4326",
@@ -342,14 +394,15 @@ class Hqgis:
             "memory"
         )
         layer.dataProvider().addAttributes([
-            QgsField("id",QVariant.String),
-            QgsField("title",QVariant.String),
-            QgsField("label",QVariant.String),
-            QgsField("distance",QVariant.Double),
-            QgsField("categories",QVariant.String)
+            QgsField("id", QVariant.String),
+            QgsField("title", QVariant.String),
+            QgsField("label", QVariant.String),
+            QgsField("distance", QVariant.Double),
+            QgsField("categories", QVariant.String)
         ])
         layer.updateFields()
         return(layer)
+
     def createPlaceLayerBatch(self):
         layer = QgsVectorLayer(
             "Point?crs=EPSG:4326",
@@ -357,15 +410,16 @@ class Hqgis:
             "memory"
         )
         layer.dataProvider().addAttributes([
-            QgsField("id",QVariant.Int),
-            QgsField("origin_id",QVariant.Int),
-            QgsField("title",QVariant.String),
-            QgsField("label",QVariant.String),
-            QgsField("distance",QVariant.Double),
-            QgsField("categories",QVariant.String)
+            QgsField("id", QVariant.Int),
+            QgsField("origin_id", QVariant.Int),
+            QgsField("title", QVariant.String),
+            QgsField("label", QVariant.String),
+            QgsField("distance", QVariant.Double),
+            QgsField("categories", QVariant.String)
         ])
         layer.updateFields()
         return(layer)
+
     def createIsoLayer(self):
         layer = QgsVectorLayer(
             "Polygon?crs=EPSG:4326",
@@ -373,17 +427,18 @@ class Hqgis:
             "memory"
         )
         layer.dataProvider().addAttributes([
-            QgsField("id",QVariant.Int),
-            QgsField("range",QVariant.Int),
-            QgsField("metric",QVariant.String),
-            QgsField("mode",QVariant.String),
-            QgsField("traffic",QVariant.String),
+            QgsField("id", QVariant.Int),
+            QgsField("range", QVariant.Int),
+            QgsField("metric", QVariant.String),
+            QgsField("mode", QVariant.String),
+            QgsField("traffic", QVariant.String),
             QgsField("timestamp", QVariant.DateTime),
-            QgsField("type",QVariant.String)
+            QgsField("type", QVariant.String)
         ])
         layer.updateFields()
 
         return(layer)
+
     def createIsoLayerBatch(self):
         layer = QgsVectorLayer(
             "Polygon?crs=EPSG:4326",
@@ -391,18 +446,19 @@ class Hqgis:
             "memory"
         )
         layer.dataProvider().addAttributes([
-            QgsField("id",QVariant.Int),
-            QgsField("origin_id",QVariant.Int),
-            QgsField("range",QVariant.Int),
-            QgsField("metric",QVariant.String),
-            QgsField("mode",QVariant.String),
-            QgsField("traffic",QVariant.String),
+            QgsField("id", QVariant.Int),
+            QgsField("origin_id", QVariant.Int),
+            QgsField("range", QVariant.Int),
+            QgsField("metric", QVariant.String),
+            QgsField("mode", QVariant.String),
+            QgsField("traffic", QVariant.String),
             QgsField("timestamp", QVariant.DateTime),
-            QgsField("type",QVariant.String)
+            QgsField("type", QVariant.String)
         ])
         layer.updateFields()
 
         return(layer)
+
     def createRouteLayer(self):
         layer = QgsVectorLayer(
             "Linestring?crs=EPSG:4326",
@@ -410,23 +466,24 @@ class Hqgis:
             "memory"
         )
         layer.dataProvider().addAttributes([
-            QgsField("id",QVariant.Int),
-            QgsField("distance",QVariant.Double),
-            QgsField("time",QVariant.Double),
-            QgsField("mode",QVariant.String),
-            QgsField("traffic",QVariant.String),
+            QgsField("id", QVariant.Int),
+            QgsField("distance", QVariant.Double),
+            QgsField("time", QVariant.Double),
+            QgsField("mode", QVariant.String),
+            QgsField("traffic", QVariant.String),
             QgsField("timestamp", QVariant.DateTime),
-            QgsField("type",QVariant.String)
+            QgsField("type", QVariant.String)
         ])
         layer.updateFields()
         return(layer)
 
     def messageShow(self, progress, count, max):
         if not progress:
-            progressMessageBar = iface.messageBar().createMessage("Looping through " + str(max) +" records ...")
+            progressMessageBar = iface.messageBar().createMessage(
+                "Looping through " + str(max) + " records ...")
             progress = QProgressBar()
             progress.setMaximum(max)
-            progress.setAlignment(Qt.AlignLeft|Qt.AlignVCenter)
+            progress.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
             progressMessageBar.layout().addWidget(progress)
             iface.messageBar().pushWidget(progressMessageBar, level=1)
             iface.mainWindow().repaint()
@@ -441,17 +498,20 @@ class Hqgis:
         if address == "":
             address = "11 WallStreet, NewYork, USA"
 
-        url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + self.appId + "&searchtext=" + address
+        url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + \
+            self.appId + "&searchtext=" + address
         r = requests.get(url)
         try:
-            #ass the response may hold more than one result we only use the best one:
-            responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
+            # ass the response may hold more than one result we only use the
+            # best one:
+            responseAddress = json.loads(
+                r.text)["Response"]["View"][0]["Result"][0]
             geocodeResponse = self.convertGeocodeResponse(responseAddress)
             lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
             lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
             layer = self.createGeocodedLayer()
             fet = QgsFeature()
-            fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
+            fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng, lat)))
             fet.setAttributes([
                 0,
                 address,
@@ -487,24 +547,31 @@ class Hqgis:
         features = layer.getFeatures()
         ResultFeatureList = []
 
-        #let's create the progress bar already with the number of features in the layer
-        progressMessageBar = iface.messageBar().createMessage("Looping through " + str(layer.featureCount()) +" records ...")
+        # let's create the progress bar already with the number of features in
+        # the layer
+        progressMessageBar = iface.messageBar().createMessage(
+            "Looping through " + str(layer.featureCount()) + " records ...")
         progress = QProgressBar()
         progress.setMaximum(layer.featureCount())
-        progress.setAlignment(Qt.AlignLeft|Qt.AlignVCenter)
+        progress.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
         progressMessageBar.layout().addWidget(progress)
         iface.messageBar().pushWidget(progressMessageBar, level=0)
         i = 0
         for feature in layer.getFeatures():
-            url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + self.appId + "&searchtext=" + feature[self.dlg.fieldBox.currentField()]
+            url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + \
+                self.appId + "&searchtext=" + feature[self.dlg.fieldBox.currentField()]
             r = requests.get(url)
             try:
-                responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
+                responseAddress = json.loads(
+                    r.text)["Response"]["View"][0]["Result"][0]
                 geocodeResponse = self.convertGeocodeResponse(responseAddress)
                 lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
                 lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
                 ResultFet = QgsFeature()
-                ResultFet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
+                ResultFet.setGeometry(
+                    QgsGeometry.fromPointXY(
+                        QgsPointXY(
+                            lng, lat)))
                 ResultFet.setAttributes([
                     feature.id(),
                     feature[self.dlg.fieldBox.currentField()],
@@ -529,30 +596,39 @@ class Hqgis:
                 print(e)
             i += 1
             progress.setValue(i)
-            #time.sleep(0.3)
-            #time.sleep(0.3)
+
+            # time.sleep(0.3)
+            # time.sleep(0.3)
         pr.addFeatures(ResultFeatureList)
         iface.messageBar().clearWidgets()
         QgsProject.instance().addMapLayer(Resultlayer)
 
     def batchGeocodeFields(self):
-        import time, sys
+        import time
+        import sys
         self.getCredentials()
-        #mapping from inputs:
+        # mapping from inputs:
 
         Resultlayer = self.createGeocodedLayer()
         pr = Resultlayer.dataProvider()
         indexer = {}
         layer = self.dlg.mapLayerBox_2.currentLayer()
-        indexer["country"]=layer.fields().indexFromName(self.dlg.CountryBox.currentField())
-        indexer["state"]=layer.fields().indexFromName(self.dlg.StateBox.currentField())
-        indexer["county"]=layer.fields().indexFromName(self.dlg.CountyBox.currentField())
-        indexer["zip"]=layer.fields().indexFromName(self.dlg.ZipBox.currentField())
-        indexer["city"]=layer.fields().indexFromName(self.dlg.CityBox.currentField())
-        indexer["street"]=layer.fields().indexFromName(self.dlg.StreetBox.currentField())
-        indexer["number"]=layer.fields().indexFromName(self.dlg.NumberBox.currentField())
-        ResultFeatureList = [] #got result storing
-        #precreate field-lists for API call:
+        indexer["country"] = layer.fields().indexFromName(
+            self.dlg.CountryBox.currentField())
+        indexer["state"] = layer.fields().indexFromName(
+            self.dlg.StateBox.currentField())
+        indexer["county"] = layer.fields().indexFromName(
+            self.dlg.CountyBox.currentField())
+        indexer["zip"] = layer.fields().indexFromName(
+            self.dlg.ZipBox.currentField())
+        indexer["city"] = layer.fields().indexFromName(
+            self.dlg.CityBox.currentField())
+        indexer["street"] = layer.fields().indexFromName(
+            self.dlg.StreetBox.currentField())
+        indexer["number"] = layer.fields().indexFromName(
+            self.dlg.NumberBox.currentField())
+        ResultFeatureList = []  # got result storing
+        # precreate field-lists for API call:
         addressLists = {}
         for key in indexer.keys():
             if indexer[key] != -1:
@@ -565,33 +641,42 @@ class Hqgis:
                 addressLists[key] = parts
                 addressLists["oldIds"] = oldIDs
 
-        #let's create the progress bar already with the number of features in the layer
-        progressMessageBar = iface.messageBar().createMessage("Looping through " + str(layer.featureCount()) +" records ...")
+        # let's create the progress bar already with the number of features in
+        # the layer
+        progressMessageBar = iface.messageBar().createMessage(
+            "Looping through " + str(layer.featureCount()) + " records ...")
         progress = QProgressBar()
         progress.setMaximum(layer.featureCount())
-        progress.setAlignment(Qt.AlignLeft|Qt.AlignVCenter)
+        progress.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
         progressMessageBar.layout().addWidget(progress)
         iface.messageBar().pushWidget(progressMessageBar, level=0)
 
         for id in range(0, layer.featureCount()):
-            urlPart=""
-            oldAddress=""
+            urlPart = ""
+            oldAddress = ""
             for key in addressLists.keys():
                 if key != "oldIds":
-                    urlPart+="&" + key +  "=" + addressLists[key][id]
+                    urlPart += "&" + key + "=" + addressLists[key][id]
                     oldAddress += addressLists[key][id] + ","
-            url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + self.appId + urlPart
+            url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + \
+                self.appId + urlPart
             r = requests.get(url)
             if r.status_code == 200:
                 #sys.stdout.write("test" + url + "\\n")
-                if len(json.loads(r.text)["Response"]["View"])>0:
-                #as the response may hold more than one result we only use the best one:
-                    responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
-                    geocodeResponse = self.convertGeocodeResponse(responseAddress)
+                if len(json.loads(r.text)["Response"]["View"]) > 0:
+                    # as the response may hold more than one result we only use
+                    # the best one:
+                    responseAddress = json.loads(
+                        r.text)["Response"]["View"][0]["Result"][0]
+                    geocodeResponse = self.convertGeocodeResponse(
+                        responseAddress)
                     lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
                     lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
                     ResultFet = QgsFeature()
-                    ResultFet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
+                    ResultFet.setGeometry(
+                        QgsGeometry.fromPointXY(
+                            QgsPointXY(
+                                lng, lat)))
                     ResultFet.setAttributes([
                         addressLists["oldIds"][id],
                         oldAddress,
@@ -614,42 +699,49 @@ class Hqgis:
                     ResultFeatureList.append(ResultFet)
             time.sleep(0.5)
             progress.setValue(id)
-            #iface.mainWindow().repaint()
+            # iface.mainWindow().repaint()
             time.sleep(0.5)
         pr.addFeatures(ResultFeatureList)
         iface.messageBar().clearWidgets()
         QgsProject.instance().addMapLayer(Resultlayer)
         self.dlg.exec_()
+
     def getCredentials(self):
         s = QgsSettings()
         self.appId = s.value("HQGIS/api_key", None)
+
     def getCredFunction(self):
         import webbrowser
         webbrowser.open('https://developer.here.com/')
+
     def saveCredFunction(self):
         s = QgsSettings()
         s.setValue("HQGIS/api_key", self.dlg.AppId.text())
         print("save credits")
         self.dlg.credentialInteraction.setText("")
-        self.dlg.credentialInteraction.setText("credentials saved to QGIS Global Settings")
+        self.dlg.credentialInteraction.setText(
+            "credentials saved to QGIS Global Settings")
+
     def loadCredFunction(self):
         s = QgsSettings()
         try:
             apikey = s.value("HQGIS/api_key", None)
-            self.dlg.credentialInteraction.setText("credits used from QGIS global settings")
+            self.dlg.credentialInteraction.setText(
+                "credits used from QGIS global settings")
             self.dlg.AppId.setText(apikey)
-        except:
-            self.dlg.credentialInteraction.setText("no credits found in qgis global settings. Please check settings or save a new key")
-        #print(mytext)
-        #print(myint)
-        #print(myreal)
-        #print(nonexistent)
+        except BaseException:
+            self.dlg.credentialInteraction.setText(
+                "no credits found in qgis global settings. Please check settings or save a new key")
+        # print(mytext)
+        # print(myint)
+        # print(myreal)
+        # print(nonexistent)
         #fileLocation = QFileDialog.getOpenFileName(self.dlg, "JSON with credentials",os.path.dirname(os.path.realpath(__file__))+ os.sep + "creds", "JSON(*.JSON)")
-        #print(fileLocation)
+        # print(fileLocation)
         #scriptDirectory = os.path.dirname(os.path.realpath(__file__))
-        #self.dlg.credentialInteraction.setText("")
-        #print(scriptDirectory)
-        #try:
+        # self.dlg.credentialInteraction.setText("")
+        # print(scriptDirectory)
+        # try:
         #    import os
         #    scriptDirectory = os.path.dirname(os.path.realpath(__file__))
         #    with open(scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json') as f:
@@ -657,9 +749,9 @@ class Hqgis:
         #        self.dlg.AppId.setText(data["KEY"])
         #        #self.dlg.AppCode.setText(data["CODE"])
         #    self.dlg.credentialInteraction.setText("credits used from " + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
-        #except:
+        # except:
         #    self.dlg.credentialInteraction.setText("no credits found in. Check for file" + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
-            #self.dlg.geocodeButton.setEnabled(False)
+            # self.dlg.geocodeButton.setEnabled(False)
 
     def loadFields(self):
         self.dlg.CountryBox.setLayer(self.dlg.mapLayerBox_2.currentLayer())
@@ -676,9 +768,11 @@ class Hqgis:
         self.dlg.CityBox.setAllowEmptyFieldName(True)
         self.dlg.StreetBox.setAllowEmptyFieldName(True)
         self.dlg.NumberBox.setAllowEmptyFieldName(True)
+
     def loadField(self):
         self.dlg.fieldBox.setLayer(self.dlg.mapLayerBox.currentLayer())
         self.dlg.fieldBox.setAllowEmptyFieldName(True)
+
     def setGetMapToolCoordFrom(self):
         """ Method that is connected to the target button. Activates and deactivates map tool """
         if self.dlg.captureButton.isChecked():
@@ -692,6 +786,7 @@ class Hqgis:
             self.iface.mapCanvas().setMapTool(self.getMapCoordTool)
             self.dlg.captureButton_2.setChecked(False)
             return
+
     def setGetMapToolCoordTo(self):
         if self.dlg.captureButton_2.isChecked():
             print("true TO")
@@ -704,6 +799,7 @@ class Hqgis:
             self.dlg.captureButton.setChecked(False)
             self.iface.mapCanvas().setMapTool(self.getMapCoordTool)
             return
+
     def setGetMapToolCoordPlace(self):
         if self.dlg.captureButton_4.isChecked():
             self.iface.mapCanvas().unsetMapTool(self.getMapCoordTool)
@@ -712,6 +808,7 @@ class Hqgis:
             self.iface.mapCanvas().setCursor(Qt.CrossCursor)
             self.iface.mapCanvas().setMapTool(self.getMapCoordTool)
             return
+
     def setGetMapToolCoordIso(self):
         if self.dlg.captureButton_3.isChecked():
             self.iface.mapCanvas().unsetMapTool(self.getMapCoordTool)
@@ -724,65 +821,82 @@ class Hqgis:
     def geocodelineFrom(self):
         self.getCredentials()
         address = self.dlg.fromAddress.text()
-        url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + self.appId + "&searchtext=" + address
+        url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + \
+            self.appId + "&searchtext=" + address
         r = requests.get(url)
         try:
-            #ass the response may hold more than one result we only use the best one:
-            responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
+            # ass the response may hold more than one result we only use the
+            # best one:
+            responseAddress = json.loads(
+                r.text)["Response"]["View"][0]["Result"][0]
             #geocodeResponse = self.convertGeocodeResponse(responseAddress)
             lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
             lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
-            self.dlg.FromLabel.setText(str("%.5f" % lat)+','+str("%.5f" % lng))
-        except:
+            self.dlg.FromLabel.setText(
+                str("%.5f" % lat) + ',' + str("%.5f" % lng))
+        except BaseException:
             print("something went wrong")
+
     def geocodeline(self, lineEdits):
         self.getCredentials()
         address = lineEdits[0].text()
-        url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + self.appId + "&searchtext=" + address
+        url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + \
+            self.appId + "&searchtext=" + address
         r = requests.get(url)
         try:
-            #ass the response may hold more than one result we only use the best one:
-            responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
+            # ass the response may hold more than one result we only use the
+            # best one:
+            responseAddress = json.loads(
+                r.text)["Response"]["View"][0]["Result"][0]
             #geocodeResponse = self.convertGeocodeResponse(responseAddress)
             lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
             lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
-            lineEdits[1].setText(str("%.5f" % lat)+','+str("%.5f" % lng))
-        except:
+            lineEdits[1].setText(str("%.5f" % lat) + ',' + str("%.5f" % lng))
+        except BaseException:
             print("something went wrong")
         try:
             if lineEdits[1].text() != "":
                 lineEdits[2].setEnabled(True)
             else:
                 lineEdits[2].setEnabled(False)
-        except:
+        except BaseException:
             print("routing")
+
     def geocodelinePlace(self):
         self.getCredentials()
         address = self.dlg.placesAddress.text()
         self.dlg.findPOISButton.setEnabled(True)
         print(self.dlg.findPOISButton.enabled())
         if address != "":
-            url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + self.appId + "&searchtext=" + address
+            url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + \
+                self.appId + "&searchtext=" + address
             r = requests.get(url)
             try:
-                #ass the response may hold more than one result we only use the best one:
-                responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
+                # ass the response may hold more than one result we only use
+                # the best one:
+                responseAddress = json.loads(
+                    r.text)["Response"]["View"][0]["Result"][0]
                 #geocodeResponse = self.convertGeocodeResponse(responseAddress)
                 lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
                 lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
-                self.dlg.placeLabel.setText(str("%.5f" % lat)+','+str("%.5f" % lng))
-            except:
+                self.dlg.placeLabel.setText(
+                    str("%.5f" % lat) + ',' + str("%.5f" % lng))
+            except BaseException:
                 print("something went wrong")
+
     def checkPlacesInput(self):
-        if self.dlg.placeLabel.text() != "" and len(self.dlg.listWidget.selectedItems())>0:
+        if self.dlg.placeLabel.text() != "" and len(
+                self.dlg.listWidget.selectedItems()) > 0:
             self.dlg.findPOISButton.setEnabled(True)
         else:
             self.dlg.findPOISButton.setEnabled(False)
+
     def checkPlacesInputBatch(self):
-        if len(self.dlg.listWidgetBatch.selectedItems())>0:
+        if len(self.dlg.listWidgetBatch.selectedItems()) > 0:
             self.dlg.findPOISButtonBatch.setEnabled(True)
         else:
             self.dlg.findPOISButtonBatch.setEnabled(False)
+
     def selectMetric(self):
         if self.dlg.metric.currentText() == "Time":
             self.dlg.travelDistances.setEnabled(False)
@@ -790,6 +904,7 @@ class Hqgis:
         else:
             self.dlg.travelDistances.setEnabled(True)
             self.dlg.travelTimes.setEnabled(False)
+
     def selectMetricBatch(self):
         if self.dlg.metricBatch.currentText() == "Time":
             self.dlg.travelDistancesBatch.setEnabled(False)
@@ -797,6 +912,7 @@ class Hqgis:
         else:
             self.dlg.travelDistancesBatch.setEnabled(True)
             self.dlg.travelTimesBatch.setEnabled(False)
+
     def calculateRouteSingle(self):
         self.getCredentials()
         type = self.dlg.Type.currentText()
@@ -804,12 +920,14 @@ class Hqgis:
         if mode == 'public transport':
             mode = 'publicTransport'
         traffic = self.dlg.trafficMode.currentText()
-        url = "https://route.ls.hereapi.com/routing/7.2/calculateroute.json?apiKey=" + self.appId + "&routeAttributes=shape&mode=" + type + ";" + mode + ";traffic:" + traffic + "&waypoint0=geo!"  + self.dlg.FromLabel.text() + "&waypoint1=geo!" + self.dlg.ToLabel.text()
+        url = "https://route.ls.hereapi.com/routing/7.2/calculateroute.json?apiKey=" + self.appId + "&routeAttributes=shape&mode=" + type + \
+            ";" + mode + ";traffic:" + traffic + "&waypoint0=geo!" + self.dlg.FromLabel.text() + "&waypoint1=geo!" + self.dlg.ToLabel.text()
         if self.dlg.trafficMode.currentText() == "enabled":
-            #print(self.dlg.dateTimeEditBatch.dateTime())
-            url += "&departure=" + self.dlg.dateTimeEdit.dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'")
+            # print(self.dlg.dateTimeEditBatch.dateTime())
+            url += "&departure=" + \
+                self.dlg.dateTimeEdit.dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'")
             time2 = self.dlg.dateTimeEdit.dateTime().toString("yyyyMMdd-hh:mm:ss")
-            timestamp = QDateTime.fromString(time2,"yyyyMMdd-hh:mm:ss");
+            timestamp = QDateTime.fromString(time2, "yyyyMMdd-hh:mm:ss")
         else:
             timestamp = None
         print(url)
@@ -817,15 +935,19 @@ class Hqgis:
 
         if r.status_code == 200:
             try:
-                self.dlg.status2.setText("distance: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["distance"]) +  " time: " + str(json.loads(r.text)["response"]["route"][0]["summary"]["travelTime"]))
+                self.dlg.status2.setText("distance: " +
+                                         str(json.loads(r.text)["response"]["route"][0]["summary"]["distance"]) +
+                                         " time: " +
+                                         str(json.loads(r.text)["response"]["route"][0]["summary"]["travelTime"]))
                 if self.dlg.routeLayerCheckBox.checkState():
                     layer = self.createRouteLayer()
-                    responseRoute = json.loads(r.text)["response"]["route"][0]["shape"]
+                    responseRoute = json.loads(
+                        r.text)["response"]["route"][0]["shape"]
                     vertices = []
                     for routePoint in responseRoute:
                         lat = float(routePoint.split(",")[0])
                         lng = float(routePoint.split(",")[1])
-                        vertices.append(QgsPoint(lng,lat))
+                        vertices.append(QgsPoint(lng, lat))
                     fet = QgsFeature()
                     fet.setGeometry(QgsGeometry.fromPolyline(vertices))
                     fet.setAttributes([
@@ -842,6 +964,7 @@ class Hqgis:
                     QgsProject.instance().addMapLayer(layer)
             except Exception as e:
                 print(e)
+
     def getPlacesSingle(self):
         self.getCredentials()
         #radius = self.dlg.RadiusBox.value()
@@ -851,15 +974,23 @@ class Hqgis:
             categoriesList.append(category.text())
         categories = ",".join(categoriesList)
         coordinates = self.dlg.placeLabel.text()
-        url = 'https://browse.search.hereapi.com/v1/browse?at=' + coordinates + "&categories=" + categories +"&limit=100&apiKey=" + self.appId
+        url = 'https://browse.search.hereapi.com/v1/browse?at=' + coordinates + \
+            "&categories=" + categories + "&limit=100&apiKey=" + self.appId
         r = requests.get(url)
         print(url)
         if r.status_code == 200:
-            if len(json.loads(r.text)["items"])>99:
-                iface.messageBar().pushMessage("Warning", "The maximum number of POIs for original address at " + coordinates + " of 100 POIs reached.", level=1, duration=5)
-            if len(json.loads(r.text)["items"])>0:
+            if len(json.loads(r.text)["items"]) > 99:
+                iface.messageBar().pushMessage(
+                    "Warning",
+                    "The maximum number of POIs for original address at " +
+                    coordinates +
+                    " of 100 POIs reached.",
+                    level=1,
+                    duration=5)
+            if len(json.loads(r.text)["items"]) > 0:
                 try:
-                    #as the response may hold more than one result we only use the best one:
+                    # as the response may hold more than one result we only use
+                    # the best one:
                     responsePlaces = json.loads(r.text)["items"]
                     layer = self.createPlaceLayer()
                     features = []
@@ -871,7 +1002,10 @@ class Hqgis:
                         for cat in place["categories"]:
                             categoriesResp.append(cat["id"])
                         fet = QgsFeature()
-                        fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
+                        fet.setGeometry(
+                            QgsGeometry.fromPointXY(
+                                QgsPointXY(
+                                    lng, lat)))
                         fet.setAttributes([
                             place["id"],
                             place["title"],
@@ -885,6 +1019,7 @@ class Hqgis:
                     QgsProject.instance().addMapLayer(layer)
                 except Exception as e:
                     print(e)
+
     def getPlacesBatch(self):
         self.getCredentials()
         #radius = self.dlg.RadiusBoxBatch.value()
@@ -900,17 +1035,19 @@ class Hqgis:
         if layerCRS != QgsCoordinateReferenceSystem(4326):
             sourceCrs = layerCRS
             destCrs = QgsCoordinateReferenceSystem(4326)
-            tr = QgsCoordinateTransform(sourceCrs, destCrs, QgsProject.instance())
-        progressMessageBar = iface.messageBar().createMessage("Looping through " + str(originLayer.featureCount()) +" records ...")
+            tr = QgsCoordinateTransform(
+                sourceCrs, destCrs, QgsProject.instance())
+        progressMessageBar = iface.messageBar().createMessage(
+            "Looping through " + str(originLayer.featureCount()) + " records ...")
         progress = QProgressBar()
         progress.setMaximum(originLayer.featureCount())
-        progress.setAlignment(Qt.AlignLeft|Qt.AlignVCenter)
+        progress.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
         progressMessageBar.layout().addWidget(progress)
         iface.messageBar().pushWidget(progressMessageBar, level=0)
         i = 0
         for originFeature in originFeatures:
             if layerCRS != QgsCoordinateReferenceSystem(4326):
-                #we reproject:
+                # we reproject:
                 geom = originFeature.geometry()
                 newGeom = tr.transform(geom.asPoint())
                 x = newGeom.x()
@@ -919,20 +1056,22 @@ class Hqgis:
                 x = originFeature.geometry().asPoint().x()
                 y = originFeature.geometry().asPoint().y()
             coordinates = str(y) + "," + str(x)
-            url = 'https://browse.search.hereapi.com/v1/browse?at=' + coordinates + "&categories=" + categories +"&limit=100&apiKey=" + self.appId
+            url = 'https://browse.search.hereapi.com/v1/browse?at=' + coordinates + \
+                "&categories=" + categories + "&limit=100&apiKey=" + self.appId
             r = requests.get(url)
             print(url)
             i += 1
             progress.setValue(i)
             iface.mainWindow().repaint()
 
-
             if r.status_code == 200:
-                if len(json.loads(r.text)["items"])>0:
-                    if len(json.loads(r.text)["items"])>99:
-                        iface.messageBar().pushMessage("Warning", "The maximum number of POIs for original feature " + str(originFeature.id()) + " of 100 POIs reached.", level=1, duration=5)
+                if len(json.loads(r.text)["items"]) > 0:
+                    if len(json.loads(r.text)["items"]) > 99:
+                        iface.messageBar().pushMessage("Warning", "The maximum number of POIs for original feature " +
+                                                       str(originFeature.id()) + " of 100 POIs reached.", level=1, duration=5)
                     try:
-                        #ass the response may hold more than one result we only use the best one:
+                        # ass the response may hold more than one result we
+                        # only use the best one:
                         responsePlaces = json.loads(r.text)["items"]
                         #layer = self.createPlaceLayer()
                         features = []
@@ -944,7 +1083,10 @@ class Hqgis:
                             for cat in place["categories"]:
                                 categoriesResp.append(cat["id"])
                             fet = QgsFeature()
-                            fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
+                            fet.setGeometry(
+                                QgsGeometry.fromPointXY(
+                                    QgsPointXY(
+                                        lng, lat)))
                             fet.setAttributes([
                                 place["id"],
                                 originFeature.id(),
@@ -962,37 +1104,43 @@ class Hqgis:
         iface.messageBar().clearWidgets()
 
     def getIsochronesSingle(self):
-        #print(self.dlg.dateTimeEditBatch.dateTime().toPyDate())
+        # print(self.dlg.dateTimeEditBatch.dateTime().toPyDate())
         print("get Isochrones")
         self.getCredentials()
-        #getting intervals:
+        # getting intervals:
         if self.dlg.metric.currentText() == "Time":
             intervalArray = self.dlg.travelTimes.text().split(",")
         else:
             intervalArray = self.dlg.travelDistances.text().split(",")
         ranges = [int(x) for x in intervalArray]
-        #create colors:
+        # create colors:
         layer = self.createIsoLayer()
-        if len(ranges)>1:
+        if len(ranges) > 1:
             ranges.sort()
             rangediff = ranges[-1] - ranges[0]
             sym = QgsSymbol.defaultSymbol(layer.geometryType())
-            rngs=[]
-            sym.setColor(QColor(0,255,0,255))
-            rng = QgsRendererRange(0, ranges[0], sym, str(0) + " - " + str(ranges[0]))
+            rngs = []
+            sym.setColor(QColor(0, 255, 0, 255))
+            rng = QgsRendererRange(
+                0, ranges[0], sym, str(0) + " - " + str(ranges[0]))
             rngs.append(rng)
-            for rangeItem in range(1,len(ranges)-1):
+            for rangeItem in range(1, len(ranges) - 1):
                 sym = QgsSymbol.defaultSymbol(layer.geometryType())
-                #colors.append([int(0 + ((255/range)*(rangeItem-ranges[0]))),int(255-((255/range)*(rangeItem-ranges[0])),0])
-                sym.setColor(QColor(int(0 + ((255/rangediff)*(ranges[rangeItem]-ranges[0]))),int(255-((255/rangediff)*(ranges[rangeItem]-ranges[0]))),0,255))
-                print(int(0 + ((255/rangediff)*(ranges[rangeItem]-ranges[0]))),int(255-((255/rangediff)*(ranges[rangeItem]-ranges[0]))),0,255)
-                rng = QgsRendererRange(ranges[rangeItem-1]+1, ranges[rangeItem], sym, str(ranges[rangeItem-1]+1) + " - " + str(ranges[rangeItem]))
+                # colors.append([int(0 +
+                # ((255/range)*(rangeItem-ranges[0]))),int(255-((255/range)*(rangeItem-ranges[0])),0])
+                sym.setColor(QColor(int(0 + ((255 / rangediff) * (ranges[rangeItem] - ranges[0]))), int(
+                    255 - ((255 / rangediff) * (ranges[rangeItem] - ranges[0]))), 0, 255))
+                print(int(0 + ((255 / rangediff) * (ranges[rangeItem] - ranges[0]))), int(
+                    255 - ((255 / rangediff) * (ranges[rangeItem] - ranges[0]))), 0, 255)
+                rng = QgsRendererRange(ranges[rangeItem - 1] + 1, ranges[rangeItem], sym, str(
+                    ranges[rangeItem - 1] + 1) + " - " + str(ranges[rangeItem]))
                 rngs.append(rng)
             sym = QgsSymbol.defaultSymbol(layer.geometryType())
-            sym.setColor(QColor(255,0,0,255))
-            rng = QgsRendererRange(ranges[-2]+1, ranges[-1], sym, str(ranges[-2]+1) + " - " + str(ranges[-1]))
+            sym.setColor(QColor(255, 0, 0, 255))
+            rng = QgsRendererRange(
+                ranges[-2] + 1, ranges[-1], sym, str(ranges[-2] + 1) + " - " + str(ranges[-1]))
             rngs.append(rng)
-            field="range"
+            field = "range"
             renderer = QgsGraduatedSymbolRenderer(field, rngs)
         type = self.dlg.Type_2.currentText()
         mode = self.dlg.TransportMode_2.currentText()
@@ -1000,37 +1148,40 @@ class Hqgis:
         if mode == 'public transport':
             mode = 'publicTransport'
         url = "https://isoline.route.ls.hereapi.com/routing/7.2/calculateisoline.json?" + \
-        "apiKey=" + self.appId + \
-        "&range=" + ",".join(intervalArray)+ \
-        "&mode=" + type + ";" + mode + ";traffic:" + traffic + \
-        "&rangetype=" + self.dlg.metric.currentText().lower() + \
-        "&" + self.dlg.OriginDestination.currentText().lower() + "=geo!" + \
-        self.dlg.IsoLabel.text()
+            "apiKey=" + self.appId + \
+            "&range=" + ",".join(intervalArray) + \
+            "&mode=" + type + ";" + mode + ";traffic:" + traffic + \
+            "&rangetype=" + self.dlg.metric.currentText().lower() + \
+            "&" + self.dlg.OriginDestination.currentText().lower() + "=geo!" + \
+            self.dlg.IsoLabel.text()
         if self.dlg.trafficMode_2.currentText() == "enabled":
-            #print(self.dlg.dateTimeEditBatch.dateTime())
-            url += "&departure=" + self.dlg.dateTimeEdit_2.dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'")
+            # print(self.dlg.dateTimeEditBatch.dateTime())
+            url += "&departure=" + \
+                self.dlg.dateTimeEdit_2.dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'")
             time2 = self.dlg.dateTimeEdit_2.dateTime().toString("yyyyMMdd-hh:mm:ss")
-            timestamp = QDateTime.fromString(time2,"yyyyMMdd-hh:mm:ss");
+            timestamp = QDateTime.fromString(time2, "yyyyMMdd-hh:mm:ss")
         else:
             timestamp = None
         r = requests.get(url)
         print(url)
 
         if r.status_code == 200:
-            if len(json.loads(r.text)["response"]["isoline"])>0:
+            if len(json.loads(r.text)["response"]["isoline"]) > 0:
                 try:
 
                     response = json.loads(r.text)["response"]["isoline"]
-                    features=[]
+                    features = []
                     fid = 0
                     for poly in response:
                         coordinates = []
                         for vertex in poly["component"][0]["shape"]:
                             lat = float(vertex.split(",")[0])
                             lng = float(vertex.split(",")[1])
-                            coordinates.append(QgsPointXY(lng,lat))
+                            coordinates.append(QgsPointXY(lng, lat))
                         fet = QgsFeature()
-                        fet.setGeometry(QgsGeometry.fromPolygonXY([coordinates]))
+                        fet.setGeometry(
+                            QgsGeometry.fromPolygonXY(
+                                [coordinates]))
                         fet.setAttributes([
                             fid,
                             poly["range"],
@@ -1041,46 +1192,53 @@ class Hqgis:
                             type
                         ])
                         features.append(fet)
-                        fid+=1
+                        fid += 1
                     pr = layer.dataProvider()
                     pr.addFeatures(reversed(features))
-                    if len(ranges)>1:
+                    if len(ranges) > 1:
                         layer.setRenderer(renderer)
                     layer.setOpacity(0.5)
                     QgsProject.instance().addMapLayer(layer)
                 except Exception as e:
                     print(e)
+
     def getIsochronesBatch(self):
         print("get Isochrones")
         self.getCredentials()
-        #getting intervals:
+        # getting intervals:
         if self.dlg.metricBatch.currentText() == "Time":
             intervalArray = self.dlg.travelTimesBatch.text().split(",")
         else:
             intervalArray = self.dlg.travelDistancesBatch.text().split(",")
         ranges = [int(x) for x in intervalArray]
-        #create colors:
+        # create colors:
         layer = self.createIsoLayerBatch()
-        if len(ranges)>1:
+        if len(ranges) > 1:
             ranges.sort()
             rangediff = ranges[-1] - ranges[0]
             sym = QgsSymbol.defaultSymbol(layer.geometryType())
-            rngs=[]
-            sym.setColor(QColor(0,255,0,255))
-            rng = QgsRendererRange(0, ranges[0], sym, str(0) + " - " + str(ranges[0]))
+            rngs = []
+            sym.setColor(QColor(0, 255, 0, 255))
+            rng = QgsRendererRange(
+                0, ranges[0], sym, str(0) + " - " + str(ranges[0]))
             rngs.append(rng)
-            for rangeItem in range(1,len(ranges)-1):
+            for rangeItem in range(1, len(ranges) - 1):
                 sym = QgsSymbol.defaultSymbol(layer.geometryType())
-                #colors.append([int(0 + ((255/range)*(rangeItem-ranges[0]))),int(255-((255/range)*(rangeItem-ranges[0])),0])
-                sym.setColor(QColor(int(0 + ((255/rangediff)*(ranges[rangeItem]-ranges[0]))),int(255-((255/rangediff)*(ranges[rangeItem]-ranges[0]))),0,255))
-                print(int(0 + ((255/rangediff)*(ranges[rangeItem]-ranges[0]))),int(255-((255/rangediff)*(ranges[rangeItem]-ranges[0]))),0,255)
-                rng = QgsRendererRange(ranges[rangeItem-1]+1, ranges[rangeItem], sym, str(ranges[rangeItem-1]+1) + " - " + str(ranges[rangeItem]))
+                # colors.append([int(0 +
+                # ((255/range)*(rangeItem-ranges[0]))),int(255-((255/range)*(rangeItem-ranges[0])),0])
+                sym.setColor(QColor(int(0 + ((255 / rangediff) * (ranges[rangeItem] - ranges[0]))), int(
+                    255 - ((255 / rangediff) * (ranges[rangeItem] - ranges[0]))), 0, 255))
+                print(int(0 + ((255 / rangediff) * (ranges[rangeItem] - ranges[0]))), int(
+                    255 - ((255 / rangediff) * (ranges[rangeItem] - ranges[0]))), 0, 255)
+                rng = QgsRendererRange(ranges[rangeItem - 1] + 1, ranges[rangeItem], sym, str(
+                    ranges[rangeItem - 1] + 1) + " - " + str(ranges[rangeItem]))
                 rngs.append(rng)
             sym = QgsSymbol.defaultSymbol(layer.geometryType())
-            sym.setColor(QColor(255,0,0,255))
-            rng = QgsRendererRange(ranges[-2]+1, ranges[-1], sym, str(ranges[-2]+1) + " - " + str(ranges[-1]))
+            sym.setColor(QColor(255, 0, 0, 255))
+            rng = QgsRendererRange(
+                ranges[-2] + 1, ranges[-1], sym, str(ranges[-2] + 1) + " - " + str(ranges[-1]))
             rngs.append(rng)
-            field="range"
+            field = "range"
             renderer = QgsGraduatedSymbolRenderer(field, rngs)
         type = self.dlg.TypeBatch.currentText()
         mode = self.dlg.TransportModeBatch.currentText()
@@ -1093,17 +1251,19 @@ class Hqgis:
         if layerCRS != QgsCoordinateReferenceSystem(4326):
             sourceCrs = layerCRS
             destCrs = QgsCoordinateReferenceSystem(4326)
-            tr = QgsCoordinateTransform(sourceCrs, destCrs, QgsProject.instance())
-        progressMessageBar = iface.messageBar().createMessage("Looping through " + str(originLayer.featureCount()) +" records ...")
+            tr = QgsCoordinateTransform(
+                sourceCrs, destCrs, QgsProject.instance())
+        progressMessageBar = iface.messageBar().createMessage(
+            "Looping through " + str(originLayer.featureCount()) + " records ...")
         progress = QProgressBar()
         progress.setMaximum(originLayer.featureCount())
-        progress.setAlignment(Qt.AlignLeft|Qt.AlignVCenter)
+        progress.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
         progressMessageBar.layout().addWidget(progress)
         iface.messageBar().pushWidget(progressMessageBar, level=0)
         i = 0
         for originFeature in originFeatures:
             if layerCRS != QgsCoordinateReferenceSystem(4326):
-                #we reproject:
+                # we reproject:
                 geom = originFeature.geometry()
                 newGeom = tr.transform(geom.asPoint())
                 x = newGeom.x()
@@ -1113,18 +1273,18 @@ class Hqgis:
                 y = originFeature.geometry().asPoint().y()
             coordinates = str(y) + "," + str(x)
             url = "https://isoline.route.ls.hereapi.com/routing/7.2/calculateisoline.json?" + \
-            "apiKey=" + self.appId + \
-            "&range=" + ",".join(intervalArray)+ \
-            "&mode=" + type + ";" + mode + ";traffic:" + traffic + \
-            "&rangetype=" + self.dlg.metricBatch.currentText().lower() + \
-            "&" + self.dlg.OriginDestinationBatch.currentText().lower() + "=geo!" + \
-            coordinates
+                "apiKey=" + self.appId + \
+                "&range=" + ",".join(intervalArray) + \
+                "&mode=" + type + ";" + mode + ";traffic:" + traffic + \
+                "&rangetype=" + self.dlg.metricBatch.currentText().lower() + \
+                "&" + self.dlg.OriginDestinationBatch.currentText().lower() + "=geo!" + \
+                coordinates
             if self.dlg.trafficModeBatch.currentText() == "enabled":
                 time = self.dlg.dateTimeEditBatch.dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'")
-                #print(self.dlg.dateTimeEditBatch.dateTime())
+                # print(self.dlg.dateTimeEditBatch.dateTime())
                 url += "&departure=" + time
                 time2 = self.dlg.dateTimeEditBatch.dateTime().toString("yyyyMMdd-hh:mm:ss")
-                timestamp = QDateTime.fromString(time2,"yyyyMMdd-hh:mm:ss");
+                timestamp = QDateTime.fromString(time2, "yyyyMMdd-hh:mm:ss")
             else:
                 timestamp = None
             r = requests.get(url)
@@ -1134,19 +1294,21 @@ class Hqgis:
             iface.mainWindow().repaint()
 
             if r.status_code == 200:
-                if len(json.loads(r.text)["response"]["isoline"])>0:
+                if len(json.loads(r.text)["response"]["isoline"]) > 0:
                     try:
                         response = json.loads(r.text)["response"]["isoline"]
-                        features=[]
+                        features = []
                         fid = 0
                         for poly in response:
                             coordinates = []
                             for vertex in poly["component"][0]["shape"]:
                                 lat = float(vertex.split(",")[0])
                                 lng = float(vertex.split(",")[1])
-                                coordinates.append(QgsPointXY(lng,lat))
+                                coordinates.append(QgsPointXY(lng, lat))
                             fet = QgsFeature()
-                            fet.setGeometry(QgsGeometry.fromPolygonXY([coordinates]))
+                            fet.setGeometry(
+                                QgsGeometry.fromPolygonXY(
+                                    [coordinates]))
 
                             fet.setAttributes([
                                 fid,
@@ -1159,28 +1321,28 @@ class Hqgis:
                                 type
                             ])
                             features.append(fet)
-                            fid+=1
+                            fid += 1
                         pr = layer.dataProvider()
                         pr.addFeatures(reversed(features))
-                        if len(ranges)>1:
+                        if len(ranges) > 1:
                             layer.setRenderer(renderer)
                         layer.setOpacity(0.5)
                         QgsProject.instance().addMapLayer(layer)
                     except Exception as e:
                         print(e)
         iface.messageBar().clearWidgets()
-    def run(self):
 
+    def run(self):
         """Run method that performs all the real work"""
         # show the dialog
         self.dlg.show()
-        #try to load credentials:
+        # try to load credentials:
 
         # Run the dialog event loop
         result = self.dlg.exec_()
         # See if OK was pressed
         if result:
-            #get app code/id
+            # get app code/id
 
             # Do something useful here - delete the line containing pass and
             # substitute with your code.
