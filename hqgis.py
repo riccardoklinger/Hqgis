@@ -831,7 +831,7 @@ class Hqgis:
                 print(e)
     def getPlacesSingle(self):
         self.getCredentials()
-        radius = self.dlg.RadiusBox.value()
+        #radius = self.dlg.RadiusBox.value()
         categories = self.dlg.listWidget.selectedItems()
         categoriesList = []
         for category in categories:
@@ -874,7 +874,7 @@ class Hqgis:
                     print(e)
     def getPlacesBatch(self):
         self.getCredentials()
-        radius = self.dlg.RadiusBoxBatch.value()
+        #radius = self.dlg.RadiusBoxBatch.value()
         categories = self.dlg.listWidgetBatch.selectedItems()
         categoriesList = []
         for category in categories:
