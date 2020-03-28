@@ -32,9 +32,14 @@ from .GetMapCoordinates import GetMapCoordinates
 # Import the code for the dialog
 from .hqgis_dialog import HqgisDialog
 import os.path
-import requests, json, urllib
+import requests, json, urllib, os
 from PyQt5.QtCore import QVariant, QDateTime
-from qgis.core import QgsApplication, QgsPoint, QgsSymbol, QgsRendererRange, QgsGraduatedSymbolRenderer, QgsPointXY, QgsGeometry,QgsMapLayerProxyModel, QgsVectorLayer, QgsProject, QgsCoordinateReferenceSystem, QgsCoordinateTransform, QgsFeature, QgsField, QgsMessageLog, QgsNetworkAccessManager
+from qgis.core import (QgsApplication, QgsPoint, QgsSymbol, QgsRendererRange,
+    QgsGraduatedSymbolRenderer, QgsPointXY, QgsGeometry,QgsMapLayerProxyModel,
+    QgsVectorLayer, QgsProject, QgsCoordinateReferenceSystem,
+    QgsCoordinateTransform, QgsFeature, QgsField, QgsMessageLog,
+    QgsNetworkAccessManager, QgsSettings
+)
 from qgis.PyQt.QtWidgets import QProgressBar
 from qgis.PyQt.QtCore import *
 from qgis.utils import iface
@@ -616,36 +621,44 @@ class Hqgis:
         QgsProject.instance().addMapLayer(Resultlayer)
         self.dlg.exec_()
     def getCredentials(self):
-        self.appId = self.dlg.AppId.text()
-        #self.appCode = self.dlg.AppCode.text()
+        s = QgsSettings()
+        self.appId = s.value("HQGIS/api_key", None)
     def getCredFunction(self):
         import webbrowser
         webbrowser.open('https://developer.here.com/')
     def saveCredFunction(self):
+        s = QgsSettings()
+        s.setValue("HQGIS/api_key", self.dlg.AppId.text())
         print("save credits")
         self.dlg.credentialInteraction.setText("")
-        fileLocation = os.path.dirname(os.path.realpath(__file__))+ os.sep + "creds"
-        with open(fileLocation + os.sep + 'credentials.json', 'w') as outfile:
-            stringJSON = {"KEY": self.dlg.AppId.text()}
-            json.dump(stringJSON, outfile)
-        self.dlg.credentialInteraction.setText("credentials saved to " + fileLocation + os.sep + 'credentials.json')
+        self.dlg.credentialInteraction.setText("credentials saved to QGIS Global Settings")
     def loadCredFunction(self):
-        import json, os
+        s = QgsSettings()
+        try:
+            apikey = s.value("HQGIS/api_key", None)
+            self.dlg.credentialInteraction.setText("credits used from QGIS global settings")
+            self.dlg.AppId.setText(apikey)
+        except:
+            self.dlg.credentialInteraction.setText("no credits found in qgis global settings. Please check settings or save a new key")
+        #print(mytext)
+        #print(myint)
+        #print(myreal)
+        #print(nonexistent)
         #fileLocation = QFileDialog.getOpenFileName(self.dlg, "JSON with credentials",os.path.dirname(os.path.realpath(__file__))+ os.sep + "creds", "JSON(*.JSON)")
         #print(fileLocation)
-        scriptDirectory = os.path.dirname(os.path.realpath(__file__))
-        self.dlg.credentialInteraction.setText("")
-        print(scriptDirectory)
-        try:
-            import os
-            scriptDirectory = os.path.dirname(os.path.realpath(__file__))
-            with open(scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json') as f:
-                data = json.load(f)
-                self.dlg.AppId.setText(data["KEY"])
-                #self.dlg.AppCode.setText(data["CODE"])
-            self.dlg.credentialInteraction.setText("credits used from " + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
-        except:
-            self.dlg.credentialInteraction.setText("no credits found in. Check for file" + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
+        #scriptDirectory = os.path.dirname(os.path.realpath(__file__))
+        #self.dlg.credentialInteraction.setText("")
+        #print(scriptDirectory)
+        #try:
+        #    import os
+        #    scriptDirectory = os.path.dirname(os.path.realpath(__file__))
+        #    with open(scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json') as f:
+        #        data = json.load(f)
+        #        self.dlg.AppId.setText(data["KEY"])
+        #        #self.dlg.AppCode.setText(data["CODE"])
+        #    self.dlg.credentialInteraction.setText("credits used from " + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
+        #except:
+        #    self.dlg.credentialInteraction.setText("no credits found in. Check for file" + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
             #self.dlg.geocodeButton.setEnabled(False)
 
     def loadFields(self):
