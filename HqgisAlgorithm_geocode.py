@@ -129,7 +129,7 @@ class geocodeList(QgsProcessingAlgorithm):
         creds = {}
         try:
             s = QgsSettings()
-            creds["id"]  = s.value("HQGIS/api_key", None)
+            creds["id"] = s.value("HQGIS/api_key", None)
             #self.dlg.credentialInteraction.setText("credits used from " + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
         except BaseException:
             print("cred load failed, check QGIS global settings")
