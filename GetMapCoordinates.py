@@ -40,14 +40,14 @@ class GetMapCoordinates(QgsMapToolEmitPoint):
         self.getCredentials()
         # change dockwidget corrdinate with the original crs
         if self.dlg.captureButton.isChecked():
-            url = "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=" + \
-                str(lat) + "%2C" + str(lon) + "%2C10&mode=retrieveAddresses&maxresults=1&gen=9&app_id=" + self.appId
+            url = "https://revgeocode.search.hereapi.com/v1/revgeocode?at=" + \
+                str(lat) + "%2C" + str(lon) + "%2C10&limit=1&lang=en-US&apiKey=" + self.appId
             print(url)
             r = requests.get(url)
             try:
                 self.dlg.fromAddress.setText(
                     json.loads(
-                        r.text)["Response"]["View"][0]["Result"][0]["Location"]["Address"]["Label"])
+                        r.text)["items"][0]["title"])
             except BaseException:
                 self.dlg.fromAddress.setText("no address found")
                 print("something went wrong")
@@ -55,13 +55,13 @@ class GetMapCoordinates(QgsMapToolEmitPoint):
                 str("%.5f" % lat) + ',' + str("%.5f" % lon))
             self.dlg.captureButton.setChecked(False)
         if self.dlg.captureButton_2.isChecked():
-            url = "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=" + \
-                str(lat) + "%2C" + str(lon) + "%2C10&mode=retrieveAddresses&maxresults=1&gen=9&app_id=" + self.appId
+            url = "https://revgeocode.search.hereapi.com/v1/revgeocode?at=" + \
+                str(lat) + "%2C" + str(lon) + "%2C10&limit=1&lang=en-US&apiKey=" + self.appId
             r = requests.get(url)
             try:
                 self.dlg.toAddress.setText(
                     json.loads(
-                        r.text)["Response"]["View"][0]["Result"][0]["Location"]["Address"]["Label"])
+                        r.text)["items"][0]["title"])
             except BaseException:
                 self.dlg.toAddress.setText("no address found")
                 print("something went wrong")
@@ -71,13 +71,13 @@ class GetMapCoordinates(QgsMapToolEmitPoint):
             self.iface.mapCanvas().setCursor(Qt.ArrowCursor)
             self.dlg.captureButton_2.setChecked(False)
         if self.dlg.captureButton_4.isChecked():
-            url = "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=" + \
-                str(lat) + "%2C" + str(lon) + "%2C10&mode=retrieveAddresses&maxresults=1&gen=9&app_id=" + self.appId
+            url = "https://revgeocode.search.hereapi.com/v1/revgeocode?at=" + \
+                str(lat) + "%2C" + str(lon) + "%2C10&limit=1&lang=en-US&apiKey=" + self.appId
 
             r = requests.get(url)
             try:
                 self.dlg.placesAddress.setText(json.loads(
-                    r.text)["Response"]["View"][0]["Result"][0]["Location"]["Address"]["Label"])
+                    r.text)["items"][0]["title"])
             except BaseException:
                 self.dlg.placesAddress.setText("no address found")
                 print("something went wrong")
@@ -89,15 +89,15 @@ class GetMapCoordinates(QgsMapToolEmitPoint):
             self.dlg.captureButton_4.setChecked(False)
 
         if self.dlg.captureButton_3.isChecked():
-            url = "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?prox=" + \
-                str(lat) + "%2C" + str(lon) + "%2C10&mode=retrieveAddresses&maxresults=1&gen=9&app_id=" + self.appId
+            url = "https://revgeocode.search.hereapi.com/v1/revgeocode?at=" + \
+                str(lat) + "%2C" + str(lon) + "%2C10&limit=1&lang=en-US&apiKey=" + self.appId
 
             r = requests.get(url)
             # print(r.text)
             try:
                 self.dlg.IsoAddress.setText(
                     json.loads(
-                        r.text)["Response"]["View"][0]["Result"][0]["Location"]["Address"]["Label"])
+                        r.text)["items"][0]["title"])
             except BaseException:
                 self.dlg.IsoAddress.setText("no address found")
                 print("something went wrong")
