@@ -30,7 +30,8 @@ from qgis.core import (QgsProcessing,
                        QgsCoordinateReferenceSystem,
                        QgsFeature,
                        QgsGeometry,
-                       QgsPointXY)
+                       QgsPointXY,
+                       QgsSettings)
 from functools import partial
 import processing
 import Hqgis
@@ -116,13 +117,7 @@ class geocodeList(QgsProcessingAlgorithm):
         parameters and outputs associated with it.
         """
         return self.tr(
-            "This processing algorithm supports geocoding of a list of addresses in a single field originating from a txt/csv/table.<br> Make sure your HERE credentials are stored in the file: <br>'" +
-            os.path.dirname(
-                os.path.realpath(__file__)) +
-            os.sep +
-            "creds" +
-            os.sep +
-            "credentials.json'<br>using the plugin itself. Please read the referenced <a href='https://github.com/riccardoklinger/Hqgis#tos--usage'>Terms of Usage</a> prior usage")
+            "This processing algorithm supports geocoding of a list of addresses in a single field originating from a txt/csv/table.<br> Make sure your HERE credentials are stored in the QGIS global settings using the plugin itself. Please read the referenced <a href='https://github.com/riccardoklinger/Hqgis#tos--usage'>Terms of Usage</a> prior usage")
 
     def loadCredFunctionAlg(self):
         import json
@@ -133,15 +128,11 @@ class geocodeList(QgsProcessingAlgorithm):
         # self.dlg.credentialInteraction.setText("")
         creds = {}
         try:
-            scriptDirectory = os.path.dirname(os.path.realpath(__file__))
-            with open(scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json') as f:
-                data = json.load(f)
-                creds["id"] = data["KEY"]
-                #creds["code"] = data["CODE"]
-
+            s = QgsSettings()
+            creds["id"]  = s.value("HQGIS/api_key", None)
             #self.dlg.credentialInteraction.setText("credits used from " + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
         except BaseException:
-            print("cred load failed")
+            print("cred load failed, check QGIS global settings")
             #self.dlg.credentialInteraction.setText("no credits found in. Check for file" + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
             # self.dlg.geocodeButton.setEnabled(False)
         # if not id in creds:
@@ -324,9 +315,6 @@ class geocodeList(QgsProcessingAlgorithm):
         total = 100.0 / source.featureCount() if source.featureCount() else 0
         features = source.getFeatures()
         # get the keys:
-        credFile = os.path.dirname(os.path.realpath(
-            __file__)) + os.sep + 'creds' + os.sep + 'credentials.json'
-        feedback.pushInfo('{} as the file for credentials'.format(credFile))
         creds = self.loadCredFunctionAlg()
         for current, feature in enumerate(features):
             # Stop the algorithm if cancel button has been clicked
