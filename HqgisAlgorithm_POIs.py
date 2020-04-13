@@ -124,7 +124,7 @@ class getPois(QgsProcessingAlgorithm):
         parameters and outputs associated with it..
         """
         return self.tr(
-        """This processing algorithm supports POI search for different categories for a set of points.<br>
+            """This processing algorithm supports POI search for different categories for a set of points.<br>
          The complete list of categories can be found on <a href='https://github.com/riccardoklinger/Hqgis/blob/master/categories.md'>github</a>.<br> Make sure your HERE credentials are stored in the QGIS global settings using the plugin itself. Please read the referenced <a href='https://github.com/riccardoklinger/Hqgis#tos--usage'>Terms of Usage</a> prior usage.""")
 
     def loadCredFunctionAlg(self):
@@ -377,9 +377,9 @@ class getPois(QgsProcessingAlgorithm):
         # allow only regular point layers. no Multipoints
         if (source.wkbType() == 4
             or source.wkbType() == 1004
-            or source.wkbType() == 3004):
+                or source.wkbType() == 3004):
             raise QgsProcessingException(
-            "MultiPoint layer is not supported!")
+                "MultiPoint layer is not supported!")
         # radius = self.parameterAsString(
         #    parameters,
         #    self.RADIUS,
