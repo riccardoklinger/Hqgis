@@ -124,8 +124,8 @@ class getPois(QgsProcessingAlgorithm):
         parameters and outputs associated with it..
         """
         return self.tr(
-            """This processing algorithm supports POI search for different categories for a set of points.<br> Different traffic modes are supported to determine the according travel distance:<br>'walk',[0] indicates that the user is on foot.<br>'drive',[1] indicates that the user is driving.<br>'public_transport',[2] indicates that the user is on public transport.<br>'bicycle',[3] indicates that the user is on bicycle.<br>'none',[4] if the user is neither on foot nor driving.
-         The complete list of categories can be found on <a href='https://github.com/riccardoklinger/Hqgis/blob/master/categories.md'>github</a>.<br> Make sure your HERE credentials are stored in the QGIS global settings using the plugin itself. Please read the referenced <a href='https://github.com/riccardoklinger/Hqgis#tos--usage'>Terms of Usage</a> prior usage""")
+        """This processing algorithm supports POI search for different categories for a set of points.<br>
+         The complete list of categories can be found on <a href='https://github.com/riccardoklinger/Hqgis/blob/master/categories.md'>github</a>.<br> Make sure your HERE credentials are stored in the QGIS global settings using the plugin itself. Please read the referenced <a href='https://github.com/riccardoklinger/Hqgis#tos--usage'>Terms of Usage</a> prior usage.""")
 
     def loadCredFunctionAlg(self):
         import json
@@ -154,12 +154,12 @@ class getPois(QgsProcessingAlgorithm):
         """
 
         # We add the input vector features source. It can have any kind of
-        # geometry.
+        # point.
         self.addParameter(
             QgsProcessingParameterFeatureSource(
                 self.INPUT,
-                self.tr('Input table'),
-                [QgsProcessing.TypeVector]
+                self.tr('Input Point Layer'),
+                [QgsProcessing.TypeVectorPoint]
             )
         )
         self.keys = ['accommodation',
@@ -374,6 +374,12 @@ class getPois(QgsProcessingAlgorithm):
             self.INPUT,
             context
         )
+        # allow only regular point layers. no Multipoints
+        if (source.wkbType() == 4
+            or source.wkbType() == 1004
+            or source.wkbType() == 3004):
+            raise QgsProcessingException(
+            "MultiPoint layer is not supported!")
         # radius = self.parameterAsString(
         #    parameters,
         #    self.RADIUS,

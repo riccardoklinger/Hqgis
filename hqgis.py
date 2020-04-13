@@ -1029,6 +1029,12 @@ class Hqgis:
             categoriesList.append(category.text())
         categories = ",".join(categoriesList)
         layer = self.createPlaceLayerBatch()
+        # allow only regular point layers. no Multipoints
+        if (originLayer.wkbType() == 4
+            or originLayer.wkbType() == 1004
+            or originLayer.wkbType() == 3004):
+            self.iface.messageBar().pushWarning('Failed', 'Please convert MultiPoint layer to Point layer before usage')
+            return
         originLayer = self.dlg.FindPOISLayer.currentLayer()
         originFeatures = originLayer.getFeatures()
         layerCRS = originLayer.crs()
@@ -1246,6 +1252,12 @@ class Hqgis:
             mode = 'publicTransport'
         traffic = self.dlg.trafficModeBatch.currentText()
         originLayer = self.dlg.IsoAddressBatch.currentLayer()
+        # allow only regular point layers. no Multipoints
+        if (originLayer.wkbType() == 4
+            or originLayer.wkbType() == 1004
+            or originLayer.wkbType() == 3004):
+            self.iface.messageBar().pushWarning('Failed', 'Please convert MultiPoint layer to Point layer before usage')
+            return
         originFeatures = originLayer.getFeatures()
         layerCRS = originLayer.crs()
         if layerCRS != QgsCoordinateReferenceSystem(4326):
