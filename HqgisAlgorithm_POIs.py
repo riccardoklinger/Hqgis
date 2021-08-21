@@ -164,28 +164,22 @@ class getPois(QgsProcessingAlgorithm):
                 [QgsProcessing.TypeVectorPoint],
             )
         )
-        self.keys = [
-            {
-                "name": "Restaurant",
-                "categories": "100-1000-0000,100-1000-0001,100-1000-0002,100-1000-0003,100-1000-0004,100-1000-0005,100-1000-0006,100-1000-0007,100-1000-0008,100-1000-0009",
-            },
-            {
-                "name": "Coffee-Tea",
-                "categories": "100-1100-0000,100-1100-0010,100-1100-0331",
-            },
-            {
-                "name": "Nightlife-Entertainment",
-                "categories": "200-2000-0000,200-2000-0011,200-2000-0012,200-2000-0013,200-2000-0014,200-2000-0015,200-2000-0016,200-2000-0017,200-2000-0018,200-2000-0019,200-2000-0306,200-2000-0368",
-            },
-            {
-                "name": "Cinema",
-                "categories": "200-2100-0019",
-            },
-            {
-                "name": "Theatre, Music and Culture",
-                "categories": "200-2200-0000,200-2200-0020",
-            },
-        ]
+        self.keys = [{"name": "Restaurant",
+                      "categories": "100-1000-0000,100-1000-0001,100-1000-0002,100-1000-0003,100-1000-0004,100-1000-0005,100-1000-0006,100-1000-0007,100-1000-0008,100-1000-0009",
+                      },
+                     {"name": "Coffee-Tea",
+                      "categories": "100-1100-0000,100-1100-0010,100-1100-0331",
+                      },
+                     {"name": "Nightlife-Entertainment",
+                      "categories": "200-2000-0000,200-2000-0011,200-2000-0012,200-2000-0013,200-2000-0014,200-2000-0015,200-2000-0016,200-2000-0017,200-2000-0018,200-2000-0019,200-2000-0306,200-2000-0368",
+                      },
+                     {"name": "Cinema",
+                      "categories": "200-2100-0019",
+                      },
+                     {"name": "Theatre, Music and Culture",
+                      "categories": "200-2200-0000,200-2200-0020",
+                      },
+                     ]
         self.keys2 = []
         for entry in self.keys:
             self.keys2.append(entry["name"])
@@ -234,8 +228,9 @@ class getPois(QgsProcessingAlgorithm):
         # usually takes the form of a newly created vector layer when the
         # algorithm is run in QGIS).
         self.addParameter(
-            QgsProcessingParameterFeatureSink(self.OUTPUT, self.tr("POI layer"))
-        )
+            QgsProcessingParameterFeatureSink(
+                self.OUTPUT,
+                self.tr("POI layer")))
 
     def processAlgorithm(self, parameters, context, feedback):
         """
@@ -291,13 +286,17 @@ class getPois(QgsProcessingAlgorithm):
             QgsCoordinateReferenceSystem(4326),
         )
         # Send some information to the user
-        feedback.pushInfo("{} points for POI finding".format(source.featureCount()))
+        feedback.pushInfo(
+            "{} points for POI finding".format(
+                source.featureCount()))
         # If sink was not created, throw an exception to indicate that the algorithm
         # encountered a fatal error. The exception text can be any string, but in this
         # case we use the pre-built invalidSinkError method to return a standard
         # helper text for when a sink cannot be evaluated
         if sink is None:
-            raise QgsProcessingException(self.invalidSinkError(parameters, self.OUTPUT))
+            raise QgsProcessingException(
+                self.invalidSinkError(
+                    parameters, self.OUTPUT))
 
         # Compute the number of steps to display within the progress bar and
         # get features from source
@@ -315,7 +314,8 @@ class getPois(QgsProcessingAlgorithm):
         if layerCRS != QgsCoordinateReferenceSystem(4326):
             sourceCrs = source.sourceCrs()
             destCrs = QgsCoordinateReferenceSystem(4326)
-            tr = QgsCoordinateTransform(sourceCrs, destCrs, QgsProject.instance())
+            tr = QgsCoordinateTransform(
+                sourceCrs, destCrs, QgsProject.instance())
         for current, feature in enumerate(features):
             # Stop the algorithm if cancel button has been clicked
             if feedback.isCanceled():
