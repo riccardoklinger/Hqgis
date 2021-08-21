@@ -25,18 +25,18 @@ from qgis.core import QgsProcessingProvider
 from processing.core.ProcessingConfig import Setting, ProcessingConfig
 from .HqgisAlgorithm_geocode import geocodeList
 from .HqgisAlgorithm_POIs import getPois
+from .HqgisAlgorithm_isochrone import isochroneList
 
-__author__ = 'Riccardo Klinger'
-__date__ = '2020-03-04'
-__copyright__ = '(C) 2020 Riccardo Klinger'
+__author__ = "Riccardo Klinger"
+__date__ = "2021-08-20"
+__copyright__ = "(C) 2021 Riccardo Klinger"
 
 # This will get replaced with a git SHA1 when you do a git archive
 
-__revision__ = '$Format:%H$'
+__revision__ = "$Format:%H$"
 
 
 class HqgisProvider(QgsProcessingProvider):
-
     def __init__(self):
         QgsProcessingProvider.__init__(self)
 
@@ -48,8 +48,6 @@ class HqgisProvider(QgsProcessingProvider):
         when the plugin is unloaded.
         """
         QgsProcessingProvider.unload(self)
-        # ProcessingConfig.removeSetting(
-        #     qgis2webProvider.MY_DUMMY_SETTING)
 
     def id(self):
         """This is the name that will appear on the toolbox group.
@@ -57,16 +55,14 @@ class HqgisProvider(QgsProcessingProvider):
         It is also used to create the command line name of all the
         algorithms from this provider.
         """
-        return 'Hqgis'
+        return "Hqgis"
 
     def name(self):
-        """This is the provired full name.
-        """
-        return 'Hqgis'
+        """This is the provired full name."""
+        return "Hqgis"
 
     def icon(self):
-        """We return the default icon.
-        """
+        """We return the default icon."""
         return QgsProcessingProvider.icon(self)
 
     def load(self):
@@ -88,6 +84,6 @@ class HqgisProvider(QgsProcessingProvider):
         cleared before calling this method.
         """
 
-        self.alglist = [geocodeList(), getPois()]
+        self.alglist = [geocodeList(), getPois(), isochroneList()]
         for alg in self.alglist:
             self.addAlgorithm(alg)

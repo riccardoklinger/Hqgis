@@ -15,14 +15,12 @@ from PyQt5.QtCore import QCoreApplication, QUrl, QVariant
 from PyQt5.QtNetwork import QNetworkReply, QNetworkAccessManager, QNetworkRequest
 from qgis.core import (
     QgsProcessing,
-    QgsProject,
     QgsFeatureSink,
+    QgsProcessingParameterEnum,
     QgsProcessingParameterField,
     QgsProcessingException,
     QgsProcessingAlgorithm,
     QgsProcessingParameterFeatureSource,
-    QgsProcessingParameterEnum,
-    QgsProcessingParameterNumber,
     QgsProcessingParameterField,
     QgsProcessingParameterFeatureSink,
     QgsNetworkAccessManager,
@@ -30,10 +28,8 @@ from qgis.core import (
     QgsFields,
     QgsWkbTypes,
     QgsCoordinateReferenceSystem,
-    QgsCoordinateTransform,
     QgsFeature,
     QgsGeometry,
-    QgsUnitTypes,
     QgsPointXY,
     QgsSettings,
 )
@@ -47,7 +43,7 @@ import time
 import urllib
 
 
-class getPois(QgsProcessingAlgorithm):
+class isochroneList(QgsProcessingAlgorithm):
     def __init__(self):
         super().__init__()
 
@@ -91,21 +87,21 @@ class getPois(QgsProcessingAlgorithm):
         lowercase alphanumeric characters only and no spaces or other
         formatting characters.
         """
-        return "getPOIsForPoints"
+        return "getIsochrones"
 
     def displayName(self):
         """
         Returns the translated algorithm name, which should be used for any
         user-visible display of the algorithm name.
         """
-        return self.tr("Get POIs around Points")
+        return self.tr("Get Isochrones around Points")
 
     def group(self):
         """
         Returns the name of the group this algorithm belongs to. This string
         should be localised.
         """
-        return self.tr("POIs")
+        return self.tr("Isochrones")
 
     def groupId(self):
         """
@@ -115,7 +111,7 @@ class getPois(QgsProcessingAlgorithm):
         contain lowercase alphanumeric characters only and no spaces or other
         formatting characters.
         """
-        return "POIs"
+        return "Isochrones"
 
     def shortHelpString(self):
         """
@@ -165,60 +161,32 @@ class getPois(QgsProcessingAlgorithm):
             )
         )
         self.keys = [
-            {
-                "name": "Restaurant",
-                "categories": "100-1000-0000,100-1000-0001,100-1000-0002,100-1000-0003,100-1000-0004,100-1000-0005,100-1000-0006,100-1000-0007,100-1000-0008,100-1000-0009",
-            },
-            {
-                "name": "Coffee-Tea",
-                "categories": "100-1100-0000,100-1100-0010,100-1100-0331",
-            },
-            {
-                "name": "Nightlife-Entertainment",
-                "categories": "200-2000-0000,200-2000-0011,200-2000-0012,200-2000-0013,200-2000-0014,200-2000-0015,200-2000-0016,200-2000-0017,200-2000-0018,200-2000-0019,200-2000-0306,200-2000-0368",
-            },
-            {
-                "name": "Cinema",
-                "categories": "200-2100-0019",
-            },
-            {
-                "name": "Theatre, Music and Culture",
-                "categories": "200-2200-0000,200-2200-0020",
-            },
+            "pedestrian",
+            "car",
+            "truck",
         ]
-        self.keys2 = []
-        for entry in self.keys:
-            self.keys2.append(entry["name"])
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.KEYS,
-                self.tr("POI Categories"),
-                options=self.keys2,
+                self.tr("routing mode"),
+                options=self.keys,
                 # defaultValue=0,
                 optional=False,
-                allowMultiple=True,
+                allowMultiple=False,
             )
         )
-        # self.modes = [
-        #    "walk", #indicates that the user is on foot.
-        #    "drive", #indicates that the user is driving.
-        #    "public_transport", #indicates that the user is on public transport.
-        #    "bicycle", #indicates that the user is on bicycle.
-        #    "none" #if the user is neither on foot nor driving.
-        # ]
-        # self.addParameter(
-        #    QgsProcessingParameterEnum(
-        #        self.MODES,
-        #        self.tr('Traffic Mode'),
-        #        options=self.modes,
-        #        #defaultValue=0,
-        #        optional=False,
-        #        allowMultiple=False
-        #    )
-        # )
-        # self.addParameter(
-        #    QgsProcessingParameterNumber(
-        #        self.RADIUS,
+        self.modes = ["fast", "short"]
+        self.addParameter(
+            QgsProcessingParameterEnum(
+                self.MODES,
+                self.tr("Traffic Mode"),
+                options=self.modes,
+                # defaultValue=0,
+                optional=False,
+                allowMultiple=False,
+            )
+        )
+
         #        self.tr('Radius around Points [m]'),
         # parentParameterName=self.INPUT,
         # options=self.keys,
