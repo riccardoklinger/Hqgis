@@ -147,25 +147,25 @@ class Hqgis:
         if self.dlg.AppId.text() == "":
             self.dlg.status2.setText(
                 "No credentials in credentials tab found.")
-            self.dlg.geocodeAddressButton.setEnabled(False)
-            self.dlg.batchGeocodeFieldButton.setEnabled(False)
-            self.dlg.batchGeocodeFieldsButton.setEnabled(False)
-            self.dlg.calcRouteSingleButton.setEnabled(False)
-            self.dlg.findPOISButton.setEnabled(False)
-            self.dlg.findPOISButtonBatch.setEnabled(False)
-            self.dlg.calcIsoButton.setEnabled(False)
-            self.dlg.calcIsoButtonBatch.setEnabled(False)
-        self.dlg.AppId.editingFinished.connect(self.enableButtons)
+            #self.dlg.geocodeAddressButton.setEnabled(False)
+            #self.dlg.batchGeocodeFieldButton.setEnabled(False)
+            #self.dlg.batchGeocodeFieldsButton.setEnabled(False)
+            #self.dlg.calcRouteSingleButton.setEnabled(False)
+            #self.dlg.findPOISButton.setEnabled(False)
+            #self.dlg.findPOISButtonBatch.setEnabled(False)
+            #self.dlg.calcIsoButton.setEnabled(False)
+            #self.dlg.calcIsoButtonBatch.setEnabled(False)
+        #self.dlg.AppId.editingFinished.connect(self.enableButtons)
         # self.dlg.AppCode.editingFinished.connect(self.enableButtons)
-        self.dlg.getCreds.clicked.connect(self.getCredFunction)
+        #self.dlg.getCreds.clicked.connect(self.getCredFunction)
         self.dlg.saveCreds.clicked.connect(self.saveCredFunction)
         self.dlg.loadCreds.clicked.connect(self.loadCredFunction)
-        self.dlg.mapLayerBox.setAllowEmptyLayer(False)
-        self.dlg.mapLayerBox.setFilters(QgsMapLayerProxyModel.VectorLayer)
-        self.dlg.mapLayerBox.currentIndexChanged.connect(self.loadField)
+        #self.dlg.mapLayerBox.setAllowEmptyLayer(False)
+        #self.dlg.mapLayerBox.setFilters(QgsMapLayerProxyModel.VectorLayer)
+        #self.dlg.mapLayerBox.currentIndexChanged.connect(self.loadField)
         self.loadField()
-        self.dlg.mapLayerBox_2.setAllowEmptyLayer(False)
-        self.dlg.mapLayerBox_2.setFilters(QgsMapLayerProxyModel.VectorLayer)
+        #self.dlg.mapLayerBox_2.setAllowEmptyLayer(False)
+        #self.dlg.mapLayerBox_2.setFilters(QgsMapLayerProxyModel.VectorLayer)
         self.loadFields()
 
         self.dlg.mapLayerBox_2.currentIndexChanged.connect(self.loadFields)
@@ -603,108 +603,108 @@ class Hqgis:
         iface.messageBar().clearWidgets()
         QgsProject.instance().addMapLayer(Resultlayer)
 
-    def batchGeocodeFields(self):
-        import time
-        import sys
-        self.getCredentials()
-        # mapping from inputs:
+    # def batchGeocodeFields(self):
+    #     import time
+    #     import sys
+    #     self.getCredentials()
+    #     # mapping from inputs:
 
-        Resultlayer = self.createGeocodedLayer()
-        pr = Resultlayer.dataProvider()
-        indexer = {}
-        layer = self.dlg.mapLayerBox_2.currentLayer()
-        indexer["country"] = layer.fields().indexFromName(
-            self.dlg.CountryBox.currentField())
-        indexer["state"] = layer.fields().indexFromName(
-            self.dlg.StateBox.currentField())
-        indexer["county"] = layer.fields().indexFromName(
-            self.dlg.CountyBox.currentField())
-        indexer["zip"] = layer.fields().indexFromName(
-            self.dlg.ZipBox.currentField())
-        indexer["city"] = layer.fields().indexFromName(
-            self.dlg.CityBox.currentField())
-        indexer["street"] = layer.fields().indexFromName(
-            self.dlg.StreetBox.currentField())
-        indexer["number"] = layer.fields().indexFromName(
-            self.dlg.NumberBox.currentField())
-        ResultFeatureList = []  # got result storing
-        # precreate field-lists for API call:
-        addressLists = {}
-        for key in indexer.keys():
-            if indexer[key] != -1:
-                parts = []
-                oldIDs = []
-                features = layer.getFeatures()
-                for fet in features:
-                    oldIDs.append(fet.id())
-                    parts.append(str(fet.attributes()[indexer[key]]))
-                addressLists[key] = parts
-                addressLists["oldIds"] = oldIDs
+    #     Resultlayer = self.createGeocodedLayer()
+    #     pr = Resultlayer.dataProvider()
+    #     indexer = {}
+    #     layer = self.dlg.mapLayerBox_2.currentLayer()
+    #     indexer["country"] = layer.fields().indexFromName(
+    #         self.dlg.CountryBox.currentField())
+    #     indexer["state"] = layer.fields().indexFromName(
+    #         self.dlg.StateBox.currentField())
+    #     indexer["county"] = layer.fields().indexFromName(
+    #         self.dlg.CountyBox.currentField())
+    #     indexer["zip"] = layer.fields().indexFromName(
+    #         self.dlg.ZipBox.currentField())
+    #     indexer["city"] = layer.fields().indexFromName(
+    #         self.dlg.CityBox.currentField())
+    #     indexer["street"] = layer.fields().indexFromName(
+    #         self.dlg.StreetBox.currentField())
+    #     indexer["number"] = layer.fields().indexFromName(
+    #         self.dlg.NumberBox.currentField())
+    #     ResultFeatureList = []  # got result storing
+    #     # precreate field-lists for API call:
+    #     addressLists = {}
+    #     for key in indexer.keys():
+    #         if indexer[key] != -1:
+    #             parts = []
+    #             oldIDs = []
+    #             features = layer.getFeatures()
+    #             for fet in features:
+    #                 oldIDs.append(fet.id())
+    #                 parts.append(str(fet.attributes()[indexer[key]]))
+    #             addressLists[key] = parts
+    #             addressLists["oldIds"] = oldIDs
 
-        # let's create the progress bar already with the number of features in
-        # the layer
-        progressMessageBar = iface.messageBar().createMessage(
-            "Looping through " + str(layer.featureCount()) + " records ...")
-        progress = QProgressBar()
-        progress.setMaximum(layer.featureCount())
-        progress.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
-        progressMessageBar.layout().addWidget(progress)
-        iface.messageBar().pushWidget(progressMessageBar, level=0)
+    #     # let's create the progress bar already with the number of features in
+    #     # the layer
+    #     progressMessageBar = iface.messageBar().createMessage(
+    #         "Looping through " + str(layer.featureCount()) + " records ...")
+    #     progress = QProgressBar()
+    #     progress.setMaximum(layer.featureCount())
+    #     progress.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
+    #     progressMessageBar.layout().addWidget(progress)
+    #     iface.messageBar().pushWidget(progressMessageBar, level=0)
 
-        for id in range(0, layer.featureCount()):
-            urlPart = ""
-            oldAddress = ""
-            for key in addressLists.keys():
-                if key != "oldIds":
-                    urlPart += "&" + key + "=" + addressLists[key][id]
-                    oldAddress += addressLists[key][id] + ","
-            url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + \
-                self.appId + urlPart
-            r = requests.get(url)
-            if r.status_code == 200:
-                #sys.stdout.write("test" + url + "\\n")
-                if len(json.loads(r.text)["Response"]["View"]) > 0:
-                    # as the response may hold more than one result we only use
-                    # the best one:
-                    responseAddress = json.loads(
-                        r.text)["Response"]["View"][0]["Result"][0]
-                    geocodeResponse = self.convertGeocodeResponse(
-                        responseAddress)
-                    lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
-                    lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
-                    ResultFet = QgsFeature()
-                    ResultFet.setGeometry(
-                        QgsGeometry.fromPointXY(
-                            QgsPointXY(
-                                lng, lat)))
-                    ResultFet.setAttributes([
-                        addressLists["oldIds"][id],
-                        oldAddress,
-                        geocodeResponse["Label"],
-                        geocodeResponse["Country"],
-                        geocodeResponse["State"],
-                        geocodeResponse["County"],
-                        geocodeResponse["City"],
-                        geocodeResponse["District"],
-                        geocodeResponse["Street"],
-                        geocodeResponse["HouseNumber"],
-                        geocodeResponse["PostalCode"],
-                        geocodeResponse["Relevance"],
-                        geocodeResponse["CountryQuality"],
-                        geocodeResponse["CityQuality"],
-                        geocodeResponse["StreetQuality"],
-                        geocodeResponse["NumberQuality"],
-                        geocodeResponse["MatchType"]
-                    ])
-                    ResultFeatureList.append(ResultFet)
-            time.sleep(0.5)
-            progress.setValue(id)
-            # iface.mainWindow().repaint()
-            time.sleep(0.5)
-        pr.addFeatures(ResultFeatureList)
-        iface.messageBar().clearWidgets()
-        QgsProject.instance().addMapLayer(Resultlayer)
-        self.dlg.exec_()
+    #     for id in range(0, layer.featureCount()):
+    #         urlPart = ""
+    #         oldAddress = ""
+    #         for key in addressLists.keys():
+    #             if key != "oldIds":
+    #                 urlPart += "&" + key + "=" + addressLists[key][id]
+    #                 oldAddress += addressLists[key][id] + ","
+    #         url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + \
+    #             self.appId + urlPart
+    #         r = requests.get(url)
+    #         if r.status_code == 200:
+    #             #sys.stdout.write("test" + url + "\\n")
+    #             if len(json.loads(r.text)["Response"]["View"]) > 0:
+    #                 # as the response may hold more than one result we only use
+    #                 # the best one:
+    #                 responseAddress = json.loads(
+    #                     r.text)["Response"]["View"][0]["Result"][0]
+    #                 geocodeResponse = self.convertGeocodeResponse(
+    #                     responseAddress)
+    #                 lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
+    #                 lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
+    #                 ResultFet = QgsFeature()
+    #                 ResultFet.setGeometry(
+    #                     QgsGeometry.fromPointXY(
+    #                         QgsPointXY(
+    #                             lng, lat)))
+    #                 ResultFet.setAttributes([
+    #                     addressLists["oldIds"][id],
+    #                     oldAddress,
+    #                     geocodeResponse["Label"],
+    #                     geocodeResponse["Country"],
+    #                     geocodeResponse["State"],
+    #                     geocodeResponse["County"],
+    #                     geocodeResponse["City"],
+    #                     geocodeResponse["District"],
+    #                     geocodeResponse["Street"],
+    #                     geocodeResponse["HouseNumber"],
+    #                     geocodeResponse["PostalCode"],
+    #                     geocodeResponse["Relevance"],
+    #                     geocodeResponse["CountryQuality"],
+    #                     geocodeResponse["CityQuality"],
+    #                     geocodeResponse["StreetQuality"],
+    #                     geocodeResponse["NumberQuality"],
+    #                     geocodeResponse["MatchType"]
+    #                 ])
+    #                 ResultFeatureList.append(ResultFet)
+    #         time.sleep(0.5)
+    #         progress.setValue(id)
+    #         # iface.mainWindow().repaint()
+    #         time.sleep(0.5)
+    #     pr.addFeatures(ResultFeatureList)
+    #     iface.messageBar().clearWidgets()
+    #     QgsProject.instance().addMapLayer(Resultlayer)
+    #     self.dlg.exec_()
 
     def getCredentials(self):
         s = QgsSettings()
@@ -732,26 +732,7 @@ class Hqgis:
         except BaseException:
             self.dlg.credentialInteraction.setText(
                 "no credits found in qgis global settings. Please check settings or save a new key")
-        # print(mytext)
-        # print(myint)
-        # print(myreal)
-        # print(nonexistent)
-        #fileLocation = QFileDialog.getOpenFileName(self.dlg, "JSON with credentials",os.path.dirname(os.path.realpath(__file__))+ os.sep + "creds", "JSON(*.JSON)")
-        # print(fileLocation)
-        #scriptDirectory = os.path.dirname(os.path.realpath(__file__))
-        # self.dlg.credentialInteraction.setText("")
-        # print(scriptDirectory)
-        # try:
-        #    import os
-        #    scriptDirectory = os.path.dirname(os.path.realpath(__file__))
-        #    with open(scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json') as f:
-        #        data = json.load(f)
-        #        self.dlg.AppId.setText(data["KEY"])
-        #        #self.dlg.AppCode.setText(data["CODE"])
-        #    self.dlg.credentialInteraction.setText("credits used from " + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
-        # except:
-        #    self.dlg.credentialInteraction.setText("no credits found in. Check for file" + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
-            # self.dlg.geocodeButton.setEnabled(False)
+
 
     def loadFields(self):
         self.dlg.CountryBox.setLayer(self.dlg.mapLayerBox_2.currentLayer())
@@ -770,8 +751,9 @@ class Hqgis:
         self.dlg.NumberBox.setAllowEmptyFieldName(True)
 
     def loadField(self):
-        self.dlg.fieldBox.setLayer(self.dlg.mapLayerBox.currentLayer())
-        self.dlg.fieldBox.setAllowEmptyFieldName(True)
+        #self.dlg.fieldBox.setLayer(self.dlg.mapLayerBox.currentLayer())
+        #self.dlg.fieldBox.setAllowEmptyFieldName(True)
+        print("no!")
 
     def setGetMapToolCoordFrom(self):
         """ Method that is connected to the target button. Activates and deactivates map tool """
