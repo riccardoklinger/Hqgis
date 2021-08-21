@@ -147,25 +147,25 @@ class Hqgis:
         if self.dlg.AppId.text() == "":
             self.dlg.status2.setText(
                 "No credentials in credentials tab found.")
-            #self.dlg.geocodeAddressButton.setEnabled(False)
-            #self.dlg.batchGeocodeFieldButton.setEnabled(False)
-            #self.dlg.batchGeocodeFieldsButton.setEnabled(False)
-            #self.dlg.calcRouteSingleButton.setEnabled(False)
-            #self.dlg.findPOISButton.setEnabled(False)
-            #self.dlg.findPOISButtonBatch.setEnabled(False)
-            #self.dlg.calcIsoButton.setEnabled(False)
-            #self.dlg.calcIsoButtonBatch.setEnabled(False)
-        #self.dlg.AppId.editingFinished.connect(self.enableButtons)
+            # self.dlg.geocodeAddressButton.setEnabled(False)
+            # self.dlg.batchGeocodeFieldButton.setEnabled(False)
+            # self.dlg.batchGeocodeFieldsButton.setEnabled(False)
+            # self.dlg.calcRouteSingleButton.setEnabled(False)
+            # self.dlg.findPOISButton.setEnabled(False)
+            # self.dlg.findPOISButtonBatch.setEnabled(False)
+            # self.dlg.calcIsoButton.setEnabled(False)
+            # self.dlg.calcIsoButtonBatch.setEnabled(False)
+        # self.dlg.AppId.editingFinished.connect(self.enableButtons)
         # self.dlg.AppCode.editingFinished.connect(self.enableButtons)
-        #self.dlg.getCreds.clicked.connect(self.getCredFunction)
+        # self.dlg.getCreds.clicked.connect(self.getCredFunction)
         self.dlg.saveCreds.clicked.connect(self.saveCredFunction)
         self.dlg.loadCreds.clicked.connect(self.loadCredFunction)
-        #self.dlg.mapLayerBox.setAllowEmptyLayer(False)
-        #self.dlg.mapLayerBox.setFilters(QgsMapLayerProxyModel.VectorLayer)
-        #self.dlg.mapLayerBox.currentIndexChanged.connect(self.loadField)
+        # self.dlg.mapLayerBox.setAllowEmptyLayer(False)
+        # self.dlg.mapLayerBox.setFilters(QgsMapLayerProxyModel.VectorLayer)
+        # self.dlg.mapLayerBox.currentIndexChanged.connect(self.loadField)
         self.loadField()
-        #self.dlg.mapLayerBox_2.setAllowEmptyLayer(False)
-        #self.dlg.mapLayerBox_2.setFilters(QgsMapLayerProxyModel.VectorLayer)
+        # self.dlg.mapLayerBox_2.setAllowEmptyLayer(False)
+        # self.dlg.mapLayerBox_2.setFilters(QgsMapLayerProxyModel.VectorLayer)
         self.loadFields()
 
         self.dlg.mapLayerBox_2.currentIndexChanged.connect(self.loadFields)
@@ -733,7 +733,6 @@ class Hqgis:
             self.dlg.credentialInteraction.setText(
                 "no credits found in qgis global settings. Please check settings or save a new key")
 
-
     def loadFields(self):
         self.dlg.CountryBox.setLayer(self.dlg.mapLayerBox_2.currentLayer())
         self.dlg.StateBox.setLayer(self.dlg.mapLayerBox_2.currentLayer())
@@ -751,8 +750,8 @@ class Hqgis:
         self.dlg.NumberBox.setAllowEmptyFieldName(True)
 
     def loadField(self):
-        #self.dlg.fieldBox.setLayer(self.dlg.mapLayerBox.currentLayer())
-        #self.dlg.fieldBox.setAllowEmptyFieldName(True)
+        # self.dlg.fieldBox.setLayer(self.dlg.mapLayerBox.currentLayer())
+        # self.dlg.fieldBox.setAllowEmptyFieldName(True)
         print("no!")
 
     def setGetMapToolCoordFrom(self):
