@@ -224,8 +224,9 @@ class isochroneList(QgsProcessingAlgorithm):
         # usually takes the form of a newly created vector layer when the
         # algorithm is run in QGIS).
         self.addParameter(
-            QgsProcessingParameterFeatureSink(self.OUTPUT, self.tr("POI layer"))
-        )
+            QgsProcessingParameterFeatureSink(
+                self.OUTPUT,
+                self.tr("POI layer")))
 
     def processAlgorithm(self, parameters, context, feedback):
         """
@@ -243,12 +244,21 @@ class isochroneList(QgsProcessingAlgorithm):
             or source.wkbType() == 3004
         ):
             raise QgsProcessingException("MultiPoint layer is not supported!")
-        transportMode = self.keys[self.parameterAsEnum(parameters, self.KEYS, context)]
-        mode = self.modes[self.parameterAsEnum(parameters, self.MODES, context)]
+        transportMode = self.keys[self.parameterAsEnum(
+            parameters, self.KEYS, context)]
+        mode = self.modes[self.parameterAsEnum(
+            parameters, self.MODES, context)]
         slots = self.parameterAsString(parameters, self.DISTANCES, context)
-        metric = self.metric[self.parameterAsEnum(parameters, self.METRIC, context)]
-        departureTime = self.parameterAsString(parameters, self.DEPARTURETIME, context)
-        print(type(transportMode), type(metric), type(slots), type(mode), type(time))
+        metric = self.metric[self.parameterAsEnum(
+            parameters, self.METRIC, context)]
+        departureTime = self.parameterAsString(
+            parameters, self.DEPARTURETIME, context)
+        print(
+            type(transportMode),
+            type(metric),
+            type(slots),
+            type(mode),
+            type(time))
         # feedback.pushInfo(addressField)
 
         # If source was not found, throw an exception to indicate that the algorithm
@@ -284,7 +294,9 @@ class isochroneList(QgsProcessingAlgorithm):
         # case we use the pre-built invalidSinkError method to return a standard
         # helper text for when a sink cannot be evaluated
         if sink is None:
-            raise QgsProcessingException(self.invalidSinkError(parameters, self.OUTPUT))
+            raise QgsProcessingException(
+                self.invalidSinkError(
+                    parameters, self.OUTPUT))
 
         # Compute the number of steps to display within the progress bar and
         # get features from source
@@ -296,7 +308,8 @@ class isochroneList(QgsProcessingAlgorithm):
         if layerCRS != QgsCoordinateReferenceSystem(4326):
             sourceCrs = source.sourceCrs()
             destCrs = QgsCoordinateReferenceSystem(4326)
-            tr = QgsCoordinateTransform(sourceCrs, destCrs, QgsProject.instance())
+            tr = QgsCoordinateTransform(
+                sourceCrs, destCrs, QgsProject.instance())
         for current, feature in enumerate(features):
             # Stop the algorithm if cancel button has been clicked
             if feedback.isCanceled():

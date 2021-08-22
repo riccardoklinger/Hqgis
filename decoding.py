@@ -97,7 +97,8 @@ DECODING_TABLE = [
 ]
 
 
-PolylineHeader = namedtuple("PolylineHeader", "precision,third_dim,third_dim_precision")
+PolylineHeader = namedtuple("PolylineHeader",
+                            "precision,third_dim,third_dim_precision")
 
 
 def decode(encoded):
