@@ -126,8 +126,8 @@ class isochroneList(QgsProcessingAlgorithm):
         parameters and outputs associated with it..
         """
         return self.tr(
-            """This processing algorithm supports POI search for different categories for a set of points.<br>
-         The complete list of categories can be found on <a href='https://github.com/riccardoklinger/Hqgis/blob/master/categories.md'>github</a>.<br> Make sure your HERE credentials are stored in the QGIS global settings using the plugin itself. Please read the referenced <a href='https://github.com/riccardoklinger/Hqgis#tos--usage'>Terms of Usage</a> prior usage."""
+            """This processing algorithm supports Isochrone search for a set of points.<br>Departure Time is treated as local time of the departure locations!
+         Make sure your HERE credentials are stored in the QGIS global settings using the plugin itself. Please read the referenced <a href='https://github.com/riccardoklinger/Hqgis#tos--usage'>Terms of Usage</a> prior usage."""
         )
 
     def loadCredFunctionAlg(self):
@@ -219,17 +219,6 @@ class isochroneList(QgsProcessingAlgorithm):
                 optional=False,
             )
         )
-
-        #        self.tr('Radius around Points [m]'),
-        # parentParameterName=self.INPUT,
-        # options=self.keys,
-        #        defaultValue=100,
-        #        minValue=1,
-        #        maxValue=100000,
-        #    defaultUnit="DistanceMeters",
-        #        optional=False,
-        #    )#.setDefaultUnit(QgsUnitTypes.DistanceMeters)
-        # )
 
         # We add a feature sink in which to store our processed features (this
         # usually takes the form of a newly created vector layer when the
