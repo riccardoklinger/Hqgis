@@ -202,8 +202,9 @@ class isochroneList(QgsProcessingAlgorithm):
         # usually takes the form of a newly created vector layer when the
         # algorithm is run in QGIS).
         self.addParameter(
-            QgsProcessingParameterFeatureSink(self.OUTPUT, self.tr("POI layer"))
-        )
+            QgsProcessingParameterFeatureSink(
+                self.OUTPUT,
+                self.tr("POI layer")))
 
     def processAlgorithm(self, parameters, context, feedback):
         """
@@ -259,13 +260,17 @@ class isochroneList(QgsProcessingAlgorithm):
             QgsCoordinateReferenceSystem(4326),
         )
         # Send some information to the user
-        feedback.pushInfo("{} points for POI finding".format(source.featureCount()))
+        feedback.pushInfo(
+            "{} points for POI finding".format(
+                source.featureCount()))
         # If sink was not created, throw an exception to indicate that the algorithm
         # encountered a fatal error. The exception text can be any string, but in this
         # case we use the pre-built invalidSinkError method to return a standard
         # helper text for when a sink cannot be evaluated
         if sink is None:
-            raise QgsProcessingException(self.invalidSinkError(parameters, self.OUTPUT))
+            raise QgsProcessingException(
+                self.invalidSinkError(
+                    parameters, self.OUTPUT))
 
         # Compute the number of steps to display within the progress bar and
         # get features from source
@@ -283,7 +288,8 @@ class isochroneList(QgsProcessingAlgorithm):
         if layerCRS != QgsCoordinateReferenceSystem(4326):
             sourceCrs = source.sourceCrs()
             destCrs = QgsCoordinateReferenceSystem(4326)
-            tr = QgsCoordinateTransform(sourceCrs, destCrs, QgsProject.instance())
+            tr = QgsCoordinateTransform(
+                sourceCrs, destCrs, QgsProject.instance())
         for current, feature in enumerate(features):
             # Stop the algorithm if cancel button has been clicked
             if feedback.isCanceled():
