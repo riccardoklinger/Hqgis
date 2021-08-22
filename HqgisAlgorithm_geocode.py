@@ -300,18 +300,10 @@ class geocodeList(QgsProcessingAlgorithm):
             QgsCoordinateReferenceSystem(4326),
         )
 
-        # Send some information to the user
         feedback.pushInfo("{} addresses to geocode".format(source.featureCount()))
-
-        # If sink was not created, throw an exception to indicate that the algorithm
-        # encountered a fatal error. The exception text can be any string, but in this
-        # case we use the pre-built invalidSinkError method to return a standard
-        # helper text for when a sink cannot be evaluated
         if sink is None:
             raise QgsProcessingException(self.invalidSinkError(parameters, self.OUTPUT))
 
-        # Compute the number of steps to display within the progress bar and
-        # get features from source
         total = 100.0 / source.featureCount() if source.featureCount() else 0
         features = source.getFeatures()
         # get the keys:
@@ -341,8 +333,7 @@ class geocodeList(QgsProcessingAlgorithm):
             geocodeResponse = self.convertGeocodeResponse(responseAddress)
             lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
             lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
-            # Add a feature in the sink
-            # feedback.pushInfo(str(lat))
+
             fet = QgsFeature()
             fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng, lat)))
             fet.setAttributes(
@@ -373,33 +364,4 @@ class geocodeList(QgsProcessingAlgorithm):
             # Update the progress bar
             feedback.setProgress(int(current * total))
 
-        # To run another Processing algorithm as part of this algorithm, you can use
-        # processing.run(...). Make sure you pass the current context and feedback
-        # to processing.run to ensure that all temporary layer outputs are available
-        # to the executed algorithm, and that the executed algorithm can send feedback
-        # reports to the user (and correctly handle cancelation and progress
-        # reports!)
-        if False:
-            buffered_layer = processing.run(
-                "native:buffer",
-                {
-                    "INPUT": dest_id,
-                    "DISTANCE": 1.5,
-                    "SEGMENTS": 5,
-                    "END_CAP_STYLE": 0,
-                    "JOIN_STYLE": 0,
-                    "MITER_LIMIT": 2,
-                    "DISSOLVE": False,
-                    "OUTPUT": "memory:",
-                },
-                context=context,
-                feedback=feedback,
-            )["OUTPUT"]
-
-        # Return the results of the algorithm. In this case our only result is
-        # the feature sink which contains the processed features, but some
-        # algorithms may return multiple feature sinks, calculated numeric
-        # statistics, etc. These should all be included in the returned
-        # dictionary, with keys matching the feature corresponding parameter
-        # or output names.
         return {self.OUTPUT: dest_id}

@@ -11,19 +11,22 @@
 ***************************************************************************
 """
 
-from PyQt5.QtCore import QCoreApplication, QUrl, QVariant
-from PyQt5.QtNetwork import QNetworkReply, QNetworkAccessManager, QNetworkRequest
+from PyQt5.QtCore import QCoreApplication, QVariant
+from PyQt5.QtGui import QColor
 from qgis.core import (
     QgsProcessing,
     QgsFeatureSink,
+    QgsRendererRange,
+    QgsGraduatedSymbolRenderer,
+    QgsProject,
     QgsProcessingParameterEnum,
-    QgsProcessingParameterField,
+    QgsCoordinateTransform,
     QgsProcessingException,
     QgsProcessingAlgorithm,
+    QgsProcessingParameterString,
     QgsProcessingParameterFeatureSource,
-    QgsProcessingParameterField,
     QgsProcessingParameterFeatureSink,
-    QgsNetworkAccessManager,
+    QgsSymbol,
     QgsField,
     QgsFields,
     QgsWkbTypes,
@@ -33,8 +36,9 @@ from qgis.core import (
     QgsPointXY,
     QgsSettings,
 )
+from .decoding import decode
 from functools import partial
-import processing
+from datetime import datetime
 import Hqgis
 import os
 import requests
@@ -68,7 +72,9 @@ class isochroneList(QgsProcessingAlgorithm):
     OUTPUT = "OUTPUT"
     KEYS = "KEYS"
     MODES = "MODES"
-    RADIUS = "RADIUS"
+    METRIC = "METRIC"
+    DISTANCES = "DISTANCE"
+    DEPARTURETIME = "DEPARTURETIME"
 
     def tr(self, string):
         """
@@ -170,7 +176,7 @@ class isochroneList(QgsProcessingAlgorithm):
                 self.KEYS,
                 self.tr("routing mode"),
                 options=self.keys,
-                # defaultValue=0,
+                defaultValue="car",
                 optional=False,
                 allowMultiple=False,
             )
@@ -181,9 +187,36 @@ class isochroneList(QgsProcessingAlgorithm):
                 self.MODES,
                 self.tr("Traffic Mode"),
                 options=self.modes,
-                # defaultValue=0,
+                defaultValue="fast",
                 optional=False,
                 allowMultiple=False,
+            )
+        )
+        self.metric = ["time", "distance"]
+        self.addParameter(
+            QgsProcessingParameterEnum(
+                self.METRIC,
+                self.tr("Metric"),
+                options=self.metric,
+                defaultValue="seconds",
+                optional=False,
+                allowMultiple=False,
+            )
+        )
+        self.addParameter(
+            QgsProcessingParameterString(
+                self.DISTANCES,
+                self.tr("Distance(s)"),
+                "300,600,900",
+                optional=False,
+            )
+        )
+        self.addParameter(
+            QgsProcessingParameterString(
+                self.DEPARTURETIME,
+                self.tr("Local Departure Time"),  # 2019-06-24T01:23:45
+                datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
+                optional=False,
             )
         )
 
@@ -202,9 +235,8 @@ class isochroneList(QgsProcessingAlgorithm):
         # usually takes the form of a newly created vector layer when the
         # algorithm is run in QGIS).
         self.addParameter(
-            QgsProcessingParameterFeatureSink(
-                self.OUTPUT,
-                self.tr("POI layer")))
+            QgsProcessingParameterFeatureSink(self.OUTPUT, self.tr("POI layer"))
+        )
 
     def processAlgorithm(self, parameters, context, feedback):
         """
@@ -222,55 +254,48 @@ class isochroneList(QgsProcessingAlgorithm):
             or source.wkbType() == 3004
         ):
             raise QgsProcessingException("MultiPoint layer is not supported!")
-        # radius = self.parameterAsString(
-        #    parameters,
-        #    self.RADIUS,
-        #    context
-        # )
-        # mode = self.parameterAsEnum(
-        #    parameters,
-        #    self.MODES,
-        #    context
-        # )
-        categories = self.parameterAsEnums(parameters, self.KEYS, context)
+        transportMode = self.keys[self.parameterAsEnum(parameters, self.KEYS, context)]
+        mode = self.modes[self.parameterAsEnum(parameters, self.MODES, context)]
+        slots = self.parameterAsString(parameters, self.DISTANCES, context)
+        metric = self.metric[self.parameterAsEnum(parameters, self.METRIC, context)]
+        departureTime = self.parameterAsString(parameters, self.DEPARTURETIME, context)
+        print(type(transportMode), type(metric), type(slots), type(mode), type(time))
         # feedback.pushInfo(addressField)
 
         # If source was not found, throw an exception to indicate that the algorithm
         # encountered a fatal error. The exception text can be any string, but in this
         # case we use the pre-built invalidSourceError method to return a standard
         # helper text for when a source cannot be evaluated
+
         if source is None:
             raise QgsProcessingException(
                 self.invalidSourceError(parameters, self.INPUT)
             )
 
         fields = QgsFields()
-        fields.append(QgsField("id", QVariant.String))
+        # fields.append(QgsField("id", QVariant.String))
         fields.append(QgsField("origin_id", QVariant.Int))
-        fields.append(QgsField("title", QVariant.String))
-        fields.append(QgsField("label", QVariant.String))
+        fields.append(QgsField("url", QVariant.String)),
+        fields.append(QgsField("type", QVariant.String)),
         fields.append(QgsField("distance", QVariant.Double))
-        fields.append(QgsField("categories", QVariant.String))
         (sink, dest_id) = self.parameterAsSink(
             parameters,
             self.OUTPUT,
             context,
             fields,
-            QgsWkbTypes.Point,
+            QgsWkbTypes.Polygon,
             QgsCoordinateReferenceSystem(4326),
         )
         # Send some information to the user
         feedback.pushInfo(
-            "{} points for POI finding".format(
-                source.featureCount()))
+            "{} points for isochrone finding".format(source.featureCount())
+        )
         # If sink was not created, throw an exception to indicate that the algorithm
         # encountered a fatal error. The exception text can be any string, but in this
         # case we use the pre-built invalidSinkError method to return a standard
         # helper text for when a sink cannot be evaluated
         if sink is None:
-            raise QgsProcessingException(
-                self.invalidSinkError(
-                    parameters, self.OUTPUT))
+            raise QgsProcessingException(self.invalidSinkError(parameters, self.OUTPUT))
 
         # Compute the number of steps to display within the progress bar and
         # get features from source
@@ -278,18 +303,11 @@ class isochroneList(QgsProcessingAlgorithm):
         features = source.getFeatures()
         # get the keys:
         creds = self.loadCredFunctionAlg()
-        # convert categories to list for API call:
-        categoriesList = []
-        # self.keys[keyField].split(" | ")[1]
-        for category in categories:
-            categoriesList.append(self.keys[category]["categories"])
-        categories = ",".join(categoriesList)
         layerCRS = source.sourceCrs()
         if layerCRS != QgsCoordinateReferenceSystem(4326):
             sourceCrs = source.sourceCrs()
             destCrs = QgsCoordinateReferenceSystem(4326)
-            tr = QgsCoordinateTransform(
-                sourceCrs, destCrs, QgsProject.instance())
+            tr = QgsCoordinateTransform(sourceCrs, destCrs, QgsProject.instance())
         for current, feature in enumerate(features):
             # Stop the algorithm if cancel button has been clicked
             if feedback.isCanceled():
@@ -305,62 +323,51 @@ class isochroneList(QgsProcessingAlgorithm):
                 x = feature.geometry().asPoint().x()
                 y = feature.geometry().asPoint().y()
             coordinates = str(y) + "," + str(x)
+            print(coordinates)
             # get the location from the API:
             header = {"referer": "HQGIS"}
+            time.sleep(1)
+            print(sink, type(sink))
+            print(self.OUTPUT, type(self.OUTPUT))
             ApiUrl = (
-                "https://browse.search.hereapi.com/v1/browse?at="
+                "https://isoline.router.hereapi.com/v8/isolines?origin="
                 + coordinates
-                + "&categories="
-                + categories
-                + "&limit=100&apiKey="
+                + "&departureTime="
+                + departureTime
+                + "&range[type]="
+                + metric
+                + "&range[values]="
+                + slots
+                + "&routingMode="
+                + mode
+                + "&transportMode="
+                + transportMode
+                + "&apiKey="
                 + creds["id"]
             )
+
             feedback.pushInfo("calling Url {}".format(ApiUrl))
             r = requests.get(ApiUrl, headers=header)
             print(json.loads(r.text))
-            responsePlaces = json.loads(r.text)["items"]
-            for place in responsePlaces:
-                lat = place["position"]["lat"]
-                lng = place["position"]["lng"]
-                # iterate over categories:
-                categoriesResp = []
-                for cat in place["categories"]:
-                    categoriesResp.append(cat["id"])
-                fet = QgsFeature()
-                fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng, lat)))
-                fet.setAttributes(
-                    [
-                        place["id"],
-                        feature.id(),
-                        place["title"],
-                        place["address"]["label"],
-                        place["distance"],
-                        ";".join(categoriesResp),
-                    ]
-                )
-                sink.addFeature(fet, QgsFeatureSink.FastInsert)
-            # lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
-            # lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
-            # Add a feature in the sink
-            # feedback.pushInfo(str(lat))
-
-            # fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng,lat)))
-            # fet.setAttributes([
+            # layer = self.createRouteLayer()
+            for line in reversed(json.loads(r.text)["isolines"]):
+                # print(decode(line["polygons"][0]["outer"]))
+                for polygon in line["polygons"]:
+                    for key, value in polygon.items():
+                        Points = decode(value)
+                        vertices = []
+                        for Point in Points:
+                            lat = Point[0]
+                            lng = Point[1]
+                            vertices.append(QgsPointXY(lng, lat))
+                        fet = QgsFeature()
+                        fet.setGeometry(QgsGeometry.fromPolygonXY([vertices]))
+                        fet.setAttributes(
+                            [feature.id(), ApiUrl, key, line["range"]["value"]]
+                        )
+                        sink.addFeature(fet, QgsFeatureSink.FastInsert)
+                        # QgsProject.instance().addMapLayer(layer)
 
             # Update the progress bar
             feedback.setProgress(int(current * total))
-
-        # To run another Processing algorithm as part of this algorithm, you can use
-        # processing.run(...). Make sure you pass the current context and feedback
-        # to processing.run to ensure that all temporary layer outputs are available
-        # to the executed algorithm, and that the executed algorithm can send feedback
-        # reports to the user (and correctly handle cancelation and progress
-        # reports!)
-
-        # Return the results of the algorithm. In this case our only result is
-        # the feature sink which contains the processed features, but some
-        # algorithms may return multiple feature sinks, calculated numeric
-        # statistics, etc. These should all be included in the returned
-        # dictionary, with keys matching the feature corresponding parameter
-        # or output names.
         return {self.OUTPUT: dest_id}
