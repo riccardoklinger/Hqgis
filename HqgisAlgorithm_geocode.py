@@ -11,27 +11,27 @@
 ***************************************************************************
 """
 
-from PyQt5.QtCore import (QCoreApplication, QUrl, QVariant)
-from PyQt5.QtNetwork import (QNetworkReply,
-                             QNetworkAccessManager,
-                             QNetworkRequest)
-from qgis.core import (QgsProcessing,
-                       QgsFeatureSink,
-                       QgsProcessingParameterField,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsProcessingParameterFeatureSource,
-                       QgsProcessingParameterField,
-                       QgsProcessingParameterFeatureSink,
-                       QgsNetworkAccessManager,
-                       QgsField,
-                       QgsFields,
-                       QgsWkbTypes,
-                       QgsCoordinateReferenceSystem,
-                       QgsFeature,
-                       QgsGeometry,
-                       QgsPointXY,
-                       QgsSettings)
+from PyQt5.QtCore import QCoreApplication, QUrl, QVariant
+from PyQt5.QtNetwork import QNetworkReply, QNetworkAccessManager, QNetworkRequest
+from qgis.core import (
+    QgsProcessing,
+    QgsFeatureSink,
+    QgsProcessingParameterField,
+    QgsProcessingException,
+    QgsProcessingAlgorithm,
+    QgsProcessingParameterFeatureSource,
+    QgsProcessingParameterField,
+    QgsProcessingParameterFeatureSink,
+    QgsNetworkAccessManager,
+    QgsField,
+    QgsFields,
+    QgsWkbTypes,
+    QgsCoordinateReferenceSystem,
+    QgsFeature,
+    QgsGeometry,
+    QgsPointXY,
+    QgsSettings,
+)
 from functools import partial
 import processing
 import Hqgis
@@ -63,15 +63,15 @@ class geocodeList(QgsProcessingAlgorithm):
     # used when calling the algorithm from another algorithm, or when
     # calling from the QGIS console.
 
-    INPUT = 'INPUT'
-    OUTPUT = 'OUTPUT'
-    AddressField = 'Address Field'
+    INPUT = "INPUT"
+    OUTPUT = "OUTPUT"
+    AddressField = "Address Field"
 
     def tr(self, string):
         """
         Returns a translatable string with the self.tr() function.
         """
-        return QCoreApplication.translate('Processing', string)
+        return QCoreApplication.translate("Processing", string)
 
     def createInstance(self):
         return type(self)()
@@ -84,21 +84,21 @@ class geocodeList(QgsProcessingAlgorithm):
         lowercase alphanumeric characters only and no spaces or other
         formatting characters.
         """
-        return 'geocodeFieldAddress'
+        return "geocodeFieldAddress"
 
     def displayName(self):
         """
         Returns the translated algorithm name, which should be used for any
         user-visible display of the algorithm name.
         """
-        return self.tr('Geocode List')
+        return self.tr("Geocode List")
 
     def group(self):
         """
         Returns the name of the group this algorithm belongs to. This string
         should be localised.
         """
-        return self.tr('geocode')
+        return self.tr("geocode")
 
     def groupId(self):
         """
@@ -108,7 +108,7 @@ class geocodeList(QgsProcessingAlgorithm):
         contain lowercase alphanumeric characters only and no spaces or other
         formatting characters.
         """
-        return 'geocode'
+        return "geocode"
 
     def shortHelpString(self):
         """
@@ -117,12 +117,14 @@ class geocodeList(QgsProcessingAlgorithm):
         parameters and outputs associated with it.
         """
         return self.tr(
-            "This processing algorithm supports geocoding of a list of addresses in a single field originating from a txt/csv/table.<br> Make sure your HERE credentials are stored in the QGIS global settings using the plugin itself. Please read the referenced <a href='https://github.com/riccardoklinger/Hqgis#tos--usage'>Terms of Usage</a> prior usage")
+            "This processing algorithm supports geocoding of a list of addresses in a single field originating from a txt/csv/table.<br> Make sure your HERE credentials are stored in the QGIS global settings using the plugin itself. Please read the referenced <a href='https://github.com/riccardoklinger/Hqgis#tos--usage'>Terms of Usage</a> prior usage"
+        )
 
     def loadCredFunctionAlg(self):
         import json
         import os
-        #fileLocation = QFileDialog.getOpenFileName(self.dlg, "JSON with credentials",os.path.dirname(os.path.realpath(__file__))+ os.sep + "creds", "JSON(*.JSON)")
+
+        # fileLocation = QFileDialog.getOpenFileName(self.dlg, "JSON with credentials",os.path.dirname(os.path.realpath(__file__))+ os.sep + "creds", "JSON(*.JSON)")
         # print(fileLocation)
         scriptDirectory = os.path.dirname(os.path.realpath(__file__))
         # self.dlg.credentialInteraction.setText("")
@@ -130,10 +132,10 @@ class geocodeList(QgsProcessingAlgorithm):
         try:
             s = QgsSettings()
             creds["id"] = s.value("HQGIS/api_key", None)
-            #self.dlg.credentialInteraction.setText("credits used from " + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
+            # self.dlg.credentialInteraction.setText("credits used from " + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
         except BaseException:
             print("cred load failed, check QGIS global settings")
-            #self.dlg.credentialInteraction.setText("no credits found in. Check for file" + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
+            # self.dlg.credentialInteraction.setText("no credits found in. Check for file" + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
             # self.dlg.geocodeButton.setEnabled(False)
         # if not id in creds:
         #    self.feedback.reportError("no id / appcode found! Check file " + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
@@ -149,18 +151,15 @@ class geocodeList(QgsProcessingAlgorithm):
         # geometry.
         self.addParameter(
             QgsProcessingParameterFeatureSource(
-                self.INPUT,
-                self.tr('Input table'),
-                [QgsProcessing.TypeVector]
+                self.INPUT, self.tr("Input table"), [QgsProcessing.TypeVector]
             )
         )
         self.addParameter(
             QgsProcessingParameterField(
                 self.AddressField,
-                self.tr('Address Field'),
+                self.tr("Address Field"),
                 parentLayerParameterName=self.INPUT,
-                type=QgsProcessingParameterField.String
-
+                type=QgsProcessingParameterField.String,
             )
         )
 
@@ -169,8 +168,7 @@ class geocodeList(QgsProcessingAlgorithm):
         # algorithm is run in QGIS).
         self.addParameter(
             QgsProcessingParameterFeatureSink(
-                self.OUTPUT,
-                self.tr('Geocoded Addresses')
+                self.OUTPUT, self.tr("Geocoded Addresses")
             )
         )
 
@@ -181,7 +179,9 @@ class geocodeList(QgsProcessingAlgorithm):
         except BaseException:
             geocodeResponse["Label"] = ""
         try:
-            geocodeResponse["Country"] = responseAddress["Location"]["Address"]["Country"]
+            geocodeResponse["Country"] = responseAddress["Location"]["Address"][
+                "Country"
+            ]
         except BaseException:
             geocodeResponse["Country"] = ""
         try:
@@ -197,7 +197,9 @@ class geocodeList(QgsProcessingAlgorithm):
         except BaseException:
             geocodeResponse["City"] = ""
         try:
-            geocodeResponse["District"] = responseAddress["Location"]["Address"]["District"]
+            geocodeResponse["District"] = responseAddress["Location"]["Address"][
+                "District"
+            ]
         except BaseException:
             geocodeResponse["District"] = ""
         try:
@@ -205,11 +207,15 @@ class geocodeList(QgsProcessingAlgorithm):
         except BaseException:
             geocodeResponse["Street"] = ""
         try:
-            geocodeResponse["HouseNumber"] = responseAddress["Location"]["Address"]["HouseNumber"]
+            geocodeResponse["HouseNumber"] = responseAddress["Location"]["Address"][
+                "HouseNumber"
+            ]
         except BaseException:
             geocodeResponse["HouseNumber"] = ""
         try:
-            geocodeResponse["PostalCode"] = responseAddress["Location"]["Address"]["PostalCode"]
+            geocodeResponse["PostalCode"] = responseAddress["Location"]["Address"][
+                "PostalCode"
+            ]
         except BaseException:
             geocodeResponse["PostalCode"] = ""
         try:
@@ -217,7 +223,9 @@ class geocodeList(QgsProcessingAlgorithm):
         except BaseException:
             geocodeResponse["Relevance"] = None
         try:
-            geocodeResponse["CountryQuality"] = responseAddress["MatchQuality"]["Country"]
+            geocodeResponse["CountryQuality"] = responseAddress["MatchQuality"][
+                "Country"
+            ]
         except BaseException:
             geocodeResponse["CountryQuality"] = None
         try:
@@ -225,18 +233,22 @@ class geocodeList(QgsProcessingAlgorithm):
         except BaseException:
             geocodeResponse["CityQuality"] = None
         try:
-            geocodeResponse["StreetQuality"] = responseAddress["MatchQuality"]["Street"][0]
+            geocodeResponse["StreetQuality"] = responseAddress["MatchQuality"][
+                "Street"
+            ][0]
         except BaseException:
             geocodeResponse["StreetQuality"] = None
         try:
-            geocodeResponse["NumberQuality"] = responseAddress["MatchQuality"]["HouseNumber"]
+            geocodeResponse["NumberQuality"] = responseAddress["MatchQuality"][
+                "HouseNumber"
+            ]
         except BaseException:
             geocodeResponse["NumberQuality"] = None
         try:
             geocodeResponse["MatchType"] = responseAddress["MatchType"]
         except BaseException:
             geocodeResponse["MatchType"] = ""
-        return(geocodeResponse)
+        return geocodeResponse
 
     def processAlgorithm(self, parameters, context, feedback):
         """
@@ -246,16 +258,8 @@ class geocodeList(QgsProcessingAlgorithm):
         # Retrieve the feature source and sink. The 'dest_id' variable is used
         # to uniquely identify the feature sink, and must be included in the
         # dictionary returned by the processAlgorithm function.
-        source = self.parameterAsSource(
-            parameters,
-            self.INPUT,
-            context
-        )
-        addressField = self.parameterAsString(
-            parameters,
-            self.AddressField,
-            context
-        )
+        source = self.parameterAsSource(parameters, self.INPUT, context)
+        addressField = self.parameterAsString(parameters, self.AddressField, context)
         feedback.pushInfo(addressField)
 
         # If source was not found, throw an exception to indicate that the algorithm
@@ -264,8 +268,8 @@ class geocodeList(QgsProcessingAlgorithm):
         # helper text for when a source cannot be evaluated
         if source is None:
             raise QgsProcessingException(
-                self.invalidSourceError(
-                    parameters, self.INPUT))
+                self.invalidSourceError(parameters, self.INPUT)
+            )
 
         fields = QgsFields()
         fields.append(QgsField("id", QVariant.Int))
@@ -293,22 +297,18 @@ class geocodeList(QgsProcessingAlgorithm):
             context,
             fields,
             QgsWkbTypes.Point,
-            QgsCoordinateReferenceSystem(4326)
+            QgsCoordinateReferenceSystem(4326),
         )
 
         # Send some information to the user
-        feedback.pushInfo(
-            '{} addresses to geocode'.format(
-                source.featureCount()))
+        feedback.pushInfo("{} addresses to geocode".format(source.featureCount()))
 
         # If sink was not created, throw an exception to indicate that the algorithm
         # encountered a fatal error. The exception text can be any string, but in this
         # case we use the pre-built invalidSinkError method to return a standard
         # helper text for when a sink cannot be evaluated
         if sink is None:
-            raise QgsProcessingException(
-                self.invalidSinkError(
-                    parameters, self.OUTPUT))
+            raise QgsProcessingException(self.invalidSinkError(parameters, self.OUTPUT))
 
         # Compute the number of steps to display within the progress bar and
         # get features from source
@@ -322,11 +322,22 @@ class geocodeList(QgsProcessingAlgorithm):
                 break
 
             # get the location from the API:
-            ApiUrl = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + \
-                creds["id"] + "&searchtext=" + feature[addressField]
+            ApiUrl = (
+                "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey="
+                + creds["id"]
+                + "&searchtext="
+                + feature[addressField]
+            )
             r = requests.get(ApiUrl)
-            responseAddress = json.loads(
-                r.text)["Response"]["View"][0]["Result"][0]
+            print(ApiUrl)
+            try:
+                responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
+            except:
+                feedback.pushWarning(
+                    "unable to geocode feature {}: {}".format(
+                        feature.id(), feature[addressField]
+                    )
+                )
             geocodeResponse = self.convertGeocodeResponse(responseAddress)
             lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
             lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
@@ -334,27 +345,29 @@ class geocodeList(QgsProcessingAlgorithm):
             # feedback.pushInfo(str(lat))
             fet = QgsFeature()
             fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng, lat)))
-            fet.setAttributes([
-                feature.id(),
-                feature[addressField],
-                lat,
-                lng,
-                geocodeResponse["Label"],
-                geocodeResponse["Country"],
-                geocodeResponse["State"],
-                geocodeResponse["County"],
-                geocodeResponse["City"],
-                geocodeResponse["District"],
-                geocodeResponse["Street"],
-                geocodeResponse["HouseNumber"],
-                geocodeResponse["PostalCode"],
-                geocodeResponse["Relevance"],
-                geocodeResponse["CountryQuality"],
-                geocodeResponse["CityQuality"],
-                geocodeResponse["StreetQuality"],
-                geocodeResponse["NumberQuality"],
-                geocodeResponse["MatchType"]
-            ])
+            fet.setAttributes(
+                [
+                    feature.id(),
+                    feature[addressField],
+                    lat,
+                    lng,
+                    geocodeResponse["Label"],
+                    geocodeResponse["Country"],
+                    geocodeResponse["State"],
+                    geocodeResponse["County"],
+                    geocodeResponse["City"],
+                    geocodeResponse["District"],
+                    geocodeResponse["Street"],
+                    geocodeResponse["HouseNumber"],
+                    geocodeResponse["PostalCode"],
+                    geocodeResponse["Relevance"],
+                    geocodeResponse["CountryQuality"],
+                    geocodeResponse["CityQuality"],
+                    geocodeResponse["StreetQuality"],
+                    geocodeResponse["NumberQuality"],
+                    geocodeResponse["MatchType"],
+                ]
+            )
             sink.addFeature(fet, QgsFeatureSink.FastInsert)
 
             # Update the progress bar
@@ -367,16 +380,21 @@ class geocodeList(QgsProcessingAlgorithm):
         # reports to the user (and correctly handle cancelation and progress
         # reports!)
         if False:
-            buffered_layer = processing.run("native:buffer", {
-                'INPUT': dest_id,
-                'DISTANCE': 1.5,
-                'SEGMENTS': 5,
-                'END_CAP_STYLE': 0,
-                'JOIN_STYLE': 0,
-                'MITER_LIMIT': 2,
-                'DISSOLVE': False,
-                'OUTPUT': 'memory:'
-            }, context=context, feedback=feedback)['OUTPUT']
+            buffered_layer = processing.run(
+                "native:buffer",
+                {
+                    "INPUT": dest_id,
+                    "DISTANCE": 1.5,
+                    "SEGMENTS": 5,
+                    "END_CAP_STYLE": 0,
+                    "JOIN_STYLE": 0,
+                    "MITER_LIMIT": 2,
+                    "DISSOLVE": False,
+                    "OUTPUT": "memory:",
+                },
+                context=context,
+                feedback=feedback,
+            )["OUTPUT"]
 
         # Return the results of the algorithm. In this case our only result is
         # the feature sink which contains the processed features, but some
