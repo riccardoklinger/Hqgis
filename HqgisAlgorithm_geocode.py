@@ -259,7 +259,8 @@ class geocodeList(QgsProcessingAlgorithm):
         # to uniquely identify the feature sink, and must be included in the
         # dictionary returned by the processAlgorithm function.
         source = self.parameterAsSource(parameters, self.INPUT, context)
-        addressField = self.parameterAsString(parameters, self.AddressField, context)
+        addressField = self.parameterAsString(
+            parameters, self.AddressField, context)
         feedback.pushInfo(addressField)
 
         # If source was not found, throw an exception to indicate that the algorithm
@@ -300,9 +301,13 @@ class geocodeList(QgsProcessingAlgorithm):
             QgsCoordinateReferenceSystem(4326),
         )
 
-        feedback.pushInfo("{} addresses to geocode".format(source.featureCount()))
+        feedback.pushInfo(
+            "{} addresses to geocode".format(
+                source.featureCount()))
         if sink is None:
-            raise QgsProcessingException(self.invalidSinkError(parameters, self.OUTPUT))
+            raise QgsProcessingException(
+                self.invalidSinkError(
+                    parameters, self.OUTPUT))
 
         total = 100.0 / source.featureCount() if source.featureCount() else 0
         features = source.getFeatures()
@@ -315,16 +320,16 @@ class geocodeList(QgsProcessingAlgorithm):
 
             # get the location from the API:
             ApiUrl = (
-                "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey="
-                + creds["id"]
-                + "&searchtext="
-                + feature[addressField]
-            )
+                "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" +
+                creds["id"] +
+                "&searchtext=" +
+                feature[addressField])
             r = requests.get(ApiUrl)
             print(ApiUrl)
             try:
-                responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
-            except:
+                responseAddress = json.loads(
+                    r.text)["Response"]["View"][0]["Result"][0]
+            except BaseException:
                 feedback.pushWarning(
                     "unable to geocode feature {}: {}".format(
                         feature.id(), feature[addressField]
