@@ -173,79 +173,78 @@ class geocodeList(QgsProcessingAlgorithm):
         )
 
     def convertGeocodeResponse(self, responseAddress):
+        
         geocodeResponse = {}
         try:
-            geocodeResponse["Label"] = responseAddress["Location"]["Address"]["Label"]
+            geocodeResponse["Label"] = responseAddress["address"]["label"]
         except BaseException:
             geocodeResponse["Label"] = ""
         try:
-            geocodeResponse["Country"] = responseAddress["Location"]["Address"][
-                "Country"
-            ]
+            geocodeResponse["Country"] = responseAddress["address"]["country"]
         except BaseException:
             geocodeResponse["Country"] = ""
         try:
-            geocodeResponse["State"] = responseAddress["Location"]["Address"]["State"]
+            geocodeResponse["State"] = responseAddress["address"]["state"]
         except BaseException:
             geocodeResponse["State"] = ""
         try:
-            geocodeResponse["County"] = responseAddress["Location"]["Address"]["County"]
+            geocodeResponse["County"] = responseAddress["address"]["county"]
         except BaseException:
             geocodeResponse["County"] = ""
         try:
-            geocodeResponse["City"] = responseAddress["Location"]["Address"]["City"]
+            geocodeResponse["City"] = responseAddress["address"]["city"]
         except BaseException:
             geocodeResponse["City"] = ""
         try:
-            geocodeResponse["District"] = responseAddress["Location"]["Address"][
-                "District"
+            geocodeResponse["District"] = responseAddress["address"][
+                "district"
             ]
         except BaseException:
             geocodeResponse["District"] = ""
         try:
-            geocodeResponse["Street"] = responseAddress["Location"]["Address"]["Street"]
+            geocodeResponse["Street"] = responseAddress["address"]["street"]
         except BaseException:
             geocodeResponse["Street"] = ""
         try:
-            geocodeResponse["HouseNumber"] = responseAddress["Location"]["Address"][
-                "HouseNumber"
+            geocodeResponse["HouseNumber"] = responseAddress["address"][
+                "houseNumber"
             ]
         except BaseException:
             geocodeResponse["HouseNumber"] = ""
         try:
-            geocodeResponse["PostalCode"] = responseAddress["Location"]["Address"][
-                "PostalCode"
+            geocodeResponse["PostalCode"] = responseAddress["address"][
+                "postalCode"
             ]
         except BaseException:
             geocodeResponse["PostalCode"] = ""
         try:
-            geocodeResponse["Relevance"] = responseAddress["Relevance"]
+            geocodeResponse["Relevance"] = responseAddress["scoring"]["queryScore"]
         except BaseException:
             geocodeResponse["Relevance"] = None
         try:
-            geocodeResponse["CountryQuality"] = responseAddress["MatchQuality"][
-                "Country"
+            geocodeResponse["CountryQuality"] = responseAddress["scoring"]["fieldscore"][
+                "country"
             ]
         except BaseException:
             geocodeResponse["CountryQuality"] = None
         try:
-            geocodeResponse["CityQuality"] = responseAddress["MatchQuality"]["City"]
+            geocodeResponse["CityQuality"] = responseAddress["scoring"]["fieldscore"]["city"]
         except BaseException:
             geocodeResponse["CityQuality"] = None
         try:
-            geocodeResponse["StreetQuality"] = responseAddress["MatchQuality"][
-                "Street"
+            geocodeResponse["StreetQuality"] = responseAddress["scoring"]["fieldscore"][
+                "street"
             ][0]
         except BaseException:
             geocodeResponse["StreetQuality"] = None
         try:
-            geocodeResponse["NumberQuality"] = responseAddress["MatchQuality"][
-                "HouseNumber"
+            geocodeResponse["NumberQuality"] = responseAddress["scoring"]["fieldscore"][
+                "houseNumber"
             ]
         except BaseException:
             geocodeResponse["NumberQuality"] = None
         try:
-            geocodeResponse["MatchType"] = responseAddress["MatchType"]
+            geocodeResponse["MatchType"] = responseAddress["resultType"]
         except BaseException:
             geocodeResponse["MatchType"] = ""
         return geocodeResponse
@@ -315,15 +314,15 @@ class geocodeList(QgsProcessingAlgorithm):
 
             # get the location from the API:
             ApiUrl = (
-                "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey="
+                "https://geocode.search.hereapi.com/v1/geocode?apiKey="
                 + creds["id"]
-                + "&searchtext="
+                + "&q="
                 + feature[addressField]
             )
             r = requests.get(ApiUrl)
-            print(ApiUrl)
+            feedback.pushInfo(ApiUrl    )
             try:
-                responseAddress = json.loads(r.text)["Response"]["View"][0]["Result"][0]
+                responseAddress = json.loads(r.text)["items"][0]
             except:
                 feedback.pushWarning(
                     "unable to geocode feature {}: {}".format(
@@ -331,8 +330,8 @@ class geocodeList(QgsProcessingAlgorithm):
                     )
                 )
             geocodeResponse = self.convertGeocodeResponse(responseAddress)
-            lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
-            lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
+            lat = responseAddress["position"]["lat"]
+            lng = responseAddress["position"]["lng"]
 
             fet = QgsFeature()
             fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng, lat)))
