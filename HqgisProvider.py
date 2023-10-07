@@ -24,6 +24,7 @@
 from qgis.core import QgsProcessingProvider
 from processing.core.ProcessingConfig import Setting, ProcessingConfig
 from .HqgisAlgorithm_geocode import geocodeList
+from .HqgisAlgorithm_isochrone import isochroneList
 from .HqgisAlgorithm_POIs import getPois
 
 __author__ = 'Riccardo Klinger'
@@ -88,6 +89,6 @@ class HqgisProvider(QgsProcessingProvider):
         cleared before calling this method.
         """
 
-        self.alglist = [geocodeList(), getPois()]
+        self.alglist = [geocodeList(), getPois(),isochroneList()]
         for alg in self.alglist:
             self.addAlgorithm(alg)
