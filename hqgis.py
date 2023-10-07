@@ -1208,54 +1208,68 @@ class Hqgis:
         traffic = self.dlg.trafficMode_2.currentText()
         if mode == 'public transport':
             mode = 'publicTransport'
-        url = "https://isoline.route.ls.hereapi.com/routing/7.2/calculateisoline.json?" + \
-            "apiKey=" + self.appId + \
-            "&range=" + ",".join(intervalArray) + \
-            "&mode=" + type + ";" + mode + ";traffic:" + traffic + \
-            "&rangetype=" + self.dlg.metric.currentText().lower() + \
-            "&" + self.dlg.OriginDestination.currentText().lower() + "=geo!" + \
-            self.dlg.IsoLabel.text()
+        if self.dlg.OriginDestination.currentText().lower() == "start":
+            origin = "origin"
+        else:
+            origin = "destination"
+        url = (
+                "https://isoline.router.hereapi.com/v8/isolines?" +
+                origin + "="
+                + self.dlg.IsoLabel.text()
+                + "&range[type]="
+                + self.dlg.metric.currentText().lower()
+                + "&range[values]="
+                + ",".join(intervalArray)
+                + "&routingMode="
+                + type
+                + "&transportMode="
+                + mode
+                + "&apiKey="
+                + self.appId
+            )
+
         if self.dlg.trafficMode_2.currentText() == "enabled":
+            if origin == "destination":
+                timer = "arrivalTime"
+            else: 
+                timer = "departureTime"
             # print(self.dlg.dateTimeEditBatch.dateTime())
-            url += "&departure=" + \
+            url += "&" + timer + "=" + \
                 self.dlg.dateTimeEdit_2.dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'")
             time2 = self.dlg.dateTimeEdit_2.dateTime().toString("yyyyMMdd-hh:mm:ss")
             timestamp = QDateTime.fromString(time2, "yyyyMMdd-hh:mm:ss")
         else:
             timestamp = None
+            url += "&departureTime=any"
+        print(url)
         r = requests.get(url)
         print(url)
 
         if r.status_code == 200:
-            if len(json.loads(r.text)["response"]["isoline"]) > 0:
+            if len(json.loads(r.text)["isolines"]) > 0:
                 try:
-
-                    response = json.loads(r.text)["response"]["isoline"]
+                    
+                    response = json.loads(r.text)["isolines"]
                     features = []
                     fid = 0
-                    for poly in response:
-                        coordinates = []
-                        for vertex in poly["component"][0]["shape"]:
-                            lat = float(vertex.split(",")[0])
-                            lng = float(vertex.split(",")[1])
-                            coordinates.append(QgsPointXY(lng, lat))
-                        fet = QgsFeature()
-                        fet.setGeometry(
-                            QgsGeometry.fromPolygonXY(
-                                [coordinates]))
-                        fet.setAttributes([
-                            fid,
-                            poly["range"],
-                            self.dlg.metric.currentText().lower(),
-                            mode,
-                            traffic,
-                            timestamp,
-                            type
-                        ])
-                        features.append(fet)
-                        fid += 1
+                    for line in reversed(json.loads(r.text)["isolines"]):
+                        for polygon in line["polygons"]:
+                            for key, value in polygon.items():
+                                Points = decode(value)
+                                vertices = []
+                                for Point in Points:
+                                    lat = Point[0]
+                                    lng = Point[1]
+                                    vertices.append(QgsPointXY(lng, lat))
+                                fet = QgsFeature()
+                                fet.setGeometry(QgsGeometry.fromPolygonXY([vertices]))
+                                fet.setAttributes(
+                                    [fid, line["range"]["value"], self.dlg.metric.currentText().lower(), mode, traffic, timestamp, type]
+                                )
+                                features.append(fet)
+                                fid += 1 
                     pr = layer.dataProvider()
-                    pr.addFeatures(reversed(features))
+                    pr.addFeatures(features )
                     if len(ranges) > 1:
                         layer.setRenderer(renderer)
                     layer.setOpacity(0.5)
@@ -1340,64 +1354,82 @@ class Hqgis:
                 x = originFeature.geometry().asPoint().x()
                 y = originFeature.geometry().asPoint().y()
             coordinates = str(y) + "," + str(x)
-            url = "https://isoline.route.ls.hereapi.com/routing/7.2/calculateisoline.json?" + \
-                "apiKey=" + self.appId + \
-                "&range=" + ",".join(intervalArray) + \
-                "&mode=" + type + ";" + mode + ";traffic:" + traffic + \
-                "&rangetype=" + self.dlg.metricBatch.currentText().lower() + \
-                "&" + self.dlg.OriginDestinationBatch.currentText().lower() + "=geo!" + \
-                coordinates
-            if self.dlg.trafficModeBatch.currentText() == "enabled":
-                time = self.dlg.dateTimeEditBatch.dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'")
+            
+            type = self.dlg.Type_2.currentText()
+            mode = self.dlg.TransportMode_2.currentText()
+            traffic = self.dlg.trafficMode_2.currentText()
+            if mode == 'public transport':
+                mode = 'publicTransport'
+            if self.dlg.OriginDestination.currentText().lower() == "start":
+                origin = "origin"
+            else:
+                origin = "destination"
+            url = (
+                    "https://isoline.router.hereapi.com/v8/isolines?" +
+                    origin + "="
+                    + coordinates
+                    + "&range[type]="
+                    + self.dlg.metric.currentText().lower()
+                    + "&range[values]="
+                    + ",".join(intervalArray)
+                    + "&routingMode="
+                    + type
+                    + "&transportMode="
+                    + mode
+                    + "&apiKey="
+                    + self.appId
+                )
+
+            if self.dlg.trafficMode_2.currentText() == "enabled":
+                if origin == "destination":
+                    timer = "arrivalTime"
+                else: 
+                    timer = "departureTime"
                 # print(self.dlg.dateTimeEditBatch.dateTime())
-                url += "&departure=" + time
-                time2 = self.dlg.dateTimeEditBatch.dateTime().toString("yyyyMMdd-hh:mm:ss")
+                url += "&" + timer + "=" + \
+                    self.dlg.dateTimeEdit_2.dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'")
+                time2 = self.dlg.dateTimeEdit_2.dateTime().toString("yyyyMMdd-hh:mm:ss")
                 timestamp = QDateTime.fromString(time2, "yyyyMMdd-hh:mm:ss")
             else:
                 timestamp = None
-            r = requests.get(url)
+                url += "&departureTime=any"
             print(url)
+            r = requests.get(url)
             i += 1
             progress.setValue(i)
             iface.mainWindow().repaint()
-
             if r.status_code == 200:
-                if len(json.loads(r.text)["response"]["isoline"]) > 0:
+                if len(json.loads(r.text)["isolines"]) > 0:
                     try:
-                        response = json.loads(r.text)["response"]["isoline"]
+                        
+                        response = json.loads(r.text)["isolines"]
                         features = []
                         fid = 0
-                        for poly in response:
-                            coordinates = []
-                            for vertex in poly["component"][0]["shape"]:
-                                lat = float(vertex.split(",")[0])
-                                lng = float(vertex.split(",")[1])
-                                coordinates.append(QgsPointXY(lng, lat))
-                            fet = QgsFeature()
-                            fet.setGeometry(
-                                QgsGeometry.fromPolygonXY(
-                                    [coordinates]))
-
-                            fet.setAttributes([
-                                fid,
-                                originFeature.id(),
-                                poly["range"],
-                                self.dlg.metricBatch.currentText().lower(),
-                                mode,
-                                traffic,
-                                timestamp,
-                                type
-                            ])
-                            features.append(fet)
-                            fid += 1
+                        for line in reversed(json.loads(r.text)["isolines"]):
+                            for polygon in line["polygons"]:
+                                for key, value in polygon.items():
+                                    Points = decode(value)
+                                    vertices = []
+                                    for Point in Points:
+                                        lat = Point[0]
+                                        lng = Point[1]
+                                        vertices.append(QgsPointXY(lng, lat))
+                                    fet = QgsFeature()
+                                    fet.setGeometry(QgsGeometry.fromPolygonXY([vertices]))
+                                    fet.setAttributes(
+                                        [fid, originFeature.id(), line["range"]["value"], self.dlg.metric.currentText().lower(), mode, traffic, timestamp, type]
+                                    )
+                                    features.append(fet)
+                                    fid += 1 
                         pr = layer.dataProvider()
-                        pr.addFeatures(reversed(features))
+                        pr.addFeatures(features )
                         if len(ranges) > 1:
                             layer.setRenderer(renderer)
                         layer.setOpacity(0.5)
                         QgsProject.instance().addMapLayer(layer)
                     except Exception as e:
                         print(e)
+            
         iface.messageBar().clearWidgets()
 
     def run(self):

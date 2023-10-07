@@ -1473,7 +1473,7 @@
           <bool>true</bool>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="tab_14">
           <attribute name="title">
@@ -1608,17 +1608,17 @@
               <widget class="QComboBox" name="TransportMode_2">
                <item>
                 <property name="text">
-                 <string>pedestrian</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
                  <string>car</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>carHOV</string>
+                 <string>bicycle</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>pedestrian</string>
                 </property>
                </item>
                <item>
@@ -1632,17 +1632,12 @@
               <widget class="QComboBox" name="Type_2">
                <item>
                 <property name="text">
-                 <string>fastest</string>
+                 <string>fast</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>shortest</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>balanced</string>
+                 <string>short</string>
                 </property>
                </item>
               </widget>
@@ -1907,17 +1902,17 @@
               <widget class="QComboBox" name="TransportModeBatch">
                <item>
                 <property name="text">
-                 <string>pedestrian</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
                  <string>car</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>carHOV</string>
+                 <string>bicycle</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>pedestrian</string>
                 </property>
                </item>
                <item>
@@ -1931,17 +1926,12 @@
               <widget class="QComboBox" name="TypeBatch">
                <item>
                 <property name="text">
-                 <string>fastest</string>
+                 <string>fast</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>shortest</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>balanced</string>
+                 <string>short</string>
                 </property>
                </item>
               </widget>
