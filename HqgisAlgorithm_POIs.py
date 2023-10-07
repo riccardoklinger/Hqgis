@@ -246,14 +246,34 @@ class getPois(QgsProcessingAlgorithm):
                      'undersea-feature',
                      'wine-and-liquor',
                      'zoo']
+        #TODO: Add more categories beneath
+        self.keys = [{"name": "Restaurant",
+                      "categories": "100-1000-0000,100-1000-0001,100-1000-0002,100-1000-0003,100-1000-0004,100-1000-0005,100-1000-0006,100-1000-0007,100-1000-0008,100-1000-0009",
+                      },
+                     {"name": "Coffee-Tea",
+                      "categories": "100-1100-0000,100-1100-0010,100-1100-0331",
+                      },
+                     {"name": "Nightlife-Entertainment",
+                      "categories": "200-2000-0000,200-2000-0011,200-2000-0012,200-2000-0013,200-2000-0014,200-2000-0015,200-2000-0016,200-2000-0017,200-2000-0018,200-2000-0019,200-2000-0306,200-2000-0368",
+                      },
+                     {"name": "Cinema",
+                      "categories": "200-2100-0019",
+                      },
+                     {"name": "Theatre, Music and Culture",
+                      "categories": "200-2200-0000,200-2200-0020",
+                      },
+                     ]
+        self.keys2 = []
+        for entry in self.keys:
+            self.keys2.append(entry["name"])
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.KEYS,
-                self.tr('POI Categories'),
-                options=self.keys,
+                self.tr("POI Categories"),
+                options=self.keys2,
                 # defaultValue=0,
                 optional=False,
-                allowMultiple=True
+                allowMultiple=True,
             )
         )
         # self.modes = [
@@ -442,9 +462,9 @@ class getPois(QgsProcessingAlgorithm):
         creds = self.loadCredFunctionAlg()
         # convert categories to list for API call:
         categoriesList = []
-        #self.keys[keyField].split(" | ")[1]
+        # self.keys[keyField].split(" | ")[1]
         for category in categories:
-            categoriesList.append(self.keys[category])
+            categoriesList.append(self.keys[category]["categories"])
         categories = ",".join(categoriesList)
         layerCRS = source.sourceCrs()
         if layerCRS != QgsCoordinateReferenceSystem(4326):
@@ -473,6 +493,7 @@ class getPois(QgsProcessingAlgorithm):
                 "&categories=" + categories + "&limit=100&apiKey=" + creds["id"]
             feedback.pushInfo('calling Url {}'.format(ApiUrl))
             r = requests.get(ApiUrl, headers=header)
+
             responsePlaces = json.loads(r.text)["items"]
             for place in responsePlaces:
                 lat = place["position"]["lat"]
