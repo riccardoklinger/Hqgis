@@ -418,11 +418,11 @@ class Hqgis:
     def createPlaceLayerBatch(self):
         layer = QgsVectorLayer(
             "Point?crs=EPSG:4326",
-            "PlaceLayer",
+            "PlaceLayerBatch",
             "memory"
         )
         layer.dataProvider().addAttributes([
-            QgsField("id", QVariant.Int),
+            QgsField("id", QVariant.String),
             QgsField("origin_id", QVariant.Int),
             QgsField("title", QVariant.String),
             QgsField("label", QVariant.String),
@@ -832,17 +832,16 @@ class Hqgis:
     def geocodelineFrom(self):
         self.getCredentials()
         address = self.dlg.fromAddress.text()
-        url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + \
-            self.appId + "&searchtext=" + address
+        url = "https://geocode.search.hereapi.com/v1/geocode?apiKey=" + \
+            self.appId + "&q=" + address
         r = requests.get(url)
         try:
             # ass the response may hold more than one result we only use the
             # best one:
-            responseAddress = json.loads(
-                r.text)["Response"]["View"][0]["Result"][0]
+            responseAddress = json.loads(r.text)["items"][0]
             #geocodeResponse = self.convertGeocodeResponse(responseAddress)
-            lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
-            lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
+            lat = responseAddress["position"]["lat"]
+            lng = responseAddress["position"]["lng"]
             self.dlg.FromLabel.setText(
                 str("%.5f" % lat) + ',' + str("%.5f" % lng))
         except BaseException:
@@ -851,17 +850,16 @@ class Hqgis:
     def geocodeline(self, lineEdits):
         self.getCredentials()
         address = lineEdits[0].text()
-        url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + \
-            self.appId + "&searchtext=" + address
+        url = "https://geocode.search.hereapi.com/v1/geocode?apiKey=" + \
+            self.appId + "&q=" + address
         r = requests.get(url)
         try:
             # ass the response may hold more than one result we only use the
             # best one:
-            responseAddress = json.loads(
-                r.text)["Response"]["View"][0]["Result"][0]
+            responseAddress = json.loads(r.text)["items"][0]
             #geocodeResponse = self.convertGeocodeResponse(responseAddress)
-            lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
-            lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
+            lat = responseAddress["position"]["lat"]
+            lng = responseAddress["position"]["lng"]
             lineEdits[1].setText(str("%.5f" % lat) + ',' + str("%.5f" % lng))
         except BaseException:
             print("something went wrong")
@@ -873,27 +871,27 @@ class Hqgis:
         except BaseException:
             print("routing")
 
-    def geocodelinePlace(self):
-        self.getCredentials()
-        address = self.dlg.placesAddress.text()
-        self.dlg.findPOISButton.setEnabled(True)
-        print(self.dlg.findPOISButton.enabled())
-        if address != "":
-            url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + \
-                self.appId + "&searchtext=" + address
-            r = requests.get(url)
-            try:
-                # ass the response may hold more than one result we only use
-                # the best one:
-                responseAddress = json.loads(
-                    r.text)["Response"]["View"][0]["Result"][0]
-                #geocodeResponse = self.convertGeocodeResponse(responseAddress)
-                lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
-                lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
-                self.dlg.placeLabel.setText(
-                    str("%.5f" % lat) + ',' + str("%.5f" % lng))
-            except BaseException:
-                print("something went wrong")
+    #def geocodelinePlace(self):
+    #    self.getCredentials()
+    #    address = self.dlg.placesAddress.text()
+    #    self.dlg.findPOISButton.setEnabled(True)
+    #    print(self.dlg.findPOISButton.enabled())
+    #    if address != "":
+    #        url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + \
+    #            self.appId + "&searchtext=" + address
+    #        r = requests.get(url)
+    #        try:
+    #            # ass the response may hold more than one result we only use
+    #            # the best one:
+    #            responseAddress = json.loads(
+    #                r.text)["Response"]["View"][0]["Result"][0]
+    #            #geocodeResponse = self.convertGeocodeResponse(responseAddress)
+    #            lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
+    #            lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
+    #            self.dlg.placeLabel.setText(
+    #                str("%.5f" % lat) + ',' + str("%.5f" % lng))
+    #        except BaseException:
+    #            print("something went wrong")
 
     def checkPlacesInput(self):
         if self.dlg.placeLabel.text() != "" and len(
@@ -976,13 +974,39 @@ class Hqgis:
             except Exception as e:
                 print(e)
 
+    def mapCategories(self, categoryName):
+        #TODO: add more categories!
+        keys = [{"name": "restaurant",
+            "categories": "100-1000-0000,100-1000-0001,100-1000-0002,100-1000-0003,100-1000-0004,100-1000-0005,100-1000-0006,100-1000-0007,100-1000-0008,100-1000-0009",
+            },
+            {"name": "Coffee-Tea",
+            "categories": "100-1100-0000,100-1100-0010,100-1100-0331",
+            },
+            {"name": "Nightlife-Entertainment",
+            "categories": "200-2000-0000,200-2000-0011,200-2000-0012,200-2000-0013,200-2000-0014,200-2000-0015,200-2000-0016,200-2000-0017,200-2000-0018,200-2000-0019,200-2000-0306,200-2000-0368",
+            },
+            {"name": "Cinema",
+            "categories": "200-2100-0019",
+            },
+            {"name": "Theatre, Music and Culture",
+            "categories": "200-2200-0000,200-2200-0020",
+            },
+        ]
+        for item in keys:
+            if item["name"]==categoryName:
+                return item["categories"]
+            else: 
+                return ""
+
     def getPlacesSingle(self):
         self.getCredentials()
         #radius = self.dlg.RadiusBox.value()
         categories = self.dlg.listWidget.selectedItems()
         categoriesList = []
+
         for category in categories:
-            categoriesList.append(category.text())
+            categoryID = self.mapCategories(category.text())
+            categoriesList.append(categoryID)
         categories = ",".join(categoriesList)
         coordinates = self.dlg.placeLabel.text()
         url = 'https://browse.search.hereapi.com/v1/browse?at=' + coordinates + \
@@ -1037,17 +1061,18 @@ class Hqgis:
         categories = self.dlg.listWidgetBatch.selectedItems()
         categoriesList = []
         for category in categories:
-            categoriesList.append(category.text())
+            categoryID = self.mapCategories(category.text())
+            categoriesList.append(categoryID)
         categories = ",".join(categoriesList)
         layer = self.createPlaceLayerBatch()
         # allow only regular point layers. no Multipoints
+        originLayer = self.dlg.FindPOISLayer.currentLayer()
         if (originLayer.wkbType() == 4
             or originLayer.wkbType() == 1004
                 or originLayer.wkbType() == 3004):
             self.iface.messageBar().pushWarning(
                 'Failed', 'Please convert MultiPoint layer to Point layer before usage')
             return
-        originLayer = self.dlg.FindPOISLayer.currentLayer()
         originFeatures = originLayer.getFeatures()
         layerCRS = originLayer.crs()
         if layerCRS != QgsCoordinateReferenceSystem(4326):
@@ -1114,12 +1139,14 @@ class Hqgis:
                                 ";".join(categoriesResp)
                             ])
                             features.append(fet)
+                        print(features)
                         pr = layer.dataProvider()
                         pr.addFeatures(features)
                         QgsProject.instance().addMapLayer(layer)
                     except Exception as e:
                         print(e)
-        iface.messageBar().clearWidgets()
+                    
+        
 
     def getIsochronesSingle(self):
         # print(self.dlg.dateTimeEditBatch.dateTime().toPyDate())
