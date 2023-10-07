@@ -276,7 +276,7 @@
               <widget class="QComboBox" name="TransportMode">
                <item>
                 <property name="text">
-                 <string>pedestrian</string>
+                 <string>car</string>
                 </property>
                </item>
                <item>
@@ -286,17 +286,7 @@
                </item>
                <item>
                 <property name="text">
-                 <string>public transport</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>car</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>carHOV</string>
+                 <string>pedestrian</string>
                 </property>
                </item>
                <item>
@@ -376,17 +366,12 @@
               <widget class="QComboBox" name="Type">
                <item>
                 <property name="text">
-                 <string>fastest</string>
+                 <string>fast</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>shortest</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>balanced</string>
+                 <string>short</string>
                 </property>
                </item>
               </widget>
@@ -456,7 +441,7 @@
                </item>
                <item>
                 <property name="text">
-                 <string>enabled</string>
+                 <string>default</string>
                 </property>
                </item>
               </widget>

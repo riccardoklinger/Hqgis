@@ -31,6 +31,7 @@ from .resources import *
 from .GetMapCoordinates import GetMapCoordinates
 # Import the code for the dialog
 from .hqgis_dialog import HqgisDialog
+from .decodeGeom import decode
 import os.path
 import requests
 import json
@@ -926,53 +927,68 @@ class Hqgis:
         self.getCredentials()
         type = self.dlg.Type.currentText()
         mode = self.dlg.TransportMode.currentText()
-        if mode == 'public transport':
-            mode = 'publicTransport'
+        if mode == "pedestrian" or mode == "bicycle":
+            type="fast"
+        #if mode == 'public transport':
+        #    mode = 'publicTransport'
         traffic = self.dlg.trafficMode.currentText()
-        url = "https://route.ls.hereapi.com/routing/7.2/calculateroute.json?apiKey=" + self.appId + "&routeAttributes=shape&mode=" + type + \
-            ";" + mode + ";traffic:" + traffic + "&waypoint0=geo!" + self.dlg.FromLabel.text() + "&waypoint1=geo!" + self.dlg.ToLabel.text()
-        if self.dlg.trafficMode.currentText() == "enabled":
+        url = "https://router.hereapi.com/v8/routes?apiKey=" + self.appId + "&return=polyline,summary&routingMode=" + type + \
+            "&transportMode=" + mode + "&origin=" + self.dlg.FromLabel.text() + "&destination=" + self.dlg.ToLabel.text()
+        if self.dlg.trafficMode.currentText() == "default":
             # print(self.dlg.dateTimeEditBatch.dateTime())
             url += "&departure=" + \
                 self.dlg.dateTimeEdit.dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'")
             time2 = self.dlg.dateTimeEdit.dateTime().toString("yyyyMMdd-hh:mm:ss")
             timestamp = QDateTime.fromString(time2, "yyyyMMdd-hh:mm:ss")
         else:
-            timestamp = None
+            timestamp = "any"
         print(url)
         r = requests.get(url)
 
         if r.status_code == 200:
-            try:
-                self.dlg.status2.setText("distance: " +
-                                         str(json.loads(r.text)["response"]["route"][0]["summary"]["distance"]) +
-                                         " time: " +
-                                         str(json.loads(r.text)["response"]["route"][0]["summary"]["travelTime"]))
-                if self.dlg.routeLayerCheckBox.checkState():
-                    layer = self.createRouteLayer()
-                    responseRoute = json.loads(
-                        r.text)["response"]["route"][0]["shape"]
+            itemID= 0
+            layer = self.createRouteLayer()
+            pr = layer.dataProvider()
+            features = []
+            for section in json.loads(r.text)["routes"][0]["sections"]:
+                print(section)
+                
+                try:
+                    print("distance: " +
+                                            str(section["summary"]["length"]/1000) + " km"
+                                            " time: " +
+                                            str(section["summary"]["duration"]/60) + " min")
+                    
+                    responseRoute = decode(section["polyline"])
                     vertices = []
                     for routePoint in responseRoute:
-                        lat = float(routePoint.split(",")[0])
-                        lng = float(routePoint.split(",")[1])
+                        lat = float(routePoint[0])
+                        lng = float(routePoint[1])
                         vertices.append(QgsPoint(lng, lat))
                     fet = QgsFeature()
+                    print("succ1")
                     fet.setGeometry(QgsGeometry.fromPolyline(vertices))
+                    print("succ2")
+                    if not timestamp:
+                        timerS = timestamp
+                    else:
+                        timerS = None
                     fet.setAttributes([
-                        0,
-                        json.loads(r.text)["response"]["route"][0]["summary"]["distance"],
-                        json.loads(r.text)["response"]["route"][0]["summary"]["travelTime"],
+                        itemID,
+                        section["summary"]["length"]/1000,
+                        section["summary"]["duration"],
                         mode,
                         traffic,
-                        timestamp,
+                        timerS,
                         type
                     ])
-                    pr = layer.dataProvider()
-                    pr.addFeatures([fet])
-                    QgsProject.instance().addMapLayer(layer)
-            except Exception as e:
-                print(e)
+                    features.append(fet)
+                    itemID+=1
+                    print(features)
+                except Exception as e:
+                    print(e)
+            pr.addFeatures(features)
+            QgsProject.instance().addMapLayer(layer)
 
     def mapCategories(self, categoryName):
         #TODO: add more categories!
