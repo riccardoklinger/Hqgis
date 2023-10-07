@@ -298,66 +298,78 @@ class Hqgis:
     def convertGeocodeResponse(self, responseAddress):
         geocodeResponse = {}
         try:
-            geocodeResponse["Label"] = responseAddress["Location"]["Address"]["Label"]
+            geocodeResponse["Label"] = responseAddress["address"]["label"]
         except BaseException:
             geocodeResponse["Label"] = ""
         try:
-            geocodeResponse["Country"] = responseAddress["Location"]["Address"]["Country"]
+            geocodeResponse["Country"] = responseAddress["address"]["country"]
         except BaseException:
             geocodeResponse["Country"] = ""
         try:
-            geocodeResponse["State"] = responseAddress["Location"]["Address"]["State"]
+            geocodeResponse["State"] = responseAddress["address"]["state"]
         except BaseException:
             geocodeResponse["State"] = ""
         try:
-            geocodeResponse["County"] = responseAddress["Location"]["Address"]["County"]
+            geocodeResponse["County"] = responseAddress["address"]["county"]
         except BaseException:
             geocodeResponse["County"] = ""
         try:
-            geocodeResponse["City"] = responseAddress["Location"]["Address"]["City"]
+            geocodeResponse["City"] = responseAddress["address"]["city"]
         except BaseException:
             geocodeResponse["City"] = ""
         try:
-            geocodeResponse["District"] = responseAddress["Location"]["Address"]["District"]
+            geocodeResponse["District"] = responseAddress["address"][
+                "district"
+            ]
         except BaseException:
             geocodeResponse["District"] = ""
         try:
-            geocodeResponse["Street"] = responseAddress["Location"]["Address"]["Street"]
+            geocodeResponse["Street"] = responseAddress["address"]["street"]
         except BaseException:
             geocodeResponse["Street"] = ""
         try:
-            geocodeResponse["HouseNumber"] = responseAddress["Location"]["Address"]["HouseNumber"]
+            geocodeResponse["HouseNumber"] = responseAddress["address"][
+                "houseNumber"
+            ]
         except BaseException:
             geocodeResponse["HouseNumber"] = ""
         try:
-            geocodeResponse["PostalCode"] = responseAddress["Location"]["Address"]["PostalCode"]
+            geocodeResponse["PostalCode"] = responseAddress["address"][
+                "postalCode"
+            ]
         except BaseException:
             geocodeResponse["PostalCode"] = ""
         try:
-            geocodeResponse["Relevance"] = responseAddress["Relevance"]
+            geocodeResponse["Relevance"] = responseAddress["scoring"]["queryScore"]
         except BaseException:
             geocodeResponse["Relevance"] = None
         try:
-            geocodeResponse["CountryQuality"] = responseAddress["MatchQuality"]["Country"]
+            geocodeResponse["CountryQuality"] = responseAddress["scoring"]["fieldscore"][
+                "country"
+            ]
         except BaseException:
             geocodeResponse["CountryQuality"] = None
         try:
-            geocodeResponse["CityQuality"] = responseAddress["MatchQuality"]["City"]
+            geocodeResponse["CityQuality"] = responseAddress["scoring"]["fieldscore"]["city"]
         except BaseException:
             geocodeResponse["CityQuality"] = None
         try:
-            geocodeResponse["StreetQuality"] = responseAddress["MatchQuality"]["Street"][0]
+            geocodeResponse["StreetQuality"] = responseAddress["scoring"]["fieldscore"][
+                "street"
+            ][0]
         except BaseException:
             geocodeResponse["StreetQuality"] = None
         try:
-            geocodeResponse["NumberQuality"] = responseAddress["MatchQuality"]["HouseNumber"]
+            geocodeResponse["NumberQuality"] = responseAddress["scoring"]["fieldscore"][
+                "houseNumber"
+            ]
         except BaseException:
             geocodeResponse["NumberQuality"] = None
         try:
-            geocodeResponse["MatchType"] = responseAddress["MatchType"]
+            geocodeResponse["MatchType"] = responseAddress["resultType"]
         except BaseException:
             geocodeResponse["MatchType"] = ""
-        return(geocodeResponse)
+        return geocodeResponse
 
     def createGeocodedLayer(self):
         layer = QgsVectorLayer(
@@ -497,18 +509,20 @@ class Hqgis:
         address = self.dlg.AddressInput.text()
         if address == "":
             address = "11 WallStreet, NewYork, USA"
-
-        url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + \
-            self.appId + "&searchtext=" + address
+        url = (
+                "https://geocode.search.hereapi.com/v1/geocode?apiKey="
+                + self.appId
+                + "&q="
+                + address
+            )
         r = requests.get(url)
         try:
             # ass the response may hold more than one result we only use the
             # best one:
-            responseAddress = json.loads(
-                r.text)["Response"]["View"][0]["Result"][0]
+            responseAddress = json.loads(r.text)["items"][0]
             geocodeResponse = self.convertGeocodeResponse(responseAddress)
-            lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
-            lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
+            lat = responseAddress["position"]["lat"]
+            lng = responseAddress["position"]["lng"]
             layer = self.createGeocodedLayer()
             fet = QgsFeature()
             fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng, lat)))
@@ -558,15 +572,14 @@ class Hqgis:
         iface.messageBar().pushWidget(progressMessageBar, level=0)
         i = 0
         for feature in layer.getFeatures():
-            url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + \
-                self.appId + "&searchtext=" + feature[self.dlg.fieldBox.currentField()]
+            url = "https://geocode.search.hereapi.com/v1/geocode?apiKey=" + \
+                self.appId + "&q=" + feature[self.dlg.fieldBox.currentField()]
             r = requests.get(url)
             try:
-                responseAddress = json.loads(
-                    r.text)["Response"]["View"][0]["Result"][0]
+                responseAddress = json.loads(r.text)["items"][0]
                 geocodeResponse = self.convertGeocodeResponse(responseAddress)
-                lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
-                lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
+                lat = responseAddress["position"]["lat"]
+                lng = responseAddress["position"]["lng"]
                 ResultFet = QgsFeature()
                 ResultFet.setGeometry(
                     QgsGeometry.fromPointXY(
@@ -619,7 +632,7 @@ class Hqgis:
             self.dlg.StateBox.currentField())
         indexer["county"] = layer.fields().indexFromName(
             self.dlg.CountyBox.currentField())
-        indexer["zip"] = layer.fields().indexFromName(
+        indexer["postalCode"] = layer.fields().indexFromName(
             self.dlg.ZipBox.currentField())
         indexer["city"] = layer.fields().indexFromName(
             self.dlg.CityBox.currentField())
@@ -656,22 +669,20 @@ class Hqgis:
             oldAddress = ""
             for key in addressLists.keys():
                 if key != "oldIds":
-                    urlPart += "&" + key + "=" + addressLists[key][id]
+                    urlPart +=  key + "=" + addressLists[key][id] + ";"
                     oldAddress += addressLists[key][id] + ","
-            url = "https://geocoder.ls.hereapi.com/search/6.2/geocode.json?apiKey=" + \
-                self.appId + urlPart
+            url = "https://geocode.search.hereapi.com/v1/geocode?apiKey=" + \
+                self.appId + "&qq=" + urlPart[:-1]
             r = requests.get(url)
             if r.status_code == 200:
-                #sys.stdout.write("test" + url + "\\n")
-                if len(json.loads(r.text)["Response"]["View"]) > 0:
+                if len(json.loads(r.text)["items"]) > 0:
                     # as the response may hold more than one result we only use
                     # the best one:
-                    responseAddress = json.loads(
-                        r.text)["Response"]["View"][0]["Result"][0]
+                    responseAddress = json.loads(r.text)["items"][0]
                     geocodeResponse = self.convertGeocodeResponse(
                         responseAddress)
-                    lat = responseAddress["Location"]["DisplayPosition"]["Latitude"]
-                    lng = responseAddress["Location"]["DisplayPosition"]["Longitude"]
+                    lat = responseAddress["position"]["lat"]
+                    lng = responseAddress["position"]["lng"]
                     ResultFet = QgsFeature()
                     ResultFet.setGeometry(
                         QgsGeometry.fromPointXY(
