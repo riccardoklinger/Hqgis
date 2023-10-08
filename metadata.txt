@@ -10,7 +10,7 @@
 name=Hqgis
 qgisMinimumVersion=3.0
 description=Routing, Geocoding, POI search, Isochrones with the HERE API.
-version=1.2.0
+version=1.2.1
 author=Riccardo Klinger
 email=riccardo.klinger@gmail.com
 
