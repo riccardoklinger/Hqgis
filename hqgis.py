@@ -32,6 +32,7 @@ from .GetMapCoordinates import GetMapCoordinates
 # Import the code for the dialog
 from .hqgis_dialog import HqgisDialog
 from .decodeGeom import decode
+from .mapCat import mapCategories
 import os.path
 import requests
 import json
@@ -990,38 +991,13 @@ class Hqgis:
             pr.addFeatures(features)
             QgsProject.instance().addMapLayer(layer)
 
-    def mapCategories(self, categoryName):
-        #TODO: add more categories!
-        keys = [{"name": "restaurant",
-            "categories": "100-1000-0000,100-1000-0001,100-1000-0002,100-1000-0003,100-1000-0004,100-1000-0005,100-1000-0006,100-1000-0007,100-1000-0008,100-1000-0009",
-            },
-            {"name": "Coffee-Tea",
-            "categories": "100-1100-0000,100-1100-0010,100-1100-0331",
-            },
-            {"name": "Nightlife-Entertainment",
-            "categories": "200-2000-0000,200-2000-0011,200-2000-0012,200-2000-0013,200-2000-0014,200-2000-0015,200-2000-0016,200-2000-0017,200-2000-0018,200-2000-0019,200-2000-0306,200-2000-0368",
-            },
-            {"name": "Cinema",
-            "categories": "200-2100-0019",
-            },
-            {"name": "Theatre, Music and Culture",
-            "categories": "200-2200-0000,200-2200-0020",
-            },
-        ]
-        for item in keys:
-            if item["name"]==categoryName:
-                return item["categories"]
-            else: 
-                return ""
-
     def getPlacesSingle(self):
         self.getCredentials()
         #radius = self.dlg.RadiusBox.value()
         categories = self.dlg.listWidget.selectedItems()
         categoriesList = []
-
         for category in categories:
-            categoryID = self.mapCategories(category.text())
+            categoryID = mapCategories(category.text())
             categoriesList.append(categoryID)
         categories = ",".join(categoriesList)
         coordinates = self.dlg.placeLabel.text()
@@ -1077,7 +1053,7 @@ class Hqgis:
         categories = self.dlg.listWidgetBatch.selectedItems()
         categoriesList = []
         for category in categories:
-            categoryID = self.mapCategories(category.text())
+            categoryID = mapCategories(category.text())
             categoriesList.append(categoryID)
         categories = ",".join(categoriesList)
         layer = self.createPlaceLayerBatch()

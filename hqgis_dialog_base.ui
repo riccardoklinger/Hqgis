@@ -23,7 +23,7 @@
       <bool>true</bool>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -545,422 +545,297 @@
                </property>
                <item>
                 <property name="text">
-                 <string>accommodation</string>
+                 <string>Administrative Region-Streets</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>administrative-areas-buildings</string>
+                 <string>Airport</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>administrative-region</string>
+                 <string>ATM</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>airport</string>
+                 <string>Banking</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>ambulance-services</string>
+                 <string>Body of Water</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>amusement-holiday-park</string>
+                 <string>Bookstore</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>atm-bank-exchange</string>
+                 <string>Building</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>bar-pub</string>
+                 <string>Business-Industry</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>body-of-water</string>
+                 <string>Car Dealer-Sales</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>bookshop</string>
+                 <string>Car Rental</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>building</string>
+                 <string>Car Repair-Service</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>business-industry</string>
+                 <string>Cargo Transportation</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>business-services</string>
+                 <string>Cinema</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>camping</string>
+                 <string>City, Town or Village</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>car-dealer-repair</string>
+                 <string>Clothing and Accessories</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>car-rental</string>
+                 <string>Coffee-Tea</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>casino</string>
+                 <string>Commercial Services</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>cinema</string>
+                 <string>Communication-Media</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>city-town-village</string>
+                 <string>Consumer Goods</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>clothing-accessories-shop</string>
+                 <string>Consumer Services</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>coffee</string>
+                 <string>Convenience Store</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>coffee-tea</string>
+                 <string>Department Store</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>communication-media</string>
+                 <string>Drugstore or Pharmacy</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>dance-night-club</string>
+                 <string>Education Facility</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>department-store</string>
+                 <string>Electronics</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>eat-drink</string>
+                 <string>Event Spaces</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>education-facility</string>
+                 <string>Facilities</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>electronics-shop</string>
+                 <string>Food and Drink</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>ev-charging-station</string>
+                 <string>Forest, Heath or Other Vegetation</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>facilities</string>
+                 <string>Fueling Station</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>facility</string>
+                 <string>Government or Community Facility</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>fair-convention-facility</string>
+                 <string>Hair and Beauty</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>ferry-terminal</string>
+                 <string>Hardware, House and Garden</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>fire-department</string>
+                 <string>Hospital or Health Care Facility</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>food-drink</string>
+                 <string>Hotel-Motel</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>forest-heath-vegetation</string>
+                 <string>Landmark-Attraction</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>going-out</string>
+                 <string>Leisure</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>government-community-facility</string>
+                 <string>Library</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>hardware-house-garden-shop</string>
+                 <string>Lodging</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>hospital-health-care-facility</string>
+                 <string>Mall-Shopping Complex</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>hospital-health-care-facility</string>
+                 <string>Money-Cash Services</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>hostel</string>
+                 <string>Mountain or Hill</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>hotel</string>
+                 <string>Museum</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>intersection</string>
+                 <string>Natural and Geographical</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>kiosk-convenience-store</string>
+                 <string>Nightlife-Entertainment</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>landmark-attraction</string>
+                 <string>Outdoor Area-Complex</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>leisure-outdoor</string>
+                 <string>Outdoor-Recreation</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>library</string>
+                 <string>Parking</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>mall</string>
+                 <string>Police-Fire-Emergency</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>motel</string>
+                 <string>Post Office</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>mountain-hill</string>
+                 <string>Public Transport</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>museum</string>
+                 <string>Religious Place</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>natural-geographical</string>
+                 <string>Rest Area</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>outdoor-area-complex</string>
+                 <string>Restaurant</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>parking-facility</string>
+                 <string>Sports Facility-Venue</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>petrol-station</string>
+                 <string>Theatre, Music and Culture</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>pharmacy</string>
+                 <string>Tourist Information</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>police-emergency</string>
+                 <string>Truck-Semi Dealer-Services</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>police-station</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>post-office</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>postal-area</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>public-transport</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>railway-station</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>recreation</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>religious-place</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>restaurant</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>service</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>shop</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>shopping</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>sights-museums</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>snacks-fast-food</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>sport-outdoor-shop</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>sports-facility-venue</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>street-square</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>taxi-stand</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>tea</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>theatre-music-culture</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>toilet-rest-area</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>tourist-information</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>transport</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>travel-agency</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>undersea-feature</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>wine-and-liquor</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>zoo</string>
+                 <string>Undersea Feature</string>
                 </property>
                </item>
               </widget>
@@ -1000,6 +875,13 @@
           <layout class="QVBoxLayout" name="verticalLayout_8">
            <item>
             <layout class="QGridLayout" name="gridLayout_7">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_36">
+               <property name="text">
+                <string>From Layer</string>
+               </property>
+              </widget>
+             </item>
              <item row="1" column="0">
               <widget class="QLabel" name="label_38">
                <property name="text">
@@ -1007,12 +889,8 @@
                </property>
               </widget>
              </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_36">
-               <property name="text">
-                <string>From Layer</string>
-               </property>
-              </widget>
+             <item row="0" column="1">
+              <widget class="QgsMapLayerComboBox" name="FindPOISLayer"/>
              </item>
              <item row="1" column="1">
               <widget class="QListWidget" name="listWidgetBatch">
@@ -1024,428 +902,300 @@
                </property>
                <item>
                 <property name="text">
-                 <string>accommodation</string>
+                 <string>Administrative Region-Streets</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>administrative-areas-buildings</string>
+                 <string>Airport</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>administrative-region</string>
+                 <string>ATM</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>airport</string>
+                 <string>Banking</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>ambulance-services</string>
+                 <string>Body of Water</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>amusement-holiday-park</string>
+                 <string>Bookstore</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>atm-bank-exchange</string>
+                 <string>Building</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>bar-pub</string>
+                 <string>Business-Industry</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>body-of-water</string>
+                 <string>Car Dealer-Sales</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>bookshop</string>
+                 <string>Car Rental</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>building</string>
+                 <string>Car Repair-Service</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>business-industry</string>
+                 <string>Cargo Transportation</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>business-services</string>
+                 <string>Cinema</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>camping</string>
+                 <string>City, Town or Village</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>car-dealer-repair</string>
+                 <string>Clothing and Accessories</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>car-rental</string>
+                 <string>Coffee-Tea</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>casino</string>
+                 <string>Commercial Services</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>cinema</string>
+                 <string>Communication-Media</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>city-town-village</string>
+                 <string>Consumer Goods</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>clothing-accessories-shop</string>
+                 <string>Consumer Services</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>coffee</string>
+                 <string>Convenience Store</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>coffee-tea</string>
+                 <string>Department Store</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>communication-media</string>
+                 <string>Drugstore or Pharmacy</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>dance-night-club</string>
+                 <string>Education Facility</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>department-store</string>
+                 <string>Electronics</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>eat-drink</string>
+                 <string>Event Spaces</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>education-facility</string>
+                 <string>Facilities</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>electronics-shop</string>
+                 <string>Food and Drink</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>ev-charging-station</string>
+                 <string>Forest, Heath or Other Vegetation</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>facilities</string>
+                 <string>Fueling Station</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>facility</string>
+                 <string>Government or Community Facility</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>fair-convention-facility</string>
+                 <string>Hair and Beauty</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>ferry-terminal</string>
+                 <string>Hardware, House and Garden</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>fire-department</string>
+                 <string>Hospital or Health Care Facility</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>food-drink</string>
+                 <string>Hotel-Motel</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>forest-heath-vegetation</string>
+                 <string>Landmark-Attraction</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>going-out</string>
+                 <string>Leisure</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>government-community-facility</string>
+                 <string>Library</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>hardware-house-garden-shop</string>
+                 <string>Lodging</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>hospital-health-care-facility</string>
+                 <string>Mall-Shopping Complex</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>hospital-health-care-facility</string>
+                 <string>Money-Cash Services</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>hostel</string>
+                 <string>Mountain or Hill</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>hotel</string>
+                 <string>Museum</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>intersection</string>
+                 <string>Natural and Geographical</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>kiosk-convenience-store</string>
+                 <string>Nightlife-Entertainment</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>landmark-attraction</string>
+                 <string>Outdoor Area-Complex</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>leisure-outdoor</string>
+                 <string>Outdoor-Recreation</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>library</string>
+                 <string>Parking</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>mall</string>
+                 <string>Police-Fire-Emergency</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>motel</string>
+                 <string>Post Office</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>mountain-hill</string>
+                 <string>Public Transport</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>museum</string>
+                 <string>Religious Place</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>natural-geographical</string>
+                 <string>Rest Area</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>outdoor-area-complex</string>
+                 <string>Restaurant</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>parking-facility</string>
+                 <string>Sports Facility-Venue</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>petrol-station</string>
+                 <string>Theatre, Music and Culture</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>pharmacy</string>
+                 <string>Tourist Information</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>police-emergency</string>
+                 <string>Truck-Semi Dealer-Services</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>police-station</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>post-office</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>postal-area</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>public-transport</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>railway-station</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>recreation</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>religious-place</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>restaurant</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>service</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>shop</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>shopping</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>sights-museums</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>snacks-fast-food</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>sport-outdoor-shop</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>sports-facility-venue</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>street-square</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>taxi-stand</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>tea</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>theatre-music-culture</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>toilet-rest-area</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>tourist-information</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>transport</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>travel-agency</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>undersea-feature</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>wine-and-liquor</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>zoo</string>
+                 <string>Undersea Feature</string>
                 </property>
                </item>
               </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QgsMapLayerComboBox" name="FindPOISLayer"/>
              </item>
             </layout>
            </item>

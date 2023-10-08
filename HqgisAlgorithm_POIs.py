@@ -38,6 +38,7 @@ from qgis.core import (QgsProcessing,
                        QgsPointXY,
                        QgsSettings)
 from functools import partial
+from .mapCat import mapCategories
 import processing
 import Hqgis
 import os
@@ -162,110 +163,70 @@ class getPois(QgsProcessingAlgorithm):
                 [QgsProcessing.TypeVectorPoint]
             )
         )
-        self.keys = ['accommodation',
-                     'administrative-areas-buildings',
-                     'administrative-region',
-                     'airport',
-                     'ambulance-services',
-                     'amusement-holiday-park',
-                     'atm-bank-exchange',
-                     'bar-pub',
-                     'body-of-water',
-                     'bookshop',
-                     'building',
-                     'business-industry',
-                     'business-services',
-                     'camping',
-                     'car-dealer-repair',
-                     'car-rental',
-                     'casino',
-                     'cinema',
-                     'city-town-village',
-                     'clothing-accessories-shop',
-                     'coffee',
-                     'coffee-tea',
-                     'communication-media',
-                     'dance-night-club',
-                     'department-store',
-                     'eat-drink',
-                     'education-facility',
-                     'electronics-shop',
-                     'ev-charging-station',
-                     'facilities',
-                     'facility',
-                     'fair-convention-facility',
-                     'ferry-terminal',
-                     'fire-department',
-                     'food-drink',
-                     'forest-heath-vegetation',
-                     'going-out',
-                     'government-community-facility',
-                     'hardware-house-garden-shop',
-                     'hospital-health-care-facility',
-                     'hospital-health-care-facility',
-                     'hostel',
-                     'hotel',
-                     'intersection',
-                     'kiosk-convenience-store',
-                     'landmark-attraction',
-                     'leisure-outdoor',
-                     'library',
-                     'mall',
-                     'motel',
-                     'mountain-hill',
-                     'museum',
-                     'natural-geographical',
-                     'outdoor-area-complex',
-                     'parking-facility',
-                     'petrol-station',
-                     'pharmacy',
-                     'police-emergency',
-                     'police-station',
-                     'post-office',
-                     'postal-area',
-                     'public-transport',
-                     'railway-station',
-                     'recreation',
-                     'religious-place',
-                     'restaurant',
-                     'service',
-                     'shop',
-                     'shopping',
-                     'sights-museums',
-                     'snacks-fast-food',
-                     'sport-outdoor-shop',
-                     'sports-facility-venue',
-                     'street-square',
-                     'taxi-stand',
-                     'tea',
-                     'theatre-music-culture',
-                     'toilet-rest-area',
-                     'tourist-information',
-                     'transport',
-                     'travel-agency',
-                     'undersea-feature',
-                     'wine-and-liquor',
-                     'zoo']
-        #TODO: Add more categories beneath
-        self.keys = [{"name": "Restaurant",
-                      "categories": "100-1000-0000,100-1000-0001,100-1000-0002,100-1000-0003,100-1000-0004,100-1000-0005,100-1000-0006,100-1000-0007,100-1000-0008,100-1000-0009",
-                      },
-                     {"name": "Coffee-Tea",
-                      "categories": "100-1100-0000,100-1100-0010,100-1100-0331",
-                      },
-                     {"name": "Nightlife-Entertainment",
-                      "categories": "200-2000-0000,200-2000-0011,200-2000-0012,200-2000-0013,200-2000-0014,200-2000-0015,200-2000-0016,200-2000-0017,200-2000-0018,200-2000-0019,200-2000-0306,200-2000-0368",
-                      },
-                     {"name": "Cinema",
-                      "categories": "200-2100-0019",
-                      },
-                     {"name": "Theatre, Music and Culture",
-                      "categories": "200-2200-0000,200-2200-0020",
-                      },
-                     ]
+        self.keys = [
+            "Administrative Region-Streets",
+            "Airport",
+            "ATM",
+            "Banking",
+            "Body of Water",
+            "Bookstore",
+            "Building",
+            "Business-Industry",
+            "Car Dealer-Sales",
+            "Car Rental",
+            "Car Repair-Service",
+            "Cargo Transportation",
+            "Cinema",
+            "City, Town or Village",
+            "Clothing and Accessories",
+            "Coffee-Tea",
+            "Commercial Services",
+            "Communication-Media",
+            "Consumer Goods",
+            "Consumer Services",
+            "Convenience Store",
+            "Department Store",
+            "Drugstore or Pharmacy",
+            "Education Facility",
+            "Electronics",
+            "Event Spaces",
+            "Facilities",
+            "Food and Drink",
+            "Forest,Heath or Other Vegetation",
+            "Fueling Station",
+            "Government or Community Facility",
+            "Hair and Beauty",
+            "Hardware, House and Garden",
+            "Hospital or Health Care Facility",
+            "Hotel-Motel",
+            "Landmark-Attraction",
+            "Leisure",
+            "Library",
+            "Lodging",
+            "Mall-Shopping Complex",
+            "Money-Cash Services",
+            "Mountain or Hill",
+            "Museum",
+            "Natural and Geographical",
+            "Nightlife-Entertainment",
+            "Outdoor Area-Complex",
+            "Outdoor-Recreation",
+            "Parking",
+            "Police-Fire-Emergency",
+            "Post Office",
+            "Public Transport",
+            "Religious Place",
+            "Rest Area",
+            "Restaurant",
+            "Sports Facility-Venue",
+            "Theatre, Music and Culture",
+            "Tourist Information",
+            "Truck-Semi Dealer-Services",
+            "Undersea Feature"
+        ]
         self.keys2 = []
         for entry in self.keys:
-            self.keys2.append(entry["name"])
+            self.keys2.append(entry)
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.KEYS,
@@ -464,8 +425,13 @@ class getPois(QgsProcessingAlgorithm):
         categoriesList = []
         # self.keys[keyField].split(" | ")[1]
         for category in categories:
-            categoriesList.append(self.keys[category]["categories"])
+            feedback.pushInfo(self.keys[category])
+            categoriesList.append(mapCategories(self.keys[category]))
         categories = ",".join(categoriesList)
+        #for category in categories:
+        #    categoryID = mapCategories(category)
+        #    categoriesList.append(categoryID)
+        #categories = ",".join(categoriesList)
         layerCRS = source.sourceCrs()
         if layerCRS != QgsCoordinateReferenceSystem(4326):
             sourceCrs = source.sourceCrs()
@@ -499,9 +465,9 @@ class getPois(QgsProcessingAlgorithm):
                 lat = place["position"]["lat"]
                 lng = place["position"]["lng"]
                 # iterate over categories:
+                
                 categoriesResp = []
-                for cat in place["categories"]:
-                    categoriesResp.append(cat["id"])
+                
                 fet = QgsFeature()
                 fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lng, lat)))
                 fet.setAttributes([
