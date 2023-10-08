@@ -25,8 +25,8 @@ The Hqgis plugin comes with different analytical tools as the HERE API povides d
 
 
 ## Installation
-Currently the plugin is only hosted here on github as the version is premature.
-If you want to use it in QGIS, please download the repository and place the content of the zip in your python plugins folder (linux: */home/USER/.local/share/QGIS/QGIS3/profiles/default/python/plugins* / win: *C:\Users\USER\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins*). You can also install it directly in QGIS using the [plugin from ZIP option](https://gis.stackexchange.com/questions/302196/downloading-and-saving-plugins-for-qgis-3-4)
+Currently the plugin is hosted here on github as well as in the plugin manager.
+If you want to use it in QGIS from github, please download the repository and place the content of the zip in your python plugins folder (linux: */home/USER/.local/share/QGIS/QGIS3/profiles/default/python/plugins* / win: *C:\Users\USER\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins*). You can also install it directly in QGIS using the [plugin from ZIP option](https://gis.stackexchange.com/questions/302196/downloading-and-saving-plugins-for-qgis-3-4)
 
 ## Credentials
 The plugin needs to have credentials from HERE. Therefore you need to register at least a freemium account (free of charge at [HERE.com](https://developer.here.com/) by creating a project and generate a REST API Key if not already generated.
