@@ -640,7 +640,7 @@ class Hqgis:
             self.dlg.CityBox.currentField())
         indexer["street"] = layer.fields().indexFromName(
             self.dlg.StreetBox.currentField())
-        indexer["number"] = layer.fields().indexFromName(
+        indexer["houseNumber"] = layer.fields().indexFromName(
             self.dlg.NumberBox.currentField())
         ResultFeatureList = []  # got result storing
         # precreate field-lists for API call:
