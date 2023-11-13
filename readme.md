@@ -3,6 +3,10 @@ Hqgis is a python based plugin for QGIS that offers access to the [HERE API](htt
 With Hqgis you can geocode single and multiple addresses, find routes, places of interests around a or multiple locations and many more.
 This plugin is designed to work in QGIS 3.4 and above.
 
+## Sponsors
+Thank you: 
+@zoefSmoelt 
+
 ## Contents and Usage
 The Hqgis plugin comes with different analytical tools as the HERE API povides different endpoints:
 + Geocode
