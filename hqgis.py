@@ -1213,8 +1213,8 @@ class Hqgis:
                 self.dlg.dateTimeEdit_2.dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'")
             time2 = self.dlg.dateTimeEdit_2.dateTime().toString("yyyyMMdd-hh:mm:ss")
             timestamp = QDateTime.fromString(time2, "yyyyMMdd-hh:mm:ss")
-        # else:
-        #     timestamp = None
+        else:
+            timestamp = None
         #     url += "&departureTime=any"
         print(url)
         r = requests.get(url)
@@ -1367,8 +1367,8 @@ class Hqgis:
                     self.dlg.dateTimeEdit_2.dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'")
                 time2 = self.dlg.dateTimeEdit_2.dateTime().toString("yyyyMMdd-hh:mm:ss")
                 timestamp = QDateTime.fromString(time2, "yyyyMMdd-hh:mm:ss")
-            # else:
-            #     timestamp = None
+            else:
+                timestamp = None
             #     url += "&departureTime=any"
             print(url)
             r = requests.get(url)
