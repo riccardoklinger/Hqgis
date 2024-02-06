@@ -1215,7 +1215,7 @@ class Hqgis:
             timestamp = QDateTime.fromString(time2, "yyyyMMdd-hh:mm:ss")
         else:
             timestamp = None
-            url += "&departureTime=any"
+        #     url += "&departureTime=any"
         print(url)
         r = requests.get(url)
         print(url)
@@ -1332,12 +1332,12 @@ class Hqgis:
                 y = originFeature.geometry().asPoint().y()
             coordinates = str(y) + "," + str(x)
 
-            type = self.dlg.Type_2.currentText()
-            mode = self.dlg.TransportMode_2.currentText()
-            traffic = self.dlg.trafficMode_2.currentText()
+            type = self.dlg.TypeBatch.currentText()
+            mode = self.dlg.TransportModeBatch.currentText()
+            traffic = self.dlg.trafficModeBatch.currentText()
             if mode == 'public transport':
                 mode = 'publicTransport'
-            if self.dlg.OriginDestination.currentText().lower() == "start":
+            if self.dlg.OriginDestinationBatch.currentText().lower() == "start":
                 origin = "origin"
             else:
                 origin = "destination"
@@ -1357,19 +1357,19 @@ class Hqgis:
                 + self.appId
             )
 
-            if self.dlg.trafficMode_2.currentText() == "enabled":
+            if self.dlg.trafficModeBatch.currentText() == "enabled":
                 if origin == "destination":
                     timer = "arrivalTime"
                 else:
                     timer = "departureTime"
                 # print(self.dlg.dateTimeEditBatch.dateTime())
                 url += "&" + timer + "=" + \
-                    self.dlg.dateTimeEdit_2.dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'")
-                time2 = self.dlg.dateTimeEdit_2.dateTime().toString("yyyyMMdd-hh:mm:ss")
+                    self.dlg.dateTimeEditBatch.dateTime().toString("yyyy-MM-dd'T'hh:mm:ss'Z'")
+                time2 = self.dlg.dateTimeEditBatch.dateTime().toString("yyyyMMdd-hh:mm:ss")
                 timestamp = QDateTime.fromString(time2, "yyyyMMdd-hh:mm:ss")
             else:
                 timestamp = None
-                url += "&departureTime=any"
+            #     url += "&departureTime=any"
             print(url)
             r = requests.get(url)
             i += 1
@@ -1395,7 +1395,7 @@ class Hqgis:
                                     fet.setGeometry(
                                         QgsGeometry.fromPolygonXY([vertices]))
                                     fet.setAttributes(
-                                        [fid, originFeature.id(), line["range"]["value"], self.dlg.metric.currentText(
+                                        [fid, originFeature.id(), line["range"]["value"], self.dlg.metricBatch.currentText(
                                         ).lower(), mode, traffic, timestamp, type]
                                     )
                                     features.append(fet)
